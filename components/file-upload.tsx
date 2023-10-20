@@ -9,7 +9,7 @@ import { UploadDropzone } from '@/lib/uploadthing'
 interface FileUploadProps {
   onChange:(url?:string) => void;
   value:string;
-  endpoint: "messageFile" | "serverImage"
+  endpoint: "serverImage"
 }
 
 export const FileUpload = ({
