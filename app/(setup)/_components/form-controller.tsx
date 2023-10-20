@@ -2,7 +2,7 @@
 import {useState, useEffect} from'react'
 import CreateGroupForm from './create-group-form';
 import JoinGroupForm from './join-group-form';
-import ProfileForm from './profile-form';
+import ProfileForm from '../../(main)/[groupId]/[profileId]/settings/_components/profile-form';
 import { Group, Profile } from '@prisma/client';
 import { Button } from '@nextui-org/react';
 
@@ -20,7 +20,7 @@ const FormController:React.FC<FormControllerProps> = ({
 const [isMounted, setIsMounted] = useState(false);
 const [create, setCreate] = useState(false);
 const [join, setJoin] = useState(false);
-const [updateProfile, setUpdateProfile] = useState(false);
+
 
 useEffect(() => {
 setIsMounted(true);
@@ -54,11 +54,7 @@ return null;
        </div>
        )}
 
-      {updateProfile && (
-       <div>
-          <ProfileForm initialData={profile}/>
-      </div>
-      )}
+      
       </div>
     </div>
   );

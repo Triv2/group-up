@@ -70,7 +70,7 @@ useEffect(() => {
     
       console.log("OnSubmit", data)
       await axios.patch(`/api/group/`, data)
-      router.refresh();
+      router.push(``);
       
       toast.success("Group created!");
     } catch (error) {

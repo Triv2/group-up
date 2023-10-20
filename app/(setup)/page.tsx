@@ -6,10 +6,9 @@ import Image from 'next/image'
 import { auth, redirectToSignIn } from '@clerk/nextjs';
 import { currentProfile } from '@/lib/current-profile';
 import { redirect } from 'next/navigation';
-import CreateGroupForm from './_components/create-group-form';
-import ProfileForm from './_components/profile-form';
+
 import { currentGroups } from '@/lib/current-groups';
-import JoinGroupForm from './_components/join-group-form';
+
 import FormController from './_components/form-controller';
 
 export default async function SetupPage() {
@@ -26,7 +25,11 @@ export default async function SetupPage() {
 
   if(getCurrentProfile?.setupComplete) {
     redirect(`/${getCurrentProfile.groupId}/${getCurrentProfile.id}`);
-   } 
+   }
+  
+   if(getCurrentProfile?.groupId){
+    redirect(`/${getCurrentProfile.groupId}/${getCurrentProfile.id}/settings`);
+   }
 
  if (groups)
   return (

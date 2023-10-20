@@ -70,7 +70,7 @@ useEffect(() => {
     
       console.log("OnSubmit", data)
       await axios.post(`/api/group/`, data)
-      router.refresh();
+      router.push(`/`);
       
       toast.success("Group created!");
     } catch (error) {
@@ -80,10 +80,7 @@ useEffect(() => {
     }
   };
 
-  const handleSelectionChange = (value: Set<string>) => {
-    setValue(value);
-    console.log(value);
-  };
+ 
   
   return (
     <>

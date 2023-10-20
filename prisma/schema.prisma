@@ -18,10 +18,9 @@ model Profile {
   email String?
   imageUrl String?
 
-  // interests String[]
-  // items String[]
+  content String?
 
-  groupId String? @db.ObjectId
+  groupId String @db.ObjectId
   group Group? @relation(fields:[groupId],references:[id])
 
   secretId String? @db.ObjectId
@@ -35,6 +34,7 @@ model Profile {
 
 model Group {
   id String @id @default(auto()) @map("_id") @db.ObjectId
+
   name String
 
   profiles Profile[]

@@ -71,6 +71,9 @@ export async function PATCH(
         clerkId:user.id,
       },
     });
+    if (!profile) {
+      return new NextResponse("Profile not found",{ status: 400 });
+    }
 
 
     const group = await db.group.findFirst({
@@ -78,6 +81,9 @@ export async function PATCH(
         name,
       },
     })
+    if (!group) {
+      return new NextResponse("Group not found",{ status: 400 });
+    }
 
     const updatedProfile= await db.profile.update({
       where: {
@@ -89,22 +95,25 @@ export async function PATCH(
     })
 
 
+
     const updatedGroup = await db.group.update({
       where:{
         id:group?.id,
       },
       data:{
         profiles:{
-          connect: [updatedProfile]
+          create:{
+            id:updatedProfile.id,
+          }
         }
       }
       
     })
     
-    console.log(group);
-    return NextResponse.json(group);
+    console.log(updatedGroup);
+    return NextResponse.json(updatedGroup);
   } catch (error) {
-    console.log('[GROUPS_POST]', error);
+    console.log('[GROUPS_PATCH]', error);
     return new NextResponse("Internal Error", {status:500});
   }
 }
