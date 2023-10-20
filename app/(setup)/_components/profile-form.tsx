@@ -85,89 +85,59 @@ const onSubmit = async (data:ProfileFormValues) => {
 
   return (
     <>
-    
-      <Button onPress={onOpen} color="primary">Create Profile</Button>
-      <Modal 
-        isOpen={isOpen} 
-        onOpenChange={onOpenChange}
-        placement="top-center"
-        
-      >
-        <ModalContent className="bg-red-600">
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">Create Group</ModalHeader>
-              <ModalBody>
-                <Form  {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-10 px-20 w-full ">
-                  <FormField
-                      control={form.control}
-                      name="name"
-                      render={({ field }) => (
-                          <Input
-                            autoFocus
-                            endContent={
-                              <Users className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-                            }
-                            label="Group"
-                            placeholder="Enter the name of your group"
-                            variant="bordered"
-                            className="bg-emerald-600 rounded-lg"
-                          />
-                        )}
-                      />
-                  <FormField
-                      control={form.control}
-                      name="group"
-                      render={({ field }) => (
-                        <Input
-                          endContent={
-                            <Lock className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-                          }
-                          label="Password"
-                          placeholder="Enter your password"
-                          type="password"
-                          variant="bordered"
-                          className="bg-emerald-600 rounded-lg"
-                        />
-                      )}
-                      />
-                      <FormField
-            control={form.control}
-            name="imageUrl"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>
-                  Attach Images
-                </FormLabel>
-                <FormControl>
-                <FileUpload
-                          endpoint="serverImage"
-                          value={field.value}
-                          onChange={field.onChange}
-                        />
-                </FormControl>
-                <FormMessage/>
-              </FormItem>
-              )}
-          />
+    <div>
+           <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-10 px-20 w-full ">
+            <div>
+            <h2>Step Two: Customize your Profile</h2>
+            <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>
+                Name
+              </FormLabel>
+              <FormControl>
+               <Input 
                
-                
-                </form>
-                </Form>
-              </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="flat" onPress={onClose}>
-                  Close
-                </Button>
-                <Button type="submit" color="primary" onPress={onClose}>
-                  Submit
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
+               type="name"
+               
+               placeholder="Please enter a name"
+                className="text-black rounded-md"
+               disabled={loading}  {...field}/>
+              </FormControl>
+              <FormMessage/>
+            </FormItem>
+            )}
+        />
+        <FormField
+          control={form.control}
+          name="group"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>
+                Password
+              </FormLabel>
+              <FormControl>
+               <Input 
+               
+               type="password"
+               
+               placeholder="Please enter a password"
+                className="text-black rounded-md"
+               disabled={loading}  {...field}/>
+              </FormControl>
+              <FormMessage/>
+            </FormItem>
+            )}
+        />
+        <Button type="submit">Submit</Button>
+        
+            </div>
+            </form>
+           </Form>
+         </div>  
     </>
   );
 }

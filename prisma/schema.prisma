@@ -18,8 +18,8 @@ model Profile {
   email String?
   imageUrl String?
 
-  interests String[]
-  items String[]
+  // interests String[]
+  // items String[]
 
   groupId String? @db.ObjectId
   group Group? @relation(fields:[groupId],references:[id])
