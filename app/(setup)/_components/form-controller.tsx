@@ -2,8 +2,8 @@
 import {useState, useEffect} from'react'
 import CreateGroupForm from './create-group-form';
 import JoinGroupForm from './join-group-form';
-import ProfileForm from '../../(main)/[groupId]/[profileId]/settings/_components/profile-form';
-import { Group, Profile } from '@prisma/client';
+
+import { Group} from '@prisma/client';
 import { Button, Divider } from '@nextui-org/react';
 
 
@@ -33,7 +33,7 @@ return null;
     <div className="h-auto" >
       <div>
 
-        {!create && !join && (<div className="bg-zinc-100 p-5 rounded-md gap-2 flex items-center flex-col">
+        {!create && !join && (<div className="bg-white p-5 rounded-md gap-2 flex items-center flex-col shadow-md">
         
             <h2 className="font-semibold">Step One: Create or Join a Group</h2>
             <p className="w-[150px] sm:w-[300px]  text-muted-foreground font-semibold text-sm">Please fill out the form prior to 12/15/2023 to participate in Secret Santa. </p>
@@ -46,16 +46,16 @@ return null;
           )}
 
        {create && (
-        <div className="bg-green-200 p-2 rounded-md">
+        <div className="bg-emerald-400 p-2 rounded-md shadow-md">
           <CreateGroupForm />
-          <Button className="shadow-md hover:scale-105 transition-all hover:bg-emerald-700 hover:text-white active:bg-red-800" onClick={()=> setCreate(false)} type="submit">Cancel</Button>
+          <Button className="shadow-md hover:scale-105 transition-all hover:bg-emerald-700 text-white bg-red-800" onClick={()=> setCreate(false)} type="submit">Cancel</Button>
        </div>
        )}   
 
        {join && (
-       <div className="bg-emerald-200 p-2 rounded-md">
+       <div className="bg-emerald-400 p-2 rounded-md shadow-md">
           <JoinGroupForm initialData={groups} />
-          <Button className="shadow-md hover:scale-105 transition-all hover:bg-emerald-700 hover:text-white active:bg-red-800" onClick={()=> setJoin(false)} type="submit">Cancel</Button>
+          <Button className="shadow-md hover:scale-105 transition-all hover:bg-emerald-700 text-white bg-red-800" onClick={()=> setJoin(false)} type="submit">Cancel</Button>
        </div>
        )}
 

@@ -15,7 +15,7 @@ export async function PATCH(
     console.log(body);
     const { name, content, imageUrl } = body;
   
-    
+    let image= imageUrl;
     
     if (!name) {
       return new NextResponse("name is required",{ status: 400 });
@@ -30,6 +30,10 @@ export async function PATCH(
       return new NextResponse("Profile not found",{ status: 400 });
     }
 
+    if(imageUrl === null || imageUrl === ""){
+      image = user.imageUrl
+     }
+
 
    
 
@@ -40,7 +44,7 @@ export async function PATCH(
       data: {
         name:name,
         content:content,
-        imageUrl:imageUrl,
+        imageUrl:image,
         setupComplete:true,
       },
     })

@@ -76,19 +76,15 @@ export async function PATCH(
 
     }
     
-    const cUser =await db.user.findFirst({ 
-      where: {
-      clerkId:user.id,
-      },
-    })
+    
 
     const profile = await db.profile.create({
       data: {
         clerkId:user.id,
         groupId:group.id,
-        name:cUser?.name,
-        email:cUser?.email,
-        imageUrl:cUser?.imageUrl || "",
+        name:`${user.firstName} ${user.lastName}`,
+        imageUrl: user.imageUrl,
+        email: user.emailAddresses[0].emailAddress,
       },
 
       

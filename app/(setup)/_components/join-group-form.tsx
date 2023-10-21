@@ -89,25 +89,26 @@ useEffect(() => {
     <>
       <div>
            <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-5 px-5 md:px-20 w-full ">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 p-3 px-10 w-full  ">
             
               <div>
         
             <div >
            
            <div className="flex items-center justify-center flex-col gap-2" >
-              <h3 className="font-bold text-2xl">Join a group</h3>
+              <h3 className="font-bold text-lg ">Join a group</h3>
+              
             <FormField
                 control={form.control}
                 name="name"
                 render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>
+                  <FormItem className="flex   flex-col">
+                    <FormLabel className="font-semibold">
                       Name
                     </FormLabel>
                     <FormControl>
                     <Select
-                    className="w-[200px] flex "
+                    className="w-[200px]  flex  "
                       label="Please select a group"
                       selectedKeys={value}
                       // @ts-ignore
@@ -130,7 +131,7 @@ useEffect(() => {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>
+              <FormLabel className="font-semibold">
                 Password
               </FormLabel>
               <FormControl>
@@ -146,7 +147,7 @@ useEffect(() => {
             </FormItem>
             )}
         />
-        <Button type="submit">Submit</Button>
+        <Button className="shadow-md hover:scale-105 transition-all bg-emerald-700 text-white hover:bg-red-800" type="submit">Join</Button>
         
         </div>
            
