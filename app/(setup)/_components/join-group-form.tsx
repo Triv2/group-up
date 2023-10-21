@@ -89,7 +89,7 @@ useEffect(() => {
     <>
       <div>
            <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-5 px-20 w-full ">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-5 px-5 md:px-20 w-full ">
             
               <div>
         
@@ -107,7 +107,7 @@ useEffect(() => {
                     </FormLabel>
                     <FormControl>
                     <Select
-                    className="w-[200px] flex"
+                    className="w-[200px] flex "
                       label="Please select a group"
                       selectedKeys={value}
                       // @ts-ignore
@@ -139,7 +139,7 @@ useEffect(() => {
                type="password"
                
                placeholder="Please enter a password"
-                className="text-black rounded-md"
+                className="text-black rounded-md h-[25px]"
                disabled={loading}  {...field}/>
               </FormControl>
               <FormMessage/>

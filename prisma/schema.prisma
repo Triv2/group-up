@@ -13,9 +13,10 @@ datasource db {
 
 model User {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  clerkId String?
-  name String?
-  email String?
+  imageUrl String
+  clerkId String
+  name String
+  email String
 }
 
 
@@ -26,7 +27,7 @@ model Profile {
   name String?
 
   email String?
-  imageUrl String?
+  imageUrl String
 
   content String?
 

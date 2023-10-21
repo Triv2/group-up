@@ -2,7 +2,7 @@
 import { Profile } from '@prisma/client';
 import {useState, useEffect} from'react'
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from "@/components/ui/form";
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Checkbox, Input, Link} from "@nextui-org/react";
+import { Button, useDisclosure, Checkbox, Input, Link, Textarea, Switch} from "@nextui-org/react";
 import * as z from "zod";
 
 import { useForm } from "react-hook-form";
@@ -14,7 +14,7 @@ import { useParams, useRouter } from "next/navigation";
 import { AlertModal } from "@/components/modals/alert-modal";
 import { Lock, Users, X } from 'lucide-react';
 import { FileUpload } from '@/components/file-upload';
-import { Textarea } from '@/components/ui/textarea';
+// import { Textarea } from '@/components/ui/textarea';
 
 
 
@@ -34,6 +34,7 @@ const ProfileForm = ({
   const params = useParams();
 const [isMounted, setIsMounted] = useState(false);
 const [loading, setLoading] = useState(false);
+const [upload,setUpload] = useState(false);
 
 
 
@@ -72,15 +73,23 @@ const onSubmit = async (data:ProfileFormValues) => {
   }
 };
 
+const handleClick= () => {
+  if(upload) {
+    setUpload(false);
+  } else {
+    setUpload(true);
+  }
+}
+
   return (
     <>
-    <div>
+    <div >
            <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-10 px-20 w-full ">
             <div className="flex items-center flex-col justify-center p-5 gap-5">
             
-            <div className="flex items-center gap-2">
-            <div className='flex items-center flex-col justify-center p-5 gap-5'>
+            <div className="flex items-center flex-col md:flex-row gap-2">
+            <div className='flex items-center flex-col justify-center p-5 gap-5 w-full'>
             <FormField
           control={form.control}
           name="name"
@@ -112,10 +121,16 @@ const onSubmit = async (data:ProfileFormValues) => {
                 <p></p>
               </FormLabel>
               <FormControl>
-               <Textarea
+               {/* <Textarea
                placeholder="Please enter what you want the person that draws you, to know about you."
                 className="text-black rounded-md"
-               disabled={loading}  {...field}/>
+               disabled={loading}  {...field}/> */}
+                 <Textarea
+                 
+                  placeholder="Enter your description"
+                  className="max-w-xs"
+                  {...field}
+                />
               </FormControl>
               <FormMessage/>
             </FormItem>
@@ -123,6 +138,8 @@ const onSubmit = async (data:ProfileFormValues) => {
         />
         </div>
         <div className="flex items-center flex-col justify-center">
+          <Switch defaultSelected  onClick={()=>handleClick()}>Upload Image?</Switch>
+          {upload && (
         <FormField
           control={form.control}
           name="imageUrl"
@@ -142,6 +159,7 @@ const onSubmit = async (data:ProfileFormValues) => {
             </FormItem>
             )}
         />
+        )}
         </div>
         </div>
         <Button type="submit">Submit</Button>

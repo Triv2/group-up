@@ -88,6 +88,7 @@ export async function PATCH(
         groupId:group.id,
         name:cUser?.name,
         email:cUser?.email,
+        imageUrl:cUser?.imageUrl || "",
       },
 
       

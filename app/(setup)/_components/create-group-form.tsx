@@ -84,20 +84,20 @@ useEffect(() => {
   
   return (
     <>
-      <div>
+      <div className="h-auto w-auto">
            <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-5 px-20 w-full ">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 p-5 px-10 w-full ">
             <div>
               <div>
           <div className="flex items-center justify-center flex-col gap-3">
-              <h3 className="font-bold text-2xl">Create a group</h3>
+              <h3 className="font-bold text-xl">Create a Group</h3>
             <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
             <FormItem>
               <FormLabel>
-                Name
+                Group Name
               </FormLabel>
               <FormControl>
                <Input 
@@ -105,7 +105,7 @@ useEffect(() => {
                type="name"
                
                placeholder="Please enter a group name"
-                className="text-black rounded-md"
+                className="text-black rounded-md h-[25px]"
                disabled={loading}  {...field}/>
               </FormControl>
               <FormMessage/>
@@ -126,7 +126,7 @@ useEffect(() => {
                type="password"
                
                placeholder="Please set a password"
-                className="text-black rounded-md"
+                className="text-black rounded-md h-[25px]"
                disabled={loading}  {...field}/>
               </FormControl>
               <FormMessage/>
