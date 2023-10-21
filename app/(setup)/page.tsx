@@ -27,19 +27,20 @@ export default async function SetupPage() {
     redirect(`/${getCurrentProfile.groupId}/${getCurrentProfile.id}`);
    }
   
-   if(getCurrentProfile?.groupId){
-    redirect(`/${getCurrentProfile.groupId}/${getCurrentProfile.id}/settings`);
-   }
+  //  if(getCurrentProfile?.groupId){
+  //   redirect(`/${getCurrentProfile.groupId}/${getCurrentProfile.id}/settings`);
+  //  }
 
  if (groups)
   return (
-    <main className="flex items-center justify-center flex-col h-screen w-full gap-3">
-      <div className="flex items-center flex-col gap-5 p-5">
+    <main className="flex items-center justify-center flex-col h-screen w-full gap-3 bg-[url(/cbg3.png)] bg-no-repeat bg-cover bg-center">
+      <div className="flex items-center flex-col gap-5 p-10 bg-zinc-100/75 rounded-md">
         <h1 className="text-3xl font-bold">Welcome, {initProfile.name}!</h1>
         <p className="w-[200px] md:w-[450px]">Please fill out the form prior to 12/15/2023 to participate in Secret Santa. </p>
-        </div>
+        
+       
         <FormController groups={groups} profile={initProfile}/>
-      
+        </div>
     </main>
   )
 }

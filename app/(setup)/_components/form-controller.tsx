@@ -30,13 +30,15 @@ if (!isMounted) {
 return null;
 }
   return (
-    <div>
+    <div >
       <div>
 
         {!create && !join && (<div>
             <h2>Step One: Create or Join a Group</h2>
+            <div>
             <Button onClick={()=> setCreate(true)} type="submit">Create Group</Button>
             <Button onClick={()=> setJoin(true)} type="submit">Join Group</Button>
+            </div>
             </div>
           )}
 

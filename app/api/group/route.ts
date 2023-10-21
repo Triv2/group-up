@@ -65,17 +65,6 @@ export async function PATCH(
     if (!name) {
       return new NextResponse("name is required",{ status: 400 });
     }
-    
-    const profile = await db.profile.findFirst({
-      where: {
-        clerkId:user.id,
-      },
-    });
-    if (!profile) {
-      return new NextResponse("Profile not found",{ status: 400 });
-    }
-
-
     const group = await db.group.findFirst({
       where: {
         name,
@@ -83,29 +72,47 @@ export async function PATCH(
     })
     if (!group) {
       return new NextResponse("Group not found",{ status: 400 });
-    }
 
-    const updatedProfile= await db.profile.update({
+
+    }
+    
+    const cUser =await db.user.findFirst({ 
       where: {
-       id:profile?.id,
-      },
-      data: {
-        groupId:group?.id,
+      clerkId:user.id,
       },
     })
+
+    const profile = await db.profile.create({
+      data: {
+        clerkId:user.id,
+        groupId:group.id,
+        name:cUser?.name,
+        email:cUser?.email,
+      },
+
+      
+    });
+
+    if (!profile) {
+      return new NextResponse("Profile not found",{ status: 400 });
+    }
+
+
+    
+
+   
 
 
 
     const updatedGroup = await db.group.update({
       where:{
-        id:group?.id,
+        id:group.id,
       },
       data:{
-        profiles:{
-          create:{
-            id:updatedProfile.id,
-          }
-        }
+        profileIds:{
+          push:profile.id,
+        },
+        
       }
       
     })

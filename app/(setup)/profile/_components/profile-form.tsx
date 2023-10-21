@@ -63,8 +63,8 @@ const onSubmit = async (data:ProfileFormValues) => {
     console.log("OnSubmit", data)
     await axios.patch(`/api/profile/${params.profileId}`, data)
     router.refresh();
-    router.push(`/${params.groupId}/${params.profileId}`);
-    toast.success("Entry created!");
+    router.push("/");
+    toast.success("Profile created!");
   } catch (error) {
     toast.error("Something went wrong.");
   } finally {

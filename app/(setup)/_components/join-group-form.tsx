@@ -70,7 +70,7 @@ useEffect(() => {
     
       console.log("OnSubmit", data)
       await axios.patch(`/api/group/`, data)
-      router.push(``);
+      router.push("/profile");
       
       toast.success("Group created!");
     } catch (error) {
@@ -110,6 +110,7 @@ useEffect(() => {
                     className="w-[200px] flex"
                       label="Please select a group"
                       selectedKeys={value}
+                      // @ts-ignore
                       onSelectionChange={setValue}
                       {...field}
                     >
