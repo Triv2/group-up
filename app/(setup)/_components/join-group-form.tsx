@@ -89,7 +89,7 @@ useEffect(() => {
     <>
       <div>
            <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-8 px-20 w-full ">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-5 px-20 w-full ">
             
               <div>
         
@@ -138,7 +138,7 @@ useEffect(() => {
                
                type="password"
                
-               placeholder="Please set a password"
+               placeholder="Please enter a password"
                 className="text-black rounded-md"
                disabled={loading}  {...field}/>
               </FormControl>

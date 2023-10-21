@@ -86,7 +86,7 @@ useEffect(() => {
     <>
       <div>
            <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-8 px-20 w-full ">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-5 px-20 w-full ">
             <div>
               <div>
           <div className="flex items-center justify-center flex-col gap-3">

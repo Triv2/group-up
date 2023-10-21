@@ -35,7 +35,7 @@ return null;
 
         {!create && !join && (<div>
             <h2>Step One: Create or Join a Group</h2>
-            <div>
+            <div className="flex items-center gap-2 p-2">
             <Button onClick={()=> setCreate(true)} type="submit">Create Group</Button>
             <Button onClick={()=> setJoin(true)} type="submit">Join Group</Button>
             </div>
