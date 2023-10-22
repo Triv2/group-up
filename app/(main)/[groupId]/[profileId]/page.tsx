@@ -34,7 +34,7 @@ const ProfilePage = async () => {
   <UserButton afterSignOutUrl="/"/>
   <NavButton 
   href={`/${group?.id}/${profile?.id}/settings`}
-  icon={<Edit className="h-4 w-4" />}
+  icon={<Edit className="h-3 w-3" />}
   text="Edit Profile"
   className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-red-800 transition-all text-sm shadow-md"
   />
@@ -42,11 +42,12 @@ const ProfilePage = async () => {
   </div>
   <div className="grid md:grid-cols-2 gap-10 px-7 ">
     <div className="flex items-center justify-start flex-col px-2 py-2 gap-1  rounded-md bg-zinc-100/80 shadow-md">
-      <h3>List of People in your {group?.name}</h3>
+      <h3>Group: {group?.name}</h3>
+      <p className="text-xs text-muted-foreground">Members List</p>
       <Divider/>
       <ul className="flex items-center flex-col gap-1">
        {members && members.map((member) => (
-        <li key={member.id}>
+        <li className="text-xs" key={member.id}>
         
           {member.name}
         </li>
@@ -57,20 +58,23 @@ const ProfilePage = async () => {
     {profile &&(
     <div className="flex items-center justify-start flex-col px-2 py-2 gap-1  rounded-md bg-zinc-100/80 shadow-md">
       
-        <h3>Your current profile</h3>
+        <h3>Current Profile</h3>
         <Divider/>
-        <div className="flex items-center flex-col gap-1">
-          <div>
-        <p >Name:</p><p>{profile.name}</p>
-        </div>
-        <div>
-        <p className="flex gap-1 justify-between items-center w-full">Interests:{profile.content}</p>
-        </div>
-        <div>
-        <p className="flex gap-1 justify-between items-center w-full">Group:{group?.name}</p>
-        </div>
-        <div>
+        <div className="flex gap-1 justify-between items-center w-full">
+          <p className="text-sm">Avatar:</p>
         <Image src={profile.imageUrl} width={50} height={50} alt={profile?.name || ""} />
+        </div>
+        <div className="flex items-center flex-col gap-1">
+          <div className="flex gap-1 justify-between items-center w-full">
+        <p className="text-sm">Name:</p><p className="text-xs">{profile.name}</p>
+        </div>
+        
+        <div className="flex gap-1 justify-between items-center w-full">
+        <p className="text-sm">Group:</p><p className="text-xs">{group?.name}</p>
+        </div>
+        
+        <div className="flex gap-1 justify-between items-center w-full">
+        <p className="text-sm">Interests:</p><p className="text-xs">{profile.content}</p>
         </div>
         </div>
       </div>

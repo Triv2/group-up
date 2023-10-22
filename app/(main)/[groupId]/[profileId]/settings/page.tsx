@@ -15,7 +15,7 @@ const ProfileSettingsPage = async () => {
 <div className="flex items-center justify-center flex-col bg-zinc-100/80 rounded-md p-3">
   <h2 className="font-bold text-xl mt-5">Edit Your Profile</h2>
 
-<ProfileForm  />
+<ProfileForm profile={profile} />
 <NavButton 
   href={`/${group?.id}/${profile?.id}/`}
   icon={<MoveLeft className="h-3 w-3" />}

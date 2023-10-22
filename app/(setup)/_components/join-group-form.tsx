@@ -25,7 +25,7 @@ interface GroupFormProps {
 const formSchema= z.object({
   
   name: z.string().min(1),
-  password: z.string().includes("password", {message: "Password must be correct."}),
+  inviteCode: z.string().min(1),
   
 });
 
@@ -51,7 +51,7 @@ const form = useForm<GroupFormValues>({
   resolver: zodResolver(formSchema),
   defaultValues: {
     name: "",
-    password: ""
+    inviteCode: ""
   },
 });
 
@@ -128,7 +128,7 @@ useEffect(() => {
         />
         <FormField
           control={form.control}
-          name="password"
+          name="inviteCode"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="font-semibold">

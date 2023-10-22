@@ -16,6 +16,9 @@ import { Lock, Users, X } from 'lucide-react';
 import { FileUpload } from '@/components/file-upload';
 // import { Textarea } from '@/components/ui/textarea';
 
+interface ProfileEditFormProps {
+  profile: Profile | null;
+}
 
 
 const formSchema= z.object({
@@ -23,13 +26,14 @@ const formSchema= z.object({
   name: z.string().min(1),
   imageUrl: z.string().default(""),
   content:  z.string().min(1),
+  group: z.string().min(1),
 });
 
 export type ProfileFormValues = z.infer<typeof formSchema>
 
-const ProfileForm = ({
-  
-}) => {
+const ProfileEditForm = ({
+  profile,
+}:ProfileEditFormProps) => {
   const router=useRouter();
   const params = useParams();
 const [isMounted, setIsMounted] = useState(false);
@@ -111,6 +115,27 @@ const handleClick= () => {
             </FormItem>
             )}
         />
+        <FormField
+          control={form.control}
+          name="group"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>
+                Name
+              </FormLabel>
+              <FormControl>
+               <Input 
+               
+               type="group"
+               
+               placeholder="Please enter a group invite-code"
+                className="text-black rounded-md"
+               disabled={loading}  {...field}/>
+              </FormControl>
+              <FormMessage/>
+            </FormItem>
+            )}
+        />
            <FormField
           control={form.control}
           name="content"
@@ -171,4 +196,4 @@ const handleClick= () => {
     </>
   );
 }
-export default ProfileForm;
+export default ProfileEditForm;

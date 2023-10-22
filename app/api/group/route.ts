@@ -1,6 +1,7 @@
 import { db } from "@/lib/db";
 import { currentUser, redirectToSignIn } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
+import {v4 as uuidv4} from "uuid";
 
 export async function POST(
   req: Request,
@@ -25,6 +26,7 @@ export async function POST(
     const checkGroup = await db.group.findFirst({
       where: {
         name,
+        
       },
     })
 
@@ -36,6 +38,7 @@ export async function POST(
     const group = await db.group.create({
       data: {
         name,
+        inviteCode: uuidv4(),
       },
     })
     
