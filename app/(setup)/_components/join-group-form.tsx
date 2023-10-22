@@ -43,8 +43,7 @@ const JoinGroupForm:React.FC<GroupFormProps>= ({
 const [loading, setLoading] = useState(false);
 const [isMounted, setIsMounted] = useState(false);
 
-const [create, setCreate] = useState(false);
-const [join, setJoin] = useState(false);
+
 
 
 const form = useForm<GroupFormValues>({
@@ -72,7 +71,7 @@ useEffect(() => {
       await axios.patch(`/api/group/`, data)
       router.push("/profile");
       
-      toast.success("Group created!");
+      toast.success("Group joined!");
     } catch (error) {
       toast.error("Something went wrong.");
     } finally {
@@ -80,10 +79,7 @@ useEffect(() => {
     }
   };
 
-  const handleSelectionChange = (value: Set<string>) => {
-    setValue(value);
-    console.log(value);
-  };
+ 
   
   return (
     <>

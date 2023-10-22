@@ -32,6 +32,8 @@ const ProfileForm = ({
 }) => {
   const router=useRouter();
   const params = useParams();
+
+  
 const [isMounted, setIsMounted] = useState(false);
 const [loading, setLoading] = useState(false);
 const [upload,setUpload] = useState(false);
@@ -85,7 +87,7 @@ const handleClick= () => {
     <>
     <div >
            <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-10 px-20 w-full ">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 h-auto px-5 w-full ">
             <div className="flex items-center flex-col justify-center p-5 gap-5">
             
             <div className="flex items-center flex-col md:flex-row gap-2">

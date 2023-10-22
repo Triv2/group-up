@@ -10,13 +10,16 @@ const ProfileSettingsPage = async () => {
   const profile = await currentProfile();
   const group = await currentGroup();
   return (
-<div className="flex items-center justify-center flex-col h-screen bg-[url(/cbg4.png)] bg-no-repeat bg-cover bg-center">
+<div className="flex items-center justify-center flex-col h-auto bg-[url(/cbg4.png)] bg-no-repeat bg-cover bg-center p-5 py-10">
 
 <div className="flex items-center justify-center flex-col bg-zinc-100/80 rounded-md p-3">
   <h2 className="font-bold text-xl mt-5">Edit Your Profile</h2>
 
-<ProfileForm profile={profile} />
+<div className="bg-yellow-200/60 rounded-md">
+<ProfileForm profile={profile} group={group} />
+</div>
 <NavButton 
+
   href={`/${group?.id}/${profile?.id}/`}
   icon={<MoveLeft className="h-3 w-3" />}
   text="Cancel"

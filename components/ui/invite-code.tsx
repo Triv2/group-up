@@ -16,11 +16,13 @@ const [isMounted, setIsMounted] = useState(false);
 const [copied,setCopied] = useState(false);
 const [isLoading,setIsLoading] = useState(false);
 
+const origin = typeof window !== 'undefined' && window.location.origin ? window.location.origin : "";
 
+const inviteUrl = `${origin}/invite/${code}`;
 
-const onCopy = (code:string) => {
+const onCopy = () => {
   
-  navigator.clipboard.writeText(code);
+  navigator.clipboard.writeText(inviteUrl);
   setCopied(true);
 
   setTimeout(() => {

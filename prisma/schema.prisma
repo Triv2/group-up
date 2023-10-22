@@ -36,6 +36,7 @@ model Profile {
 
 model Group {
   id String @id @default(auto()) @map("_id") @db.ObjectId
+  creator String @unique @db.ObjectId
 
   name String
   inviteCode String @unique
@@ -49,3 +50,6 @@ model Group {
   updatedAt DateTime @updatedAt
 }
 
+model Creator {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+}

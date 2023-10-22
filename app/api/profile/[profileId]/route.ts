@@ -13,7 +13,7 @@ export async function PATCH(
   }
     const body = await req.json();
     console.log(body);
-    const { name, content, imageUrl } = body;
+    const { name, content, imageUrl, group } = body;
   
     let image= imageUrl;
     
@@ -35,7 +35,33 @@ export async function PATCH(
      }
 
 
-   
+  if(group){
+    const updatedGroup = await db.group.findFirst({
+      where: {
+        inviteCode: group,
+      }
+    })
+    if (!updatedGroup) {
+      return new NextResponse("Group not found",{ status: 400 });
+    }
+    const updatedProfile= await db.profile.update({
+      where: {
+       id:profile?.id,
+      },
+      data: {
+        name:name,
+        content:content,
+        imageUrl:image,
+        setupComplete:true,
+        groupId:updatedGroup?.id,
+        
+      },
+
+    })
+    console.log(updatedProfile);
+    return NextResponse.json(updatedProfile);
+
+  } else {
 
     const updatedProfile= await db.profile.update({
       where: {
@@ -53,7 +79,7 @@ export async function PATCH(
 
     
     console.log(updatedProfile);
-    return NextResponse.json(updatedProfile);
+    return NextResponse.json(updatedProfile);}
   } catch (error) {
     console.log('[PROFILE_PATCH]', error);
     return new NextResponse("Internal Error", {status:500});
@@ -88,6 +114,42 @@ export async function GET(
     return NextResponse.json(profile);
   } catch (error) {
     console.log('[PROFILE_GET]', error);
+    return new NextResponse("Internal Error", {status:500});
+  }
+}
+
+export async function DELETE(
+  req: Request,
+   
+) {
+  try {
+    const user = await currentUser();
+  if (!user) {
+    return redirectToSignIn();
+  }
+    
+    
+    
+    const profile = await db.profile.findFirst({
+      where: {
+        clerkId:user.id,
+      },
+    })
+    if (!profile) {
+      return new NextResponse("Profile not found",{ status: 400 });
+    }
+
+
+    const deletedProfile= await db.profile.delete({
+      where: {
+        id:profile?.id,
+      },
+    })
+    console.log(deletedProfile);
+    return NextResponse.json(deletedProfile);
+    
+  } catch (error) {
+    console.log('[PROFILE_DELETE]', error);
     return new NextResponse("Internal Error", {status:500});
   }
 }

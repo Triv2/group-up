@@ -91,6 +91,7 @@ export async function POST(
   }
 }
 
+
 export async function PATCH(
   req: Request,
    
@@ -102,33 +103,35 @@ export async function PATCH(
   }
     const body = await req.json();
     console.log(body);
-    const { name } = body;
+    const { groupId , newProfileId} = body;
   
     
     
-    if (!name) {
-      return new NextResponse("name is required",{ status: 400 });
+    if (!groupId) {
+      return new NextResponse("Group ID is required",{ status: 400 });
     }
-    const group = await db.group.findFirst({
+    
+    
+    const checkGroup = await db.group.findFirst({
       where: {
-        name,
+        id:groupId,
+        
       },
     })
-    if (!group) {
-      return new NextResponse("Group not found",{ status: 400 });
 
-
+    if (checkGroup) {
+      return new NextResponse("Group already exists",{ status: 400 });
     }
-    
-    
 
-    const profile = await db.profile.create({
+    
+    
+    const profile = await db.profile.update({
+      where: {
+        id:newProfileId,
+      },
       data: {
-        clerkId:user.id,
-        groupId:group.id,
-        name:`${user.firstName} ${user.lastName}`,
-        imageUrl: user.imageUrl,
-        email: user.emailAddresses[0].emailAddress,
+        groupId:groupId,
+        
       },
 
       
@@ -147,9 +150,10 @@ export async function PATCH(
 
     const updatedGroup = await db.group.update({
       where:{
-        id:group.id,
+        id:groupId
       },
       data:{
+        
         profileIds:{
           push:profile.id,
         },
@@ -159,9 +163,9 @@ export async function PATCH(
     })
     
     console.log(updatedGroup);
-    return NextResponse.json(updatedGroup);
+    return NextResponse.json(profile);
   } catch (error) {
-    console.log('[GROUPS_PATCH]', error);
+    console.log('[INVITE_PROFILE_POST]', error);
     return new NextResponse("Internal Error", {status:500});
   }
 }

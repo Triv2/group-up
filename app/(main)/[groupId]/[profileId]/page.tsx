@@ -1,11 +1,16 @@
+import DeleteButton from "@/components/ui/delete-button";
+import InviteCode from "@/components/ui/invite-code";
 import NavButton from "@/components/ui/nav-button";
 import SantaUser from "@/components/ui/santa-user";
+import { currentCreator } from "@/lib/current-creator";
 import { currentGroup } from "@/lib/current-group";
 import { currentMembers } from "@/lib/current-members";
 import { currentProfile } from "@/lib/current-profile";
+import { inviteProfile } from "@/lib/invite-profile";
 import { UserButton } from "@clerk/nextjs";
 import { Button, Divider, User } from "@nextui-org/react";
-import { Edit } from "lucide-react";
+import axios from "axios";
+import { Edit, Trash } from "lucide-react";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -19,8 +24,26 @@ const ProfilePage = async () => {
    const profile = await currentProfile();
    const group = await currentGroup();
    const members = await currentMembers();
+   const creator = await currentCreator();
  
   
+   if (!profile) {
+    try{
+    // create a new profile
+    const newProfile = await inviteProfile();
+    // attach group to profile
+    await axios.patch(`/api/profiles/${newProfile.id}`, {
+      groupId: group?.id,
+      newProfileId: newProfile.id,
+    });
+  } catch (error) { 
+
+  } finally {
+
+    // redirect to new profile
+    redirect(`/profile/`);
+  }
+   }
 
   
  
@@ -29,20 +52,30 @@ const ProfilePage = async () => {
   <div className="rounded-md bg-zinc-100/80 flex flex-col items-center justify-center gap-2 p-5 shadow-md">
   <h1 className="text-3xl font-bold">Welcome, {profile?.name}!</h1>
   <p>You are apart of the {group?.name}</p>
+  <InviteCode code={group?.inviteCode}/>
   <Divider />
   <div className="flex items-center justify-center gap-3">
   <UserButton afterSignOutUrl="/"/>
-  <NavButton 
+          <NavButton 
+          href={`/${group?.id}/${profile?.id}/settings`}
+          icon={<Edit className="h-3 w-3" />}
+          text="Edit Profile"
+          className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-red-800 transition-all text-sm shadow-md"
+          />
+      
+  <DeleteButton 
   href={`/${group?.id}/${profile?.id}/settings`}
-  icon={<Edit className="h-3 w-3" />}
-  text="Edit Profile"
-  className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-red-800 transition-all text-sm shadow-md"
+  icon={<Trash className="h-3 w-3" />}
+  text="Delete Profile"
+  className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-emerald-700 text-white bg-red-800 transition-all text-sm shadow-md"
+  
   />
   </div>
   </div>
   <div className="grid md:grid-cols-2 gap-10 px-7 ">
     <div className="flex items-center justify-start flex-col px-2 py-2 gap-1  rounded-md bg-zinc-100/80 shadow-md">
       <h3>Group: {group?.name}</h3>
+      <p className="text-xs/3">Creator:{creator?.name}</p>
       <p className="text-xs text-muted-foreground">Members List</p>
       <Divider/>
       <ul className="flex items-center flex-col gap-1">

@@ -1,5 +1,5 @@
 'use client'
-import { Profile } from '@prisma/client';
+import { Group, Profile } from '@prisma/client';
 import {useState, useEffect} from'react'
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from "@/components/ui/form";
 import { Button, useDisclosure, Checkbox, Input, Link, Textarea, Switch} from "@nextui-org/react";
@@ -18,6 +18,7 @@ import { FileUpload } from '@/components/file-upload';
 
 interface ProfileEditFormProps {
   profile: Profile | null;
+  group: Group | null;
 }
 
 
@@ -33,6 +34,7 @@ export type ProfileFormValues = z.infer<typeof formSchema>
 
 const ProfileEditForm = ({
   profile,
+  group,
 }:ProfileEditFormProps) => {
   const router=useRouter();
   const params = useParams();
@@ -48,7 +50,8 @@ const form = useForm<ProfileFormValues>({
   defaultValues: {
     name: "",
     content: "",
-    imageUrl: ""
+    imageUrl: "",
+    group: "",
   },
 });
 
@@ -89,18 +92,23 @@ const handleClick= () => {
     <>
     <div >
            <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-10 px-20 w-full ">
-            <div className="flex items-center flex-col justify-center p-5 gap-5">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 p-5 w-full ">
+            <div className="flex items-center flex-col justify-center  gap-5">
             
             <div className="flex items-center flex-col md:flex-row gap-2">
-            <div className='flex items-center flex-col justify-center p-5 gap-5 w-full'>
+            <div className='flex items-center justify-center flex-col gap-5 w-full'>
+
+              <div className="flex gap-2 flex-col md:flex-row w-full">
             <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>
+            <FormItem className="flex flex-col">
+              <FormLabel className="font-bold">
                 Name
+              </FormLabel>
+              <FormLabel className="text-xs text-muted-foreground flex justify-between px-2">
+                Current Name: <p className="font-semibold text-emerald-800">{profile?.name}</p>
               </FormLabel>
               <FormControl>
                <Input 
@@ -119,9 +127,12 @@ const handleClick= () => {
           control={form.control}
           name="group"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                Name
+            <FormItem  className="flex flex-col">
+              <FormLabel className="font-bold">
+                Group
+              </FormLabel>
+              <FormLabel className="text-xs text-muted-foreground flex justify-between px-2">
+                Current Group: <p className="font-semibold text-emerald-800">{group?.name}</p>
               </FormLabel>
               <FormControl>
                <Input 
@@ -136,14 +147,19 @@ const handleClick= () => {
             </FormItem>
             )}
         />
+        </div>
+
+        <div className="w-full">
            <FormField
           control={form.control}
           name="content"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>
+            <FormItem className="flex flex-col">
+              <FormLabel className="font-bold">
                 Interests
-                <p></p>
+              </FormLabel>
+              <FormLabel className="text-xs text-muted-foreground flex flex-col justify-between px-2">
+                Current Interests: <p className="font-semibold text-emerald-800 pl-2"> {profile?.content}</p>
               </FormLabel>
               <FormControl>
                {/* <Textarea
@@ -161,6 +177,7 @@ const handleClick= () => {
             </FormItem>
             )}
         />
+        </div>
         </div>
         <div className="flex items-center flex-col justify-center">
           <Switch defaultSelected  onClick={()=>handleClick()}>Upload Image?</Switch>
