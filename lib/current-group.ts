@@ -18,7 +18,7 @@ export const currentGroup = async () => {
     },
   });
 
-  const group =await db.group.findFirst({
+  const group =await db.group.findUnique({
     where: {
       id:profile?.groupId,
     }

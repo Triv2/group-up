@@ -14,12 +14,14 @@ import { useParams, useRouter } from "next/navigation";
 import { AlertModal } from "@/components/modals/alert-modal";
 import { Lock, Users, X } from 'lucide-react';
 import { FileUpload } from '@/components/file-upload';
+import { currentProfile } from '@/lib/current-profile';
 // import { Textarea } from '@/components/ui/textarea';
 
 interface GroupEditFormProps {
   
   group: Group | null;
   initData: Group[];
+  profile: Profile | null;
 }
 
 
@@ -33,12 +35,13 @@ const formSchema= z.object({
 export type GroupEditFormValues = z.infer<typeof formSchema>
 
 const GroupEditForm = ({
-
+  profile,
   group,
   initData,
 }:GroupEditFormProps) => {
   const router=useRouter();
   const params = useParams();
+  
 const [isMounted, setIsMounted] = useState(false);
 const [loading, setLoading] = useState(false);
 const [upload,setUpload] = useState(false);
@@ -70,7 +73,7 @@ const onSubmit = async (data:GroupEditFormValues) => {
     
   
     console.log("OnSubmit", data)
-    await axios.patch(`/api/profile/${params.profileId}`, data)
+    await axios.patch(`/api/profile/${profile?.id}`, data)
     router.refresh();
     router.push("/");
     toast.success("Profile created!");
@@ -185,7 +188,7 @@ const handleClick= () => {
         )}
         </div>
         </div>
-        <Button type="submit">Submit</Button>
+        <Button className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-red-900 transition-all text-sm shadow-md" type="submit">Submit</Button>
         
             </div>
             </form>

@@ -16,7 +16,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 
 interface ProfilePageProps {}
 
@@ -53,7 +58,7 @@ const ProfilePage = async () => {
   <h1 className="text-3xl font-bold">Welcome, {profile?.name}!</h1>
  
   <Divider />
-  <InviteCode code={group?.inviteCode} name={group?.name}/>
+  {group && creator &&(<InviteCode code={group.inviteCode} name={group.name} image={group.imageUrl} creator={creator.name}/>)}
   <Divider />
   <div className="flex items-center justify-center gap-3">
   <UserButton afterSignOutUrl="/"/>
@@ -80,26 +85,38 @@ const ProfilePage = async () => {
   </div>
   </div>
   <div className="grid md:grid-cols-2 gap-10 px-7 ">
-    <div className="flex items-center justify-start flex-col px-2 py-2 gap-1  rounded-md bg-zinc-100/80 shadow-md">
-      <h3>Group: {group?.name}</h3>
-      <p className="text-xs/3">Creator:{creator?.name}</p>
-      <p className="text-xs text-muted-foreground">Members List</p>
+    <div className="flex items-center justify-start flex-col px-2 py-2 gap-1 h-auto rounded-md bg-zinc-100/80 shadow-md">
+      <Accordion type="single" collapsible>
+        <AccordionItem  value="item-1">
+          <AccordionTrigger className="flex items-center justify-between flex-col w-full no-underline px-2 py-2 gap-1">
+      <h3 className="no-underline w-full">Group: {group?.name}</h3>
+  
+      <p className="text-xs text-muted-foreground w-full no-underline">Members List</p>
+      
+      </AccordionTrigger>
       <Divider/>
-      <ul className="flex items-center flex-col gap-1">
+      <AccordionContent>
+      <ul className="flex items-center flex-col gap-1 w-full">
        {members && members.map((member) => (
-        <li className="text-xs" key={member.id}>
-        
+        <li className="text-xs  flex items-center justify-between w-full" key={member.id}>
+        <Image src={member.imageUrl} width={50} height={50} alt={member?.name || ""} />
           {member.name}
         </li>
       ))} 
       </ul>
-
+      </AccordionContent>
+      </AccordionItem>
+        </Accordion>
     </div>
     {profile &&(
     <div className="flex items-center justify-start flex-col px-2 py-2 gap-1  rounded-md bg-zinc-100/80 shadow-md">
-      
+      <Accordion type="single" collapsible>
+        <AccordionItem  value="item-1">
+          <AccordionTrigger className="flex items-center justify-between flex-col w-full no-underline px-2 py-2 gap-1">
         <h3>Current Profile</h3>
+        </AccordionTrigger>
         <Divider/>
+        <AccordionContent>
         <div className="flex gap-1 justify-between items-center w-full">
           <p className="text-sm">Avatar:</p>
         <Image src={profile.imageUrl} width={50} height={50} alt={profile?.name || ""} />
@@ -117,6 +134,9 @@ const ProfilePage = async () => {
         <p className="text-sm">Interests:</p><p className="text-xs">{profile.content}</p>
         </div>
         </div>
+        </AccordionContent>
+        </AccordionItem>
+        </Accordion>
       </div>
     )}
   </div>

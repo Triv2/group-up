@@ -42,6 +42,7 @@ export async function POST(
         name,
         inviteCode: uuidv4(),
         creator: creator.id,
+        imageUrl: user.imageUrl,
       },
     })
     

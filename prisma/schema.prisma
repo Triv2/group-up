@@ -23,7 +23,7 @@ model Profile {
   content String?
 
   groupId String @db.ObjectId
-  group Group? @relation(fields:[groupId],references:[id])
+  
 
   secretId String? @db.ObjectId
 
@@ -38,13 +38,13 @@ model Profile {
 model Group {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   creator String @unique @db.ObjectId
-  imageUrl String?
+  imageUrl String
 
   name String
   inviteCode String @unique
 
   profileIds String[]
-  profiles Profile[]
+ 
 
   secretIds String[] @db.ObjectId
 

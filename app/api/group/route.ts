@@ -14,7 +14,7 @@ export async function POST(
   }
     const body = await req.json();
     console.log(body);
-    const { name } = body;
+    const { name, imageUrl } = body;
   
     
     
@@ -42,6 +42,7 @@ export async function POST(
         name,
         inviteCode: uuidv4(),
         creator: creator.id,
+        imageUrl: imageUrl,
       },
     })
     

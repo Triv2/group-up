@@ -2,7 +2,7 @@
 import { Profile } from '@prisma/client';
 import {useState, useEffect} from'react'
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from "@/components/ui/form";
-import { Button, useDisclosure, Checkbox, Input, Link, Textarea, Switch} from "@nextui-org/react";
+import { Button, useDisclosure, Checkbox, Input, Link, Textarea, Switch, Divider} from "@nextui-org/react";
 import * as z from "zod";
 
 import { useForm } from "react-hook-form";
@@ -91,7 +91,7 @@ const handleClick= () => {
             <div className="flex items-center flex-col justify-center p-5 gap-5">
             
             <div className="flex items-center flex-col md:flex-row gap-2">
-            <div className='flex items-center flex-col justify-center p-5 gap-5 w-full'>
+            <div className='flex items-center flex-col justify-center p-5 gap-5 w-full broder-black border-1 rounded-md shadow-md '>
             <FormField
           control={form.control}
           name="name"
@@ -113,6 +113,7 @@ const handleClick= () => {
             </FormItem>
             )}
         />
+        <Divider className="bg-white"/>
            <FormField
           control={form.control}
           name="content"
@@ -120,14 +121,13 @@ const handleClick= () => {
             <FormItem>
               <FormLabel>
                 Interests
-                <p></p>
               </FormLabel>
               <FormControl>
              
                  <Textarea
                  
                   placeholder="Enter your description"
-                  className="max-w-xs"
+                  className="max-w-xs text-black"
                   {...field}
                 />
               </FormControl>
@@ -137,7 +137,7 @@ const handleClick= () => {
         />
         </div>
         <div className="flex items-center flex-col justify-center">
-          <Switch defaultSelected  onClick={()=>handleClick()}>Upload Image?</Switch>
+          <Switch defaultSelected  onClick={()=>handleClick()}><p className="text-white">Upload Image?</p></Switch>
           {upload && (
         <FormField
           control={form.control}
@@ -161,7 +161,8 @@ const handleClick= () => {
         )}
         </div>
         </div>
-        <Button type="submit">Submit</Button>
+        <Button className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-red-500 transition-all text-sm shadow-lg"
+    type="submit">Submit</Button>
         
             </div>
             </form>
