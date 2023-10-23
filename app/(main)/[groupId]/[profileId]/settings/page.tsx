@@ -10,7 +10,7 @@ interface ProfileSettingsPageProps {}
 const ProfileSettingsPage = async () => {
   const profile = await currentProfile();
   const group = await currentGroup();
-  const groups = await currentGroups();
+  
   return (
 <div className="flex items-center justify-center flex-col h-auto bg-[url(/cbg4.png)] bg-no-repeat bg-cover bg-center p-5 py-10">
 
@@ -18,7 +18,7 @@ const ProfileSettingsPage = async () => {
   <h2 className="font-bold text-xl mt-5">Edit Your Profile</h2>
 
 <div className="bg-yellow-200/60 rounded-md">
-<ProfileForm profile={profile} group={group} groups={groups} />
+<ProfileForm profile={profile}   />
 </div>
 <NavButton 
 

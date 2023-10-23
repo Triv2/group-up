@@ -1,7 +1,7 @@
 'use client'
 import {useState, useEffect} from'react'
 import React from "react";
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button,  useDisclosure, Select, SelectItem, } from "@nextui-org/react";
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button,  useDisclosure, Select, SelectItem, Switch, } from "@nextui-org/react";
 import { Lock, Users } from 'lucide-react';
 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from "@/components/ui/form";
@@ -15,6 +15,7 @@ import axios from "axios";
 import { useRouter } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { Group } from '@prisma/client';
+import { FileUpload } from '@/components/file-upload';
 
 
 
@@ -26,6 +27,8 @@ const formSchema= z.object({
   
   name: z.string().min(1),
   password: z.string().includes("password", {message: "Password must be correct."}),
+  imageUrl: z.string().default(""),
+ 
   
 });
 
@@ -39,19 +42,19 @@ export type CreateGroupFormValues = z.infer<typeof formSchema>
 
   const router = useRouter();
 
-  const [value, setValue] = React.useState(new Set([""]));
+ 
 const [loading, setLoading] = useState(false);
 const [isMounted, setIsMounted] = useState(false);
+const [upload,setUpload] = useState(false);
 
-const [create, setCreate] = useState(false);
-const [join, setJoin] = useState(false);
 
 
 const form = useForm<CreateGroupFormValues>({
   resolver: zodResolver(formSchema),
   defaultValues: {
     name: "",
-    password: ""
+    password: "",
+    imageUrl: ""
   },
 });
 
@@ -79,7 +82,13 @@ useEffect(() => {
       setLoading(false);
     }
   };
-
+  const handleClick= () => {
+    if(upload) {
+      setUpload(false);
+    } else {
+      setUpload(true);
+    }
+  }
  
   
   return (
@@ -112,6 +121,30 @@ useEffect(() => {
             </FormItem>
             )}
         />
+         <div className="flex items-center flex-col justify-center">
+          <Switch defaultSelected  onClick={()=>handleClick()}>Upload Image?</Switch>
+          {upload && (
+        <FormField
+          control={form.control}
+          name="imageUrl"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>
+                Image
+              </FormLabel>
+              <FormControl>
+              <FileUpload
+                          endpoint="serverImage"
+                          value={field.value}
+                          onChange={field.onChange}
+                        />
+              </FormControl>
+              <FormMessage/>
+            </FormItem>
+            )}
+        />
+        )}
+        </div>
         <FormField
           control={form.control}
           name="password"

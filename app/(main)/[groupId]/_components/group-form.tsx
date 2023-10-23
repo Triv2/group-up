@@ -1,8 +1,8 @@
 'use client'
-import { Profile } from '@prisma/client';
-import {useState, useEffect} from'react'
+import { Group, Profile } from '@prisma/client';
+import React, {useState, useEffect} from'react'
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from "@/components/ui/form";
-import { Button, useDisclosure, Checkbox, Input, Link, Textarea, Switch} from "@nextui-org/react";
+import { Button, useDisclosure, Checkbox, Input, Link, Textarea, Switch, Select, SelectItem} from "@nextui-org/react";
 import * as z from "zod";
 
 import { useForm } from "react-hook-form";
@@ -16,37 +16,43 @@ import { Lock, Users, X } from 'lucide-react';
 import { FileUpload } from '@/components/file-upload';
 // import { Textarea } from '@/components/ui/textarea';
 
+interface GroupEditFormProps {
+  
+  group: Group | null;
+  initData: Group[];
+}
 
 
 const formSchema= z.object({
   
-  name: z.string().min(1),
   imageUrl: z.string().default(""),
-  content:  z.string().min(1),
+  group: z.string().min(1),
+  inviteCode: z.string().min(1),
 });
 
-export type ProfileFormValues = z.infer<typeof formSchema>
+export type GroupEditFormValues = z.infer<typeof formSchema>
 
-const ProfileForm = ({
-  
-}) => {
+const GroupEditForm = ({
+
+  group,
+  initData,
+}:GroupEditFormProps) => {
   const router=useRouter();
   const params = useParams();
-
-  
 const [isMounted, setIsMounted] = useState(false);
 const [loading, setLoading] = useState(false);
 const [upload,setUpload] = useState(false);
+const [value, setValue] = React.useState(new Set([""]));
 
 
 
 
-const form = useForm<ProfileFormValues>({
+const form = useForm<GroupEditFormValues>({
   resolver: zodResolver(formSchema),
   defaultValues: {
-    name: "",
-    content: "",
-    imageUrl: ""
+    imageUrl: "",
+    group: "",
+    inviteCode: "",
   },
 });
 
@@ -58,7 +64,7 @@ if (!isMounted) {
 return null;
 }
 
-const onSubmit = async (data:ProfileFormValues) => {
+const onSubmit = async (data:GroupEditFormValues) => {
   try {
     setLoading(true);
     
@@ -87,49 +93,67 @@ const handleClick= () => {
     <>
     <div >
            <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 h-auto px-5 w-full ">
-            <div className="flex items-center flex-col justify-center p-5 gap-5">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 p-5 w-full ">
+            <div className="flex items-center flex-col justify-center  gap-5">
             
             <div className="flex items-center flex-col md:flex-row gap-2">
-            <div className='flex items-center flex-col justify-center p-5 gap-5 w-full'>
-            <FormField
+            <div className='flex items-center justify-center flex-col gap-5 w-full'>
+
+              <div className="flex gap-2 flex-col md:flex-row w-full">
+          
+        <FormField
           control={form.control}
-          name="name"
+          name="group"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                Name
+            <FormItem  className="flex flex-col">
+              <FormLabel className="font-bold">
+                Group
+              </FormLabel>
+              <FormLabel className="text-xs text-muted-foreground flex justify-between px-2">
+                Current Group: <p className="font-semibold text-emerald-800">{group?.name}</p>
               </FormLabel>
               <FormControl>
-               <Input 
-               
-               type="name"
-               
-               placeholder="Please enter a name"
-                className="text-black rounded-md"
-               disabled={loading}  {...field}/>
+              <Select
+                    className="w-[200px]  flex  "
+                      label="Please select a group"
+                      selectedKeys={value}
+                      // @ts-ignore
+                      onSelectionChange={setValue}
+                      {...field}
+                    >
+                      {initData && 
+                        (initData.map((group) => (
+                        <SelectItem key={group.name} value={group.name}>
+                        {group.name}
+                      </SelectItem>
+                    )))}
+                    </Select>
+              
               </FormControl>
               <FormMessage/>
             </FormItem>
             )}
         />
-           <FormField
+        
+       
+        </div>
+
+        <FormField
           control={form.control}
-          name="content"
+          name="inviteCode"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>
-                Interests
-                <p></p>
+              <FormLabel className="font-semibold">
+                Invite Code
               </FormLabel>
               <FormControl>
-             
-                 <Textarea
-                 
-                  placeholder="Enter your description"
-                  className="max-w-xs"
-                  {...field}
-                />
+               <Input 
+               
+               
+               
+               placeholder="Please paste your invite code here"
+                className="text-black rounded-md h-[25px]"
+               disabled={loading}  {...field}/>
               </FormControl>
               <FormMessage/>
             </FormItem>
@@ -170,4 +194,4 @@ const handleClick= () => {
     </>
   );
 }
-export default ProfileForm;
+export default GroupEditForm;

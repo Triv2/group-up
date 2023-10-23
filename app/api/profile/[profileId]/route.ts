@@ -13,7 +13,7 @@ export async function PATCH(
   }
     const body = await req.json();
     console.log(body);
-    const { name, content, imageUrl, group } = body;
+    const { name, content, imageUrl } = body;
   
     let image= imageUrl;
     
@@ -35,33 +35,33 @@ export async function PATCH(
      }
 
 
-  if(group){
-    const updatedGroup = await db.group.findFirst({
-      where: {
-        inviteCode: group,
-      }
-    })
-    if (!updatedGroup) {
-      return new NextResponse("Group not found",{ status: 400 });
-    }
-    const updatedProfile= await db.profile.update({
-      where: {
-       id:profile?.id,
-      },
-      data: {
-        name:name,
-        content:content,
-        imageUrl:image,
-        setupComplete:true,
-        groupId:updatedGroup?.id,
+  // if(group){
+  //   const updatedGroup = await db.group.findFirst({
+  //     where: {
+  //       inviteCode: group,
+  //     }
+  //   })
+  //   if (!updatedGroup) {
+  //     return new NextResponse("Group not found",{ status: 400 });
+  //   }
+  //   const updatedProfile= await db.profile.update({
+  //     where: {
+  //      id:profile?.id,
+  //     },
+  //     data: {
+  //       name:name,
+  //       content:content,
+  //       imageUrl:image,
+  //       setupComplete:true,
+  //       groupId:updatedGroup?.id,
         
-      },
+  //     },
 
-    })
-    console.log(updatedProfile);
-    return NextResponse.json(updatedProfile);
+  //   })
+  //   console.log(updatedProfile);
+  //   return NextResponse.json(updatedProfile);
 
-  } else {
+  // } else {
 
     const updatedProfile= await db.profile.update({
       where: {
@@ -79,7 +79,7 @@ export async function PATCH(
 
     
     console.log(updatedProfile);
-    return NextResponse.json(updatedProfile);}
+    return NextResponse.json(updatedProfile);
   } catch (error) {
     console.log('[PROFILE_PATCH]', error);
     return new NextResponse("Internal Error", {status:500});
@@ -139,23 +139,26 @@ export async function DELETE(
       return new NextResponse("Profile not found",{ status: 400 });
     }
 
-    const creators = await db.creator.findMany({});
+    const creator = await db.creator.findUnique({
+      where: {
+        id:profile.id,
+      },
+    });
 
-    creators.forEach(async (creator) => {
-      if (creator.id === profile.id) {
-        await db.group.deleteMany({
-          where: {
-            creator: creator.id,
-          },
-        });
-        await db.creator.delete({
-          where: {
-            id: creator.id,
-          },
-        });
-      }
-    })
+    if (creator) {
+       await db.group.delete({
+        where: {
+          creator:creator.id,
+        },
+      })
+      await db.creator.delete({ 
+        where: {
+          id:creator.id,
+        },
+      })
+    }
 
+    
     const deletedProfile= await db.profile.delete({
       where: {
         id:profile?.id,

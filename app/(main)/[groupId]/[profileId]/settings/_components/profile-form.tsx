@@ -18,8 +18,8 @@ import { FileUpload } from '@/components/file-upload';
 
 interface ProfileEditFormProps {
   profile: Profile | null;
-  group: Group | null;
-  groups: Group[];
+ 
+  
 }
 
 
@@ -28,15 +28,15 @@ const formSchema= z.object({
   name: z.string().min(1),
   imageUrl: z.string().default(""),
   content:  z.string().min(1),
-  group: z.string().min(1),
+  
 });
 
 export type ProfileFormValues = z.infer<typeof formSchema>
 
 const ProfileEditForm = ({
   profile,
-  group,
-  groups,
+  
+  
 }:ProfileEditFormProps) => {
   const router=useRouter();
   const params = useParams();
@@ -54,7 +54,7 @@ const form = useForm<ProfileFormValues>({
     name: "",
     content: "",
     imageUrl: "",
-    group: "",
+    
   },
 });
 
@@ -126,39 +126,7 @@ const handleClick= () => {
             </FormItem>
             )}
         />
-        <FormField
-          control={form.control}
-          name="group"
-          render={({ field }) => (
-            <FormItem  className="flex flex-col">
-              <FormLabel className="font-bold">
-                Group
-              </FormLabel>
-              <FormLabel className="text-xs text-muted-foreground flex justify-between px-2">
-                Current Group: <p className="font-semibold text-emerald-800">{group?.name}</p>
-              </FormLabel>
-              <FormControl>
-              <Select
-                    className="w-[200px]  flex  "
-                      label="Please select a group"
-                      selectedKeys={value}
-                      // @ts-ignore
-                      onSelectionChange={setValue}
-                      {...field}
-                    >
-                      {groups && (groups.map((group) => (
-                        <SelectItem key={group.name} value={group.name}>
-                        {group.name}
-                      </SelectItem>
-                    )))}
-                    </Select>
-              
-              </FormControl>
-              <FormMessage/>
-            </FormItem>
-            )}
-        />
-       
+      
         </div>
 
         <div className="w-full">

@@ -38,6 +38,7 @@ model Profile {
 model Group {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   creator String @unique @db.ObjectId
+  imageUrl String?
 
   name String
   inviteCode String @unique

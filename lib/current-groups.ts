@@ -12,12 +12,12 @@ export const currentGroups = async () => {
     return null;
   }
 
-  const group =await db.group.findMany({});
+  const groups =await db.group.findMany({});
 
-  if(!group){
+  if(!groups){
     return null;
   }
-  return group;
+  return groups;
   
   
 }

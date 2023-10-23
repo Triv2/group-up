@@ -50,7 +50,7 @@ const form = useForm<GroupFormValues>({
   resolver: zodResolver(formSchema),
   defaultValues: {
     name: "",
-    inviteCode: ""
+    inviteCode: "",
   },
 });
 
@@ -128,14 +128,14 @@ useEffect(() => {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="font-semibold">
-                Password
+                Invite Code
               </FormLabel>
               <FormControl>
                <Input 
                
-               type="password"
                
-               placeholder="Please enter a password"
+               
+               placeholder="Please paste your invite code here"
                 className="text-black rounded-md h-[25px]"
                disabled={loading}  {...field}/>
               </FormControl>

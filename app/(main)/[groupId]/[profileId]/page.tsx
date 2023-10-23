@@ -48,28 +48,35 @@ const ProfilePage = async () => {
   
  
   return (
-<div className="flex items-center h-screen flex-col gap-4 pt-10 bg-[url(/cbg2.png)] bg-no-repeat bg-cover bg-center">
+<div className="flex items-center min-h-screen h-auto flex-col gap-4 pt-10 bg-[url(/cbg2.png)] bg-no-repeat bg-cover bg-center">
   <div className="rounded-md bg-zinc-100/80 flex flex-col items-center justify-center gap-2 p-5 shadow-md">
   <h1 className="text-3xl font-bold">Welcome, {profile?.name}!</h1>
-  <p>You are apart of the {group?.name}</p>
-  <InviteCode code={group?.inviteCode}/>
+ 
+  <Divider />
+  <InviteCode code={group?.inviteCode} name={group?.name}/>
   <Divider />
   <div className="flex items-center justify-center gap-3">
   <UserButton afterSignOutUrl="/"/>
-          <NavButton 
+       <NavButton 
           href={`/${group?.id}/${profile?.id}/settings`}
           icon={<Edit className="h-3 w-3" />}
           text="Edit Profile"
           className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-red-800 transition-all text-sm shadow-md"
           />
+      <NavButton 
+          href={`/${group?.id}`}
+          icon={<Edit className="h-3 w-3" />}
+          text="Edit Group"
+          className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-red-800 transition-all text-sm shadow-md"
+          />
       
   <DeleteButton 
-  href={`/${group?.id}/${profile?.id}/settings`}
-  icon={<Trash className="h-3 w-3" />}
-  text="Delete Profile"
-  className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-emerald-700 text-white bg-red-800 transition-all text-sm shadow-md"
-  
-  />
+      href={`/`}
+      icon={<Trash className="h-3 w-3" />}
+      text="Delete Profile"
+      className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-emerald-700 text-white bg-red-800 transition-all text-sm shadow-md"
+      
+      />
   </div>
   </div>
   <div className="grid md:grid-cols-2 gap-10 px-7 ">
