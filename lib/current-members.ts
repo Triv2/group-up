@@ -18,6 +18,11 @@ export const currentMembers= async () => {
     },
   });
 
+  if(!profile) {
+    return null;
+  } 
+  
+  if(profile.groupId) {
   const group =await db.group.findFirst({
     where: {
       id:profile?.groupId,
@@ -33,4 +38,5 @@ export const currentMembers= async () => {
 
   
   return members;
+}
 }

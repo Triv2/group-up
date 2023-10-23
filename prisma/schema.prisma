@@ -22,7 +22,7 @@ model Profile {
 
   content String?
 
-  groupId String @db.ObjectId
+  groupId String? @db.ObjectId
   
 
   secretId String? @db.ObjectId

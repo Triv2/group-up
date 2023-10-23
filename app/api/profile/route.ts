@@ -14,7 +14,7 @@ export async function POST(
   }
     const body = await req.json();
     console.log(body);
-    const { name } = body;
+    const { name, interests, imageUrl } = body;
   
     
     
@@ -22,35 +22,12 @@ export async function POST(
       return new NextResponse("name is required",{ status: 400 });
     }
     
-    
-    const checkGroup = await db.group.findFirst({
-      where: {
-        name,
-        
-      },
-    })
 
-    if (checkGroup) {
-      return new NextResponse("Group already exists",{ status: 400 });
-    }
-
-    const creator = await db.creator.create({})
-
-
-    const group = await db.group.create({
-      data: {
-        name,
-        inviteCode: uuidv4(),
-        creator: creator.id,
-        imageUrl: user.imageUrl,
-      },
-    })
-    
+  
     
     const profile = await db.profile.create({
       data: {
         clerkId:user.id,
-        groupId:group.id,
         name:`${user.firstName} ${user.lastName}`,
         imageUrl: user.imageUrl,
         email: user.emailAddresses[0].emailAddress,
@@ -65,29 +42,9 @@ export async function POST(
 
 
     
-
-   
-
-
-
-    const updatedGroup = await db.group.update({
-      where:{
-        id:group.id,
-      },
-      data:{
-        creator: profile.id,
-        profileIds:{
-          push:profile.id,
-        },
-        
-      }
-      
-    })
-    
-    console.log(updatedGroup);
-    return NextResponse.json(updatedGroup);
+    return NextResponse.json(profile);
   } catch (error) {
-    console.log('[GROUPS_POST]', error);
+    console.log('[PROFILE_POST]', error);
     return new NextResponse("Internal Error", {status:500});
   }
 }

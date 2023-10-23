@@ -39,7 +39,10 @@ export default async function SetupPage() {
         <h1 className=" text-xl md:text-3xl font-bold">Welcome, {`${user?.firstName} ${user?.lastName}`}!</h1>
         <UserButton afterSignOutUrl="/" />
         <Divider />
-       
+        <h2>Initial Setup Check List:</h2>
+        <Divider />
+        <p>Create a Profile</p>
+        <p>Create or Join a Group</p>
         <FormController groups={groups} />
         </div>
     </main>

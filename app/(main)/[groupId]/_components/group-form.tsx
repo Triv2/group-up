@@ -46,6 +46,8 @@ const [isMounted, setIsMounted] = useState(false);
 const [loading, setLoading] = useState(false);
 const [upload,setUpload] = useState(false);
 const [value, setValue] = React.useState(new Set([""]));
+const [join,setJoin] = useState(false);
+const [create,setCreate] = useState(false);
 
 
 
@@ -91,6 +93,21 @@ const handleClick= () => {
     setUpload(true);
   }
 }
+const handleJoin= () => {
+  if(join) {
+    setJoin(false);
+  } else {
+    setJoin(true);
+  }
+}
+
+const handleCreate= () => {
+  if(create) {
+    setCreate(false);
+  } else {
+    setCreate(true);
+  }
+}
 
   return (
     <>
@@ -103,7 +120,7 @@ const handleClick= () => {
             <div className='flex items-center justify-center flex-col gap-5 w-full'>
 
               <div className="flex gap-2 flex-col md:flex-row w-full">
-          
+              <Switch defaultSelected  onClick={()=>handleClick()}>Join or Create?</Switch>
         <FormField
           control={form.control}
           name="group"

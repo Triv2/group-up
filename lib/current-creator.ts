@@ -21,21 +21,25 @@ export const currentCreator= async () => {
     return null;
   }
 
-  const group =await db.group.findFirst({
+  if(profile.groupId){
+  const group =await db.group.findUnique({
     where: {
-      id:profile?.groupId,
+      id:profile.groupId,
     }
-  });
-
+    
+  })
   if(!group) {
     return null;
   }
 
+  if(group) {
   const creator = await db.profile.findUnique({
     where: {
       id:group.creator,
     }
-  })
-  
+  });
   return creator;
+}
+ 
+}
 }

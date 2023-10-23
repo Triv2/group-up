@@ -18,6 +18,11 @@ export const currentGroup = async () => {
     },
   });
 
+  if(!profile){
+    return null;
+  }
+
+  if(profile.groupId) {
   const group =await db.group.findUnique({
     where: {
       id:profile?.groupId,
@@ -25,4 +30,5 @@ export const currentGroup = async () => {
   });
   
   return group;
+}
 }
