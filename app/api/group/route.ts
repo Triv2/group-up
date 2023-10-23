@@ -53,6 +53,7 @@ export async function POST(
         name:`${user.firstName} ${user.lastName}`,
         imageUrl: user.imageUrl,
         email: user.emailAddresses[0].emailAddress,
+        groupAdded:true,
       },
 
       

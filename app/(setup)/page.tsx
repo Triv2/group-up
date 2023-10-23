@@ -24,11 +24,11 @@ export default async function SetupPage() {
   
   const getCurrentProfile = await currentProfile() || null;
 
-  if(getCurrentProfile?.setupComplete) {
+  if(getCurrentProfile?.setupComplete === true) {
     redirect(`/${getCurrentProfile.groupId}/${getCurrentProfile.id}`);
    }
   
-   if(getCurrentProfile?.groupId){
+   if(getCurrentProfile?.groupAdded === true) {
     redirect(`/profile`);
    }
 

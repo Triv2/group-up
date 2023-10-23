@@ -22,6 +22,7 @@ export const inviteProfile = async () => {
       imageUrl: user.imageUrl,
       groupId:group?.id,
       email: user.emailAddresses[0].emailAddress,
+      setupComplete:false,
     },
   });
 

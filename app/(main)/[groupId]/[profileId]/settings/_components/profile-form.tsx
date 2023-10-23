@@ -1,8 +1,8 @@
 'use client'
 import { Group, Profile } from '@prisma/client';
-import {useState, useEffect} from'react'
+import React, {useState, useEffect} from'react'
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from "@/components/ui/form";
-import { Button, useDisclosure, Checkbox, Input, Link, Textarea, Switch} from "@nextui-org/react";
+import { Button, useDisclosure, Checkbox, Input, Link, Textarea, Switch, Select, SelectItem} from "@nextui-org/react";
 import * as z from "zod";
 
 import { useForm } from "react-hook-form";
@@ -19,6 +19,7 @@ import { FileUpload } from '@/components/file-upload';
 interface ProfileEditFormProps {
   profile: Profile | null;
   group: Group | null;
+  groups: Group[];
 }
 
 
@@ -35,12 +36,14 @@ export type ProfileFormValues = z.infer<typeof formSchema>
 const ProfileEditForm = ({
   profile,
   group,
+  groups,
 }:ProfileEditFormProps) => {
   const router=useRouter();
   const params = useParams();
 const [isMounted, setIsMounted] = useState(false);
 const [loading, setLoading] = useState(false);
 const [upload,setUpload] = useState(false);
+const [value, setValue] = React.useState(new Set([""]));
 
 
 
@@ -135,18 +138,27 @@ const handleClick= () => {
                 Current Group: <p className="font-semibold text-emerald-800">{group?.name}</p>
               </FormLabel>
               <FormControl>
-               <Input 
-               
-               type="group"
-               
-               placeholder="Please enter a group invite-code"
-                className="text-black rounded-md"
-               disabled={loading}  {...field}/>
+              <Select
+                    className="w-[200px]  flex  "
+                      label="Please select a group"
+                      selectedKeys={value}
+                      // @ts-ignore
+                      onSelectionChange={setValue}
+                      {...field}
+                    >
+                      {groups && (groups.map((group) => (
+                        <SelectItem key={group.name} value={group.name}>
+                        {group.name}
+                      </SelectItem>
+                    )))}
+                    </Select>
+              
               </FormControl>
               <FormMessage/>
             </FormItem>
             )}
         />
+       
         </div>
 
         <div className="w-full">

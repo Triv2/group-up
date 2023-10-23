@@ -20,9 +20,11 @@ const origin = typeof window !== 'undefined' && window.location.origin ? window.
 
 const inviteUrl = `${origin}/invite/${code}`;
 
+const inviteCode=`${code}`;
+
 const onCopy = () => {
   
-  navigator.clipboard.writeText(inviteUrl);
+  navigator.clipboard.writeText(inviteCode);
   setCopied(true);
 
   setTimeout(() => {

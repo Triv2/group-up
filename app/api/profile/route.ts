@@ -131,7 +131,7 @@ export async function PATCH(
       },
       data: {
         groupId:groupId,
-        
+        groupAdded:true,
       },
 
       

@@ -28,6 +28,7 @@ model Profile {
   secretId String? @db.ObjectId
 
   setupComplete Boolean?
+  groupAdded Boolean? 
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

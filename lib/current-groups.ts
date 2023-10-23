@@ -13,6 +13,11 @@ export const currentGroups = async () => {
   }
 
   const group =await db.group.findMany({});
-  
+
+  if(!group){
+    return null;
+  }
   return group;
+  
+  
 }

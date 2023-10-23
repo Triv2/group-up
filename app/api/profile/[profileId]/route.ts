@@ -139,6 +139,22 @@ export async function DELETE(
       return new NextResponse("Profile not found",{ status: 400 });
     }
 
+    const creators = await db.creator.findMany({});
+
+    creators.forEach(async (creator) => {
+      if (creator.id === profile.id) {
+        await db.group.deleteMany({
+          where: {
+            creator: creator.id,
+          },
+        });
+        await db.creator.delete({
+          where: {
+            id: creator.id,
+          },
+        });
+      }
+    })
 
     const deletedProfile= await db.profile.delete({
       where: {
