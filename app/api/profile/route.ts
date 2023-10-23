@@ -22,8 +22,15 @@ export async function POST(
       return new NextResponse("name is required",{ status: 400 });
     }
     
-
-  
+    const checkProfile = await db.profile.findFirst({ 
+      where: {
+        clerkId: user.id,
+      }
+    })
+    
+    if (checkProfile) {
+      return new NextResponse("Profile already exists",{ status: 400 });
+    }
     
     const profile = await db.profile.create({
       data: {
@@ -31,6 +38,7 @@ export async function POST(
         name:`${user.firstName} ${user.lastName}`,
         imageUrl: user.imageUrl,
         email: user.emailAddresses[0].emailAddress,
+        setupProfile: true,
       },
 
       
@@ -89,7 +97,7 @@ export async function PATCH(
       },
       data: {
         groupId:groupId,
-        groupAdded:true,
+        setupComplete:true,
       },
 
       
@@ -123,7 +131,7 @@ export async function PATCH(
     console.log(updatedGroup);
     return NextResponse.json(profile);
   } catch (error) {
-    console.log('[INVITE_PROFILE_POST]', error);
+    console.log('[PROFILE_PATCH]', error);
     return new NextResponse("Internal Error", {status:500});
   }
 }

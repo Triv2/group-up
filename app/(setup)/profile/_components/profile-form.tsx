@@ -64,7 +64,7 @@ const onSubmit = async (data:ProfileFormValues) => {
     
   
     console.log("OnSubmit", data)
-    await axios.patch(`/api/profile/${params.profileId}`, data)
+    await axios.post(`/api/profile/`, data)
     router.refresh();
     router.push("/");
     toast.success("Profile created!");

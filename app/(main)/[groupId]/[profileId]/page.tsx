@@ -33,22 +33,10 @@ const ProfilePage = async () => {
  
   
    if (!profile) {
-    try{
-    // create a new profile
-    const newProfile = await inviteProfile();
-    // attach group to profile
-    await axios.patch(`/api/profiles/${newProfile.id}`, {
-      groupId: group?.id,
-      newProfileId: newProfile.id,
-    });
-  } catch (error) { 
-
-  } finally {
-
-    // redirect to new profile
+   
     redirect(`/profile/`);
   }
-   }
+   
 
   
  

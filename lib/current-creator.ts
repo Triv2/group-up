@@ -38,8 +38,13 @@ export const currentCreator= async () => {
       id:group.creator,
     }
   });
-  return creator;
+  if(!creator) {
+    return null;
+  }
+
+  
+    return creator;
+}
 }
  
-}
 }

@@ -14,14 +14,9 @@ import { UserButton } from "@clerk/nextjs";
 interface ProfileSettingsPageProps {}
 
 const ProfileSettingsPage = async  () => {
-  const group = await currentGroup();
-  const profile = await currentProfile();
-  const creator = await currentCreator();
-
-  if(!group || !profile){
-    redirect("/")
-  }
   
+  
+
  
 
   return (
@@ -29,10 +24,9 @@ const ProfileSettingsPage = async  () => {
 <div className=" rounded-md flex items-center justify-center flex-col pt-10 pb-10 h-auto bg-emerald-800/90 shadow-xl">
   <div>
 <h2 className="font-bold text-lg">Create your Profile</h2>
+
 <Divider className="bg-white"/>
-{/* <div>
-{group && creator && (<InviteCode code={group?.inviteCode} name={group?.name} image={group?.imageUrl} creator={creator.name}/>)}
-</div> */}
+
 </div>
 <Divider className="bg-white"/>
 <div className="bg-red-800 rounded-md shadow-md">
@@ -40,7 +34,7 @@ const ProfileSettingsPage = async  () => {
 </div>
 <div className="p-2 flex items-center justify-between px-5 w-full">
 <NavButton
-   href={`/${group?.id}`}
+   href={`/`}
    icon={<MoveLeft className="h-3 w-3" />}
    text="Back to Setup"
    className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-emerald-500 text-white bg-red-800 transition-all text-sm shadow-lg"

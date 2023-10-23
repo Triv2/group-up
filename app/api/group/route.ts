@@ -34,7 +34,19 @@ export async function POST(
       return new NextResponse("Group already exists",{ status: 400 });
     }
 
-    const creator = await db.creator.create({})
+    
+
+    const profile = await db.profile.findFirst({
+      where: {
+        clerkId:user.id,
+      },
+    })
+
+    const creator = await db.creator.create({
+      data: {
+        id:profile?.id
+      }
+    })
 
 
     const group = await db.group.create({
@@ -43,47 +55,35 @@ export async function POST(
         inviteCode: uuidv4(),
         creator: creator.id,
         imageUrl: imageUrl,
+        
       },
     })
-    
-    
-    const profile = await db.profile.create({
-      data: {
-        clerkId:user.id,
-        groupId:group.id,
-        name:`${user.firstName} ${user.lastName}`,
-        imageUrl: user.imageUrl,
-        email: user.emailAddresses[0].emailAddress,
-        groupAdded:true,
-      },
-
-      
-    });
-
-    if (!profile) {
-      return new NextResponse("Profile not found",{ status: 400 });
-    }
-
-
-    
-
-   
-
-
 
     const updatedGroup = await db.group.update({
-      where:{
-        id:group.id,
+      where: {
+        id:group?.id,
       },
-      data:{
-        creator: profile.id,
+      data: {
         profileIds:{
-          push:profile.id,
+          push:profile?.id,
         },
-        
-      }
-      
+      },
     })
+    
+    await db.profile.update({
+      where: {
+        id:profile?.id,
+      },
+      data: {
+        groupId:group?.id,
+        setupGroup:true,
+        setupComplete:true,
+      },
+    })
+  
+
+
+
     
     console.log(updatedGroup);
     return NextResponse.json(updatedGroup);
@@ -122,15 +122,10 @@ export async function PATCH(
 
     }
     
-    
 
-    const profile = await db.profile.create({
-      data: {
+    const profile = await db.profile.findFirst({
+      where: {
         clerkId:user.id,
-        groupId:group.id,
-        name:`${user.firstName} ${user.lastName}`,
-        imageUrl: user.imageUrl,
-        email: user.emailAddresses[0].emailAddress,
       },
 
       

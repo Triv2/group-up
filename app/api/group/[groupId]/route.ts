@@ -13,7 +13,7 @@ export async function PATCH(
   }
     const body = await req.json();
     console.log(body);
-    const { name, content, imageUrl } = body;
+    const { name, imageUrl } = body;
   
     let image= imageUrl;
     
@@ -35,25 +35,25 @@ export async function PATCH(
      }
 
 
-    const updatedProfile= await db.profile.update({
+    const updatedGroup= await db.profile.update({
       where: {
        id:profile?.id,
       },
       data: {
         name:name,
-        content:content,
+       
         imageUrl:image,
-        setupComplete:true,
+       
       },
     })
 
 
 
     
-    console.log(updatedProfile);
-    return NextResponse.json(updatedProfile);
+    console.log(updatedGroup);
+    return NextResponse.json(updatedGroup);
   } catch (error) {
-    console.log('[PROFILE_ID_PATCH]', error);
+    console.log('[GROUP_ID_PATCH]', error);
     return new NextResponse("Internal Error", {status:500});
   }
 }
@@ -79,13 +79,19 @@ export async function GET(
       return new NextResponse("Profile not found",{ status: 400 });
     }
 
-
+    if(profile.groupId){
+    const group = await db.group.findFirst({
+      where: {
+       id:profile.groupId,
+      }
+    })
    
 
 
-    return NextResponse.json(profile);
+    return NextResponse.json(group);
+    }
   } catch (error) {
-    console.log('[PROFILE_ID_GET]', error);
+    console.log('[GROUP_ID_GET]', error);
     return new NextResponse("Internal Error", {status:500});
   }
 }
@@ -131,16 +137,10 @@ export async function DELETE(
     }
 
     
-    const deletedProfile= await db.profile.delete({
-      where: {
-        id:profile?.id,
-      },
-    })
-    console.log(deletedProfile);
-    return NextResponse.json(deletedProfile);
+    
     
   } catch (error) {
-    console.log('[PROFILE_ID_DELETE]', error);
+    console.log('[GROUP_ID_DELETE]', error);
     return new NextResponse("Internal Error", {status:500});
   }
 }

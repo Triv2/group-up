@@ -26,7 +26,7 @@ interface CreateGroupFormProps {
 const formSchema= z.object({
   
   name: z.string().min(1),
-  password: z.string().includes("password", {message: "Password must be correct."}),
+ 
   imageUrl: z.string().default(""),
  
   
@@ -53,7 +53,7 @@ const form = useForm<CreateGroupFormValues>({
   resolver: zodResolver(formSchema),
   defaultValues: {
     name: "",
-    password: "",
+   
     imageUrl: ""
   },
 });
@@ -73,7 +73,7 @@ useEffect(() => {
     
       console.log("OnSubmit", data)
       await axios.post(`/api/group/`, data)
-      router.push(`/profile`);
+      router.push(`/`);
       
       toast.success("Group created!");
     } catch (error) {
@@ -95,10 +95,10 @@ useEffect(() => {
     <>
       <div className="h-auto w-auto">
            <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 p-3 px-10 w-full ">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-5 px-10  w-full ">
             <div>
               <div>
-          <div className="flex items-center justify-center flex-col gap-3">
+          <div className="flex items-center justify-center flex-col gap-6">
               <h3 className="font-bold text-xl">Create a Group</h3>
             <FormField
           control={form.control}
@@ -145,27 +145,7 @@ useEffect(() => {
         />
         )}
         </div>
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="font-semibold">
-                Password
-              </FormLabel>
-              <FormControl>
-               <Input 
-               
-               type="password"
-               
-               placeholder="Please set a password"
-                className="text-black rounded-md h-[25px]"
-               disabled={loading}  {...field}/>
-              </FormControl>
-              <FormMessage/>
-            </FormItem>
-            )}
-        />
+       
         <Button className="shadow-md hover:scale-105 transition-all bg-emerald-700 text-white hover:bg-red-800" type="submit">Create</Button>
        
         </div>

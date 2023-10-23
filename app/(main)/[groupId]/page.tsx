@@ -22,7 +22,7 @@ const GroupEditPage = async () => {
   <div className="bg-zinc-100/80 flex items-center justify-center flex-col rounded-md p-3">
    {group && creator &&(<InviteCode code={group?.inviteCode} name={group?.name} image={group.imageUrl} creator={creator.name}/>)}
    <Divider/>
-   {groups&&( <GroupEditForm group={group} initData={groups} profile={profile} /> )}
+   {groups && group &&( <GroupEditForm group={group} initData={groups} profile={profile} /> )}
    <Divider/>
 <div className="p-2 flex items-center justify-between px-5 w-full">
   
