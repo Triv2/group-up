@@ -19,12 +19,12 @@ import { Group } from '@prisma/client';
 
 
 interface GroupFormProps {
-  initialData: Group[];
+  initialData: Group[] ;
 }
 
 const formSchema= z.object({
   
-  name: z.string().min(1),
+  name: z.string(),
   inviteCode: z.string().min(1),
   
 });
@@ -39,7 +39,7 @@ const JoinGroupForm:React.FC<GroupFormProps>= ({
 
   const router = useRouter();
 
-  const [value, setValue] = React.useState(new Set([""]));
+  const [value, setValue] = useState([`${initialData[0].name}`]);
 const [loading, setLoading] = useState(false);
 const [isMounted, setIsMounted] = useState(false);
 

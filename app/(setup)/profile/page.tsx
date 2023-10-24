@@ -15,11 +15,20 @@ interface ProfileSettingsPageProps {}
 
 const ProfileSettingsPage = async  () => {
   const { userId} = auth();
+  const profile = await currentProfile();
+  const group = await currentGroup();
+
   if(!userId) {
     redirectToSignIn();
   }
   
-
+  if(group){
+    redirect(`/${profile?.groupId}/${profile?.id}`)
+  }
+  
+  if(profile?.setupComplete === true) {
+    redirect(`/${profile.groupId}/${profile.id}`);
+  }
  
 
   return (

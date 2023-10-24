@@ -12,7 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import toast from "react-hot-toast";
 import axios from "axios";
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { Group } from '@prisma/client';
 import { FileUpload } from '@/components/file-upload';
@@ -41,7 +41,7 @@ export type CreateGroupFormValues = z.infer<typeof formSchema>
 }) => {
 
   const router = useRouter();
-
+  const params = useParams();
  
 const [loading, setLoading] = useState(false);
 const [isMounted, setIsMounted] = useState(false);
@@ -79,7 +79,7 @@ useEffect(() => {
     } catch (error) {
       toast.error("Something went wrong.");
     } finally {
-      router.push(`/`);
+      router.push(`/${params.groupId}/${params.profileId}`);
       setLoading(false);
     }
   };

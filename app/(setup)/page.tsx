@@ -12,6 +12,7 @@ import { Divider } from '@nextui-org/react';
 import NavButton from '@/components/ui/nav-button';
 import { Box, Check, File, User2 } from 'lucide-react';
 import SantaUser from '@/components/ui/santa-user';
+import { currentGroup } from '@/lib/current-group';
 
 export default async function SetupPage() {
   const { userId} = auth();
@@ -23,12 +24,16 @@ export default async function SetupPage() {
     redirectToSignIn();
   }
   
-  const profile = await currentProfile() || null;
+  const profile = await currentProfile();
+  const group = await currentGroup();
 
   if(profile?.setupComplete === true) {
     redirect(`/${profile.groupId}/${profile.id}`);
    }
   
+   if(group &&profile){
+    redirect(`/${profile.groupId}/${profile.id}`);
+   }
   
 
   return (
@@ -56,7 +61,7 @@ export default async function SetupPage() {
         )}
 
         
-        <UserButton afterSignOutUrl="/" />
+        
         <Divider />
         <h2>Initial Setup </h2>
         <Divider />

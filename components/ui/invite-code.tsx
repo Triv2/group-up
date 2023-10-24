@@ -1,7 +1,7 @@
 'use client'
 import {v4 as uuidv4} from "uuid";
 import {useState, useEffect} from'react'
-import { Button, Divider, Input, Tooltip } from "@nextui-org/react";
+import { Avatar, Button, Divider, Input, Tooltip } from "@nextui-org/react";
 import { Check, Copy } from "lucide-react";
 import Image from "next/image";
 
@@ -63,7 +63,11 @@ return null;
 }
   return (
     <div className="text-xs">
-      <div className="flex justify-evenly items-center  py-2"><h3>Current Group:</h3> <h3 className="font-bold text-sm ">{name}</h3> <Image src={image} width={35} height={35} alt="group avatar" />  </div>
+      <div className="flex justify-evenly items-center  py-2"><h3>Current Group:</h3> 
+      <div className="bg-white shadow-md flex items-center justify-between rounded-md gap-5 p-2">
+      <h3 className="font-bold text-lg ">{name}</h3> <Avatar size="lg" src={image}  alt="group avatar" />  
+      </div>
+      </div>
       <div className="flex justify-evenly items-center  py-2"><h3>Creator:</h3><h3 className="font-bold text-sm ">{creator}</h3> </div>
       <Divider className="bg-white"/>
     <Tooltip 

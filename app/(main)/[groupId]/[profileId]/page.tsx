@@ -34,7 +34,9 @@ const ProfilePage = async () => {
   if(!userId) {
     redirectToSignIn();
   }
-  
+  if(!profile) {
+    redirect("/");
+  }
    
 
   
@@ -45,45 +47,19 @@ const ProfilePage = async () => {
   <h1 className="text-3xl font-bold">Welcome, {profile?.name}!</h1>
  
   <Divider />
-  {group && creator &&(<InviteCode code={group.inviteCode} name={group.name} image={group.imageUrl} creator={creator.name}/>)}
-  <Divider />
-  <div className="flex items-center justify-center gap-3">
-  <UserButton afterSignOutUrl="/"/>
-       <NavButton 
-          href={`/${group?.id}/${profile?.id}/settings`}
-          icon={<Edit className="h-3 w-3" />}
-          text="Edit Profile"
-          className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-red-800 transition-all text-sm shadow-md"
-          />
-      <NavButton 
-          href={`/${group?.id}`}
-          icon={<Edit className="h-3 w-3" />}
-          text="Edit Group"
-          className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-red-800 transition-all text-sm shadow-md"
-          />
-      
-  <DeleteButton 
-      href={`/`}
-      icon={<Trash className="h-3 w-3" />}
-      text="Delete Profile"
-      className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-emerald-700 text-white bg-red-800 transition-all text-sm shadow-md"
-      
-      />
-  </div>
-  </div>
   <div className="grid md:grid-cols-2 gap-10 px-7 ">
     <div className="flex items-center justify-start flex-col px-2 py-2 gap-1 h-auto rounded-md bg-zinc-100/80 shadow-md">
       <Accordion type="single" collapsible>
         <AccordionItem  value="item-1">
           <AccordionTrigger className="flex items-center justify-between flex-col w-full no-underline px-2 py-2 gap-1">
-      <h3 className="no-underline w-full">Group: {group?.name}</h3>
+      
   
-      <p className="text-xs text-muted-foreground w-full no-underline">Members List</p>
+      <p className=" w-full no-underline">Members List</p>
       
       </AccordionTrigger>
       <Divider/>
       <AccordionContent>
-      <ul className="flex items-center flex-col gap-1 w-full">
+      <ul className="flex items-center flex-col gap-1 w-full p-1">
        {members && members.map((member) => (
         <li className="text-xs  flex items-center justify-between w-full" key={member.id}>
         <Avatar src={member.imageUrl} size="sm" />
@@ -100,11 +76,11 @@ const ProfilePage = async () => {
       <Accordion type="single" collapsible>
         <AccordionItem  value="item-1">
           <AccordionTrigger className="flex items-center justify-between flex-col w-full no-underline px-2 py-2 gap-1">
-        <h3>Current Profile</h3>
+        <h3 className="no-underline">Current Profile</h3>
         </AccordionTrigger>
         <Divider/>
-        <AccordionContent>
-        <div className="flex gap-1 justify-between items-center w-full">
+        <AccordionContent >
+        <div className="flex gap-1 justify-between items-center w-full py-2">
           <p className="text-sm">Avatar:</p>
           <Avatar src={profile.imageUrl} size="sm" />
         </div>
@@ -127,7 +103,35 @@ const ProfilePage = async () => {
       </div>
     )}
   </div>
+    <Divider />
+  {group && creator &&(<InviteCode code={group.inviteCode} name={group.name} image={group.imageUrl} creator={creator.name}/>)}
+  <Divider />
+  <div className="flex items-center justify-center gap-3">
+  <UserButton afterSignOutUrl="/"/>
+       <NavButton 
+          href={`/${group?.id}/${profile?.id}/settings`}
+          icon={<Edit className="h-3 w-3" />}
+          text="Edit Profile"
+          className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-red-500 transition-all text-sm shadow-md"
+          />
+      <NavButton 
+          href={`/${group?.id}`}
+          icon={<Edit className="h-3 w-3" />}
+          text="Edit Group"
+          className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-red-500 transition-all text-sm shadow-md"
+          />
+      
+  <DeleteButton 
+      href={`/`}
+      icon={<Trash className="h-3 w-3" />}
+      text="Delete Profile"
+      className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-emerald-500 text-white bg-red-800 transition-all text-sm shadow-md"
+      
+      />
+  </div>
+  </div>
 
+  
 </div>
   );
 }

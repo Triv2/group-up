@@ -104,23 +104,11 @@ export async function PATCH(
   }
     const body = await req.json();
     console.log(body);
-    const { name } = body;
-  
+    const { name, inviteCode } = body;
+   
     
     
-    if (!name) {
-      return new NextResponse("name is required",{ status: 400 });
-    }
-    const group = await db.group.findFirst({
-      where: {
-        name,
-      },
-    })
-    if (!group) {
-      return new NextResponse("Group not found",{ status: 400 });
-
-
-    }
+    
     
 
     const profile = await db.profile.findFirst({
@@ -144,7 +132,7 @@ export async function PATCH(
 
     const updatedGroup = await db.group.update({
       where:{
-        id:group.id,
+        inviteCode,
       },
       data:{
         profileIds:{
@@ -153,6 +141,17 @@ export async function PATCH(
         
       }
       
+    })
+
+    await db.profile.update({
+      where: {
+        id:profile.id,
+      },
+      data: {
+        groupId:updatedGroup.id,
+        setupGroup:true,
+        setupComplete:true,
+      },
     })
     
     console.log(updatedGroup);

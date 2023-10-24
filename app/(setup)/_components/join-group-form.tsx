@@ -12,7 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import toast from "react-hot-toast";
 import axios from "axios";
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { Group } from '@prisma/client';
 
@@ -24,7 +24,7 @@ interface GroupFormProps {
 
 const formSchema= z.object({
   
-  name: z.string().min(1),
+  name: z.string(),
   inviteCode: z.string().min(1),
   
 });
@@ -38,8 +38,8 @@ const JoinGroupForm:React.FC<GroupFormProps>= ({
 }) => {
 
   const router = useRouter();
-
-  const [value, setValue] = React.useState(new Set([""]));
+  const params = useParams();
+  const [value, setValue] = useState(`${initialData[0].name}`);
 const [loading, setLoading] = useState(false);
 const [isMounted, setIsMounted] = useState(false);
 
@@ -65,16 +65,17 @@ useEffect(() => {
   const onSubmit = async (data:GroupFormValues) => {
     try {
       setLoading(true);
-      
+        data.name = value;
     
       console.log("OnSubmit", data)
       await axios.patch(`/api/group/`, data)
-      router.push("/profile");
+      
       
       toast.success("Group joined!");
     } catch (error) {
       toast.error("Something went wrong.");
     } finally {
+      router.push(`/${params.groupId}/${params.profileId}`);
       setLoading(false);
     }
   };
