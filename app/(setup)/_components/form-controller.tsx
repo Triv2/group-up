@@ -40,25 +40,25 @@ return null;
             
             <Divider/>
             <div className="flex items-center gap-2 p-2">
-            <Button className="shadow-md hover:scale-105 transition-all bg-emerald-700 text-white hover:bg-red-800" onClick={()=> setCreate(true)} >Create Group</Button>
+            <Button className="shadow-md hover:scale-105 transition-all bg-emerald-700 text-white hover:bg-emerald-500" onClick={()=> setCreate(true)} >Create Group</Button>
             {(groups.length > 0) &&(
-            <Button className="shadow-md hover:scale-105 transition-all bg-emerald-700 text-white hover:bg-red-800" onClick={()=> setJoin(true)} >Join Group</Button>
+            <Button className="shadow-md hover:scale-105 transition-all bg-emerald-700 text-white hover:bg-emerald-500" onClick={()=> setJoin(true)} >Join Group</Button>
             )}
             </div>
             </div>
           )}
 
        {create && (
-        <div className="bg-emerald-400 p-2 rounded-md shadow-md">
+        <div className="bg-zinc-100/90 p-2 rounded-md shadow-md">
           <CreateGroupForm />
-          <Button className="shadow-md hover:scale-105 transition-all hover:bg-emerald-700 text-white bg-red-800" onClick={()=> setCreate(false)} type="submit">Cancel</Button>
+          <Button className="shadow-md hover:scale-105 transition-all hover:bg-red-500 text-white bg-red-800" onClick={()=> setCreate(false)} type="submit">Cancel</Button>
        </div>
        )}   
 
        {join  && (
        <div className="bg-emerald-400 p-2 rounded-md shadow-md">
           <JoinGroupForm initialData={groups} />
-          <Button className="shadow-md hover:scale-105 transition-all hover:bg-emerald-700 text-white bg-red-800" onClick={()=> setJoin(false)} type="submit">Cancel</Button>
+          <Button className="shadow-md hover:scale-105 transition-all hover:bg-red-500 text-white bg-red-800" onClick={()=> setJoin(false)} type="submit">Cancel</Button>
        </div>
        )}
 

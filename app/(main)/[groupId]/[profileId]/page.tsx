@@ -8,9 +8,9 @@ import { currentMembers } from "@/lib/current-members";
 import { currentProfile } from "@/lib/current-profile";
 import { inviteProfile } from "@/lib/invite-profile";
 import { UserButton, auth, redirectToSignIn } from "@clerk/nextjs";
-import { Avatar, Button, Divider, User } from "@nextui-org/react";
+import { Avatar, AvatarGroup, Button, Divider, User } from "@nextui-org/react";
 import axios from "axios";
-import { Edit, Trash } from "lucide-react";
+import { Edit, Trash, User2 } from "lucide-react";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -22,6 +22,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import ProfileSummary from "@/components/profile-summary";
 
 interface ProfilePageProps {}
 
@@ -42,10 +43,14 @@ const ProfilePage = async () => {
   
  
   return (
-<div className="flex items-center min-h-screen h-auto flex-col gap-4 pt-10 bg-[url(/cbg2.png)] bg-no-repeat bg-cover bg-center">
+<div className="flex items-center min-h-screen h-auto flex-col gap-4 pt-10  pb-10 bg-[url(/cbg2.png)] bg-no-repeat bg-cover bg-center">
   <div className="rounded-md bg-zinc-100/80 flex flex-col items-center justify-center gap-2 p-5 shadow-md">
   <h1 className="text-3xl font-bold">Welcome, {profile?.name}!</h1>
- 
+    {!group && (<div className="flex items-center flex-col">
+      <h1 className="text-red-500">ALERT: YOUR GROUP LEADER HAS DISBANDED THE GROUP.</h1>
+      <h2>PLEASE CREATE OR JOIN A GROUP</h2>
+      
+    </div>)}
   <Divider />
   <div className="grid md:grid-cols-2 gap-10 px-7 ">
     <div className="flex items-center justify-start flex-col px-2 py-2 gap-1 h-auto rounded-md bg-zinc-100/80 shadow-md">
@@ -54,7 +59,13 @@ const ProfilePage = async () => {
           <AccordionTrigger className="flex items-center justify-between flex-col w-full no-underline px-2 py-2 gap-1">
       
   
-      <p className=" w-full no-underline">Members List</p>
+      
+        <AvatarGroup isBordered max={3} total={members?.length}>
+      {members && members.map((member) => (
+        <Avatar src={member.imageUrl} size="sm" key={member.id} />
+        ))}
+          
+    </AvatarGroup>
       
       </AccordionTrigger>
       <Divider/>
@@ -71,61 +82,34 @@ const ProfilePage = async () => {
       </AccordionItem>
         </Accordion>
     </div>
-    {profile &&(
-    <div className="flex items-center justify-start flex-col px-2 py-2 gap-1  rounded-md bg-zinc-100/80 shadow-md">
-      <Accordion type="single" collapsible>
-        <AccordionItem  value="item-1">
-          <AccordionTrigger className="flex items-center justify-between flex-col w-full no-underline px-2 py-2 gap-1">
-        <h3 className="no-underline">Current Profile</h3>
-        </AccordionTrigger>
-        <Divider/>
-        <AccordionContent >
-        <div className="flex gap-1 justify-between items-center w-full py-2">
-          <p className="text-sm">Avatar:</p>
-          <Avatar src={profile.imageUrl} size="sm" />
-        </div>
-        <div className="flex items-center flex-col gap-1">
-          <div className="flex gap-1 justify-between items-center w-full">
-        <p className="text-sm">Name:</p><p className="text-xs">{profile.name}</p>
-        </div>
-        
-        <div className="flex gap-1 justify-between items-center w-full">
-        <p className="text-sm">Group:</p><p className="text-xs">{group?.name}</p>
-        </div>
-        
-        <div className="flex gap-1 justify-between items-center w-full">
-        <p className="text-sm">Interests:</p><p className="text-xs">{profile.content}</p>
-        </div>
-        </div>
-        </AccordionContent>
-        </AccordionItem>
-        </Accordion>
-      </div>
+    {profile && group &&(
+    <ProfileSummary profile={profile} group={group}/>
     )}
+    {profile && !group &&(<ProfileSummary profile={profile} />)}
   </div>
     <Divider />
   {group && creator &&(<InviteCode code={group.inviteCode} name={group.name} image={group.imageUrl} creator={creator.name}/>)}
   <Divider />
-  <div className="flex items-center justify-center gap-3">
+  <div className="flex items-center justify-center gap-3 ">
   <UserButton afterSignOutUrl="/"/>
        <NavButton 
           href={`/${group?.id}/${profile?.id}/settings`}
           icon={<Edit className="h-3 w-3" />}
-          text="Edit Profile"
-          className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-red-500 transition-all text-sm shadow-md"
+          text="Profile Settings"
+          className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-md"
           />
       <NavButton 
           href={`/${group?.id}`}
-          icon={<Edit className="h-3 w-3" />}
-          text="Edit Group"
-          className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-red-500 transition-all text-sm shadow-md"
+          icon={<User2 className="h-3 w-3" />}
+          text="Group Settings"
+          className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-md"
           />
       
   <DeleteButton 
       href={`/`}
       icon={<Trash className="h-3 w-3" />}
       text="Delete Profile"
-      className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-emerald-500 text-white bg-red-800 transition-all text-sm shadow-md"
+      className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-red-500 text-white bg-red-800 transition-all text-sm shadow-md"
       
       />
   </div>

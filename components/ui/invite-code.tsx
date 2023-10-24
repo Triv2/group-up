@@ -70,43 +70,60 @@ return null;
       </div>
       <div className="flex justify-evenly items-center  py-2"><h3>Creator:</h3><h3 className="font-bold text-sm ">{creator}</h3> </div>
       <Divider className="bg-white"/>
+   
+    <div className="flex items-center justify-between p-2 gap-1" >
     <Tooltip 
       placement="top"
       content="This url will automatically assign someone to this group."
-      className="px-5 text-xs/10"
+      className="px-5 text-xs/10 w-[200px] "
     >
-    <div className="flex items-center justify-between p-2 gap-1" >
      <p> InviteUrl</p>
+     </Tooltip>
      <Input className=" border-0 focus-visible:ring-0 text-xs/10 text-black focus-visible:ring-offset-0"
               value={code} disabled={isLoading} size="sm" onClick={onCopyUrl}
             />
             
-    <Button disabled={isLoading} onClick={onCopyUrl}  size="sm" className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-emerald-500 text-white bg-red-800 transition-all text-sm shadow-md"
-   >
-              {copiedUrl ? <Tooltip placement="right" content="Invite URL Copied" className="px-5 text-xs/10"><Check className="w-4 h-4"/></Tooltip> : <Copy className="w-4 h-4"/> }
-            </Button>
-            
+            {copiedUrl ? (
+                <Tooltip placement="right" content="Invite Code Copied" className="px-5 text-xs/10">
+                    <Button disabled={isLoading} onClick={onCopyUrl} size="sm"className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-emerald-500 text-white bg-red-800 transition-all text-sm shadow-md">
+                    <Check className="w-4 h-4"/> 
+                    </Button>
+               
+                </Tooltip>
+               ) : (<Button disabled={isLoading} onClick={onCopyUrl} size="sm"className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-emerald-500 text-white bg-red-800 transition-all text-sm shadow-md">
+               <Copy className="w-4 h-4"/> 
+               </Button> )}
     </div>
-    </Tooltip>
+    
 
     
 
-    <Tooltip
-      placement="bottom"
-      content="This code is a password used to register to this group."
-      className="px-5 text-xs/10"
-      >
+   
     <div className="flex items-center justify-between p-2 gap-1 " >
+    <Tooltip
+      placement="top"
+      content="This is a password used to register to this group."
+      className="px-5 text-xs/10 w-[200px] "
+      >
      <p> InviteCode</p>
+      </Tooltip>
+
      <Input className=" border-0 focus-visible:ring-0 text-xs/10 text-black focus-visible:ring-offset-0"
               value={code} disabled={isLoading} size="sm" onClick={onCopyCode}
             />
-    <Button disabled={isLoading} onClick={onCopyCode} size="sm"className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-emerald-500 text-white bg-red-800 transition-all text-sm shadow-md"
-   >
-              {copiedCode ? <Tooltip placement="right" content="Invite Code Copied" className="px-5 text-xs/10"><Check className="w-4 h-4"/></Tooltip>  : <Copy className="w-4 h-4"/> }
-            </Button>
+   {copiedCode ? (
+                <Tooltip placement="right" content="Invite Code Copied" className="px-5 text-xs/10">
+                    <Button disabled={isLoading} onClick={onCopyCode} size="sm"className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-emerald-500 text-white bg-red-800 transition-all text-sm shadow-md">
+                    <Check className="w-4 h-4"/> 
+                    </Button>
+               
+                </Tooltip>
+               ) : (<Button disabled={isLoading} onClick={onCopyCode} size="sm"className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-emerald-500 text-white bg-red-800 transition-all text-sm shadow-md">
+               <Copy className="w-4 h-4"/> 
+               </Button> )}
+            
     </div>
-    </Tooltip>
+    
 
     
     </div>

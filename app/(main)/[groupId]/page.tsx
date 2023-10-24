@@ -9,6 +9,7 @@ import InviteCode from "@/components/ui/invite-code";
 import { Divider } from "@nextui-org/react";
 import { UserButton, auth, redirectToSignIn } from "@clerk/nextjs";
 import EditGroupController from "./_components/edit-group-controller";
+import EditGroupSettingsForm from "./_components/edit-group-settings";
 
 
 interface GroupEditPageProps {}
@@ -28,7 +29,16 @@ const GroupEditPage = async () => {
   <div className="bg-zinc-100/80 flex items-center justify-center flex-col rounded-md p-3">
    {group && creator &&(<InviteCode code={group?.inviteCode} name={group?.name} image={group.imageUrl} creator={creator.name}/>)}
    <Divider/>
-    <EditGroupController group={group} groups={groups} /> 
+   {creator && profile && (creator.id===profile.id) && group && (
+    <div className="py-1">
+      <p>For Creators Only</p>
+      <Divider/>
+      <EditGroupSettingsForm group={group}/>
+    </div>
+   )}
+
+   <Divider/>
+   {profile &&(<EditGroupController group={group} groups={groups} profile={profile}/> )}
    
    <Divider/>
 <div className="p-2 flex items-center justify-between px-5 w-full">
@@ -36,8 +46,8 @@ const GroupEditPage = async () => {
 <NavButton
     href={`/`}
     icon={<MoveLeft className="h-3 w-3" />}
-    text="Cancel"
-    className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-emerald-700 text-white bg-red-800 transition-all text-sm shadow-md"
+    text="Back to Dashboard"
+    className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-red-500 text-white bg-red-800 transition-all text-sm shadow-md"
     
   />
   <UserButton afterSignOutUrl="/"/>

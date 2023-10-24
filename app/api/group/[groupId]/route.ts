@@ -34,10 +34,10 @@ export async function PATCH(
       image = user.imageUrl
      }
 
-
-    const updatedGroup= await db.profile.update({
+    if(profile.groupId){
+    const updatedGroup= await db.group.update({
       where: {
-       id:profile?.id,
+       id:profile.groupId,
       },
       data: {
         name:name,
@@ -52,6 +52,9 @@ export async function PATCH(
     
     console.log(updatedGroup);
     return NextResponse.json(updatedGroup);
+  } else {
+    return new NextResponse("Group not found",{ status: 400 });
+  }
   } catch (error) {
     console.log('[GROUP_ID_PATCH]', error);
     return new NextResponse("Internal Error", {status:500});

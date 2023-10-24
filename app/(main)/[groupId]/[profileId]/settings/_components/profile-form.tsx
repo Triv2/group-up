@@ -142,10 +142,7 @@ const handleClick= () => {
                 Current Interests: <p className="font-semibold text-emerald-800 pl-2"> {profile?.content}</p>
               </FormLabel>
               <FormControl>
-               {/* <Textarea
-               placeholder="Please enter what you want the person that draws you, to know about you."
-                className="text-black rounded-md"
-               disabled={loading}  {...field}/> */}
+             
                  <Textarea
                  
                   placeholder="Enter your description"
@@ -184,7 +181,7 @@ const handleClick= () => {
         )}
         </div>
         </div>
-        <Button type="submit">Submit</Button>
+        <Button className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-800 text-white hover:bg-emerald-500 transition-all text-sm shadow-md" type="submit">Submit</Button>
         
             </div>
             </form>

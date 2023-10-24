@@ -32,16 +32,16 @@ const ProfileSettingsPage = async  () => {
  
 
   return (
-<div className="flex items-center justify-center flex-col h-auto bg-[url(/cbg1.png)] bg-no-repeat bg-cover bg-center p-5 text-white">
-<div className=" rounded-md flex items-center justify-center flex-col pt-10 pb-10 h-auto bg-emerald-800/90 shadow-xl">
+<div className="flex items-center justify-center flex-col min-h-screen h-auto bg-[url(/cbg1.png)] bg-no-repeat bg-cover bg-center p-5 ">
+<div className=" rounded-md flex items-center justify-center flex-col pt-10 pb-10 h-auto bg-zinc-100/70 shadow-xl">
   <div>
 <h2 className="font-bold text-lg">Create your Profile</h2>
 
-<Divider className="bg-white"/>
+<Divider />
 
 </div>
 <Divider className="bg-white"/>
-<div className="bg-red-800 rounded-md shadow-md">
+<div className=" rounded-md shadow-md">
 <ProfileForm  />
 </div>
 <div className="p-2 flex items-center justify-between px-5 w-full">

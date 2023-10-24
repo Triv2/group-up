@@ -91,7 +91,7 @@ const handleClick= () => {
             <div className="flex items-center flex-col justify-center p-5 gap-5">
             
             <div className="flex items-center flex-col md:flex-row gap-2">
-            <div className='flex items-center flex-col justify-center p-5 gap-5 w-full broder-black border-1 rounded-md shadow-md '>
+            <div className='flex items-center flex-col justify-center p-5 gap-5 w-full broder-black border-1 rounded-md shadow-md bg-neutral-100/50'>
             <FormField
           control={form.control}
           name="name"
@@ -106,14 +106,14 @@ const handleClick= () => {
                type="name"
                
                placeholder="Please enter a name"
-                className="text-black rounded-md"
+                className="text-black rounded-md "
                disabled={loading}  {...field}/>
               </FormControl>
               <FormMessage/>
             </FormItem>
             )}
         />
-        <Divider className="bg-white"/>
+        <Divider />
            <FormField
           control={form.control}
           name="content"
@@ -137,7 +137,7 @@ const handleClick= () => {
         />
         </div>
         <div className="flex items-center flex-col justify-center">
-          <Switch defaultSelected  onClick={()=>handleClick()}><p className="text-white">Upload Image?</p></Switch>
+          <Switch defaultSelected  onClick={()=>handleClick()}><p >Upload Image?</p></Switch>
           {upload && (
         <FormField
           control={form.control}
@@ -161,7 +161,7 @@ const handleClick= () => {
         )}
         </div>
         </div>
-        <Button className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-red-500 transition-all text-sm shadow-lg"
+        <Button className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg"
     type="submit">Submit</Button>
         
             </div>

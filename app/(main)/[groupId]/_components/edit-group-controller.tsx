@@ -3,22 +3,25 @@ import {useState, useEffect} from'react'
 import CreateGroupForm from './create-group-form';
 import JoinGroupForm from './join-group-form';
 
-import { Group} from '@prisma/client';
+import { Group, Profile} from '@prisma/client';
 import { Button, Divider } from '@nextui-org/react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useParams, useRouter } from 'next/navigation';
 import { AlertModal } from '@/components/modals/alert-modal';
+import ProfileSummary from '@/components/profile-summary';
 
 
 interface EditGroupControllerProps {
   groups: Group[] | null | undefined;
   group: Group  | null | undefined;
+  profile: Profile;
 }
 
 const EditGroupController:React.FC<EditGroupControllerProps> = ({
   groups,
   group,
+  profile,
 }) => {
 
   const params= useParams();
@@ -78,9 +81,9 @@ return null;
       <div>
       {group && (
       <div className="flex items-center justify-enter flex-col p-5 bg-white shadow-md rounded-md gap-3">
-
+        <ProfileSummary profile={profile} />
         <h3>You must first leave a group to join a group.</h3>
-          <Button className="shadow-md hover:scale-105 transition-all hover:bg-emerald-700 text-white bg-red-500" disabled={loading} onClick={handleLeave}>
+          <Button className="shadow-md hover:scale-105 transition-all hover:bg-red-500 text-white bg-red-700" disabled={loading} onClick={handleLeave}>
             Leave Group
           </Button>
       </div>)}
@@ -88,30 +91,32 @@ return null;
 
       {!group &&(<div>
         {!create && !join && (<div className="bg-white p-5 rounded-md gap-2 flex items-center flex-col shadow-md">
-        
+        <ProfileSummary profile={profile} />
             <h2 className="font-semibold"> Create {groups && (groups.length > 0) &&("or Join")} a Group</h2>
             {!groups &&(<p className="text-muted-foreground text-xs/10">There are no groups, please create one! </p>)}
              <Divider/>
             <div className="flex items-center gap-2 p-2">
-            <Button className="shadow-md hover:scale-105 transition-all bg-emerald-700 text-white hover:bg-red-800" onClick={()=> setCreate(true)} >Create Group</Button>
+            <Button className="shadow-md hover:scale-105 transition-all bg-emerald-700 text-white hover:bg-emerald-500" onClick={()=> setCreate(true)} >Create Group</Button>
             { groups && (groups.length > 0) &&(
-            <Button className="shadow-md hover:scale-105 transition-all bg-emerald-700 text-white hover:bg-red-800" onClick={()=> setJoin(true)} >Join Group</Button>
+            <Button className="shadow-md hover:scale-105 transition-all bg-emerald-700 text-white hover:bg-emerald-500" onClick={()=> setJoin(true)} >Join Group</Button>
             )}
             </div>
             </div>
           )}
 
        {create && (
-        <div className="bg-emerald-400 p-2 rounded-md shadow-md">
+        <div className="bg-zinc-100/80 p-2 rounded-md shadow-md">
+          <ProfileSummary profile={profile} />
           <CreateGroupForm />
-          <Button className="shadow-md hover:scale-105 transition-all hover:bg-emerald-700 text-white bg-red-800" onClick={()=> setCreate(false)} type="submit">Cancel</Button>
+          <Button className="shadow-md hover:scale-105 transition-all hover:bg-red-500 text-white bg-red-800" onClick={()=> setCreate(false)} type="submit">Cancel</Button>
        </div>
        )}   
 
        {join  && (
-       <div className="bg-emerald-400 p-2 rounded-md shadow-md">
+       <div className="bg-zinc-100/80 p-2 rounded-md shadow-md">
+        <ProfileSummary profile={profile} />
          {groups&&(<JoinGroupForm initialData={groups} />)}
-          <Button className="shadow-md hover:scale-105 transition-all hover:bg-emerald-700 text-white bg-red-800" onClick={()=> setJoin(false)} type="submit">Cancel</Button>
+          <Button className="shadow-md hover:scale-105 transition-all hover:bg-red-500 text-white bg-red-800" onClick={()=> setJoin(false)} type="submit">Cancel</Button>
        </div>
        )}
        </div>

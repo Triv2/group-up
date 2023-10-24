@@ -13,6 +13,7 @@ import NavButton from '@/components/ui/nav-button';
 import { Box, Check, File, User2 } from 'lucide-react';
 import SantaUser from '@/components/ui/santa-user';
 import { currentGroup } from '@/lib/current-group';
+import ProfileSummary from '@/components/profile-summary';
 
 export default async function SetupPage() {
   const { userId} = auth();
@@ -40,7 +41,9 @@ export default async function SetupPage() {
     <main className="flex items-center  flex-col min-h-screen h-auto w-full gap-3 bg-[url(/cbg3.png)] bg-no-repeat bg-cover bg-center px-2 py-2">
       <div className="flex items-center flex-col gap-5 pt-3 sm:p-8 bg-zinc-100/80 rounded-md shadow-md h-auto">
         {!profile ? (
-        <h1 className=" text-xl md:text-3xl font-bold">Welcome {`${user?.firstName} ${user?.lastName}`}!</h1>) 
+        <div className="flex gap-2">
+        <h1 className=" text-xl md:text-3xl font-bold">Welcome {`${user?.firstName} ${user?.lastName}`}!</h1>
+        <UserButton afterSignOutUrl="/" /></div>) 
         : (
           <div>
           <div className="flex justify-between w-full gap-5 p-2">
@@ -50,10 +53,12 @@ export default async function SetupPage() {
         </div>
         <Divider />
         {profile.name &&(
-        <SantaUser
-        imageUrl={profile?.imageUrl}
-         name={profile.name}
-        />
+          <div className="flex gap-5 items-center justify-center">
+            Current Profile:
+            <ProfileSummary
+            profile={profile}
+            />
+        </div>
         )}
       
         </div>
@@ -92,7 +97,7 @@ export default async function SetupPage() {
           href={`/group`}
           icon={<User2 className="h-3 w-3" />}
           text="Create or Join a Group"
-          className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-red-800 transition-all text-sm shadow-md"
+          className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-md"
           />
           </div>
 

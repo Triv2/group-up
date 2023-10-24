@@ -19,8 +19,8 @@ import { FileUpload } from '@/components/file-upload';
 
 
 
-interface CreateGroupFormProps {
-  
+interface EditGroupSettingsFormProps {
+  group: Group;
 }
 
 const formSchema= z.object({
@@ -33,11 +33,11 @@ const formSchema= z.object({
 });
 
 
-export type CreateGroupFormValues = z.infer<typeof formSchema>
+export type EditGroupSettingsFormValues = z.infer<typeof formSchema>
 
 
- const CreateGroupForm:React.FC<CreateGroupFormProps>= ({
-  
+ const EditGroupSettingsForm:React.FC<EditGroupSettingsFormProps>= ({
+  group,
 }) => {
 
   const router = useRouter();
@@ -49,7 +49,7 @@ const [upload,setUpload] = useState(false);
 
 
 
-const form = useForm<CreateGroupFormValues>({
+const form = useForm<EditGroupSettingsFormValues>({
   resolver: zodResolver(formSchema),
   defaultValues: {
     name: "",
@@ -66,13 +66,13 @@ useEffect(() => {
     return null;
   }
   
-  const onSubmit = async (data:CreateGroupFormValues) => {
+  const onSubmit = async (data:EditGroupSettingsFormValues) => {
     try {
       setLoading(true);
       
     
       console.log("OnSubmit", data)
-      await axios.post(`/api/group/`, data)
+      await axios.patch(`/api/group/${group.id}`, data)
       
       
       toast.success("Group created!");
@@ -100,21 +100,21 @@ useEffect(() => {
             <div>
               <div>
           <div className="flex items-center justify-center flex-col gap-6">
-              <h3 className="font-bold text-xl">Create a Group</h3>
+              <h3 className="font-bold text-xl">Edit Group</h3>
             <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="font-semibold">
-                Group Name
+               <div className="flex flex-col gap-1">Current Name: <p className="text-muted-foreground">{group.name} </p></div>
               </FormLabel>
               <FormControl>
                <Input 
                
                type="name"
                
-               placeholder="Please enter a group name"
+               placeholder="Please enter your new group name"
                 className="text-black rounded-md h-[25px]"
                disabled={loading}  {...field}/>
               </FormControl>
@@ -147,7 +147,7 @@ useEffect(() => {
         )}
         </div>
        
-        <Button className="shadow-md hover:scale-105 transition-all bg-emerald-700 text-white hover:bg-emerald-500" type="submit">Create</Button>
+        <Button className="shadow-md hover:scale-105 transition-all bg-emerald-700 text-white hover:bg-emerald-500" type="submit">Update Group</Button>
        
         </div>
           
@@ -163,4 +163,4 @@ useEffect(() => {
     </>
   );
  }
-export default CreateGroupForm;
+export default EditGroupSettingsForm;

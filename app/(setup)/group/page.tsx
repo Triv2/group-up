@@ -13,6 +13,7 @@ import { currentGroups } from '@/lib/current-groups';
 import { Divider } from '@nextui-org/react';
 import FormController from '../_components/form-controller';
 import SantaUser from '@/components/ui/santa-user';
+import ProfileSummary from '@/components/profile-summary';
 
 export default async function GroupSetupPage() {
   const { userId} = auth();
@@ -43,10 +44,12 @@ export default async function GroupSetupPage() {
           </div>
           <Divider />
           {profile.name &&(
-          <SantaUser
-          imageUrl={profile?.imageUrl}
-           name={profile.name}
-          />
+          <div className="flex gap-5 items-center justify-center">
+          Current Profile:
+            <ProfileSummary
+            profile={profile}
+            />
+            </div>
           )}
         
           </div>
