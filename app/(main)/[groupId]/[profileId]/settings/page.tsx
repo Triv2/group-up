@@ -4,15 +4,20 @@ import NavButton from "@/components/ui/nav-button";
 import { MoveLeft } from "lucide-react";
 import { currentGroup } from "@/lib/current-group";
 import { currentGroups } from "@/lib/current-groups";
+import { auth, redirectToSignIn } from "@clerk/nextjs";
 
 interface ProfileSettingsPageProps {}
 
 const ProfileSettingsPage = async () => {
   const profile = await currentProfile();
   const group = await currentGroup();
+  const { userId} = auth();
+  if(!userId) {
+    redirectToSignIn();
+  }
   
   return (
-<div className="flex items-center justify-center flex-col h-auto bg-[url(/cbg4.png)] bg-no-repeat bg-cover bg-center p-5 py-10">
+<div className="flex items-center justify-center flex-col min-h-screen h-auto bg-[url(/cbg4.png)] bg-no-repeat bg-cover bg-center p-5 py-10">
 
 <div className="flex items-center justify-center flex-col bg-zinc-100/80 rounded-md p-3">
   <h2 className="font-bold text-xl mt-5">Edit Your Profile</h2>

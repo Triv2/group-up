@@ -1,5 +1,5 @@
 import { currentGroup } from "@/lib/current-group";
-import GroupEditForm from "./_components/group-form";
+
 import { currentGroups } from "@/lib/current-groups";
 import { currentCreator } from "@/lib/current-creator";
 import NavButton from "@/components/ui/nav-button";
@@ -7,7 +7,9 @@ import { MoveLeft } from "lucide-react";
 import { currentProfile } from "@/lib/current-profile";
 import InviteCode from "@/components/ui/invite-code";
 import { Divider } from "@nextui-org/react";
-import { UserButton } from "@clerk/nextjs";
+import { UserButton, auth, redirectToSignIn } from "@clerk/nextjs";
+import EditGroupController from "./_components/edit-group-controller";
+
 
 interface GroupEditPageProps {}
 
@@ -16,13 +18,18 @@ const GroupEditPage = async () => {
   const groups = await currentGroups();
   const profile = await currentProfile();
   const creator= await currentCreator();
-
+  const { userId} = auth();
+  if(!userId) {
+    redirectToSignIn();
+  }
+  
   return (
 <div className="flex items-center justify-center flex-col h-auto min-h-screen bg-[url(/cbg5.png)] bg-no-repeat bg-cover bg-center p-5 py-10">
   <div className="bg-zinc-100/80 flex items-center justify-center flex-col rounded-md p-3">
    {group && creator &&(<InviteCode code={group?.inviteCode} name={group?.name} image={group.imageUrl} creator={creator.name}/>)}
    <Divider/>
-   {groups && group &&( <GroupEditForm group={group} initData={groups} profile={profile} /> )}
+    <EditGroupController group={group} groups={groups} /> 
+   
    <Divider/>
 <div className="p-2 flex items-center justify-between px-5 w-full">
   

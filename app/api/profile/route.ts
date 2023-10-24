@@ -14,7 +14,7 @@ export async function POST(
   }
     const body = await req.json();
     console.log(body);
-    const { name, interests, imageUrl } = body;
+    const { name, content, imageUrl } = body;
   
     
     
@@ -35,10 +35,11 @@ export async function POST(
     const profile = await db.profile.create({
       data: {
         clerkId:user.id,
-        name:`${user.firstName} ${user.lastName}`,
-        imageUrl: user.imageUrl,
+        name: name,
+        imageUrl: imageUrl || user.imageUrl,
         email: user.emailAddresses[0].emailAddress,
         setupProfile: true,
+        content,
       },
 
       

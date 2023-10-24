@@ -9,12 +9,15 @@ import { redirect } from "next/navigation";
 import NavButton from "@/components/ui/nav-button";
 import { MoveLeft } from "lucide-react";
 import { currentCreator } from "@/lib/current-creator";
-import { UserButton } from "@clerk/nextjs";
+import { UserButton, auth,  redirectToSignIn } from "@clerk/nextjs";
 
 interface ProfileSettingsPageProps {}
 
 const ProfileSettingsPage = async  () => {
-  
+  const { userId} = auth();
+  if(!userId) {
+    redirectToSignIn();
+  }
   
 
  

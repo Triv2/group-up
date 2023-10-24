@@ -1,7 +1,19 @@
 
-interface InviteCodePageProps {}
+interface InviteCodePageProps {
+  params:{
+    inviteCode: string;
+  }
+}
 
-const InviteCodePage = () => {
+const InviteCodePage = async ({
+  params
+}:InviteCodePageProps) => {
+
+  const joinGroup = async () => { 
+
+  }
+
+
   return (
 <div>
 InviteCodePage

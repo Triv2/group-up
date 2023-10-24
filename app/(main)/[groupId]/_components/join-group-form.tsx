@@ -69,7 +69,7 @@ useEffect(() => {
     
       console.log("OnSubmit", data)
       await axios.patch(`/api/group/`, data)
-      router.push("/profile");
+      router.push("/");
       
       toast.success("Group joined!");
     } catch (error) {

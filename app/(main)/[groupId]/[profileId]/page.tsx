@@ -7,8 +7,8 @@ import { currentGroup } from "@/lib/current-group";
 import { currentMembers } from "@/lib/current-members";
 import { currentProfile } from "@/lib/current-profile";
 import { inviteProfile } from "@/lib/invite-profile";
-import { UserButton } from "@clerk/nextjs";
-import { Button, Divider, User } from "@nextui-org/react";
+import { UserButton, auth, redirectToSignIn } from "@clerk/nextjs";
+import { Avatar, Button, Divider, User } from "@nextui-org/react";
 import axios from "axios";
 import { Edit, Trash } from "lucide-react";
 
@@ -30,12 +30,11 @@ const ProfilePage = async () => {
    const group = await currentGroup();
    const members = await currentMembers();
    const creator = await currentCreator();
- 
-  
-   if (!profile) {
-   
-    redirect(`/profile/`);
+   const { userId} = auth();
+  if(!userId) {
+    redirectToSignIn();
   }
+  
    
 
   
@@ -87,7 +86,7 @@ const ProfilePage = async () => {
       <ul className="flex items-center flex-col gap-1 w-full">
        {members && members.map((member) => (
         <li className="text-xs  flex items-center justify-between w-full" key={member.id}>
-        <Image src={member.imageUrl} width={50} height={50} alt={member?.name || ""} />
+        <Avatar src={member.imageUrl} size="sm" />
           {member.name}
         </li>
       ))} 
@@ -107,7 +106,7 @@ const ProfilePage = async () => {
         <AccordionContent>
         <div className="flex gap-1 justify-between items-center w-full">
           <p className="text-sm">Avatar:</p>
-        <Image src={profile.imageUrl} width={50} height={50} alt={profile?.name || ""} />
+          <Avatar src={profile.imageUrl} size="sm" />
         </div>
         <div className="flex items-center flex-col gap-1">
           <div className="flex gap-1 justify-between items-center w-full">
