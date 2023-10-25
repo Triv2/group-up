@@ -1,3 +1,5 @@
+import { Toaster } from "react-hot-toast";
+
 const MainLayout = async ({
   children
 }:{
@@ -6,6 +8,7 @@ const MainLayout = async ({
   return (
     <div className="h-full">
       <main className=" h-full ">
+      
       {children}
       </main>
     </div>

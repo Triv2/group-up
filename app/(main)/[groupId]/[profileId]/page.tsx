@@ -45,7 +45,7 @@ const ProfilePage = async () => {
   
  
   return (
-<div className="flex items-center min-h-screen h-auto flex-col gap-4 pt-10  pb-10 bg-[url(/cbg2.png)] bg-no-repeat bg-cover bg-center">
+<div className="flex items-center min-h-screen h-auto w-full flex-col gap-4 pt-10  pb-10 bg-[url(/cbg2.png)] bg-no-repeat bg-cover bg-center">
   <div className="rounded-md bg-zinc-100/80 flex flex-col items-center justify-center gap-2 p-5 shadow-md">
   <h1 className="text-3xl font-bold">Welcome, {profile?.name}!</h1>
     {!group && (<div className="flex items-center flex-col">
@@ -58,11 +58,11 @@ const ProfilePage = async () => {
     <div className="flex items-center justify-start flex-col px-2 py-2 gap-1 h-auto rounded-md bg-zinc-100/80 shadow-md">
       <Accordion type="single" collapsible>
         <AccordionItem  value="item-1">
-          <AccordionTrigger className="flex items-center justify-between flex-col w-full no-underline px-2 py-2 gap-1">
+          <AccordionTrigger className="flex items-center justify-between  w-full no-underline px-2 py-2 gap-1">
       
-  
-      
-        <AvatarGroup isBordered max={3} total={members?.length} >
+        
+       {group &&( <Avatar  src={group.imageUrl} size="lg" className="border-5 shadow-md"/>)}
+        <AvatarGroup size="sm" isBordered max={3} total={members?.length} >
       {members && members.map((member) => (
         <Avatar src={member.imageUrl} size="sm" key={member.id} />
         ))}
@@ -72,9 +72,9 @@ const ProfilePage = async () => {
       </AccordionTrigger>
       <Divider/>
       <AccordionContent>
-      <ul className="flex items-center flex-col gap-1 w-full p-1 px-5">
+      <ul className="flex items-center flex-col gap-1 w-full p-1 sm:px-5">
        {members && members.map((member) => (
-        <li className="text-xs  flex items-center gap-4 justify-between w-full" key={member.id}>
+        <li className="text-xs  flex items-center gap-1 justify-start w-full shadow-md py-1 rounded-md bg-zinc-50 px-2" key={member.id}>
         <Avatar src={member.imageUrl} size="sm"  />
         <div className="flex flex-col">
         {member.name}

@@ -64,12 +64,12 @@ return null;
   return (
     <div className="text-xs">
       <div className="flex justify-evenly items-center  py-2"><h3>Current Group:</h3> 
-      <div className="bg-white shadow-md flex items-center justify-between rounded-md gap-5 p-2">
-      <h3 className="font-bold text-lg ">{name}</h3> <Avatar size="lg" src={image}  alt="group avatar" />  
+      <div className="bg-zinc-50/50 shadow-md flex items-center justify-between rounded-md gap-5 p-2">
+      <h3 className="font-bold text-lg ">{name}</h3> <Avatar size="lg" src={image} className="border-5 shadow-md"  alt="group avatar" />  
       </div>
       </div>
       <div className="flex justify-evenly items-center  py-2"><h3>Creator:</h3><h3 className="font-bold text-sm ">{creator}</h3> </div>
-      <Divider className="bg-white"/>
+      <Divider />
    
     <div className="flex items-center justify-between p-2 gap-1" >
     <Tooltip 

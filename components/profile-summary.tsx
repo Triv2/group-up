@@ -25,8 +25,8 @@ const ProfileSummary = ({
           )}
         </AccordionTrigger>
         <Divider/>
-        <AccordionContent >
-        <div className="flex gap-1 justify-between items-center w-full py-2">
+        <AccordionContent className="px-10" >
+        <div className="flex gap-1 justify-between items-center w-full py-2 ">
           <p className="text-sm">Avatar:</p>
           <Avatar src={profile.imageUrl} size="sm" />
         </div>
@@ -40,7 +40,7 @@ const ProfileSummary = ({
         </div>
         
         <div className="flex gap-1 justify-between items-center w-full">
-        <p className="text-sm">Interests:</p><p className="text-xs w-[200px] sm:w-[350px] md:w-[600px]">{profile.content}</p>
+        <p className="text-sm">Interests:</p><p className="text-xs px-10">{profile.content}</p>
         </div>
         </div>
         </AccordionContent>

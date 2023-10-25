@@ -15,7 +15,7 @@ const SantaUser = ({
   return (
 <div className="flex items-center justify-center gap-5 rounded-md p-2">
    
-   <div className=" shadow-lg bg-white border-black flex items-center justify-center gap-5 rounded-md p-2">
+   <div className=" shadow-lg bg-zinc-50 border-black flex items-center justify-center gap-5 rounded-md p-2">
    <Avatar size="md" color="success" isBordered src={imageUrl}/>
    <div>
     <p className="text-lg text-muted-foreground">{name}</p>

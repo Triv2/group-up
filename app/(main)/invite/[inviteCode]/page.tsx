@@ -28,9 +28,9 @@ const InviteCodePage = async ({
   return (
 <div><div className="flex items-center justify-center flex-col min-h-screen h-auto bg-[url(/cbg1.png)] bg-no-repeat bg-cover bg-center p-5 ">
 <div className=" rounded-md flex items-center justify-center flex-col pt-10 pb-10 h-auto bg-zinc-100/70 shadow-xl">
-  <div>
-    <h1>Welcome {user?.firstName} {user?.lastName}</h1>
-    <p> You have joined the {group?.name} group!</p>
+<h1 className="text-2xl font-bold text-start w-full pl-10 px-2">Welcome, {user?.firstName} {user?.lastName}!</h1>
+  <div className="px-2">
+    <p className="font-semibold"> You have joined the {group?.name} group!</p>
     <Divider />
 <h2 className="font-bold text-lg">Create your Profile</h2>
 
