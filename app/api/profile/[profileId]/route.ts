@@ -52,7 +52,6 @@ export async function PATCH(
       },
       data: {
         name:name,
-        content:content,
         imageUrl:image,
       },
     })

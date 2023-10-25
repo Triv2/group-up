@@ -35,19 +35,25 @@ const GroupEditPage = async () => {
   <div className="bg-zinc-100/80 flex items-center justify-center flex-col rounded-md p-3">
    {userCreatedGroups && creator &&(
     userCreatedGroups.map((group) => (
-   <InviteCode code={group?.inviteCode} name={group?.name} image={group.imageUrl} creator={profile.name}/>))
+   <InviteCode key={group.id} code={group?.inviteCode} name={group?.name} image={group.imageUrl} creator={creator.name}/>))
    )}
    <Divider/>
-   {creators && profile && (creators.id===profile.id) && group && (
-    <div className="py-1">
+   {creator && profile && (creator.id===profile.id) && userGroups && (
+    userGroups.map((group) => (
+    <div className="py-1" key={group.id}>
       <p>For Creators Only</p>
       <Divider/>
       <EditGroupSettingsForm group={group}/>
-    </div>
+    </div>)
+    )
    )}
 
    <Divider/>
-   {profile &&(<EditGroupController group={group} groups={groups} profile={profile}/> )}
+   {userCreatedGroups && profile &&(
+    userCreatedGroups.map((group) => (
+    <EditGroupController key={group.id} group={group} groups={userCreatedGroups} profile={profile}/>))
+   )}
+ 
    
    <Divider/>
 <div className="p-2 flex items-center justify-between px-5 w-full">

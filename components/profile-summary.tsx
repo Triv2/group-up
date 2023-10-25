@@ -5,12 +5,12 @@ import { Group, Profile } from "@prisma/client";
 
 interface ProfileSummaryProps {
   profile: Profile;
-  group?:Group;
+  groups?:Group[];
 }
 
 const ProfileSummary = ({
   profile,
-  group,
+  groups,
 }:ProfileSummaryProps) => {
   return (
 <div className="flex items-center justify-start flex-col px-2 py-2 gap-1  rounded-md bg-zinc-100/80 shadow-md w-full">
@@ -37,7 +37,9 @@ const ProfileSummary = ({
         </div>
         
         <div className="flex gap-1 justify-between items-center w-full px-2">
-        <p className="text-sm">Group:</p><p className="text-xs">{group?.name || "No Group"}</p>
+        <p className="text-sm">Groups:</p>
+        {groups?.map((group) =>(
+        <p key={group.id} className="text-xs flex flex-col items-center">{group?.name || "No Group"}</p>))}
         </div>
         
         <div className="flex gap-1 justify-between items-center w-full px-2">

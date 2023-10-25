@@ -16,7 +16,7 @@ export async function POST(
     
     const { name, imageUrl } = body;
   
-    
+    let image= imageUrl;
     
     if (!name) {
       return new NextResponse("name is required",{ status: 400 });
@@ -34,17 +34,25 @@ export async function POST(
       return new NextResponse("Group already exists",{ status: 400 });
     }
 
-    
+    if(imageUrl === null || imageUrl === ""){
+      image = user.imageUrl
+     }
+
 
     const profile = await db.profile.findFirst({
       where: {
         clerkId:user.id,
       },
     })
+    if(!profile){
+      return new NextResponse("Profile not found",{ status: 400 });
+    }
 
     const creator = await db.creator.create({
       data: {
-        id:profile?.id
+        id:profile?.id,
+        name: name,
+        imageUrl: profile.imageUrl,
       }
     })
 
@@ -54,7 +62,7 @@ export async function POST(
         name,
         inviteCode: uuidv4(),
         creator: creator.id,
-        imageUrl: imageUrl,
+        imageUrl: image,
         
       },
     })

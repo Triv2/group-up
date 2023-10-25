@@ -7,20 +7,22 @@ import InviteCode from './ui/invite-code';
 
 interface GroupSummaryProps {
   group: Group;
-  members: Profile[];
+ members:Profile[];
   
   
 }
 
 const GroupSummary:React.FC<GroupSummaryProps> = ({
   group,
-  members,
-  
- 
+  members
 }) => {
 
 const [isMounted, setIsMounted] = useState(false);
-const creator = members.find((c) => c.id === group.creator);
+
+
+const groupProfileIds = group?.profileIds;
+const matchedMembers = members.filter((member) => groupProfileIds?.includes(member.id));
+const creator = matchedMembers.find((member) => member.id === group.creator);
 
 useEffect(() => {
 setIsMounted(true);
@@ -38,8 +40,8 @@ return null;
       
         
        {group &&( <Avatar  src={group.imageUrl} size="lg" className="border-5 shadow-md"/>)}
-        <AvatarGroup size="sm" isBordered max={3} total={members?.length} >
-      {members && members.map((member) => (
+        <AvatarGroup size="sm" isBordered max={3} total={matchedMembers?.length} >
+      {matchedMembers && matchedMembers.map((member) => (
         <Avatar src={member.imageUrl} size="sm" key={member.id} />
         ))}
           
@@ -49,7 +51,7 @@ return null;
       <Divider/>
       <AccordionContent>
       <ul className="flex items-center flex-col gap-1 w-full p-1 sm:px-5">
-       {members && members.map((member) => (
+       {matchedMembers && matchedMembers.map((member) => (
         <li className="text-xs  flex items-center gap-1 justify-start w-full shadow-md py-1 rounded-md bg-zinc-50 px-2" key={member.id}>
         <Avatar src={member.imageUrl} size="sm"  />
         <div className="flex flex-col">

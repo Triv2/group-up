@@ -3,7 +3,7 @@ import { auth } from "@clerk/nextjs"
 import { db } from "@/lib/db"
 
 
-export const currentMembers= async () => {
+export const allMembers= async () => {
   const { userId} = auth();
   
 
@@ -30,19 +30,15 @@ export const currentMembers= async () => {
       },
     },
   })
+  
+  const memberIds = groups.flatMap((group) => group.profileIds)
 
-  const memberObjects = groups.map((group) => {
-    return {
-      groupId:group.id,
-      member: group.profileIds.map((id) => {
-        return db.profile.findUnique({
-          where: {
-            id,
-          },
-        })
-      }),
-    }
+  const members = await db.profile.findMany({
+    where: {
+      id: {
+        in: memberIds,
+      },
+    },
   })
-
-  return memberObjects
+  return members;
 }
