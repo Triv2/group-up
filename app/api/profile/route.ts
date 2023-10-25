@@ -52,7 +52,7 @@ export async function POST(
           setupProfile: true,
           setupComplete:true,
           setupGroup: true,
-          groupId: groupId,
+          groupIds: groupId,
           content,
         },
         
@@ -149,7 +149,8 @@ export async function PATCH(
         id:newProfileId,
       },
       data: {
-        groupId:groupId,
+        groupIds:{
+          push:groupId},
         setupComplete:true,
       },
 

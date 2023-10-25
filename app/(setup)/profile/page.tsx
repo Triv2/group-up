@@ -8,7 +8,7 @@ import axios from "axios";
 import { redirect } from "next/navigation";
 import NavButton from "@/components/ui/nav-button";
 import { MoveLeft } from "lucide-react";
-import { currentCreator } from "@/lib/current-creator";
+import { currentCreator } from "@/lib/current-creators";
 import { UserButton, auth,  redirectToSignIn } from "@clerk/nextjs";
 
 interface ProfileSettingsPageProps {}

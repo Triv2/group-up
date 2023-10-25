@@ -1,7 +1,7 @@
 import { currentGroup } from "@/lib/current-group";
 
 import { currentGroups } from "@/lib/current-groups";
-import { currentCreator } from "@/lib/current-creator";
+import { currentCreator } from "@/lib/current-creators";
 import NavButton from "@/components/ui/nav-button";
 import { MoveLeft } from "lucide-react";
 import { currentProfile } from "@/lib/current-profile";

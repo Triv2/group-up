@@ -16,27 +16,27 @@ export const currentMembers= async () => {
     where: {
       clerkId:userId,
     },
+    
   });
 
   if(!profile) {
     return null;
   } 
   
-  if(profile.groupId) {
-  const group =await db.group.findFirst({
+  
+  const group =await db.group.findUnique({
     where: {
-      id:profile?.groupId,
+      id:profile?.groupIds
     },
     
   });
 
   const members = await db.profile.findMany({
     where: {
-      groupId:group?.id,
+      groupIds:group?.id,
     },
   })
 
   
   return members;
-}
 }

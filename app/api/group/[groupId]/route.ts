@@ -13,7 +13,8 @@ export async function PATCH(
   }
     const body = await req.json();
     
-    const { name, imageUrl } = body;
+    // add route to bring in the group to be updated
+    const { name, imageUrl, group } = body;
   
     let image= imageUrl;
     
@@ -34,10 +35,10 @@ export async function PATCH(
       image = user.imageUrl
      }
 
-    if(profile.groupId){
+    if(profile.groupIds){
     const updatedGroup= await db.group.update({
       where: {
-       id:profile.groupId,
+       id:group.id
       },
       data: {
         name:name,
@@ -70,6 +71,8 @@ export async function GET(
   if (!user) {
     return redirectToSignIn();
   }
+  const body = await req.json();
+  const {group} = body;
     
     
     
@@ -82,17 +85,17 @@ export async function GET(
       return new NextResponse("Profile not found",{ status: 400 });
     }
 
-    if(profile.groupId){
-    const group = await db.group.findFirst({
+    
+    const getGroup = await db.group.findUnique({
       where: {
-       id:profile.groupId,
+       id:group.id,
       }
     })
    
 
 
-    return NextResponse.json(group);
-    }
+    return NextResponse.json(getGroup);
+    
   } catch (error) {
     console.log('[GROUP_ID_GET]', error);
     return new NextResponse("Internal Error", {status:500});
@@ -109,6 +112,8 @@ export async function DELETE(
     return redirectToSignIn();
   }
     
+  const body = await req.json();
+  
     
     
     const profile = await db.profile.findFirst({
@@ -126,21 +131,33 @@ export async function DELETE(
       },
     });
 
+    if(!creator) {
+      return new NextResponse("Creator not found",{ status: 400 });
+    }
+
     if (creator) {
-       await db.group.delete({
+      const group=  await db.group.findUnique({
         where: {
           creator:creator.id,
         },
       })
-      await db.creator.delete({ 
-        where: {
-          id:creator.id,
-        },
-      })
+      if (group) {
+        const groupIndex = creator.groupIds.findIndex(
+          (g) => g[0] === group.id
+        );
+
+
+        if (groupIndex !== -1) {
+          creator.groupIds.splice(groupIndex, 1);
+          await db.creator.update({
+            where: { id: creator.id },
+            data: { groupIds: creator.groupIds },
+          });
+          await db.group.delete({ where: { id: group.id } });
     }
 
-    
-    
+  }
+}  
     
   } catch (error) {
     console.log('[GROUP_ID_DELETE]', error);

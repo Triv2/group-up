@@ -52,7 +52,7 @@ export async function POST(
           setupProfile: true,
           setupComplete:true,
           setupGroup: true,
-          groupId: groupId,
+          groupIds: groupId,
           content,
         },
         

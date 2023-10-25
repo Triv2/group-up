@@ -59,6 +59,17 @@ export async function POST(
       },
     })
 
+    await db.creator.update({ 
+      where: {
+        id:creator.id,
+      },
+      data: {
+        groupIds:{
+          push:group.id,
+        },
+      },
+    })
+
     const updatedGroup = await db.group.update({
       where: {
         id:group?.id,
@@ -75,7 +86,8 @@ export async function POST(
         id:profile?.id,
       },
       data: {
-        groupId:group?.id,
+        groupIds:{
+          push:group?.id},
         setupGroup:true,
         setupComplete:true,
       },
@@ -148,7 +160,9 @@ export async function PATCH(
         id:profile.id,
       },
       data: {
-        groupId:updatedGroup.id,
+        groupIds:{
+          push:updatedGroup.id
+        },
         setupGroup:true,
         setupComplete:true,
       },

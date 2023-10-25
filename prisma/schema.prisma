@@ -16,13 +16,11 @@ model Profile {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   clerkId String? 
   name String?
-
   email String?
   imageUrl String 
-
   content String?
 
-  groupId String? @db.ObjectId
+  groupIds String[] @db.ObjectId
   
 
   secretId String? @db.ObjectId
@@ -56,4 +54,5 @@ model Group {
 
 model Creator {
   id String @id @default(auto()) @map("_id") @db.ObjectId
+  groupIds String[] @db.ObjectId
 }

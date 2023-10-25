@@ -3,7 +3,6 @@ import InviteProfileForm from "./_components/invite-profile-form";
 import { UserButton, auth, currentUser, redirectToSignIn } from "@clerk/nextjs";
 import { Divider } from "@nextui-org/react";
 import { currentProfile } from "@/lib/current-profile";
-import axios from "axios";
 import { redirect } from "next/navigation";
 
 interface InviteCodePageProps {
@@ -38,7 +37,7 @@ const InviteCodePage = async ({
         id:profile.id
       },
       data:{
-        groupId:group.id,
+        groupIds:{push:group.id},
       }
     });
     await db.group.update({
