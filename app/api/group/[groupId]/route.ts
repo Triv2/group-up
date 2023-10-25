@@ -12,7 +12,7 @@ export async function PATCH(
     return redirectToSignIn();
   }
     const body = await req.json();
-    console.log(body);
+    
     const { name, imageUrl } = body;
   
     let image= imageUrl;
@@ -50,7 +50,7 @@ export async function PATCH(
 
 
     
-    console.log(updatedGroup);
+    
     return NextResponse.json(updatedGroup);
   } else {
     return new NextResponse("Group not found",{ status: 400 });

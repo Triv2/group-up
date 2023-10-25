@@ -13,7 +13,7 @@ export async function POST(
     return redirectToSignIn();
   }
     const body = await req.json();
-    console.log(body);
+   
     const { name, content, imageUrl, groupId } = body;
   
     
@@ -101,7 +101,7 @@ export async function POST(
 
     
     return NextResponse.json(profile); }
-    
+
   } catch (error) {
     console.log('[PROFILE_POST]', error);
     return new NextResponse("Internal Error", {status:500});
@@ -119,7 +119,7 @@ export async function PATCH(
     return redirectToSignIn();
   }
     const body = await req.json();
-    console.log(body);
+   
     const { groupId , newProfileId} = body;
   
     
@@ -179,7 +179,7 @@ export async function PATCH(
       
     })
     
-    console.log(updatedGroup);
+   
     return NextResponse.json(profile);
   } catch (error) {
     console.log('[PROFILE_PATCH]', error);

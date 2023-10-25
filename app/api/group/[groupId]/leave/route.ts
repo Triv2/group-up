@@ -86,7 +86,7 @@ export async function PATCH(
     }
 
     
-    console.log(updatedProfile);
+    
     return NextResponse.json(updatedProfile);
   } else {
     return NextResponse.json(profile);

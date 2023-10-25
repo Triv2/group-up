@@ -71,7 +71,6 @@ const onSubmit = async (data:ProfileFormValues) => {
     setLoading(true);
     
   
-    console.log("OnSubmit", data)
     await axios.patch(`/api/profile/${params.profileId}`, data)
     router.refresh();
     router.push("/");

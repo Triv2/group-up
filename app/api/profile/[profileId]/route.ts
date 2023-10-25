@@ -12,7 +12,7 @@ export async function PATCH(
     return redirectToSignIn();
   }
     const body = await req.json();
-    console.log(body);
+    
     const { name, content, imageUrl } = body;
   
     let image= imageUrl;
@@ -50,7 +50,7 @@ export async function PATCH(
 
 
     
-    console.log(updatedProfile);
+    
     return NextResponse.json(updatedProfile);
   } catch (error) {
     console.log('[PROFILE_ID_PATCH]', error);
@@ -136,7 +136,7 @@ export async function DELETE(
         id:profile?.id,
       },
     })
-    console.log(deletedProfile);
+    
     return NextResponse.json(deletedProfile);
     
   } catch (error) {

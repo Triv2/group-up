@@ -32,7 +32,7 @@ const [create, setCreate] = useState(false);
 const [join, setJoin] = useState(false);
 const [leave, setLeave] = useState(false);
 const [loading, setLoading] = useState(false);
-
+router.refresh();
 const handleLeave = async () => {
   if(leave){
     setLeave(false);

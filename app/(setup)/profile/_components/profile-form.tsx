@@ -63,7 +63,7 @@ const onSubmit = async (data:ProfileFormValues) => {
     setLoading(true);
     
   
-    console.log("OnSubmit", data)
+    
     await axios.post(`/api/profile/`, data)
     router.refresh();
     router.push("/");

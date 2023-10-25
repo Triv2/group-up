@@ -13,7 +13,7 @@ export async function POST(
     return redirectToSignIn();
   }
     const body = await req.json();
-    console.log(body);
+    
     const { name, imageUrl } = body;
   
     
@@ -85,7 +85,7 @@ export async function POST(
 
 
     
-    console.log(updatedGroup);
+    
     return NextResponse.json(updatedGroup);
   } catch (error) {
     console.log('[GROUPS_POST]', error);
@@ -103,7 +103,7 @@ export async function PATCH(
     return redirectToSignIn();
   }
     const body = await req.json();
-    console.log(body);
+    
     const { name, inviteCode } = body;
    
     
@@ -154,7 +154,7 @@ export async function PATCH(
       },
     })
     
-    console.log(updatedGroup);
+    
     return NextResponse.json(updatedGroup);
   } catch (error) {
     console.log('[GROUPS_PATCH]', error);

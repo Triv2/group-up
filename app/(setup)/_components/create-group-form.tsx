@@ -71,7 +71,7 @@ useEffect(() => {
       setLoading(true);
       
     
-      console.log("OnSubmit", data)
+     
       await axios.post(`/api/group/`, data)
       
       

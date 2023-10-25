@@ -67,7 +67,7 @@ useEffect(() => {
       setLoading(true);
       
     
-      console.log("OnSubmit", data)
+      
       await axios.patch(`/api/group/`, data)
       router.push("/");
       

@@ -71,7 +71,7 @@ useEffect(() => {
       setLoading(true);
       
     
-      console.log("OnSubmit", data)
+      
       await axios.patch(`/api/group/${group.id}`, data)
       
       
