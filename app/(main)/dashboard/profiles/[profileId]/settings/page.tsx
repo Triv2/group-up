@@ -2,8 +2,7 @@ import { currentProfile } from "@/lib/current-profile";
 import ProfileForm from "./_components/profile-form";
 import NavButton from "@/components/ui/nav-button";
 import { MoveLeft, Trash } from "lucide-react";
-import { currentGroup } from "@/lib/current-groups";
-import { currentGroups } from "@/lib/all-groups";
+
 import { UserButton, auth, redirectToSignIn } from "@clerk/nextjs";
 import DeleteButton from "@/components/ui/delete-button";
 
@@ -11,7 +10,7 @@ interface ProfileSettingsPageProps {}
 
 const ProfileSettingsPage = async () => {
   const profile = await currentProfile();
-  const group = await currentGroup();
+ 
   const { userId} = auth();
   if(!userId) {
     redirectToSignIn();
@@ -29,7 +28,7 @@ const ProfileSettingsPage = async () => {
 <div className="p-2 flex items-center justify-between  md:flex-row flex-col gap-2 px-5 w-full">
 <NavButton 
 
-  href={`/${group?.id}/${profile?.id}/`}
+  href={`/groups/${profile?.id}/`}
   icon={<MoveLeft className="h-3 w-3" />}
   text="Cancel"
   className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-red-800 text-white hover:bg-red-500 transition-all text-sm shadow-md"

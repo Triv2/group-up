@@ -1,5 +1,5 @@
 
-import { currentGroup } from "@/lib/current-groups";
+import { currentGroup } from "@/lib/current-group";
 import ProfileForm from "./_components/profile-form";
 import InviteCode from "@/components/ui/invite-code";
 import { Divider } from "@nextui-org/react";
@@ -8,7 +8,7 @@ import axios from "axios";
 import { redirect } from "next/navigation";
 import NavButton from "@/components/ui/nav-button";
 import { MoveLeft } from "lucide-react";
-import { currentCreator } from "@/lib/current-creators";
+
 import { UserButton, auth,  redirectToSignIn } from "@clerk/nextjs";
 
 interface ProfileSettingsPageProps {}
@@ -23,11 +23,11 @@ const ProfileSettingsPage = async  () => {
   }
   
   if(group){
-    redirect(`/${profile?.groupId}/${profile?.id}`)
+    redirect(`/dashboard/${profile?.id}`)
   }
   
   if(profile?.setupComplete === true) {
-    redirect(`/${profile.groupId}/${profile.id}`);
+    redirect(`/dashboard/${profile.id}`);
   }
  
 

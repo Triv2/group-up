@@ -12,7 +12,6 @@ import { Divider } from '@nextui-org/react';
 import NavButton from '@/components/ui/nav-button';
 import { Box, Check, File, User2 } from 'lucide-react';
 import SantaUser from '@/components/ui/santa-user';
-import { currentGroup } from '@/lib/current-groups';
 import ProfileSummary from '@/components/profile-summary';
 
 export default async function SetupPage() {
@@ -26,15 +25,15 @@ export default async function SetupPage() {
   }
   
   const profile = await currentProfile();
-  const group = await currentGroup();
+ 
 
   if(profile?.setupComplete === true) {
-    redirect(`/${profile.groupId}/${profile.id}`);
+    redirect(`/dashboard/${profile.id}`);
    }
   
-   if(group &&profile){
-    redirect(`/${profile.groupId}/${profile.id}`);
-   }
+  //  if(group &&profile){
+  //   redirect(`/groups/${profile.id}`);
+  //  }
   
 
   return (

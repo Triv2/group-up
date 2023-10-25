@@ -7,7 +7,7 @@ import { UserButton, auth, currentUser, redirectToSignIn } from '@clerk/nextjs';
 import { currentProfile } from '@/lib/current-profile';
 import { redirect } from 'next/navigation';
 
-import { currentGroups } from '@/lib/all-groups';
+import { allGroups } from '@/lib/all-groups';
 
 
 import { Divider } from '@nextui-org/react';
@@ -18,7 +18,7 @@ import ProfileSummary from '@/components/profile-summary';
 export default async function GroupSetupPage() {
   const { userId} = auth();
   const user = await currentUser();
-  const groups = await currentGroups();
+  const groups = await allGroups();
   const profile = await currentProfile() || null;
 
   if(!userId) { 
