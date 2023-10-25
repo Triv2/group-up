@@ -15,15 +15,16 @@ import EditGroupSettingsForm from "./_components/edit-group-settings";
 interface GroupEditPageProps {}
 
 const GroupEditPage = async () => {
-  const group = await currentGroup();
-  const groups = await currentGroups();
-  const profile = await currentProfile();
-  const creator= await currentCreator();
   const { userId} = auth();
   if(!userId) {
     redirectToSignIn();
   }
+  const group = await currentGroup();
+  const groups = await currentGroups();
+  const profile = await currentProfile();
+  const creator= await currentCreator();
   
+ 
   return (
 <div className="flex items-center justify-center flex-col h-auto min-h-screen bg-[url(/cbg5.png)] bg-no-repeat bg-cover bg-center p-5 py-10">
   <div className="bg-zinc-100/80 flex items-center justify-center flex-col rounded-md p-3">
@@ -46,7 +47,7 @@ const GroupEditPage = async () => {
 <NavButton
     href={`/`}
     icon={<MoveLeft className="h-3 w-3" />}
-    text="Back to Dashboard"
+    text="Back"
     className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-red-500 text-white bg-red-800 transition-all text-sm shadow-md"
     
   />

@@ -80,11 +80,11 @@ return null;
      <p> InviteUrl</p>
      </Tooltip>
      <Input className=" border-0 focus-visible:ring-0 text-xs/10 text-black focus-visible:ring-offset-0"
-              value={code} disabled={isLoading} size="sm" onClick={onCopyUrl}
+              value={inviteUrl} disabled={isLoading} size="sm" onClick={onCopyUrl}
             />
             
             {copiedUrl ? (
-                <Tooltip placement="right" content="Invite Code Copied" className="px-5 text-xs/10">
+                <Tooltip placement="right" content="Invite Url Copied" className="px-5 text-xs/10">
                     <Button disabled={isLoading} onClick={onCopyUrl} size="sm"className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-emerald-500 text-white bg-red-800 transition-all text-sm shadow-md">
                     <Check className="w-4 h-4"/> 
                     </Button>

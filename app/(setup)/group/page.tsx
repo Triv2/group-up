@@ -44,8 +44,8 @@ export default async function GroupSetupPage() {
           </div>
           <Divider />
           {profile.name &&(
-          <div className="flex gap-5 items-center justify-center">
-          Current Profile:
+          <div className="flex gap-5 items-center justify-center w-full">
+        
             <ProfileSummary
             profile={profile}
             />

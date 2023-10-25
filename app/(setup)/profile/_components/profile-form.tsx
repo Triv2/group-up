@@ -136,7 +136,7 @@ const handleClick= () => {
             )}
         />
         </div>
-        <div className="flex items-center flex-col justify-center">
+        <div className="flex items-center flex-col justify-center ">
           <Switch defaultSelected  onClick={()=>handleClick()}><p >Upload Image?</p></Switch>
           {upload && (
         <FormField
@@ -147,8 +147,9 @@ const handleClick= () => {
               <FormLabel>
                 Image
               </FormLabel>
-              <FormControl>
+              <FormControl >
               <FileUpload
+              
                           endpoint="serverImage"
                           value={field.value}
                           onChange={field.onChange}

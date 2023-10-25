@@ -13,12 +13,12 @@ const ProfileSummary = ({
   group,
 }:ProfileSummaryProps) => {
   return (
-<div className="flex items-center justify-start flex-col px-2 py-2 gap-1  rounded-md bg-zinc-100/80 shadow-md">
+<div className="flex items-center justify-start flex-col px-2 py-2 gap-1  rounded-md bg-zinc-100/80 shadow-md w-full">
       <Accordion type="single" collapsible>
         <AccordionItem  value="item-1">
-          <AccordionTrigger className="flex items-center justify-between flex-col w-full no-underline px-2 py-2 gap-1">
+          <AccordionTrigger className="flex items-center justify-between flex-col w-full no-underline px-2 py-2 gap-1 ">
           {profile.name &&(  
-            <div className="flex items-center justify-center md:flex-row flex-col gap-2">
+            <div className="flex items-center justify-center sm:flex-row flex-col gap-2">
               <p>Profile:</p>
           <SantaUser imageUrl={profile?.imageUrl} name={profile.name} />
           </div>

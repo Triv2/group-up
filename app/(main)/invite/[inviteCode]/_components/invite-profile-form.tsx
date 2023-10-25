@@ -1,5 +1,5 @@
 'use client'
-import { Profile } from '@prisma/client';
+import { Group, Profile } from '@prisma/client';
 import {useState, useEffect} from'react'
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from "@/components/ui/form";
 import { Button, useDisclosure, Checkbox, Input, Link, Textarea, Switch, Divider} from "@nextui-org/react";
@@ -16,20 +16,23 @@ import { Lock, Users, X } from 'lucide-react';
 import { FileUpload } from '@/components/file-upload';
 // import { Textarea } from '@/components/ui/textarea';
 
-
+interface InviteProfileFormProps {
+  group: Group;
+}
 
 const formSchema= z.object({
   
   name: z.string().min(1),
   imageUrl: z.string().default(""),
   content:  z.string().min(1),
+  groupId: z.string(),
 });
 
-export type ProfileFormValues = z.infer<typeof formSchema>
+export type InviteProfileFormValues = z.infer<typeof formSchema>
 
-const ProfileForm = ({
-  
-}) => {
+const InviteProfileForm = ({
+  group,
+}:InviteProfileFormProps) => {
   const router=useRouter();
   const params = useParams();
 
@@ -41,12 +44,13 @@ const [upload,setUpload] = useState(false);
 
 
 
-const form = useForm<ProfileFormValues>({
+const form = useForm<InviteProfileFormValues>({
   resolver: zodResolver(formSchema),
   defaultValues: {
     name: "",
     content: "",
-    imageUrl: ""
+    imageUrl: "",
+    groupId: group.id,
   },
 });
 
@@ -58,7 +62,7 @@ if (!isMounted) {
 return null;
 }
 
-const onSubmit = async (data:ProfileFormValues) => {
+const onSubmit = async (data:InviteProfileFormValues) => {
   try {
     setLoading(true);
     
@@ -137,7 +141,7 @@ const handleClick= () => {
         />
         </div>
         <div className="flex items-center flex-col justify-center">
-          <Switch defaultSelected  onClick={()=>handleClick()}><p className="text-white">Upload Image?</p></Switch>
+          <Switch defaultSelected  onClick={()=>handleClick()}><p >Upload Image?</p></Switch>
           {upload && (
         <FormField
           control={form.control}
@@ -171,4 +175,4 @@ const handleClick= () => {
     </>
   );
 }
-export default ProfileForm;
+export default InviteProfileForm;

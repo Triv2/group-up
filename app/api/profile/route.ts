@@ -14,7 +14,7 @@ export async function POST(
   }
     const body = await req.json();
     console.log(body);
-    const { name, content, imageUrl } = body;
+    const { name, content, imageUrl, groupId } = body;
   
     
     
@@ -31,7 +31,56 @@ export async function POST(
     if (checkProfile) {
       return new NextResponse("Profile already exists",{ status: 400 });
     }
+
+    if(groupId){
+      const checkGroup = await db.group.findFirst({ 
+        where: {
+          id: groupId,
+        }
+      })
+      
+      if (!checkGroup) {
+        return new NextResponse("Group does not exist",{ status: 400 });
+      } 
+      
+      const profile = await db.profile.create({
+        data: {
+          clerkId:user.id,
+          name: name,
+          imageUrl: imageUrl || user.imageUrl,
+          email: user.emailAddresses[0].emailAddress,
+          setupProfile: true,
+          groupId: groupId,
+          content,
+        },
+        
+        
+      });
+     
+      if (!profile) {
+        return new NextResponse("Profile not found",{ status: 400 });
+      }
+      
+      if(profile && checkGroup){
+        await db.group.update({
+          where: {
+            id:checkGroup.id,
+          },
+          data:{
+            profileIds:{
+              push:profile.id,
+            },
+            
+          }
+        })
+      }
+  
+      
+      return NextResponse.json(profile);
+
+    } else {
     
+
     const profile = await db.profile.create({
       data: {
         clerkId:user.id,
@@ -51,7 +100,8 @@ export async function POST(
 
 
     
-    return NextResponse.json(profile);
+    return NextResponse.json(profile); }
+    
   } catch (error) {
     console.log('[PROFILE_POST]', error);
     return new NextResponse("Internal Error", {status:500});

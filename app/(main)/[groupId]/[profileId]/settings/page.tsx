@@ -26,7 +26,7 @@ const ProfileSettingsPage = async () => {
 <div className="bg-white rounded-md shadow-lg">
 <ProfileForm profile={profile}   />
 </div>
-<div className="p-2 flex items-center justify-between px-5 w-full">
+<div className="p-2 flex items-center justify-between  md:flex-row flex-col gap-2 px-5 w-full">
 <NavButton 
 
   href={`/${group?.id}/${profile?.id}/`}
@@ -34,6 +34,7 @@ const ProfileSettingsPage = async () => {
   text="Cancel"
   className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-red-800 text-white hover:bg-red-500 transition-all text-sm shadow-md"
   />
+  <UserButton afterSignOutUrl="/"/>
   <DeleteButton 
       href={`/`}
       icon={<Trash className="h-3 w-3" />}
@@ -41,7 +42,7 @@ const ProfileSettingsPage = async () => {
       className="flex items-center justify-center px-1  gap-1 hover:scale-105 rounded-md hover:bg-red-500 text-white bg-red-800 transition-all text-sm shadow-md"
       
       />
-      <UserButton afterSignOutUrl="/"/>
+      
   </div>
 </div>
     

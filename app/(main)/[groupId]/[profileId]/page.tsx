@@ -27,14 +27,16 @@ import ProfileSummary from "@/components/profile-summary";
 interface ProfilePageProps {}
 
 const ProfilePage = async () => {
+  const { userId} = auth();
+  if(!userId) {
+    redirectToSignIn();
+  }
    const profile = await currentProfile();
    const group = await currentGroup();
    const members = await currentMembers();
    const creator = await currentCreator();
-   const { userId} = auth();
-  if(!userId) {
-    redirectToSignIn();
-  }
+   
+  
   if(!profile) {
     redirect("/");
   }
@@ -60,7 +62,7 @@ const ProfilePage = async () => {
       
   
       
-        <AvatarGroup isBordered max={3} total={members?.length}>
+        <AvatarGroup isBordered max={3} total={members?.length} >
       {members && members.map((member) => (
         <Avatar src={member.imageUrl} size="sm" key={member.id} />
         ))}
@@ -70,11 +72,15 @@ const ProfilePage = async () => {
       </AccordionTrigger>
       <Divider/>
       <AccordionContent>
-      <ul className="flex items-center flex-col gap-1 w-full p-1">
+      <ul className="flex items-center flex-col gap-1 w-full p-1 px-5">
        {members && members.map((member) => (
-        <li className="text-xs  flex items-center justify-between w-full" key={member.id}>
-        <Avatar src={member.imageUrl} size="sm" />
-          {member.name}
+        <li className="text-xs  flex items-center gap-4 justify-between w-full" key={member.id}>
+        <Avatar src={member.imageUrl} size="sm"  />
+        <div className="flex flex-col">
+        {member.name}
+        <Divider/>
+      
+          </div>
         </li>
       ))} 
       </ul>
@@ -90,8 +96,8 @@ const ProfilePage = async () => {
     <Divider />
   {group && creator &&(<InviteCode code={group.inviteCode} name={group.name} image={group.imageUrl} creator={creator.name}/>)}
   <Divider />
-  <div className="flex items-center justify-center gap-3 ">
-  <UserButton afterSignOutUrl="/"/>
+  <div className="flex items-center justify-center md:flex-row flex-col gap-3 ">
+ 
        <NavButton 
           href={`/${group?.id}/${profile?.id}/settings`}
           icon={<Edit className="h-3 w-3" />}
@@ -104,7 +110,7 @@ const ProfilePage = async () => {
           text="Group Settings"
           className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-md"
           />
-      
+      <UserButton afterSignOutUrl="/"/>
   <DeleteButton 
       href={`/`}
       icon={<Trash className="h-3 w-3" />}
