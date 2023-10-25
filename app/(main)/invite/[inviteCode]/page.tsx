@@ -12,20 +12,24 @@ interface InviteCodePageProps {
 const InviteCodePage = async ({
   params
 }:InviteCodePageProps) => {
+
+
   const {userId} = auth();
   if (!userId) { 
     redirectToSignIn();
   }
+  const group = await db.group.findUnique({
+    where:{
+      inviteCode:params.inviteCode,
+    }
+  })
+
   const user = await currentUser();
   if (!user){
     redirectToSignIn();
   }
   
- const group = await db.group.findUnique({
-        where:{
-          inviteCode:params.inviteCode,
-        }
-      })
+ 
   
 
 

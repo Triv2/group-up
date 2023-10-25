@@ -33,7 +33,7 @@ export async function POST(
     }
 
     if(groupId){
-      const checkGroup = await db.group.findFirst({ 
+      const checkGroup = await db.group.findUnique({ 
         where: {
           id: groupId,
         }
