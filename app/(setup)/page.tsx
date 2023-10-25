@@ -28,13 +28,10 @@ export default async function SetupPage() {
  
 
   if(profile?.setupComplete === true) {
-    redirect(`/dashboard/${profile.id}`);
+    redirect(`/dashboard`);
    }
   
-  //  if(group &&profile){
-  //   redirect(`/groups/${profile.id}`);
-  //  }
-  
+ 
 
   return (
     <main className="flex items-center justify-center flex-col min-h-screen h-auto w-full gap-3 bg-[url(/cbg3.png)] bg-no-repeat bg-cover bg-center px-2 py-2">

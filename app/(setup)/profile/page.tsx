@@ -22,12 +22,16 @@ const ProfileSettingsPage = async  () => {
     redirectToSignIn();
   }
   
-  if(group){
-    redirect(`/dashboard/${profile?.id}`)
+  if(group && profile) {
+    redirect(`/dashboard`)
+  }
+
+  if(!group && profile) {
+    redirect(`/group`)
   }
   
   if(profile?.setupComplete === true) {
-    redirect(`/dashboard/${profile.id}`);
+    redirect(`/dashboard`);
   }
  
 

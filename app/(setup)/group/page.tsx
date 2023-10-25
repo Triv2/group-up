@@ -19,13 +19,16 @@ export default async function GroupSetupPage() {
   const { userId} = auth();
   const user = await currentUser();
   const groups = await allGroups();
-  const profile = await currentProfile() || null;
+  const profile = await currentProfile();
 
   if(!userId) { 
     
     redirectToSignIn();
   }
   
+  if(!profile) {
+    redirect(`/profile`)
+  }
   
   
   

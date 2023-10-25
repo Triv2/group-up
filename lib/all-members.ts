@@ -12,33 +12,11 @@ export const allMembers= async () => {
     return null;
   }
 
-  const profile =await db.profile.findFirst({
-    where: {
-      clerkId:userId,
-    },
-    
-  });
+  const profiles =await db.profile.findMany({});
 
-  if(!profile) {
+  if(!profiles){
     return null;
-  } 
+  }
+  return profiles; 
   
-  const groups = await db.group.findMany({
-    where: {
-      id: {
-        in: profile.groupIds,
-      },
-    },
-  })
-  
-  const memberIds = groups.flatMap((group) => group.profileIds)
-
-  const members = await db.profile.findMany({
-    where: {
-      id: {
-        in: memberIds,
-      },
-    },
-  })
-  return members;
 }
