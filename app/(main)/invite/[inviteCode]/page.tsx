@@ -2,6 +2,9 @@ import { db } from "@/lib/db";
 import InviteProfileForm from "./_components/invite-profile-form";
 import { UserButton, auth, currentUser, redirectToSignIn } from "@clerk/nextjs";
 import { Divider } from "@nextui-org/react";
+import { currentProfile } from "@/lib/current-profile";
+import axios from "axios";
+import { redirect } from "next/navigation";
 
 interface InviteCodePageProps {
   params:{
@@ -24,6 +27,37 @@ const InviteCodePage = async ({
     }
   })
 
+  const profile = await currentProfile() || null;
+
+  
+
+  if(profile && group){
+    try{
+    await db.profile.update({
+      where:{
+        id:profile.id
+      },
+      data:{
+        groupId:group.id,
+      }
+    });
+    await db.group.update({
+      where:{
+        id:group.id
+      },
+      data:{
+        profileIds:{
+          push:profile.id,
+        },
+      }
+    })
+    } catch (error) {
+      console.log(error)
+    } finally {
+    redirect(`/${group.id}/${profile.id}/`)
+    }
+  }
+
   const user = await currentUser();
   if (!user){
     redirectToSignIn();
@@ -41,14 +75,19 @@ if(group) {
   <div className="px-2 flex flex-col items-center justify-center gap-3 py-2">
     <p className="font-semibold"> You have joined the {group?.name} group!</p>
     <Divider />
-<h2 className="font-bold text-lg">Create your Profile</h2>
-
+    {group && !profile && (<h2 className="font-bold text-lg">Create your Profile</h2>)}
+    {group && profile && (
+      <h2 className="font-bold text-lg">
+        Accepting invitation!
+        </h2>
+    )}
 <Divider />
 
 </div>
 
 <div className=" rounded-md shadow-md">
-{group && (<InviteProfileForm group={group}/>)}
+{group && !profile && (<InviteProfileForm group={group}/>)}
+
 </div>
 <div className="p-2 flex items-center justify-between px-5 w-full">
 
