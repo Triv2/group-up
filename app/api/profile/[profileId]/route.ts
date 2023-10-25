@@ -46,7 +46,16 @@ export async function PATCH(
         setupComplete:true,
       },
     })
-
+    await db.creator.update({
+      where: {
+        id:profile?.id,
+      },
+      data: {
+        name:name,
+        content:content,
+        imageUrl:image,
+      },
+    })
 
 
     

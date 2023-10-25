@@ -3,7 +3,7 @@ import InviteCode from "@/components/ui/invite-code";
 import NavButton from "@/components/ui/nav-button";
 import SantaUser from "@/components/ui/santa-user";
 import { currentCreator } from "@/lib/current-creators";
-import { currentGroup } from "@/lib/current-group";
+import { currentGroup } from "@/lib/current-groups";
 import { currentMembers } from "@/lib/current-members";
 import { currentProfile } from "@/lib/current-profile";
 import { inviteProfile } from "@/lib/invite-profile";

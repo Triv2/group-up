@@ -12,7 +12,7 @@ import { Divider } from '@nextui-org/react';
 import NavButton from '@/components/ui/nav-button';
 import { Box, Check, File, User2 } from 'lucide-react';
 import SantaUser from '@/components/ui/santa-user';
-import { currentGroup } from '@/lib/current-group';
+import { currentGroup } from '@/lib/current-groups';
 import ProfileSummary from '@/components/profile-summary';
 
 export default async function SetupPage() {

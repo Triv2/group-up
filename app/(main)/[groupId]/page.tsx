@@ -1,7 +1,7 @@
-import { currentGroup } from "@/lib/current-group";
-
 import { currentGroups } from "@/lib/current-groups";
-import { currentCreator } from "@/lib/current-creators";
+
+import { allGroups } from "@/lib/all-groups";
+import { currentCreators } from "@/lib/current-creators";
 import NavButton from "@/components/ui/nav-button";
 import { MoveLeft } from "lucide-react";
 import { currentProfile } from "@/lib/current-profile";
@@ -10,6 +10,8 @@ import { Divider } from "@nextui-org/react";
 import { UserButton, auth, redirectToSignIn } from "@clerk/nextjs";
 import EditGroupController from "./_components/edit-group-controller";
 import EditGroupSettingsForm from "./_components/edit-group-settings";
+import { currentCreatedGroups } from "@/lib/current-created-groups";
+import { currentCreator } from "@/lib/current-creator";
 
 
 interface GroupEditPageProps {}
@@ -19,18 +21,24 @@ const GroupEditPage = async () => {
   if(!userId) {
     redirectToSignIn();
   }
-  const group = await currentGroup();
-  const groups = await currentGroups();
+  const allGroup = await allGroups();
+  const userGroups = await currentGroups();
   const profile = await currentProfile();
-  const creator= await currentCreator();
+  const userCreators= await currentCreators();
+  const userCreatedGroups= await currentCreatedGroups();
+  const creator = await currentCreator();
+
   
  
   return (
 <div className="flex items-center justify-center flex-col h-auto min-h-screen bg-[url(/cbg5.png)] bg-no-repeat bg-cover bg-center p-5 py-10">
   <div className="bg-zinc-100/80 flex items-center justify-center flex-col rounded-md p-3">
-   {group && creator &&(<InviteCode code={group?.inviteCode} name={group?.name} image={group.imageUrl} creator={creator.name}/>)}
+   {userCreatedGroups && creator &&(
+    userCreatedGroups.map((group) => (
+   <InviteCode code={group?.inviteCode} name={group?.name} image={group.imageUrl} creator={profile.name}/>))
+   )}
    <Divider/>
-   {creator && profile && (creator.id===profile.id) && group && (
+   {creators && profile && (creators.id===profile.id) && group && (
     <div className="py-1">
       <p>For Creators Only</p>
       <Divider/>

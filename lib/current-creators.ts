@@ -3,7 +3,7 @@ import { auth } from "@clerk/nextjs"
 import { db } from "@/lib/db"
 
 
-export const currentCreator= async () => {
+export const currentCreators= async () => {
   const { userId} = auth();
   
 

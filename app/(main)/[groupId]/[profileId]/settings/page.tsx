@@ -2,8 +2,8 @@ import { currentProfile } from "@/lib/current-profile";
 import ProfileForm from "./_components/profile-form";
 import NavButton from "@/components/ui/nav-button";
 import { MoveLeft, Trash } from "lucide-react";
-import { currentGroup } from "@/lib/current-group";
-import { currentGroups } from "@/lib/current-groups";
+import { currentGroup } from "@/lib/current-groups";
+import { currentGroups } from "@/lib/all-groups";
 import { UserButton, auth, redirectToSignIn } from "@clerk/nextjs";
 import DeleteButton from "@/components/ui/delete-button";
 

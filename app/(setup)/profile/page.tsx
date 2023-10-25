@@ -1,5 +1,5 @@
 
-import { currentGroup } from "@/lib/current-group";
+import { currentGroup } from "@/lib/current-groups";
 import ProfileForm from "./_components/profile-form";
 import InviteCode from "@/components/ui/invite-code";
 import { Divider } from "@nextui-org/react";

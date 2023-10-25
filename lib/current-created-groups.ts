@@ -3,7 +3,7 @@ import { auth } from "@clerk/nextjs"
 import { db } from "@/lib/db"
 
 
-export const currentGroups = async () => {
+export const currentCreatedGroups = async () => {
   const { userId} = auth();
   
 
@@ -22,11 +22,20 @@ export const currentGroups = async () => {
     return null;
   }
 
-  if (profile.groupIds) {
+  const creator = await db.creator.findUnique({
+    where: {
+      id:profile?.id,
+    },
+  })
+  if(!creator) {
+    return null;
+  }
+
+  if (creator.groupIds) {
     const groups = await db.group.findMany({
       where: {
         id: {
-          in: profile.groupIds,
+          in: creator.groupIds,
         },
       },
     });

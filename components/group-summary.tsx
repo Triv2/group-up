@@ -2,19 +2,25 @@
 import {useState, useEffect} from'react'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion';
 import { Avatar, AvatarGroup, Divider } from '@nextui-org/react';
-import { Group, Profile } from '@prisma/client';
+import { Creator, Group, Profile } from '@prisma/client';
+import InviteCode from './ui/invite-code';
 
 interface GroupSummaryProps {
   group: Group;
   members: Profile[];
+  
+  
 }
 
 const GroupSummary:React.FC<GroupSummaryProps> = ({
   group,
   members,
+  
+ 
 }) => {
 
 const [isMounted, setIsMounted] = useState(false);
+const creator = members.find((c) => c.id === group.creator);
 
 useEffect(() => {
 setIsMounted(true);
@@ -53,6 +59,7 @@ return null;
           </div>
         </li>
       ))} 
+      {group && creator &&(<InviteCode code={group?.inviteCode} name={group?.name} image={group.imageUrl} creator={creator.name}/>)}
       </ul>
       </AccordionContent>
       </AccordionItem>

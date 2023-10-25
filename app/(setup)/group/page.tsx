@@ -7,7 +7,7 @@ import { UserButton, auth, currentUser, redirectToSignIn } from '@clerk/nextjs';
 import { currentProfile } from '@/lib/current-profile';
 import { redirect } from 'next/navigation';
 
-import { currentGroups } from '@/lib/current-groups';
+import { currentGroups } from '@/lib/all-groups';
 
 
 import { Divider } from '@nextui-org/react';

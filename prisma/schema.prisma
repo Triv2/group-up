@@ -55,4 +55,6 @@ model Group {
 model Creator {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   groupIds String[] @db.ObjectId
+  name String
+  imageUrl String
 }
