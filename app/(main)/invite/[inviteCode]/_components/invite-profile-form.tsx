@@ -70,7 +70,7 @@ const onSubmit = async (data:InviteProfileFormValues) => {
     
     await axios.post(`/api/profile/`, data)
     router.refresh();
-    router.push("/");
+    router.push(`/${group.id}/${params.profileId}`);
     toast.success("Profile created!");
   } catch (error) {
     toast.error("Something went wrong.");
