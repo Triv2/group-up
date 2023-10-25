@@ -4,7 +4,7 @@ import './globals.css'
 import { Providers } from './providers'
 import { ClerkProvider } from '@clerk/nextjs'
 import { Toaster } from 'react-hot-toast'
-
+import {dark} from "@clerk/themes";
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider >
     <html lang="en">
       <body className={inter.className}>
         <Providers>
