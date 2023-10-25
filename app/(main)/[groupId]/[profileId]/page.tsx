@@ -37,8 +37,12 @@ const ProfilePage = async () => {
    const creator = await currentCreator();
    
   
-  if(!profile) {
+  if(!profile && !group) {
     redirect("/");
+  }
+  
+  if(!profile && group) {
+    redirect(`/invite/${group.inviteCode}`);
   }
    
 

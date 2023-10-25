@@ -14,33 +14,35 @@ const ProfileSummary = ({
 }:ProfileSummaryProps) => {
   return (
 <div className="flex items-center justify-start flex-col px-2 py-2 gap-1  rounded-md bg-zinc-100/80 shadow-md w-full">
-      <Accordion type="single" collapsible>
-        <AccordionItem  value="item-1">
+      <Accordion className="w-full"  type="single" collapsible>
+        <AccordionItem className="w-full"  value="item-1">
           <AccordionTrigger className="flex items-center justify-between flex-col w-full no-underline px-2 py-2 gap-1 ">
           {profile.name &&(  
             <div className="flex items-center justify-center sm:flex-row flex-col gap-2">
-              <p>Profile:</p>
           <SantaUser imageUrl={profile?.imageUrl} name={profile.name} />
           </div>
           )}
         </AccordionTrigger>
         <Divider/>
-        <AccordionContent className="px-10" >
-        <div className="flex gap-1 justify-between items-center w-full py-2 ">
+        <AccordionContent className="px-10 w-full" >
+          <div className="">
+        <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
+          
           <p className="text-sm">Avatar:</p>
           <Avatar src={profile.imageUrl} size="sm" />
         </div>
         <div className="flex items-center flex-col gap-1">
-          <div className="flex gap-1 justify-between items-center w-full">
+          <div className="flex gap-1 justify-between items-center w-full px-2">
         <p className="text-sm">Name:</p><p className="text-xs">{profile.name}</p>
         </div>
         
-        <div className="flex gap-1 justify-between items-center w-full">
+        <div className="flex gap-1 justify-between items-center w-full px-2">
         <p className="text-sm">Group:</p><p className="text-xs">{group?.name || "No Group"}</p>
         </div>
         
-        <div className="flex gap-1 justify-between items-center w-full">
-        <p className="text-sm">Interests:</p><p className="text-xs px-10">{profile.content}</p>
+        <div className="flex gap-1 justify-between items-center w-full px-2">
+        <p className="text-sm">Interests:</p><p className="text-xs ">{profile.content}</p>
+        </div>
         </div>
         </div>
         </AccordionContent>
