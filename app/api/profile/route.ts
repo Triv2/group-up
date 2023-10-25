@@ -50,6 +50,8 @@ export async function POST(
           imageUrl: imageUrl || user.imageUrl,
           email: user.emailAddresses[0].emailAddress,
           setupProfile: true,
+          setupComplete:true,
+          setupGroup: true,
           groupId: groupId,
           content,
         },
@@ -165,7 +167,7 @@ export async function PATCH(
 
 
 
-    const updatedGroup = await db.group.update({
+   await db.group.update({
       where:{
         id:groupId
       },
