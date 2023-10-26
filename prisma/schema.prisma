@@ -37,7 +37,7 @@ model Profile {
 
 model Group {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  creator String @unique @db.ObjectId
+  creator String @db.ObjectId
   imageUrl String
   name String
 
@@ -56,6 +56,6 @@ model Group {
 model Creator {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   groupIds String[] @db.ObjectId
-  name String
-  imageUrl String
+  name String?
+  imageUrl String?
 }

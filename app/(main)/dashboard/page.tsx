@@ -55,9 +55,10 @@ const DashboardPage = async () => {
       
     </div>)}
   <Divider />
-
+    EVENT SPACE
+  <Divider/>
   <div className="grid md:grid-cols-2 gap-10 px-7 ">
-    <div>
+    <div className="flex items-center justify-center flex-col gap-2">
     Joined Groups:
   {userGroups && allProfiles && profile  &&(
       
@@ -82,17 +83,18 @@ const DashboardPage = async () => {
       </div>
 
   </div>
-    <Divider />
-  {/* {userGroups && creator &&(
-    userGroups.map((group) => (
-    <InviteCode key={group.id} code={group.inviteCode} name={group.name} image={group.imageUrl} creator={creator.name}/>
-      )
-    )
-  )} */}
+   
 
-  EVENT SPACE
+  
   <Divider />
   <div className="flex items-center justify-center md:flex-row flex-col gap-3 ">
+  <NavButton 
+          href={`/group`}
+          icon={<Edit className="h-3 w-3" />}
+          text="Create or Join Groups"
+          className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-md"
+          />
+ 
  
        <NavButton 
           href={`/dashboard/profiles/${profile?.id}/settings`}

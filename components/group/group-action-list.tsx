@@ -49,28 +49,24 @@ return null;
 
       
        {group.openGroup ?(  
-         <DropdownItem>
+         <DropdownItem key="join">
             <Button>
              Join
             </Button>
           </DropdownItem>
           ):(
-            <DropdownItem>
+            <DropdownItem key="apply">
             <Button>
              Apply
             </Button>
           </DropdownItem>
           )}
-          <DropdownItem>
+          <DropdownItem key="leave">
             <Button>
              Leave Group
             </Button>
           </DropdownItem>
-         
-     
-          
-      
-       <DropdownItem>
+       <DropdownItem key="edit">
         <Button>
           Edit Group
         </Button>

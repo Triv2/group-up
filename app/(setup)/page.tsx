@@ -39,14 +39,16 @@ export default async function SetupPage() {
         {!profile ? (
         <div className="flex gap-2 p-2">
         <h1 className=" text-xl md:text-3xl font-bold">Welcome {`${user?.firstName} ${user?.lastName}`}!</h1>
-        <UserButton afterSignOutUrl="/" /></div>) 
+        <UserButton afterSignOutUrl="/" />
+        </div>
+        ) 
         : (
           <div>
           <div className="flex justify-between w-full gap-5 p-2">
         <h1 className=" text-xl md:text-3xl font-bold">Welcome {`${user?.firstName} ${user?.lastName}`}! </h1>
-
         <UserButton afterSignOutUrl="/" />
         </div>
+        
         <Divider />
         {profile.name &&(
           <div className="flex gap-5 items-center justify-center w-full">

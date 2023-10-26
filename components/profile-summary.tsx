@@ -52,7 +52,10 @@ const ProfileSummary = ({
         <p className="text-sm">Groups:</p>
         {groups && (groups.length>0) ? (
         groups?.map((group) =>(
-        <p key={group.id} className="text-xs flex flex-col items-center">{group?.name || "No Group"}</p>))
+        <div key={group.id} className="text-xs flex flex-col justify-center items-center">
+          {group?.name || "No Group"}
+          </div>
+          ))
         ) : (
           <p className="text-xs">No Groups</p>
         )}

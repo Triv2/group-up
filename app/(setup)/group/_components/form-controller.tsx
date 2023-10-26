@@ -8,7 +8,7 @@ import { Button, Divider } from '@nextui-org/react';
 
 
 interface FormControllerProps {
-  groups?: Group[];
+  groups: Group[] | null;
   
 }
 
@@ -55,7 +55,7 @@ return null;
        </div>
        )}   
 
-       {join  && (
+       {join && groups  && (
        <div className="bg-emerald-400 p-2 rounded-md shadow-md">
           <JoinGroupForm initialData={groups} />
           <Button className="shadow-md hover:scale-105 transition-all hover:bg-red-500 text-white bg-red-800" onClick={()=> setJoin(false)} type="submit">Cancel</Button>

@@ -85,7 +85,8 @@ const ProfilePage = async () => {
   )}
   <Divider />
   <div className="flex items-center justify-center md:flex-row flex-col gap-3 ">
- 
+
+  
        <NavButton 
           href={`/${profile?.id}/settings`}
           icon={<Edit className="h-3 w-3" />}

@@ -31,7 +31,7 @@ export async function PATCH(
     }
 
     if(imageUrl === null || imageUrl === ""){
-      image = user.imageUrl
+      image = profile.imageUrl
      }
 
 
@@ -126,7 +126,9 @@ export async function DELETE(
     });
 
     if (creator) {
-       await db.group.delete({
+
+    
+       await db.group.findFirst({
         where: {
           creator:creator.id,
         },

@@ -3,7 +3,7 @@ import { auth } from "@clerk/nextjs"
 import { db } from "@/lib/db"
 
 
-export const allGroups = async () => {
+export const allOpenGroups = async () => {
   const { userId} = auth();
   
 
@@ -12,7 +12,11 @@ export const allGroups = async () => {
     return null;
   }
 
-  const groups =await db.group.findMany({});
+  const groups =await db.group.findMany({
+    where:{
+      openGroup:true,
+    }
+  });
 
   if(groups.length === 0){
     return null;
