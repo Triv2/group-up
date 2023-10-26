@@ -11,7 +11,7 @@ import { allGroups } from '@/lib/all-groups';
 
 
 import { Divider } from '@nextui-org/react';
-import FormController from '../_components/form-controller';
+import FormController from './_components/form-controller';
 import SantaUser from '@/components/ui/santa-user';
 import ProfileSummary from '@/components/profile-summary';
 
@@ -32,7 +32,7 @@ export default async function GroupSetupPage() {
   
   
   
- if (groups)
+
   return (
     <main className="flex items-center  flex-col min-h-screen h-auto w-full gap-3 bg-[url(/cbg3.png)] bg-no-repeat bg-cover bg-center px-2 py-2">
       <div className="flex items-center flex-col gap-5 pt-3 sm:p-8 bg-zinc-100/80 rounded-md shadow-md h-auto">
@@ -59,7 +59,7 @@ export default async function GroupSetupPage() {
         )} 
         
         <Divider />
-        <FormController groups={groups} />
+        {groups && (<FormController groups={groups} />)}
         </div>
     </main>
   )

@@ -77,9 +77,9 @@ const ProfilePage = async () => {
     {profile && !userGroups &&(<ProfileSummary profile={profile} />)}
   </div>
     <Divider />
-  {userGroups && creator &&(
+  {userGroups && creator && profile && allProfiles &&(
     userGroups.map((group) => (
-    <InviteCode key={group.id} code={group.inviteCode} name={group.name} image={group.imageUrl} creator={creator.name}/>
+    <InviteCode key={group.id} group={group} profile={profile} creator={profile} members={allProfiles}/>
       )
     )
   )}

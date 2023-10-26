@@ -9,13 +9,14 @@ import GroupActionList from './group/group-action-list';
 interface GroupSummaryProps {
   group: Group;
  members:Profile[];
-  
+  profile?: Profile;
   
 }
 
 const GroupSummary:React.FC<GroupSummaryProps> = ({
   group,
-  members
+  members,
+  profile,
 }) => {
 
 const [isMounted, setIsMounted] = useState(false);
@@ -24,6 +25,7 @@ const [isMounted, setIsMounted] = useState(false);
 const groupProfileIds = group?.profileIds;
 const matchedMembers = members.filter((member) => groupProfileIds?.includes(member.id));
 const creator = matchedMembers.find((member) => member.id === group.creator);
+const user = matchedMembers.find((member) => profile?.id === member.id);
 
 useEffect(() => {
 setIsMounted(true);
@@ -37,7 +39,7 @@ return null;
     <div className="flex items-center justify-start flex-col px-2 py-2 gap-1 h-auto rounded-md bg-zinc-100/80 shadow-md">
       <Accordion type="single" collapsible>
         <AccordionItem  value="item-1">
-          <AccordionTrigger className="flex items-center justify-between  w-full no-underline px-2 py-2 gap-1">
+          <AccordionTrigger className="flex items-center justify-between  w-full no-underline px-2 py-2 gap-1 hover:bg-white hover:scale-105">
       
         
        {group &&( <Avatar  src={group.imageUrl} size="lg" className="border-5 shadow-md"/>)}
@@ -52,6 +54,13 @@ return null;
       <Divider/>
       <AccordionContent>
       <ul className="flex items-center flex-col gap-1 w-full p-1 sm:px-5">
+     
+        {(group.openGroup || user) && creator &&(<InviteCode group={group} creator={creator} members={members}/>)}
+        <Divider/>
+        <div className="py-2 font-bold text-lg">
+        Group Members
+        </div>
+        <Divider/>
        {matchedMembers && matchedMembers.map((member) => (
         <li className="text-xs  flex items-center gap-1 justify-start w-full shadow-md py-1 rounded-md bg-zinc-50 px-2" key={member.id}>
         <Avatar src={member.imageUrl} size="sm"  />
@@ -62,13 +71,9 @@ return null;
           </div>
         </li>
       ))} 
-      {group && creator &&(<InviteCode code={group?.inviteCode} name={group?.name} image={group.imageUrl} creator={creator.name}/>)}
+      
       </ul>
-      {creator ? 
-        (<GroupActionList group={group} members={members} creator={creator} />)
-        :
-        (<GroupActionList group={group} members={members}  />
-      )}
+    
       </AccordionContent>
       </AccordionItem>
         </Accordion>

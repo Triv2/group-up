@@ -19,7 +19,7 @@ import { Group } from '@prisma/client';
 
 
 interface GroupFormProps {
-  initialData: Group[];
+  initialData?: Group[];
 }
 
 const formSchema= z.object({
@@ -75,7 +75,7 @@ useEffect(() => {
     } catch (error) {
       toast.error("Something went wrong.");
     } finally {
-      router.push(`/${params.groupId}/${params.profileId}`);
+      router.push(`/dashboard`);
       setLoading(false);
     }
   };

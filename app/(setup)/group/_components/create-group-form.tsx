@@ -1,7 +1,7 @@
 'use client'
 import {useState, useEffect} from'react'
 import React from "react";
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button,  useDisclosure, Select, SelectItem, Switch, } from "@nextui-org/react";
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button,  useDisclosure, Select, SelectItem, Switch, Divider, } from "@nextui-org/react";
 import { Lock, Users } from 'lucide-react';
 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from "@/components/ui/form";
@@ -26,7 +26,7 @@ interface CreateGroupFormProps {
 const formSchema= z.object({
   
   name: z.string().min(1),
- 
+  openGroup: z.boolean().default(false),
   imageUrl: z.string().default(""),
  
   
@@ -46,6 +46,7 @@ export type CreateGroupFormValues = z.infer<typeof formSchema>
 const [loading, setLoading] = useState(false);
 const [isMounted, setIsMounted] = useState(false);
 const [upload,setUpload] = useState(false);
+const [openGroup, setOpenGroup] = useState(false);
 
 
 
@@ -53,7 +54,7 @@ const form = useForm<CreateGroupFormValues>({
   resolver: zodResolver(formSchema),
   defaultValues: {
     name: "",
-   
+    openGroup: false,
     imageUrl: ""
   },
 });
@@ -79,7 +80,7 @@ useEffect(() => {
     } catch (error) {
       toast.error("Something went wrong.");
     } finally {
-      router.push(`/${params.groupId}/${params.profileId}`);
+      router.push(`/dashboard`);
       setLoading(false);
     }
   };
@@ -88,6 +89,13 @@ useEffect(() => {
       setUpload(false);
     } else {
       setUpload(true);
+    }
+  }
+  const handleOpenGroup= () => {
+    if(openGroup) {
+      setOpenGroup(false);
+    } else {
+      setOpenGroup(true);
     }
   }
  
@@ -101,6 +109,7 @@ useEffect(() => {
               <div>
           <div className="flex items-center justify-center flex-col gap-6">
               <h3 className="font-bold text-xl">Create a Group</h3>
+              <Divider/>
             <FormField
           control={form.control}
           name="name"
@@ -122,6 +131,16 @@ useEffect(() => {
             </FormItem>
             )}
         />
+        <Divider/>
+        <Switch defaultSelected className="text-xs"  onClick={()=>handleOpenGroup()}>Is This An Open Group?</Switch>
+        <div className="px-2 text-xs">
+        <p>Current Choice:</p><p>{openGroup ? (
+          <p className="text-muted-foreground">Group is set to be Public</p>
+        ):(
+          <p className="text-muted-foreground">Group is set to be Private</p>
+        )}</p>
+        </div>
+        <Divider/>
          <div className="flex items-center flex-col justify-center">
           <Switch defaultSelected  onClick={()=>handleClick()}>Upload Image?</Switch>
           {upload && (

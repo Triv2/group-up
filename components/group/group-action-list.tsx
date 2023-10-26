@@ -9,33 +9,26 @@ interface GroupActionListProps {
   group: Group;
   members: Profile[];
   creator?: Profile;
+  profile?: Profile;
 }
 
-const actions = [
-  {
-    key:"join",
-    name:"Join"
-  },
-  {
-    key:"apply",
-    name:"Apply"
-  },
-  {
-    key:"leaving",
-    name:"Leaving"
-  },
 
-]
 const GroupActionList:React.FC<GroupActionListProps> = ({
   group,
   members,
   creator,
+  profile,
 
 }) => {
 
   const params = useParams();
   const router = useRouter();
 const [isMounted, setIsMounted] = useState(false);
+
+
+if(creator?.id===profile?.id){
+  const userCreator = profile;
+}
 
 
 useEffect(() => {
@@ -52,21 +45,37 @@ return null;
             GroupActionList
             </Button>
       </DropdownTrigger>
-      <DropdownMenu aria-label="Dynamic Actions" items={actions}>
+      <DropdownMenu aria-label="Static Actions">
 
-       
-          <DropdownItem key={action.key}>
+      
+       {group.openGroup ?(  
+         <DropdownItem>
             <Button>
-              {action.name}
+             Join
             </Button>
           </DropdownItem>
-       
-         
-         
-        <Divider/>
-          <DropdownItem>
-       {creator &&(<CreatorActions />)}
+          ):(
+            <DropdownItem>
+            <Button>
+             Apply
+            </Button>
           </DropdownItem>
+          )}
+          <DropdownItem>
+            <Button>
+             Leave Group
+            </Button>
+          </DropdownItem>
+         
+     
+          
+      
+       <DropdownItem>
+        <Button>
+          Edit Group
+        </Button>
+       </DropdownItem>
+          
       </DropdownMenu>
     </Dropdown>
   );

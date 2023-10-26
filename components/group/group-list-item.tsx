@@ -61,7 +61,7 @@ return null;
           </div>
         </li>
       ))} 
-      {group && creator &&(<InviteCode code={group?.inviteCode} name={group?.name} image={group.imageUrl} creator={creator.name}/>)}
+      
       </ul>
       </AccordionContent>
       </AccordionItem>

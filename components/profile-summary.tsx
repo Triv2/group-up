@@ -16,10 +16,22 @@ const ProfileSummary = ({
 <div className="flex items-center justify-start flex-col px-2 py-2 gap-1  rounded-md bg-zinc-100/80 shadow-md w-full">
       <Accordion className="w-full"  type="single" collapsible>
         <AccordionItem className="w-full"  value="item-1">
-          <AccordionTrigger className="flex items-center justify-between  w-full no-underline px-2 py-2 gap-1 ">
+          <AccordionTrigger className="flex items-center justify-between hover:scale-105 hover:bg-white w-full no-underline hover:no-underline px-2 py-2 gap-1 ">
           {profile.name &&(  
             <div className="flex items-center justify-center sm:flex-row flex-col gap-2">
-          <SantaUser imageUrl={profile?.imageUrl} name={profile.name} />
+
+          <div className="flex items-center justify-center gap-5 rounded-md p-2">
+            
+            <div className="  border-black flex items-center justify-center gap-5 rounded-md p-2">
+            <Avatar size="md" color="success" isBordered src={profile.imageUrl}/>
+            <div>
+              <p className="text-lg font-semibold">{profile.name}</p>
+              <Divider />
+              </div>
+              </div>
+          </div>
+
+
           </div>
           )}
         </AccordionTrigger>
@@ -38,8 +50,12 @@ const ProfileSummary = ({
         
         <div className="flex gap-1 justify-between items-center w-full px-2">
         <p className="text-sm">Groups:</p>
-        {groups?.map((group) =>(
-        <p key={group.id} className="text-xs flex flex-col items-center">{group?.name || "No Group"}</p>))}
+        {groups && (groups.length>0) ? (
+        groups?.map((group) =>(
+        <p key={group.id} className="text-xs flex flex-col items-center">{group?.name || "No Group"}</p>))
+        ) : (
+          <p className="text-xs">No Groups</p>
+        )}
         </div>
         
         <div className="flex gap-1 justify-between items-center w-full px-2">

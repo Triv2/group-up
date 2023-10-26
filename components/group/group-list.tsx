@@ -3,18 +3,21 @@ import { Group, Profile } from '@prisma/client';
 import {useState, useEffect} from'react'
 import GroupListItem from './group-list-item';
 import { Divider } from '@nextui-org/react';
+import GroupSummary from '../group-summary';
 
 
 interface GroupListProps {
   groups: Group[] | null | undefined;
   members: Profile[];
   title: string;
+  profile: Profile;
 }
 
 const GroupList:React.FC<GroupListProps> = ({
   groups,
   members,
   title,
+  profile,
 }) => {
 
 const [isMounted, setIsMounted] = useState(false);
@@ -31,7 +34,12 @@ return null;
       <h2>{title}</h2>
       <Divider/>
       {groups && groups.map((group) => (
-        <GroupListItem group={group} key={group.id} members={members} />
+        <GroupSummary
+        key={group.id}
+        group={group}
+        members={members}
+        profile={profile}
+        />
       ))}
     </div>
   );

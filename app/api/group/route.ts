@@ -48,6 +48,65 @@ export async function POST(
       return new NextResponse("Profile not found",{ status: 400 });
     }
 
+
+    const currentCreator = await db.creator.findUnique({
+      where: {
+        id:profile.id,
+      },
+    })
+
+    if(currentCreator){
+
+      const group = await db.group.create({
+        data: {
+          name,
+          inviteCode: uuidv4(),
+          creator: currentCreator.id,
+          imageUrl: image,
+          openGroup,
+          
+        },
+      })
+
+
+      await db.creator.update({
+        where: {
+          id:profile.id,
+        },
+        data:{
+          groupIds:{
+            push:group.id,
+          }
+        },
+      })
+
+      const updatedGroup = await db.group.update({
+        where: {
+          id:group?.id,
+        },
+        data: {
+          profileIds:{
+            push:profile?.id,
+          },
+        },
+      })
+      
+      await db.profile.update({
+        where: {
+          id:profile?.id,
+        },
+        data: {
+          groupIds:{
+            push:group?.id},
+          setupGroup:true,
+          setupComplete:true,
+        },
+      })
+
+      return NextResponse.json(updatedGroup);
+
+    } else {
+
     const creator = await db.creator.create({
       data: {
         id:profile?.id,
@@ -55,6 +114,7 @@ export async function POST(
         imageUrl: profile.imageUrl,
       }
     })
+  
 
 
     const group = await db.group.create({
@@ -102,12 +162,9 @@ export async function POST(
       },
     })
   
-
-
-
-    
     
     return NextResponse.json(updatedGroup);
+    }
   } catch (error) {
     console.log('[GROUPS_POST]', error);
     return new NextResponse("Internal Error", {status:500});

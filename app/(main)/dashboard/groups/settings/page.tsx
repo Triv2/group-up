@@ -35,17 +35,20 @@ const GroupEditPage = async () => {
  
   return (
 <div className="flex items-center justify-center flex-col h-auto min-h-screen bg-[url(/cbg5.png)] bg-no-repeat bg-cover bg-center p-5 py-10">
-  <div className="bg-zinc-100/80 grid md:grid-cols-2 gap-2 items-center justify-evenly rounded-md p-3">
+  <div>
+  <div className="bg-zinc-100/80 grid md:grid-cols-2 gap-2 items-center justify-evenly rounded-t-md p-3">
    
-   {userGroups && members && (<GroupList title="List of Your Groups" groups={userGroups} members={members} />)}
-   {userCreatedGroups && members && (<GroupList title="List of Your Created Groups" groups={userCreatedGroups} members={members} />)}
-   <Divider/>
+   {userGroups && members && profile && (<GroupList title="List of Your Groups" groups={userGroups} members={members} profile={profile}/>)}
+   {userCreatedGroups && members && profile &&(<GroupList title="List of Your Created Groups" groups={userCreatedGroups} members={members} profile={profile} />)}
+   
   
-   <Divider/>
+
    
       
-   <Divider/>
-<div className="p-2 flex items-center justify-between px-5 w-full">
+
+  </div>
+  <Divider/>
+<div className="p-2 flex items-center justify-between px-5 w-full bg-zinc-100/80 rounded-b-md">
   
 <NavButton
     href={`/`}
@@ -56,7 +59,9 @@ const GroupEditPage = async () => {
   />
   <UserButton afterSignOutUrl="/"/>
   </div>
+
   </div>
+  
 </div>
   );
 }

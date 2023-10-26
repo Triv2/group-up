@@ -57,8 +57,9 @@ const DashboardPage = async () => {
   <Divider />
 
   <div className="grid md:grid-cols-2 gap-10 px-7 ">
-
-  {userGroups && allProfiles &&(
+    <div>
+    Joined Groups:
+  {userGroups && allProfiles && profile  &&(
       
       userGroups.map((group) => (
         
@@ -66,14 +67,20 @@ const DashboardPage = async () => {
         key={group.id}
         group={group}
         members={allProfiles}
+        profile={profile}
       />
         )
       )
     )}
+    </div>
+    <div>
+      Your Profile:
     {profile && userGroups &&(
     <ProfileSummary profile={profile} groups={userGroups}/>
     )}
     {profile && !userGroups &&(<ProfileSummary profile={profile} />)}
+      </div>
+
   </div>
     <Divider />
   {/* {userGroups && creator &&(

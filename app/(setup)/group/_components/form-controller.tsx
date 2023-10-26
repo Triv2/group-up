@@ -8,7 +8,7 @@ import { Button, Divider } from '@nextui-org/react';
 
 
 interface FormControllerProps {
-  groups: Group[];
+  groups?: Group[];
   
 }
 
@@ -33,15 +33,15 @@ return null;
     <div className="h-auto" >
       <div>
 
-        {!create && !join && (<div className="bg-white p-5 rounded-md gap-2 flex items-center flex-col shadow-md">
+        {!create && !join &&  (<div className="bg-white p-5 rounded-md gap-2 flex items-center flex-col shadow-md">
         
-            <h2 className="font-semibold"> Create {(groups.length > 0) &&("or Join")} a Group</h2>
+            <h2 className="font-semibold"> Create {groups &&("or Join")} a Group</h2>
             {!groups &&(<p className="text-muted-foreground text-xs/10">There are no groups, please create one! </p>)}
             
             <Divider/>
             <div className="flex items-center gap-2 p-2">
             <Button className="shadow-md hover:scale-105 transition-all bg-emerald-700 text-white hover:bg-emerald-500" onClick={()=> setCreate(true)} >Create Group</Button>
-            {(groups.length > 0) &&(
+            {groups &&(
             <Button className="shadow-md hover:scale-105 transition-all bg-emerald-700 text-white hover:bg-emerald-500" onClick={()=> setJoin(true)} >Join Group</Button>
             )}
             </div>
