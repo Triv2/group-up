@@ -14,7 +14,7 @@ export async function PATCH(
     const body = await req.json();
     
     // add route to bring in the group to be updated
-    const { name, imageUrl, group } = body;
+    const { name, imageUrl, group, openGroup } = body;
   
     let image= imageUrl;
     
@@ -42,11 +42,12 @@ export async function PATCH(
       },
       data: {
         name:name,
-       
+        openGroup,
         imageUrl:image,
        
       },
     })
+    
 
 
 

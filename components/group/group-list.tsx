@@ -8,11 +8,13 @@ import { Divider } from '@nextui-org/react';
 interface GroupListProps {
   groups: Group[] | null | undefined;
   members: Profile[];
+  title: string;
 }
 
 const GroupList:React.FC<GroupListProps> = ({
   groups,
-  members
+  members,
+  title,
 }) => {
 
 const [isMounted, setIsMounted] = useState(false);
@@ -26,7 +28,7 @@ return null;
 }
   return (
     <div className="h-auto w-auto px-5 py-6 flex flex-col items-center justify-center gap-5 bg-zinc-100/90">
-      <h2>List of Groups</h2>
+      <h2>{title}</h2>
       <Divider/>
       {groups && groups.map((group) => (
         <GroupListItem group={group} key={group.id} members={members} />

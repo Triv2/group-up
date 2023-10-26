@@ -35,30 +35,14 @@ const GroupEditPage = async () => {
  
   return (
 <div className="flex items-center justify-center flex-col h-auto min-h-screen bg-[url(/cbg5.png)] bg-no-repeat bg-cover bg-center p-5 py-10">
-  <div className="bg-zinc-100/80 flex items-center justify-center flex-col rounded-md p-3">
-   {userGroups && members && (<GroupList groups={allGroup} members={members} />)}
-   {userCreatedGroups && creator &&(
-    userCreatedGroups.map((group) => (
-   <InviteCode key={group.id} code={group?.inviteCode} name={group?.name} image={group.imageUrl} creator={creator.name}/>))
-   )}
+  <div className="bg-zinc-100/80 grid md:grid-cols-2 gap-2 items-center justify-evenly rounded-md p-3">
+   
+   {userGroups && members && (<GroupList title="List of Your Groups" groups={userGroups} members={members} />)}
+   {userCreatedGroups && members && (<GroupList title="List of Your Created Groups" groups={userCreatedGroups} members={members} />)}
+   <Divider/>
   
    <Divider/>
-   {creator && profile && (creator.id===profile.id) && userGroups && (
-    userGroups.map((group) => (
-    <div className="py-1" key={group.id}>
-      <p>For Creators Only</p>
-      <Divider/>
-      <EditGroupSettingsForm group={group}/>
-    </div>)
-    )
-   )}
-
-   <Divider/>
-   {userCreatedGroups && profile &&(
-    userCreatedGroups.map((group) => (
-    <EditGroupController key={group.id} userGroups={group} groups={allGroup} profile={profile}/>))
-   )}
- 
+   
       
    <Divider/>
 <div className="p-2 flex items-center justify-between px-5 w-full">

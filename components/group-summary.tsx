@@ -4,6 +4,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './
 import { Avatar, AvatarGroup, Divider } from '@nextui-org/react';
 import { Creator, Group, Profile } from '@prisma/client';
 import InviteCode from './ui/invite-code';
+import GroupActionList from './group/group-action-list';
 
 interface GroupSummaryProps {
   group: Group;
@@ -63,6 +64,11 @@ return null;
       ))} 
       {group && creator &&(<InviteCode code={group?.inviteCode} name={group?.name} image={group.imageUrl} creator={creator.name}/>)}
       </ul>
+      {creator ? 
+        (<GroupActionList group={group} members={members} creator={creator} />)
+        :
+        (<GroupActionList group={group} members={members}  />
+      )}
       </AccordionContent>
       </AccordionItem>
         </Accordion>

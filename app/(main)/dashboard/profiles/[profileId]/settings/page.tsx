@@ -28,7 +28,7 @@ const ProfileSettingsPage = async () => {
 <div className="p-2 flex items-center justify-between  md:flex-row flex-col gap-2 px-5 w-full">
 <NavButton 
 
-  href={`/groups/${profile?.id}/`}
+  href={`/dashboard/`}
   icon={<MoveLeft className="h-3 w-3" />}
   text="Cancel"
   className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-red-800 text-white hover:bg-red-500 transition-all text-sm shadow-md"

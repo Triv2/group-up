@@ -76,12 +76,14 @@ const DashboardPage = async () => {
     {profile && !userGroups &&(<ProfileSummary profile={profile} />)}
   </div>
     <Divider />
-  {userGroups && creator &&(
+  {/* {userGroups && creator &&(
     userGroups.map((group) => (
     <InviteCode key={group.id} code={group.inviteCode} name={group.name} image={group.imageUrl} creator={creator.name}/>
       )
     )
-  )}
+  )} */}
+
+  EVENT SPACE
   <Divider />
   <div className="flex items-center justify-center md:flex-row flex-col gap-3 ">
  
