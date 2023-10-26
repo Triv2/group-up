@@ -53,7 +53,7 @@ const InviteCodePage = async ({
     } catch (error) {
       console.log(error)
     } finally {
-    redirect(`/${group.id}/${profile.id}/`)
+    redirect(`/dashboard/`)
     }
   }
 

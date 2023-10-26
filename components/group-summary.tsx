@@ -42,7 +42,7 @@ return null;
           <AccordionTrigger className="flex items-center justify-between  w-full no-underline px-2 py-2 gap-1 hover:bg-white hover:scale-105">
       
         
-       {group &&( <Avatar  src={group.imageUrl} size="lg" className="border-5 shadow-md"/>)}
+       {group &&( <Avatar  src={group.imageUrl} size="lg" className="border-5 hover:scale-105 shadow-md"/>)}
         <AvatarGroup size="sm" isBordered max={3} total={matchedMembers?.length} >
       {matchedMembers && matchedMembers.map((member) => (
         <Avatar src={member.imageUrl} size="sm" key={member.id} />

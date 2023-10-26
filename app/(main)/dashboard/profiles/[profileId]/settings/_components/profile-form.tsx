@@ -27,7 +27,7 @@ const formSchema= z.object({
   
   name: z.string().min(1),
   imageUrl: z.string().default(""),
-  content:  z.string().min(1),
+  content:  z.string(),
   
 });
 

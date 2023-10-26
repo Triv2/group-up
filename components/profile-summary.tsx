@@ -5,12 +5,14 @@ import { Group, Profile } from "@prisma/client";
 
 interface ProfileSummaryProps {
   profile: Profile;
-  groups?:Group[];
+  joinedGroups?:Group[];
+  createdGroups?:Group[];
 }
 
 const ProfileSummary = ({
   profile,
-  groups,
+  joinedGroups,
+  createdGroups,
 }:ProfileSummaryProps) => {
   return (
 <div className="flex items-center justify-start flex-col px-2 py-2 gap-1  rounded-md bg-zinc-100/80 shadow-md w-full">
@@ -36,31 +38,52 @@ const ProfileSummary = ({
           )}
         </AccordionTrigger>
         <Divider/>
-        <AccordionContent className="px-10 w-full" >
+        <AccordionContent className="md:px-10 w-full" >
           <div className="">
         <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
           
           <p className="text-sm">Avatar:</p>
           <Avatar src={profile.imageUrl} size="sm" />
         </div>
+        <Divider/>
         <div className="flex items-center flex-col gap-1">
           <div className="flex gap-1 justify-between items-center w-full px-2">
-        <p className="text-sm">Name:</p><p className="text-xs">{profile.name}</p>
+        <p className="text-sm">Name:</p><p className="text-xs text-end">{profile.name}</p>
         </div>
-        
+        <Divider/>
         <div className="flex gap-1 justify-between items-center w-full px-2">
-        <p className="text-sm">Groups:</p>
-        {groups && (groups.length>0) ? (
-        groups?.map((group) =>(
-        <div key={group.id} className="text-xs flex flex-col justify-center items-center">
+        <p className="text-sm">Joined Groups:</p>
+        <div>
+        {joinedGroups && (joinedGroups.length>0) ? (
+        joinedGroups?.map((group) =>(
+        <div key={group.id} className="text-xs flex flex-col justify-center gap-1 items-center">
           {group?.name || "No Group"}
+          <Divider />
+          </div>
+          ))
+        ) : (
+          <p className="text-xs">No Groups</p>
+        )}
+        
+        </div>
+        </div>
+        <Divider/>
+        <div className="flex gap-1 justify-between items-center w-full px-2">
+          <p className="text-sm">Created Groups:</p>
+          <div>
+          {createdGroups && (createdGroups.length>0) ? (
+        createdGroups?.map((group) =>(
+        <div key={group.id} className="text-xs flex flex-col justify-center gap-1 items-center">
+          {group?.name || "No Group"}
+          <Divider />
           </div>
           ))
         ) : (
           <p className="text-xs">No Groups</p>
         )}
         </div>
-        
+        </div>
+        <Divider />
         <div className="flex gap-1 justify-between items-center w-full px-2">
         <p className="text-sm">Interests:</p><p className="text-xs ">{profile.content}</p>
         </div>

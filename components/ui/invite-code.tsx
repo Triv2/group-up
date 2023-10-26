@@ -30,17 +30,17 @@ const origin = typeof window !== 'undefined' && window.location.origin ? window.
 
 const inviteUrl = `${origin}/invite/${group.inviteCode}`;
 
-const inviteCode=`${group.inviteCode}`;
+// const inviteCode=`${group.inviteCode}`;
 
-const onCopyCode = () => {
+// const onCopyCode = () => {
   
-  navigator.clipboard.writeText(inviteCode);
-  setCopiedCode(true);
+//   navigator.clipboard.writeText(inviteCode);
+//   setCopiedCode(true);
 
-  setTimeout(() => {
-    setCopiedCode(false);
-  }, 1000);
-};
+//   setTimeout(() => {
+//     setCopiedCode(false);
+//   }, 1000);
+// };
 
 useEffect(() => {
 setIsMounted(true);
@@ -66,8 +66,8 @@ return null;
   return (
     <div className="text-xs">
 
-      <div className="flex justify-evenly items-center  py-2">
-        <h3>Current Group:</h3> 
+      <div className="flex justify-between items-center p-2 ">
+        <h3> Group:</h3> 
       <div className="bg-zinc-50/50 shadow-md flex items-center justify-between rounded-md gap-5 p-2">
       <h3 className="font-bold text-lg ">{group.name}</h3> <Avatar size="lg" src={group.imageUrl} className="border-5 shadow-md"  alt="group avatar" />  
       </div>
@@ -114,7 +114,7 @@ return null;
     
 
    
-    <div className="flex items-center justify-between p-2 gap-1 " >
+    {/* <div className="flex items-center justify-between p-2 gap-1 " >
     <Tooltip
       placement="top"
       content="This is a password used to register to this group."
@@ -138,7 +138,7 @@ return null;
                </Button> )}
             
     </div>
-    
+     */}
 
     
     </div>

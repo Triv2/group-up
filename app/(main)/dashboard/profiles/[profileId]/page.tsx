@@ -72,7 +72,7 @@ const ProfilePage = async () => {
       )
     )}
     {profile && userGroups &&(
-    <ProfileSummary profile={profile} groups={userGroups}/>
+    <ProfileSummary profile={profile} joinedGroups={userGroups}/>
     )}
     {profile && !userGroups &&(<ProfileSummary profile={profile} />)}
   </div>

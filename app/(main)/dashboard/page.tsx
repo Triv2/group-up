@@ -20,6 +20,8 @@ import { redirect } from "next/navigation";
 import ProfileSummary from "@/components/profile-summary";
 import GroupSummary from "@/components/group-summary";
 import { allMembers } from "@/lib/all-members";
+import { Calendar } from "@/components/ui/calendar";
+import { currentCreatedGroups } from "@/lib/current-created-groups";
 
 
 const DashboardPage = async () => {
@@ -29,7 +31,7 @@ const DashboardPage = async () => {
   }
    const profile = await currentProfile();
    const userGroups = await currentGroups();
-   
+   const userCreatedGroups = await currentCreatedGroups();
    const creator = await currentCreator();
    
    const allProfiles= await allMembers();
@@ -55,11 +57,14 @@ const DashboardPage = async () => {
       
     </div>)}
   <Divider />
-    EVENT SPACE
+    Event Calendar
+    <Divider />
+    <Calendar/>
   <Divider/>
   <div className="grid md:grid-cols-2 gap-10 px-7 ">
     <div className="flex items-center justify-center flex-col gap-2">
     Joined Groups:
+    <Divider/>
   {userGroups && allProfiles && profile  &&(
       
       userGroups.map((group) => (
@@ -76,8 +81,9 @@ const DashboardPage = async () => {
     </div>
     <div>
       Your Profile:
-    {profile && userGroups &&(
-    <ProfileSummary profile={profile} groups={userGroups}/>
+      <Divider/>
+    {profile && userGroups && userCreatedGroups &&(
+    <ProfileSummary profile={profile} joinedGroups={userGroups} createdGroups={userCreatedGroups}/>
     )}
     {profile && !userGroups &&(<ProfileSummary profile={profile} />)}
       </div>

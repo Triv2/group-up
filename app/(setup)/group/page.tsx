@@ -17,6 +17,7 @@ import ProfileSummary from '@/components/profile-summary';
 import { allOpenGroups } from '@/lib/all-open-groups';
 import { Home } from 'lucide-react';
 import NavButton from '@/components/ui/nav-button';
+import { currentCreatedGroups } from '@/lib/current-created-groups';
 
 export default async function GroupSetupPage() {
   const { userId} = auth();
@@ -24,6 +25,7 @@ export default async function GroupSetupPage() {
   const groups = await allGroups() || null;
   const profile = await currentProfile();
   const openGroups= await allOpenGroups() || null;
+  const userCreatedGroups= await currentCreatedGroups();
 
   if(!userId) { 
     
@@ -58,7 +60,7 @@ export default async function GroupSetupPage() {
           <UserButton afterSignOutUrl="/" />
           </div>
           <Divider />
-          {profile.name && !groups &&(
+          {profile && !groups &&(
            
           <div className="flex gap-5 items-center justify-center w-full">
         
@@ -67,12 +69,25 @@ export default async function GroupSetupPage() {
             />
             </div>)}
 
-            {groups && profile && (
+            {groups && profile && !userCreatedGroups && (
             <div className="flex gap-5 items-center justify-center w-full">
         
             <ProfileSummary
               profile={profile}
-              groups={groups}
+              joinedGroups={groups}
+              
+            />
+            </div>
+
+            )}
+
+            {groups && profile && userCreatedGroups && (
+            <div className="flex gap-5 items-center justify-center w-full">
+        
+            <ProfileSummary
+              profile={profile}
+              joinedGroups={groups}
+              createdGroups={userCreatedGroups}
             />
             </div>
 

@@ -16,6 +16,8 @@ export async function PATCH(
     const { name, content, imageUrl } = body;
   
     let image= imageUrl;
+    let interests= content;
+    let newName= name;
     
     if (!name) {
       return new NextResponse("name is required",{ status: 400 });
@@ -33,15 +35,20 @@ export async function PATCH(
     if(imageUrl === null || imageUrl === ""){
       image = profile.imageUrl
      }
-
+    if(content === null || content === ""){
+      interests = profile.content
+     }
+     if(name === null || name === ""){
+      newName = profile.name
+     }
 
     const updatedProfile= await db.profile.update({
       where: {
        id:profile?.id,
       },
       data: {
-        name:name,
-        content:content,
+        name:newName,
+        content:interests,
         imageUrl:image,
         setupComplete:true,
       },
