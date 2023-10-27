@@ -3,18 +3,20 @@ import {useState, useEffect} from'react'
 import CreateGroupForm from './create-group-form';
 import JoinGroupForm from './join-group-form';
 
-import { Group} from '@prisma/client';
+import { Group, Profile} from '@prisma/client';
 import { Button, Divider } from '@nextui-org/react';
 
 
 interface FormControllerProps {
   groups: Group[] | null;
-  
+  profile: Profile | null;
+  members: Profile[] | null;
 }
 
 const FormController:React.FC<FormControllerProps> = ({
   groups,
-  
+  profile,
+  members,
 }) => {
 
 const [isMounted, setIsMounted] = useState(false);
@@ -56,8 +58,8 @@ return null;
        )}   
 
        {join && groups  && (
-       <div className="bg-emerald-400 p-2 rounded-md shadow-md">
-          <JoinGroupForm initialData={groups} />
+       <div className="bg-zinc-100/90 p-2 rounded-md shadow-md">
+          <JoinGroupForm groups={groups} members={members} profile={profile}/>
           <Button className="shadow-md hover:scale-105 transition-all hover:bg-red-500 text-white bg-red-800" onClick={()=> setJoin(false)} type="submit">Cancel</Button>
        </div>
        )}

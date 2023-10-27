@@ -73,6 +73,17 @@ return null;
       </div>
       </div>
 
+        <div className="py-2 px-2 flex items-center justify-between">
+          <h3>Access:</h3>
+          {group.openGroup ? (
+          <h3 className="font-bold text-sm ">
+            Public
+            </h3>
+          ):(<h3 className="font-bold text-sm ">
+            Private
+          </h3>)}
+        </div>
+
       <div className="py-2 px-2 flex items-center justify-between">
         <h3>Creator:</h3>
         <h3 className="font-bold text-sm ">{creator.name}</h3> 

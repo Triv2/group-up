@@ -108,7 +108,7 @@ return null;
          <DropdownItem textValue="join" key="join">
           {!selectedJoinedGroup && (
             <Button 
-            onClick={()=>router.push(`/group/${group.id}/edit`)}
+            onClick={()=>router.push(`/invite/${group.inviteCode}`)}
             className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg w-full">
              Join
             </Button>

@@ -14,7 +14,7 @@ export async function PATCH(
     
   const body = await req.json();
   const { groupId } = body;
-    console.log(groupId);
+    
     
     const profile = await db.profile.findFirst({
       where: {
@@ -130,10 +130,10 @@ export async function PATCH(
     }
 
   }
-    console.log("updated Profile",updatedProfile);
+   
     return NextResponse.json(updatedProfile);
   } else {
-    console.log("profile",profile);
+    
     return NextResponse.json(profile);
   }
 

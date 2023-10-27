@@ -14,45 +14,50 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useParams, useRouter } from 'next/navigation';
 import { Input } from '@/components/ui/input';
-import { Group } from '@prisma/client';
+import { Group, Profile } from '@prisma/client';
+import GroupList from '@/components/group/group-list';
 
 
 
 interface GroupFormProps {
-  initialData?: Group[];
+  groups: Group[] | null;
+  members: Profile[] | null;
+  profile: Profile | null;
 }
 
-const formSchema= z.object({
+// const formSchema= z.object({
   
-  name: z.string(),
-  inviteCode: z.string().min(1),
+//   name: z.string(),
+//   inviteCode: z.string().min(1),
   
-});
+// });
 
 
-export type GroupFormValues = z.infer<typeof formSchema>
+// export type GroupFormValues = z.infer<typeof formSchema>
 
 
 const JoinGroupForm:React.FC<GroupFormProps>= ({
-  initialData =[],
+  groups,
+  members,
+  profile,
 }) => {
 
   const router = useRouter();
   const params = useParams();
-  const [value, setValue] = useState(`${initialData[0].name}`);
+  
 const [loading, setLoading] = useState(false);
 const [isMounted, setIsMounted] = useState(false);
 
 
 
 
-const form = useForm<GroupFormValues>({
-  resolver: zodResolver(formSchema),
-  defaultValues: {
-    name: "",
-    inviteCode: "",
-  },
-});
+// const form = useForm<GroupFormValues>({
+//   resolver: zodResolver(formSchema),
+//   defaultValues: {
+//     name: "",
+//     inviteCode: "",
+//   },
+// });
 
 useEffect(() => {
   setIsMounted(true);
@@ -62,30 +67,33 @@ useEffect(() => {
     return null;
   }
   
-  const onSubmit = async (data:GroupFormValues) => {
-    try {
-      setLoading(true);
-        data.name = value;
+  // const onSubmit = async (data:GroupFormValues) => {
+  //   try {
+  //     setLoading(true);
+  //       data.name = value;
     
       
-      await axios.patch(`/api/group/`, data)
+  //     await axios.patch(`/api/group/`, data)
       
       
-      toast.success("Group joined!");
-    } catch (error) {
-      toast.error("Something went wrong.");
-    } finally {
-      router.push(`/dashboard`);
-      setLoading(false);
-    }
-  };
+  //     toast.success("Group joined!");
+  //   } catch (error) {
+  //     toast.error("Something went wrong.");
+  //   } finally {
+  //     router.push(`/dashboard`);
+  //     setLoading(false);
+  //   }
+  // };
 
  
   
   return (
     <>
       <div>
-           <Form {...form}>
+
+      {groups && members && profile && (
+      <GroupList title="List of All Groups" groups={groups} members={members} profile={profile} />)}
+           {/* <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 p-3 px-10 w-full  ">
             
               <div>
@@ -151,7 +159,8 @@ useEffect(() => {
             </div>
             </div>
             </form>
-           </Form>
+           </Form> */}
+
          </div>   
     </>
   );

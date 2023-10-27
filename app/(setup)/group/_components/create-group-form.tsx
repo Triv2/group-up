@@ -134,11 +134,12 @@ useEffect(() => {
         <Divider/>
         <Switch defaultSelected className="text-xs"  onClick={()=>handleOpenGroup()}>Is This An Open Group?</Switch>
         <div className="px-2 text-xs">
-        <p>Current Choice:</p><p>{openGroup ? (
+        <p>Current Choice:</p>
+        {openGroup ? (
           <p className="text-muted-foreground">Group is set to be Public</p>
         ):(
           <p className="text-muted-foreground">Group is set to be Private</p>
-        )}</p>
+        )}
         </div>
         <Divider/>
          <div className="flex items-center flex-col justify-center">

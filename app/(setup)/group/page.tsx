@@ -18,6 +18,7 @@ import { allOpenGroups } from '@/lib/all-open-groups';
 import { Home } from 'lucide-react';
 import NavButton from '@/components/ui/nav-button';
 import { currentCreatedGroups } from '@/lib/current-created-groups';
+import { allMembers } from '@/lib/all-members';
 
 export default async function GroupSetupPage() {
   const { userId} = auth();
@@ -26,6 +27,7 @@ export default async function GroupSetupPage() {
   const profile = await currentProfile();
   const openGroups= await allOpenGroups() || null;
   const userCreatedGroups= await currentCreatedGroups();
+  const members= await allMembers() || null;
 
   if(!userId) { 
     
@@ -99,7 +101,7 @@ export default async function GroupSetupPage() {
         )} 
         
         <Divider />
-        <FormController groups={groups} />
+        <FormController groups={groups} profile={profile} members={members} />
         </div>
     </main>
   )
