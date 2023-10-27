@@ -25,13 +25,19 @@ export async function PATCH(
     }
 
 
-  if(profile.groupId){
+  if(profile.groupIds){
 
     const group = await db.group.findFirst({
       where: {
-       id:profile.groupId,
-      }
+        id: {
+          in: profile.groupIds,
+        },
+      },
     })
+    if (!group) {
+      return new NextResponse("Group not found",{ status: 400 });
+    }
+    
     
     group?.profileIds.forEach(profileId => {
       if (profileId === profile.id) {
@@ -49,13 +55,14 @@ export async function PATCH(
 
      await db.group.update({
       where: {
-       id:profile?.groupId,
+       id:group.id,
       },
       data: {
         profileIds:group?.profileIds
         
       },  
     })
+
     const updatedProfile= await db.profile.update({
       where: {
        id:profile?.id,
@@ -67,22 +74,29 @@ export async function PATCH(
       },
     })
 
-    if (group?.creator===profile.id){
-      await db.creator.findFirst({
+  if (group?.creator===profile.id){
+    
+    await db.creator.delete({
         where:{
           id:group.creator,
         }
       })
-      await db.creator.delete({
-        where:{
-          id:group.creator,
-        }
-      })
+    if(group.profileIds.length === 0){
       await db.group.delete({
         where:{
           id:group.id,
         }
       })
+    } else {
+      await db.group.update({
+        where: {
+          id:group.id,
+        },
+        data: {
+          profileIds:group?.profileIds,
+        },
+      })
+    }
     }
 
     

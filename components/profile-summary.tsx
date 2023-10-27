@@ -2,6 +2,8 @@ import { Avatar, Divider } from "@nextui-org/react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
 import SantaUser from "./ui/santa-user";
 import { Group, Profile } from "@prisma/client";
+import NavButton from "./ui/nav-button";
+import { Edit, User2 } from "lucide-react";
 
 interface ProfileSummaryProps {
   profile: Profile;
@@ -9,7 +11,7 @@ interface ProfileSummaryProps {
   createdGroups?:Group[];
 }
 
-const ProfileSummary = ({
+const ProfileSummary = async ({
   profile,
   joinedGroups,
   createdGroups,
@@ -86,6 +88,21 @@ const ProfileSummary = ({
         <Divider />
         <div className="flex gap-1 justify-between items-center w-full px-2">
         <p className="text-sm">Interests:</p><p className="text-xs ">{profile.content}</p>
+        </div>
+        <Divider />
+        <div className="flex gap-1 p-1 flex-col md:flex-row">
+        <NavButton 
+          href={`/dashboard/profiles/${profile?.id}/settings`}
+          icon={<Edit className="h-3 w-3" />}
+          text="Profile Settings"
+          className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-md"
+          />
+           <NavButton 
+          href={`/dashboard/groups/settings`}
+          icon={<User2 className="h-3 w-3" />}
+          text="Group Settings"
+          className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-md"
+          />
         </div>
         </div>
         </div>

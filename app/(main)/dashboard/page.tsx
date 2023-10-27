@@ -50,7 +50,7 @@ const DashboardPage = async () => {
   return (
 <div className="flex items-center min-h-screen h-auto w-full flex-col gap-4 pt-10  pb-10 bg-[url(/cbg2.png)] bg-no-repeat bg-cover bg-center">
   <div className="rounded-md bg-zinc-100/80 flex flex-col items-center justify-center gap-2 p-5 shadow-md">
-  <h1 className="text-3xl font-bold">Welcome, {profile?.name}!</h1>
+  <h1 className="text-3xl font-bold">Welcome, {profile?.name}!</h1><UserButton afterSignOutUrl="/"/>
     {!userGroups && (<div className="flex items-center flex-col">
       <h1 className="text-red-500">ALERT: YOUR ARE NOT IN ANY GROUPS.</h1>
       <h2>PLEASE CREATE OR JOIN A GROUP</h2>
@@ -106,26 +106,9 @@ const DashboardPage = async () => {
           />
  
  
-       <NavButton 
-          href={`/dashboard/profiles/${profile?.id}/settings`}
-          icon={<Edit className="h-3 w-3" />}
-          text="Profile Settings"
-          className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-md"
-          />
-      <NavButton 
-          href={`/dashboard/groups/settings`}
-          icon={<User2 className="h-3 w-3" />}
-          text="Group Settings"
-          className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-md"
-          />
-      <UserButton afterSignOutUrl="/"/>
-  <DeleteButton 
-      href={`/`}
-      icon={<Trash className="h-3 w-3" />}
-      text="Delete Profile"
-      className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-red-500 text-white bg-red-800 transition-all text-sm shadow-md"
+     
       
-      />
+ 
   </div>
   </div>
 

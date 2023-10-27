@@ -68,7 +68,7 @@ return null;
 
       <div className="flex justify-between items-center p-2 ">
         <h3> Group:</h3> 
-      <div className="bg-zinc-50/50 shadow-md flex items-center justify-between rounded-md gap-5 p-2">
+      <div className="flex items-center justify-between rounded-md gap-5 p-2">
       <h3 className="font-bold text-lg ">{group.name}</h3> <Avatar size="lg" src={group.imageUrl} className="border-5 shadow-md"  alt="group avatar" />  
       </div>
       </div>

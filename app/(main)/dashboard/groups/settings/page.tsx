@@ -5,11 +5,10 @@ import { currentCreators } from "@/lib/current-creators";
 import NavButton from "@/components/ui/nav-button";
 import { MoveLeft } from "lucide-react";
 import { currentProfile } from "@/lib/current-profile";
-import InviteCode from "@/components/ui/invite-code";
+
 import { Divider } from "@nextui-org/react";
 import { UserButton, auth, redirectToSignIn } from "@clerk/nextjs";
-import EditGroupController from "./_components/edit-group-controller";
-import EditGroupSettingsForm from "./_components/edit-group-settings";
+
 import { currentCreatedGroups } from "@/lib/current-created-groups";
 import { currentCreator } from "@/lib/current-creator";
 import GroupList from "@/components/group/group-list";

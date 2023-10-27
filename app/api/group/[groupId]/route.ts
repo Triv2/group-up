@@ -137,7 +137,7 @@ export async function DELETE(
     }
 
     if (creator) {
-      const group=  await db.group.findUnique({
+      const group=  await db.group.findFirst({
         where: {
           creator:creator.id,
         },
