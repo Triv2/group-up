@@ -12,8 +12,9 @@ export async function PATCH(
     return redirectToSignIn();
   }
     
-  
-    
+  const body = await req.json();
+  const { groupId } = body;
+    console.log(groupId);
     
     const profile = await db.profile.findFirst({
       where: {
@@ -29,9 +30,7 @@ export async function PATCH(
 
     const group = await db.group.findFirst({
       where: {
-        id: {
-          in: profile.groupIds,
-        },
+        id: groupId,
       },
     })
     if (!group) {
@@ -47,9 +46,7 @@ export async function PATCH(
       }
     })
 
-
-
-
+    profile.groupIds = profile.groupIds.filter((id) => id!== groupId);
 
 
 
@@ -68,19 +65,29 @@ export async function PATCH(
        id:profile?.id,
       },
       data: {
-        groupId:null,
-       
+        groupIds: profile.groupIds,
         
       },
     })
 
   if (group?.creator===profile.id){
     
-    await db.creator.delete({
+   const creator= await db.creator.findFirst({
         where:{
           id:group.creator,
         }
       })
+    if(creator){
+      creator.groupIds = creator.groupIds.filter((id) => id!== groupId)
+      await db.creator.update({
+        where: {
+          id:creator.id,
+        },
+        data: {
+          groupIds: creator.groupIds,
+        },
+      }) 
+    }
     if(group.profileIds.length === 0){
       await db.group.delete({
         where:{
@@ -93,16 +100,40 @@ export async function PATCH(
           id:group.id,
         },
         data: {
-          profileIds:group?.profileIds,
+          creator:group.profileIds[0],
         },
       })
-    }
+      const checkCreator= await db.creator.findFirst({
+        where:{
+          id:group.profileIds[0],
+        }
+      })
+      if(checkCreator){
+        await db.creator.update({
+          where: {
+            id:checkCreator.id,
+          },
+          data: {
+            groupIds: {
+              push: groupId,
+            }
+          },
+        })
+      } else {
+        await db.creator.create({
+          data: {
+            id:group.profileIds[0],
+            groupIds: groupId,
+          },
+        })
+      }
     }
 
-    
-    
+  }
+    console.log("updated Profile",updatedProfile);
     return NextResponse.json(updatedProfile);
   } else {
+    console.log("profile",profile);
     return NextResponse.json(profile);
   }
 

@@ -55,7 +55,7 @@ return null;
       <AccordionContent>
       <ul className="flex items-center flex-col gap-1 w-full p-1 sm:px-5">
      
-        {(group.openGroup || user) && creator &&(<InviteCode group={group} creator={creator} members={members}/>)}
+        {(group.openGroup || user) && creator &&(<InviteCode group={group} creator={creator} members={members} profile={profile}/>)}
         <Divider/>
         <div className="py-2 font-bold text-lg">
         Group Members

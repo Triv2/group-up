@@ -9,12 +9,14 @@ import { AlertModal } from '../modals/alert-modal';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
+
 interface GroupActionListProps {
   group: Group;
   members: Profile[];
   creator?: Profile;
   profile?: Profile;
 }
+
 
 
 const GroupActionList:React.FC<GroupActionListProps> = ({
@@ -25,14 +27,14 @@ const GroupActionList:React.FC<GroupActionListProps> = ({
 
 }) => {
 
-  const params = useParams();
+  
   const router = useRouter();
 const [isMounted, setIsMounted] = useState(false);
 const [loading, setLoading] = useState(false);
 const [leave, setLeave] = useState(false);
 
 
-const handleLeave = async () => {
+const handleLeave =  () => {
   if(leave){
     setLeave(false);
   }else{
@@ -40,13 +42,13 @@ const handleLeave = async () => {
   }
 }
 
-const leaveGroup = async () => {
+const leaveGroup = async (group:Group) => {
   try {
     setLoading(true);
-    
+    const groupId = {groupId:group.id}
   
-    console.log("OnSubmit")
-    await axios.patch(`/api/group/${params.groupId}/leave`)
+    console.log("OnSubmit", groupId)
+    await axios.patch(`/api/group/${groupId}/leave`,groupId)
     if(leave){
       setLeave(false);
     }
@@ -60,11 +62,20 @@ const leaveGroup = async () => {
   }
 }
 
+let selectedJoinedGroup = false;
+
 
 if(creator?.id===profile?.id){
   const userCreator = profile;
 }
 
+
+
+profile?.groupIds.forEach(groupId => {
+  if (groupId === group.id) {
+    selectedJoinedGroup = true;
+  }
+})
 
 useEffect(() => {
 setIsMounted(true);
@@ -78,7 +89,7 @@ return null;
     <AlertModal
         isOpen={leave}
         onClose={()=> setLeave(false)}
-        onConfirm={leaveGroup}
+        onConfirm={()=>leaveGroup(group)}
         loading={loading}
       />
     <Dropdown className="shadow-xl">
@@ -90,33 +101,40 @@ return null;
             </Button>
       </DropdownTrigger>
       <DropdownMenu  aria-label="Static Actions">
-
+    
       
-       {group.openGroup ?(  
-         <DropdownItem key="join">
+     
+       {group.openGroup  ? (  
+         <DropdownItem textValue="join" key="join">
+          {!selectedJoinedGroup && (
             <Button 
             onClick={()=>router.push(`/group/${group.id}/edit`)}
             className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg w-full">
              Join
             </Button>
+          )}
           </DropdownItem>
           ):(
-            <DropdownItem key="apply">
+            <DropdownItem textValue="apply" key="apply">
+          {!selectedJoinedGroup && (
             <Button 
             onClick={()=>router.push(`/group/${group.id}/edit`)}
             className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg w-full" >
              Apply
-            </Button>
+            </Button>)}
           </DropdownItem>
           )}
-          <DropdownItem key="leave">
+       
+
+
+          <DropdownItem textValue="leave" key="leave">
             <Button 
             onClick={handleLeave}
             className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg w-full" >
              Leave Group
             </Button>
           </DropdownItem>
-       <DropdownItem key="edit">
+       <DropdownItem textValue="edit" key="edit">
         <Button 
         onClick={()=>router.push(`/group/${group.id}/edit`)}
         className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg w-full" >
