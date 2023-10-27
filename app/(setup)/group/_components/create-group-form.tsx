@@ -72,7 +72,7 @@ useEffect(() => {
       setLoading(true);
       
     
-     
+      data.openGroup=openGroup;
       await axios.post(`/api/group/`, data)
       
       

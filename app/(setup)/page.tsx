@@ -75,7 +75,7 @@ export default async function SetupPage() {
           href={`/profile`}
           icon={<File className="h-3 w-3" />}
           text="Create a Profile"
-          className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-red-800 transition-all text-sm shadow-md"
+          className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-md"
           />
           </div> ) : (<div className="flex justify-between items-center px-2 py-2 w-full gap-5">
             <div>Profile Created!</div><div><Check/></div>

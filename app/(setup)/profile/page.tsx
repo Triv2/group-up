@@ -53,7 +53,7 @@ const ProfileSettingsPage = async  () => {
    href={`/`}
    icon={<MoveLeft className="h-3 w-3" />}
    text="Back to Setup"
-   className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-emerald-500 text-white bg-red-800 transition-all text-sm shadow-lg"
+   className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-red-500 text-white bg-red-800 transition-all text-sm shadow-lg"
    
 />
 <UserButton afterSignOutUrl="/"/>

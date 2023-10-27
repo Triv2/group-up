@@ -135,7 +135,7 @@ export async function DELETE(
     if (creator) {
 
     
-       await db.group.findFirst({
+       await db.group.deleteMany({
         where: {
           creator:creator.id,
         },

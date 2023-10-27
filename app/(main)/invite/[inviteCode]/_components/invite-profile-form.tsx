@@ -75,7 +75,7 @@ const onSubmit = async (data:InviteProfileFormValues) => {
   } catch (error) {
     toast.error("Something went wrong.");
   } finally {
-    router.push(`/${group.id}/${params.profileId}`);
+    router.push(`/dashboard`);
     setLoading(false);
   }
 };
