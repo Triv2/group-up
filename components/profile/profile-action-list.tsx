@@ -11,7 +11,7 @@
 
 import { Creator, Group, Profile } from '@prisma/client';
 import {useState, useEffect} from'react'
-import CreatorActions from './creator-actions';
+
 import { useParams, useRouter } from 'next/navigation';
 import { Cog, DoorClosed, DoorOpen, Scroll, Undo, Workflow } from 'lucide-react';
 import { AlertModal } from '../modals/alert-modal';
@@ -19,18 +19,17 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 
 
-interface GroupActionListProps {
+interface ProfileActionListProps {
   group: Group;
-  members: Profile[];
   creator?: Profile;
   profile?: Profile;
 }
 
 
 
-const GroupActionList:React.FC<GroupActionListProps> = ({
+const ProfileActionList:React.FC<ProfileActionListProps> = ({
   group,
-  members,
+
   creator,
   profile,
 
@@ -158,4 +157,4 @@ return null;
     </>
   );
 }
-export default GroupActionList;
+export default ProfileActionList;

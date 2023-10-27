@@ -5,6 +5,8 @@ import { Group, Profile } from "@prisma/client";
 import NavButton from "./ui/nav-button";
 import { Edit, User2 } from "lucide-react";
 
+import ProfileGroupList from "./profile/profile-group-list";
+
 interface ProfileSummaryProps {
   profile: Profile;
   joinedGroups?:Group[];
@@ -56,31 +58,24 @@ const ProfileSummary = async ({
         <div className="flex gap-1 justify-between items-center w-full px-2">
         <p className="text-sm">Joined Groups:</p>
         <div>
-        {joinedGroups && (joinedGroups.length>0) ? (
-        joinedGroups?.map((group) =>(
-        <div key={group.id} className="text-xs flex flex-col justify-center gap-1 items-center">
-          {group?.name || "No Group"}
-          <Divider />
-          </div>
-          ))
-        ) : (
+        {joinedGroups && (joinedGroups.length>0) ? 
+          (
+          <ProfileGroupList groups={joinedGroups}/>  
+          )
+        : (
           <p className="text-xs">No Groups</p>
         )}
-        
         </div>
         </div>
         <Divider/>
         <div className="flex gap-1 justify-between items-center w-full px-2">
           <p className="text-sm">Created Groups:</p>
           <div>
-          {createdGroups && (createdGroups.length>0) ? (
-        createdGroups?.map((group) =>(
-        <div key={group.id} className="text-xs flex flex-col justify-center gap-1 items-center">
-          {group?.name || "No Group"}
-          <Divider />
-          </div>
-          ))
-        ) : (
+      {createdGroups && (createdGroups.length>0) ? 
+          (
+          <ProfileGroupList groups={createdGroups}/>  
+          )
+        : (
           <p className="text-xs">No Groups</p>
         )}
         </div>

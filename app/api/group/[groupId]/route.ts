@@ -65,17 +65,16 @@ export async function PATCH(
 
 export async function GET(
   req: Request,
-   
+  { params }: { params: { groupId: string } }
 ) {
   try {
     const user = await currentUser();
   if (!user) {
     return redirectToSignIn();
   }
-  const body = await req.json();
-  const {group} = body;
-    
-    
+    if(!params.groupId){
+      return new NextResponse("Group id is required", { status: 400 });
+    }
     
     const profile = await db.profile.findFirst({
       where: {
@@ -89,7 +88,7 @@ export async function GET(
     
     const getGroup = await db.group.findUnique({
       where: {
-       id:group.id,
+       id:params.groupId,
       }
     })
    

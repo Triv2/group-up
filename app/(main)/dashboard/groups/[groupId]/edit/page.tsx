@@ -1,29 +1,24 @@
-import { currentGroups } from "@/lib/current-groups";
 
-import { allGroups } from "@/lib/all-groups";
-import { currentCreators } from "@/lib/current-creators";
 import NavButton from "@/components/ui/nav-button";
 import { MoveLeft } from "lucide-react";
-import { currentProfile } from "@/lib/current-profile";
-import InviteCode from "@/components/ui/invite-code";
+
 import { Divider } from "@nextui-org/react";
 import { UserButton, auth, redirectToSignIn } from "@clerk/nextjs";
 
-import EditGroupSettingsForm from "./edit/_components/edit-group-settings";
-import { currentCreatedGroups } from "@/lib/current-created-groups";
+import EditGroupSettingsForm from "./_components/edit-group-settings";
+
 import { currentCreator } from "@/lib/current-creator";
-import axios from "axios";
+
 import { db } from "@/lib/db";
-import { Calendar } from "@/components/ui/calendar";
 
 
-interface GroupViewPageProps {
+interface GroupEditPageProps {
   params:  { groupId: string  };
 }
 
-const GroupViewPage = async ({
+const GroupEditPage = async ({
   params,
-}:GroupViewPageProps) => {
+}:GroupEditPageProps) => {
 
   const { userId} = auth();
   if(!userId) {
@@ -54,18 +49,20 @@ const GroupViewPage = async ({
 <div className="flex items-center justify-center flex-col h-auto min-h-screen bg-[url(/cbg5.png)] bg-no-repeat bg-cover bg-center p-5 py-10">
   <div className="bg-zinc-100/80 flex items-center justify-center flex-col rounded-md p-3">
  
-   
+   <Divider/>
    
       <Divider/>
-    {visible && currentGroup &&( 
-    <div>Creator Actions</div>)}
-    
-   <Divider/>
-      <Calendar/>
+    {(visible && currentGroup) ?( <EditGroupSettingsForm group={currentGroup}/>
+    ):(
+      <div className="flex items-center flex-col justify-center gap-2 p-2">
+        <h1 className="text-3xl text-red-500 font-bold">ACCESS DENIED</h1>
+      <p className="text-muted-foreground">I could have redirected you, instead you have to press a button. Take that.</p>
+      </div>
+    )}
    
-
    <Divider/>
-   PUBLIC GROUP DETAILS
+ 
+   
    <Divider/>
 <div className="p-2 flex items-center justify-between px-5 w-full">
   
@@ -82,4 +79,4 @@ const GroupViewPage = async ({
 </div>
   );
 }
-export default GroupViewPage;
+export default GroupEditPage;
