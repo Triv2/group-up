@@ -1,10 +1,19 @@
 'use client'
-import { Button, Divider, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/react';
+ import { Button, Divider,  } from '@nextui-org/react';
+ import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
 import { Creator, Group, Profile } from '@prisma/client';
 import {useState, useEffect} from'react'
 import CreatorActions from './creator-actions';
 import { useParams, useRouter } from 'next/navigation';
-import { Workflow } from 'lucide-react';
+import { Cog, DoorClosed, DoorOpen, Scroll, Undo, Workflow } from 'lucide-react';
 import { AlertModal } from '../modals/alert-modal';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -63,10 +72,10 @@ const leaveGroup = async (group:Group) => {
 }
 
 let selectedJoinedGroup = false;
-
+let currentCreator= false;
 
 if(creator?.id===profile?.id){
-  const userCreator = profile;
+  currentCreator = true;
 }
 
 
@@ -92,58 +101,60 @@ return null;
         onConfirm={()=>leaveGroup(group)}
         loading={loading}
       />
-    <Dropdown className="shadow-xl">
-      <DropdownTrigger>
-            <Button 
-            
+    <DropdownMenu >
+      <DropdownMenuTrigger
             className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg">
            <Workflow className="h-4 w-4"/> Options
-            </Button>
-      </DropdownTrigger>
-      <DropdownMenu  aria-label="Static Actions">
+           
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="shadow-xl" aria-label="Static Actions">
     
       
      
-       {group.openGroup  ? (  
-         <DropdownItem textValue="join" key="join">
-          {!selectedJoinedGroup && (
+      {!selectedJoinedGroup && group.openGroup &&(
+         <DropdownMenuItem textValue="join" key="join">
+         
             <Button 
             onClick={()=>router.push(`/invite/${group.inviteCode}`)}
             className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg w-full">
-             Join
+            <DoorOpen className="h-4 w-4"/> Join
             </Button>
-          )}
-          </DropdownItem>
-          ):(
-            <DropdownItem textValue="apply" key="apply">
-          {!selectedJoinedGroup && (
+          
+          </DropdownMenuItem> )}
+          {!selectedJoinedGroup && !group.openGroup &&(
+            <DropdownMenuItem textValue="apply" key="apply">
+          
             <Button 
-            onClick={()=>router.push(`/group/${group.id}/edit`)}
+            onClick={()=>router.push(`/dashboard/groups/${group.id}/apply`)}
             className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg w-full" >
-             Apply
-            </Button>)}
-          </DropdownItem>
+             <Scroll className="h-4 w-4"/>Apply
+            </Button>
+          </DropdownMenuItem>
           )}
        
+       {currentCreator && ( 
+       <DropdownMenuItem textValue="edit" key="edit">
+       <Button 
+        onClick={()=>router.push(`/dashboard/groups/${group.id}`)}
+        className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-orange-700 text-white hover:bg-orange-500 transition-all text-sm shadow-lg w-full" >
+         <Cog className="h-4 w-4"/> Edit
+        </Button>
+       </DropdownMenuItem> )}
+       
 
-
-          <DropdownItem textValue="leave" key="leave">
+          <DropdownMenuItem textValue="leave" key="leave">
             <Button 
             onClick={handleLeave}
-            className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg w-full" >
-             Leave Group
+            className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-red-700 text-white hover:bg-red-500 transition-all text-sm shadow-lg w-full" >
+            <Undo className="h-4 w-4"/> Leave 
             </Button>
-          </DropdownItem>
-       <DropdownItem textValue="edit" key="edit">
-        <Button 
-        onClick={()=>router.push(`/group/${group.id}/edit`)}
-        className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg w-full" >
-          Edit Group
-        </Button>
-       </DropdownItem>
+          </DropdownMenuItem>
           
-      </DropdownMenu>
-    </Dropdown>
+         
+      
+          
+      </DropdownMenuContent>
+    </DropdownMenu>
     </>
   );
 }
