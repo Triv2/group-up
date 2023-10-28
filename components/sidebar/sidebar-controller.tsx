@@ -1,16 +1,25 @@
 'use client'
 import { Avatar, Button, Divider, Tab, Tabs } from '@nextui-org/react';
-import { Profile } from '@prisma/client';
+import { Group, Profile } from '@prisma/client';
 import { Contact, Home, UserCircle, UserPlus2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import {useState, useEffect} from'react'
+import GroupList from '../group/group-list';
+import SidebarGroupList from './sidebar-group-list';
+import { ScrollArea } from '../ui/scroll-area';
 
 interface SidebarControllerProps {
   profile: Profile;
+  createdGroups: Group[] | null | undefined;
+  joinedGroups: Group[] | null | undefined;
+  members: Profile[];
 }
 
 const SidebarController:React.FC<SidebarControllerProps> = ({
   profile,
+  createdGroups,
+  joinedGroups,
+  members,
 }) => {
 const router = useRouter();
 const [isMounted, setIsMounted] = useState(false);
@@ -40,6 +49,7 @@ return null;
             >
               <Home className="h-3 w-3"/> Dashboard
             </Button>
+            <Divider/>
             <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
 
                 <p className="text-sm">Avatar:</p>
@@ -48,13 +58,14 @@ return null;
             <Divider/>
 
             <div className="flex items-center flex-col gap-1">
-              <div className="flex gap-1 justify-between items-center w-full px-2">
+              <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
             <p className="text-sm">Name:</p><p className="text-xs text-end">{profile.name}</p>
             </div>
             <Divider/>
-            <div className="flex gap-1 justify-between items-center w-full px-2">
+            <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
             <p className="text-sm">Interests:</p><p className="text-xs ">{profile.content}</p>
             </div>
+            <Divider/>
             </div>
               </div>
         </Tab>
@@ -72,7 +83,32 @@ return null;
             >
              <UserCircle className="h-3 w-3"/>  Create Groups
             </Button>
+            <Divider/>
+            
+            <div>
+              <p>Joined Groups</p>
+              <Divider/>
+            <ScrollArea className='w-[148px] h-[140px]'>
+            <SidebarGroupList
+              groups={joinedGroups}
+              members={members}
+              profile={profile}
+            />
+            </ScrollArea>
+            </div>
+            <div>
+              <p>Created Groups</p>
+              <Divider/>
+            <ScrollArea className='w-[148px] h-[140px]'>
+            <SidebarGroupList
+              groups={createdGroups}
+              members={members}
+              profile={profile}
+            />
+            </ScrollArea>
+            </div>
          </div>
+      
         </Tab>
        
     

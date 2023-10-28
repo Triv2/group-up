@@ -6,6 +6,7 @@ import { currentGroups } from "@/lib/current-groups";
 import { currentCreatedGroups } from "@/lib/current-created-groups";
 import { allGroups } from "@/lib/all-groups";
 import SidebarController from "./sidebar-controller";
+import { allMembers } from "@/lib/all-members";
 
 interface SideBarProps {}
 
@@ -14,6 +15,7 @@ const SideBar = async () => {
   const user = await currentUser();
   const profileGroups= await currentGroups();
   const userCreatedGroups= await currentCreatedGroups();
+  const members= await allMembers();
   const groups = await allGroups();
 
   if (!user) { redirectToSignIn(); return null; }
@@ -31,7 +33,13 @@ const SideBar = async () => {
           <UserButton afterSignOutUrl="/" />
           </div>
           <Divider />
-          <SidebarController profile={profile}/>
+          {members &&(
+          <SidebarController 
+            profile={profile} 
+            joinedGroups={profileGroups} 
+            createdGroups={userCreatedGroups} 
+            members={members}/>
+            )}
 
 
           

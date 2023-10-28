@@ -13,7 +13,7 @@ import { Creator, Group, Profile } from '@prisma/client';
 import {useState, useEffect} from'react'
 import CreatorActions from './creator-actions';
 import { useParams, useRouter } from 'next/navigation';
-import { Cog, DoorClosed, DoorOpen, Scroll, Undo, Workflow } from 'lucide-react';
+import { Cog, DoorClosed, DoorOpen, Glasses, Scroll, Undo, Workflow } from 'lucide-react';
 import { AlertModal } from '../modals/alert-modal';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -108,7 +108,15 @@ return null;
            
       </DropdownMenuTrigger>
       <DropdownMenuContent className="shadow-xl" aria-label="Static Actions">
-    
+      <DropdownMenuItem textValue="view" key="View">
+         
+         <Button 
+         onClick={()=>router.push(`/dashboard/groups/${group.id}`)} 
+         className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg w-full">
+         <Glasses className="h-4 w-4"/> View
+         </Button>
+       
+       </DropdownMenuItem> 
       
      
       {!selectedJoinedGroup && group.openGroup &&(
