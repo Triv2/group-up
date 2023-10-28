@@ -11,7 +11,6 @@ import { allGroups } from '@/lib/all-groups';
 
 
 import { Divider } from '@nextui-org/react';
-import FormController from './_components/form-controller';
 
 import ProfileSummary from '@/components/profile-summary';
 import { allOpenGroups } from '@/lib/all-open-groups';
@@ -23,7 +22,6 @@ import { currentGroups } from '@/lib/current-groups';
 import GroupListServer from '@/components/group/group-list-server';
 import GroupListSorter from '@/components/group/group-list-sorter';
 import { allClosedGroups } from '@/lib/all-closed-groups';
-import CreateGroupForm from './_components/create-group-form';
 
 export default async function GroupSetupPage() {
   const { userId} = auth();
@@ -108,7 +106,17 @@ export default async function GroupSetupPage() {
         )} 
         
         <Divider />
-        <CreateGroupForm/>
+      {members &&( 
+      <GroupListSorter
+          allGroups={groups}
+          openGroups={openGroups}
+          closedGroups={closedGroups}
+          joinedGroups={profileGroups}
+          createdGroups={userCreatedGroups}
+          members={members}
+          profile={profile}
+        />)}
+        
         </div>
     </main>
   )

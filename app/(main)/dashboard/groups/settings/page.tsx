@@ -37,8 +37,8 @@ const GroupEditPage = async () => {
   <div>
   <div className="bg-zinc-100/80 grid md:grid-cols-2 gap-2 items-center justify-evenly rounded-t-md p-3">
    
-   {userGroups && members && profile && (<GroupList title="List of Your Groups" groups={userGroups} members={members} profile={profile}/>)}
-   {userCreatedGroups && members && profile &&(<GroupList title="List of Your Created Groups" groups={userCreatedGroups} members={members} profile={profile} />)}
+   {userGroups && members && profile && (<GroupList  groups={userGroups} members={members} profile={profile}/>)}
+   {userCreatedGroups && members && profile &&(<GroupList  groups={userCreatedGroups} members={members} profile={profile} />)}
    
   
 

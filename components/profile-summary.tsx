@@ -14,6 +14,15 @@ interface ProfileSummaryProps {
   createdGroups?:Group[];
 }
 
+
+// profile uses listbox to flip between data, groups, and actions
+// possibly make profile a sidebar
+
+
+
+
+
+
 const ProfileSummary = async ({
   profile,
   joinedGroups,
@@ -47,7 +56,34 @@ const ProfileSummary = async ({
           <div className="">
             <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
               <p>Actions:</p>
-       {joinedGroups &&(<ProfileActionList groups={joinedGroups} profile={profile}/>)}
+              {joinedGroups && (
+                
+              <ProfileGroupList 
+                groups={joinedGroups} 
+                icon={<UserSquare2 
+                className="h-4 w-4"/> }
+                toolTipClassName=""
+                
+                toolTipContent="View Your Joined Groups."
+                />
+              
+              )}
+       {createdGroups && (
+       <ProfileGroupList 
+        groups={createdGroups} 
+        icon={<Users2 
+        className="h-4 w-4"/> }
+        toolTipClassName=""
+        
+        toolTipContent="View Your Created Groups."
+        />
+        )}
+      
+       {joinedGroups &&(
+          <ProfileActionList 
+              groups={joinedGroups} 
+              profile={profile}/>
+          )}
             </div>
             <Divider />
         <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
@@ -61,7 +97,7 @@ const ProfileSummary = async ({
         <p className="text-sm">Name:</p><p className="text-xs text-end">{profile.name}</p>
         </div>
         <Divider/>
-        <div className="flex gap-1 justify-between items-center w-full px-2">
+        {/* <div className="flex gap-1 justify-between items-center w-full px-2">
         <p className="text-sm">Joined Groups:</p>
         <div>
         {joinedGroups && (joinedGroups.length>0) ? 
@@ -86,7 +122,7 @@ const ProfileSummary = async ({
         )}
         </div>
         </div>
-        <Divider />
+        <Divider /> */}
         <div className="flex gap-1 justify-between items-center w-full px-2">
         <p className="text-sm">Interests:</p><p className="text-xs ">{profile.content}</p>
         </div>

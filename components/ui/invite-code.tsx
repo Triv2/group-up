@@ -95,7 +95,7 @@ return null;
         (<GroupActionList group={group} members={members} creator={creator} profile={profile} />)
         }
         </div>
-      <Divider />
+      
 
    {group.openGroup && (
     <div className="flex items-center justify-between p-2 gap-1" >

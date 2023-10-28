@@ -1,5 +1,5 @@
 'use client'
- import { Button, Divider,  } from '@nextui-org/react';
+ import { Button, Divider, Tooltip,  } from '@nextui-org/react';
  import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,6 +20,9 @@ import { Cog, DoorClosed, DoorOpen, Layers, Scroll, Undo, UserCircle, UserCircle
 interface ProfileGroupListProps {
   groups: Group[];
   icon?:JSX.Element;
+ 
+  toolTipContent?:string;
+  toolTipClassName?:string;
 }
 
 
@@ -27,6 +30,8 @@ interface ProfileGroupListProps {
 const ProfileGroupList:React.FC<ProfileGroupListProps> = ({
   groups,
   icon,
+  toolTipContent,
+  toolTipClassName,
 }) => {
 
   
@@ -46,11 +51,17 @@ return null;
   return (
     <>
     <DropdownMenu >
+    <Tooltip 
+         placement="top"
+         content={toolTipContent}
+         className={toolTipClassName}
+       >
       <DropdownMenuTrigger
             className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg">
            
            {icon}
       </DropdownMenuTrigger>
+      </Tooltip>
       <DropdownMenuContent className="shadow-xl" aria-label="Static Actions">
     
       {groups.map(group => (
