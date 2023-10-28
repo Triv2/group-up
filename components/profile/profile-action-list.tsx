@@ -13,7 +13,7 @@ import { Creator, Group, Profile } from '@prisma/client';
 import {useState, useEffect} from'react'
 
 import { useParams, useRouter } from 'next/navigation';
-import { Cast, Cog, DoorClosed, DoorOpen, Home, Scroll, Undo, UserPlus2, Workflow } from 'lucide-react';
+import { Cast, Cog, DoorClosed, DoorOpen, Home, MenuSquare, Scroll, Undo, UserPlus2, Workflow } from 'lucide-react';
 import { AlertModal } from '../modals/alert-modal';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -56,8 +56,8 @@ return null;
    
     <DropdownMenu >
       <DropdownMenuTrigger
-            className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg">
-           <Workflow className="h-4 w-4"/> Actions
+            className="flex items-center justify-between px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg">
+           <MenuSquare className="h-4 w-4"/> 
            
       </DropdownMenuTrigger>
       <DropdownMenuContent className="shadow-xl" aria-label="Static Actions">
@@ -87,7 +87,7 @@ return null;
         </Button>
        </DropdownMenuItem> )}
        
-    
+    {profile && groups &&(
           <DropdownMenuItem textValue="dashboard" key="dashboard">
             <Button 
             onClick={()=>router.push(`/dashboard`)}
@@ -95,7 +95,7 @@ return null;
             <Home className="h-4 w-4"/> Dashboard 
             </Button>
           </DropdownMenuItem>
-          
+          )}
          
       
           

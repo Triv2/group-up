@@ -104,7 +104,7 @@ return null;
     <DropdownMenu >
       <DropdownMenuTrigger
             className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg">
-           <Workflow className="h-4 w-4"/> Options
+           <Workflow className="h-4 w-4"/> 
            
       </DropdownMenuTrigger>
       <DropdownMenuContent className="shadow-xl" aria-label="Static Actions">

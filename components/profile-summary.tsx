@@ -6,6 +6,7 @@ import NavButton from "./ui/nav-button";
 import { Edit, Layers, User2, UserSquare2, Users2 } from "lucide-react";
 
 import ProfileGroupList from "./profile/profile-group-list";
+import ProfileActionList from "./profile/profile-action-list";
 
 interface ProfileSummaryProps {
   profile: Profile;
@@ -44,6 +45,11 @@ const ProfileSummary = async ({
         <Divider/>
         <AccordionContent className="md:px-10 w-full" >
           <div className="">
+            <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
+              <p>Actions:</p>
+       {joinedGroups &&(<ProfileActionList groups={joinedGroups} profile={profile}/>)}
+            </div>
+            <Divider />
         <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
           
           <p className="text-sm">Avatar:</p>
@@ -86,27 +92,7 @@ const ProfileSummary = async ({
         </div>
         <Divider />
         <div className="flex gap-1 p-1 flex-col md:flex-row">
-    {profile.setupComplete &&(   
-        <div>
-       <NavButton 
-          href={`/dashboard/profiles/${profile?.id}/settings`}
-          icon={<Edit className="h-3 w-3" />}
-          text="Profile Settings"
-          className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-md"
-          />
-           <NavButton 
-          href={`/dashboard/groups/settings`}
-          icon={<User2 className="h-3 w-3" />}
-          text="Group Settings"
-          className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-md"
-          />
-          </div>)}
-           <NavButton 
-          href={`/group`}
-          icon={<Edit className="h-3 w-3" />}
-          text="Create or Join Groups"
-          className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-md"
-          />
+          
         </div>
         </div>
         </div>
