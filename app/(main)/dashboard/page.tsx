@@ -79,18 +79,7 @@ const DashboardPage = async () => {
       )
     )}
     </div>
-    <div>
-      Your Profile:
-      <Divider/>
-    {profile && userGroups && userCreatedGroups &&(
-    <ProfileSummary profile={profile} joinedGroups={userGroups} createdGroups={userCreatedGroups}/>
-    )}
-    {profile && userGroups && !userCreatedGroups &&(
-    <ProfileSummary profile={profile} joinedGroups={userGroups} />
-    )}
-    
-    {profile && !userGroups &&(<ProfileSummary profile={profile} />)}
-      </div>
+  
 
   </div>
    

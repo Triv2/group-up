@@ -15,13 +15,6 @@ interface ProfileSummaryProps {
 }
 
 
-// profile uses listbox to flip between data, groups, and actions
-// possibly make profile a sidebar
-
-
-
-
-
 
 const ProfileSummary = async ({
   profile,
