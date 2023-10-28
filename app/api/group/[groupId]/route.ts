@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function PATCH(
   req: Request,
-   
+  { params }: { params: { groupId: string } }
 ) {
   try {
     const user = await currentUser();
@@ -38,7 +38,7 @@ export async function PATCH(
     if(profile.groupIds){
     const updatedGroup= await db.group.update({
       where: {
-       id:group.id
+       id:params.groupId
       },
       data: {
         name:name,

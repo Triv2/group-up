@@ -110,7 +110,7 @@ export async function POST(
     const creator = await db.creator.create({
       data: {
         id:profile?.id,
-        name: name,
+        name: profile.name,
         imageUrl: profile.imageUrl,
       }
     })

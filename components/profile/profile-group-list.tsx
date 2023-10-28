@@ -19,14 +19,14 @@ import { Cog, DoorClosed, DoorOpen, Layers, Scroll, Undo, UserCircle, UserCircle
 
 interface ProfileGroupListProps {
   groups: Group[];
-  
+  icon?:JSX.Element;
 }
 
 
 
 const ProfileGroupList:React.FC<ProfileGroupListProps> = ({
-  groups
-
+  groups,
+  icon,
 }) => {
 
   
@@ -48,8 +48,8 @@ return null;
     <DropdownMenu >
       <DropdownMenuTrigger
             className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg">
-           <Layers className="h-4 w-4"/> Groups
            
+           {icon}
       </DropdownMenuTrigger>
       <DropdownMenuContent className="shadow-xl" aria-label="Static Actions">
     

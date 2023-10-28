@@ -3,7 +3,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./
 import SantaUser from "./ui/santa-user";
 import { Group, Profile } from "@prisma/client";
 import NavButton from "./ui/nav-button";
-import { Edit, User2 } from "lucide-react";
+import { Edit, Layers, User2, UserSquare2, Users2 } from "lucide-react";
 
 import ProfileGroupList from "./profile/profile-group-list";
 
@@ -60,7 +60,7 @@ const ProfileSummary = async ({
         <div>
         {joinedGroups && (joinedGroups.length>0) ? 
           (
-          <ProfileGroupList groups={joinedGroups}/>  
+          <ProfileGroupList groups={joinedGroups} icon={<Users2 className="h-4 w-4"/> }/>
           )
         : (
           <p className="text-xs">No Groups</p>
@@ -73,7 +73,7 @@ const ProfileSummary = async ({
           <div>
       {createdGroups && (createdGroups.length>0) ? 
           (
-          <ProfileGroupList groups={createdGroups}/>  
+          <ProfileGroupList groups={createdGroups} icon={<UserSquare2 className="h-4 w-4"/> }/>  
           )
         : (
           <p className="text-xs">No Groups</p>
@@ -86,7 +86,9 @@ const ProfileSummary = async ({
         </div>
         <Divider />
         <div className="flex gap-1 p-1 flex-col md:flex-row">
-        <NavButton 
+    {profile.setupComplete &&(   
+        <div>
+       <NavButton 
           href={`/dashboard/profiles/${profile?.id}/settings`}
           icon={<Edit className="h-3 w-3" />}
           text="Profile Settings"
@@ -98,6 +100,7 @@ const ProfileSummary = async ({
           text="Group Settings"
           className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-md"
           />
+          </div>)}
            <NavButton 
           href={`/group`}
           icon={<Edit className="h-3 w-3" />}

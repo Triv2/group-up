@@ -75,7 +75,7 @@ useEffect(() => {
       await axios.patch(`/api/group/${group.id}`, data)
       
       
-      toast.success("Group created!");
+      toast.success("Group updated!");
     } catch (error) {
       toast.error("Something went wrong.");
     } finally {

@@ -53,6 +53,14 @@ export async function PATCH(
         setupComplete:true,
       },
     })
+
+    const creator = await db.creator.findFirst({
+      where: {
+        id:profile?.id,
+      },
+    })
+
+    if(creator){
     await db.creator.update({
       where: {
         id:profile?.id,
@@ -62,7 +70,7 @@ export async function PATCH(
         imageUrl:image,
       },
     })
-
+  }
 
     
     

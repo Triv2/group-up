@@ -19,13 +19,14 @@ import { Home } from 'lucide-react';
 import NavButton from '@/components/ui/nav-button';
 import { currentCreatedGroups } from '@/lib/current-created-groups';
 import { allMembers } from '@/lib/all-members';
+import { currentGroups } from '@/lib/current-groups';
 
 export default async function GroupSetupPage() {
   const { userId} = auth();
   const user = await currentUser();
   const groups = await allGroups() || null;
   const profile = await currentProfile();
-  const openGroups= await allOpenGroups() || null;
+  const profileGroups= await currentGroups();
   const userCreatedGroups= await currentCreatedGroups();
   const members= await allMembers() || null;
 
@@ -71,24 +72,24 @@ export default async function GroupSetupPage() {
             />
             </div>)}
 
-            {groups && profile && !userCreatedGroups && (
+            {profileGroups && profile && !userCreatedGroups && (
             <div className="flex gap-5 items-center justify-center w-full">
         
             <ProfileSummary
               profile={profile}
-              joinedGroups={groups}
+              joinedGroups={profileGroups}
               
             />
             </div>
 
             )}
 
-            {groups && profile && userCreatedGroups && (
+            {groups && profile && userCreatedGroups && profileGroups&& (
             <div className="flex gap-5 items-center justify-center w-full">
         
             <ProfileSummary
               profile={profile}
-              joinedGroups={groups}
+              joinedGroups={profileGroups}
               createdGroups={userCreatedGroups}
             />
             </div>

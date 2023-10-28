@@ -141,14 +141,14 @@ return null;
         </Button>
        </DropdownMenuItem> )}
        
-
+        {selectedJoinedGroup && (
           <DropdownMenuItem textValue="leave" key="leave">
             <Button 
             onClick={handleLeave}
             className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-red-700 text-white hover:bg-red-500 transition-all text-sm shadow-lg w-full" >
             <Undo className="h-4 w-4"/> Leave 
             </Button>
-          </DropdownMenuItem>
+          </DropdownMenuItem>)}
           
          
       

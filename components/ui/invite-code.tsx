@@ -64,16 +64,16 @@ if (!isMounted) {
 return null;
 }
   return (
-    <div className="text-xs">
+    <div className="text-xs w-full">
 
-      <div className="flex justify-between items-center p-2 ">
+      {/* <div className="flex justify-between items-center p-2 ">
         <h3> Group:</h3> 
       <div className="flex items-center justify-between rounded-md gap-5 p-2">
       <h3 className="font-bold text-lg ">{group.name}</h3> <Avatar size="lg" src={group.imageUrl} className="border-5 shadow-md"  alt="group avatar" />  
       </div>
-      </div>
+      </div> */}
 
-        <div className="py-2 px-2 flex items-center justify-between">
+        <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
           <h3>Access:</h3>
           {group.openGroup ? (
           <h3 className="font-bold text-sm ">
@@ -84,7 +84,7 @@ return null;
           </h3>)}
         </div>
 
-      <div className="py-2 px-2 flex items-center justify-between">
+      <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
         <h3>Creator:</h3>
         <h3 className="font-bold text-sm ">{creator.name}</h3> 
         </div>
@@ -96,8 +96,10 @@ return null;
         }
         </div>
       <Divider />
-   
+
+   {group.openGroup && (
     <div className="flex items-center justify-between p-2 gap-1" >
+
     <Tooltip 
       placement="top"
       content="This url will automatically assign someone to this group."
@@ -120,7 +122,7 @@ return null;
                <Copy className="w-4 h-4"/> 
                </Button> )}
     </div>
-    
+   )}
 
     
 
