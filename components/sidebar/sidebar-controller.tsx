@@ -44,7 +44,7 @@ return null;
         <Tab key="profile" title="Profile">
           <div className="flex flex-col items-center justify-center min-w-[140px] max-w-[140px] w-auto">
 
-          <div className="w-full ">
+          <div className="w-full shadow-md">
           <p className="font-bold text-md py-1 px-1 w-full">Actions</p>
           </div>
           <Divider/>
@@ -126,7 +126,7 @@ return null;
             <div className="pt-2 pb-2">
               <p className="font-bold text-md shadow-xl py-1 px-1">Joined Groups</p>
               <Divider/>
-            <ScrollArea className='w-auto min-h-[50px] max-h-[300px] h-auto'>
+              <ScrollArea className='w-auto  h-[110px]'>
             <SidebarGroupList
               groups={joinedGroups}
               members={members}
@@ -137,7 +137,7 @@ return null;
             <div>
               <p className="font-bold text-md shadow-xl py-1 px-1">Created Groups</p>
               <Divider/>
-            <ScrollArea className='w-auto min-h-[50px] max-h-[300px] h-auto'>
+            <ScrollArea className='w-auto h-[110px]'>
             <SidebarGroupList
               groups={createdGroups}
               members={members}

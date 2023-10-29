@@ -34,8 +34,9 @@ const SideBar = async () => {
   <Divider/>
 
 {!profile ? (
-  <div>
+  <div className="flex items-center justify-center flex-col">
         <h1 className=" text-md font-bold">Welcome</h1> <h1 className="text-md font-bold  bg-gradient-to-tr from-green-400 to-green-500 bg-clip-text text-transparent"> {`${user?.firstName} ${user?.lastName}`}!</h1>
+        <Divider/>
         </div>) 
         : (
           <div>

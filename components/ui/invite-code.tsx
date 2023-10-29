@@ -30,17 +30,12 @@ const origin = typeof window !== 'undefined' && window.location.origin ? window.
 
 const inviteUrl = `${origin}/invite/${group.inviteCode}`;
 
-// const inviteCode=`${group.inviteCode}`;
+let owner=false;
 
-// const onCopyCode = () => {
-  
-//   navigator.clipboard.writeText(inviteCode);
-//   setCopiedCode(true);
+if(profile?.id===creator?.id) {
+  owner = true;
+}
 
-//   setTimeout(() => {
-//     setCopiedCode(false);
-//   }, 1000);
-// };
 
 useEffect(() => {
 setIsMounted(true);
@@ -64,7 +59,7 @@ if (!isMounted) {
 return null;
 }
   return (
-    <div className="text-xs w-full">
+    <div className="text-xs w-full ">
 
       {/* <div className="flex justify-between items-center p-2 ">
         <h3> Group:</h3> 
@@ -73,31 +68,10 @@ return null;
       </div>
       </div> */}
 
-        <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
-          <h3>Access:</h3>
-          {group.openGroup ? (
-          <h3 className="font-bold text-sm ">
-            Public
-            </h3>
-          ):(<h3 className="font-bold text-sm ">
-            Private
-          </h3>)}
-        </div>
-
-      <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
-        <h3>Creator:</h3>
-        <h3 className="font-bold text-sm ">{creator.name}</h3> 
-        </div>
-      
-      <div className="py-2 px-2 flex items-center justify-between"> 
-      <h3>Actions:</h3>
-        {creator && 
-        (<GroupActionList group={group} members={members} creator={creator} profile={profile} />)
-        }
-        </div>
+       
       
 
-   {group.openGroup && (
+   {(group.openGroup || owner) && (
     <div className="flex items-center justify-between p-2 gap-1" >
 
     <Tooltip 
@@ -127,32 +101,7 @@ return null;
     
 
    
-    {/* <div className="flex items-center justify-between p-2 gap-1 " >
-    <Tooltip
-      placement="top"
-      content="This is a password used to register to this group."
-      className="px-5 text-xs/10 w-[200px] "
-      >
-     <p> InviteCode</p>
-      </Tooltip>
-
-     <Input className=" border-0 focus-visible:ring-0 text-xs/10 text-black focus-visible:ring-offset-0"
-              value={group.inviteCode} disabled={isLoading} size="sm" onClick={onCopyCode}
-            />
-   {copiedCode ? (
-                <Tooltip placement="right" content="Invite Code Copied" className="px-5 text-xs/10">
-                    <Button disabled={isLoading} onClick={onCopyCode} size="sm"className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-emerald-500 text-white bg-red-800 transition-all text-sm shadow-md">
-                    <Check className="w-4 h-4"/> 
-                    </Button>
-               
-                </Tooltip>
-               ) : (<Button disabled={isLoading} onClick={onCopyCode} size="sm"className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-emerald-500 text-white bg-red-800 transition-all text-sm shadow-md">
-               <Copy className="w-4 h-4"/> 
-               </Button> )}
-            
-    </div>
-     */}
-
+    
     
     </div>
   );

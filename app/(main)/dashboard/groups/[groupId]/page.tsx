@@ -15,6 +15,7 @@ import { currentCreator } from "@/lib/current-creator";
 import axios from "axios";
 import { db } from "@/lib/db";
 import { Calendar } from "@/components/ui/calendar";
+import GroupSummary from "./_components/group-summary";
 
 
 interface GroupViewPageProps {
@@ -30,11 +31,38 @@ const GroupViewPage = async ({
     redirectToSignIn();
   }
 
- 
+  const profile = await currentProfile();
   const creator = await currentCreator();
+
+  if(!creator) { return null; }
+
+  const creatorProfile = await db.profile.findUnique({
+      where:{
+        id: creator.id
+      }
+  });
  
   let visible= false;
 
+  const group = await db.group.findUnique({
+    where: {
+      id: params.groupId,
+    },
+  })
+
+  if(!group) {
+    return {
+      notFound: true,
+    }
+  }
+
+  const members= await db.profile.findMany({
+    where: {
+      id: {
+        in: group.profileIds,
+      },
+    },
+  })
  
     
   const currentGroup=await db.group.findUnique({
@@ -66,6 +94,8 @@ const GroupViewPage = async ({
 
    <Divider/>
    PUBLIC GROUP DETAILS
+
+   {creator && profile &&(<GroupSummary creator={creatorProfile} group={group} members={members} profile={profile}/>)}
    <Divider/>
 <div className="p-2 flex items-center justify-between px-5 w-full">
   

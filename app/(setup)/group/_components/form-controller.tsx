@@ -37,7 +37,7 @@ return null;
 
         {!create && !join &&  (<div className="bg-white p-5 rounded-md gap-2 flex items-center flex-col shadow-md">
         
-            <h2 className="font-semibold"> Create {groups &&("or Join")} a Group</h2>
+            <h2 className="font-semibold"> Create  a Group</h2>
             {!groups &&(<p className="text-muted-foreground text-xs/10">There are no groups, please create one! </p>)}
             
             <Divider/>

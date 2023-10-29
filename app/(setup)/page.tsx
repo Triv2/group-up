@@ -36,33 +36,7 @@ export default async function SetupPage() {
   return (
     <main className="flex items-center justify-center flex-col min-h-screen h-auto w-full gap-3 bg-[url(/cbg3.png)] bg-no-repeat bg-cover bg-center px-2 py-2">
       <div className="flex items-center flex-col gap-5 pt-3 sm:p-8 bg-zinc-100/80 rounded-md shadow-md h-auto">
-        {!profile ? (
-        <div className="flex gap-2 p-2">
-        <h1 className=" text-xl md:text-3xl font-bold">Welcome {`${user?.firstName} ${user?.lastName}`}!</h1>
-        <UserButton afterSignOutUrl="/" />
-        </div>
-        ) 
-        : (
-          <div>
-          <div className="flex justify-between w-full gap-5 p-2">
-        <h1 className=" text-xl md:text-3xl font-bold">Welcome {`${user?.firstName} ${user?.lastName}`}! </h1>
-        <UserButton afterSignOutUrl="/" />
-        </div>
         
-        <Divider />
-        {profile.name &&(
-          <div className="flex gap-5 items-center justify-center w-full">
-           
-            <ProfileSummary
-            profile={profile}
-            />
-        </div>
-        )}
-      
-        </div>
-          
-        )}
-
         
         
         <Divider />
@@ -82,7 +56,7 @@ export default async function SetupPage() {
           </div>
 
           )}
-
+      <Divider />
         
       {profile?.setupProfile && (
       <div className="flex items-center flex-col">
@@ -94,7 +68,7 @@ export default async function SetupPage() {
       <NavButton 
           href={`/group`}
           icon={<User2 className="h-3 w-3" />}
-          text="Create or Join a Group"
+          text="Create a Group"
           className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-md"
           />
           </div>
