@@ -23,15 +23,18 @@ const SidebarGroupList:React.FC<SidebarGroupListProps> = ({
 
 
   return (
-    <div className="h-auto w-auto px-5 py-6 flex flex-col items-center justify-center gap-5 bg-zinc-100/90">
-      <Divider/>
+    <div className="h-auto w-full flex   pl-1 flex-col items-center justify-center  ">
+      
       {groups && groups.map((group) => (
+        <div className="h-auto w-full flex   flex-col items-center justify-center  " key={group.id}>
         <SidebarGroupSummary
         key={group.id}
         group={group}
         members={members}
         profile={profile}
         />
+        <Divider/>
+        </div>
       ))}
     </div>
   );

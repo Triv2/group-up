@@ -32,63 +32,101 @@ if (!isMounted) {
 return null;
 }
   return (
-    <div className='text-xs'>
-      <Tabs key="size" size="sm">
+    <div className='text-xs flex items-center justify-center flex-col'>
+      <Tabs key="size" size="sm" variant="underlined"
+        classNames={{
+          tabList: "gap-6 w-full relative rounded-none p-0 border-b border-divider",
+          cursor: "w-full bg-emerald-500",
+          tab: "max-w-fit px-0 h-12",
+          tabContent: "group-data-[selected=true]:text-emerald-500 w-[60px]"
+        }}>
+
         <Tab key="profile" title="Profile">
-          <div className="flex flex-col items-center justify-center gap-1">
+          <div className="flex flex-col items-center justify-center min-w-[140px] max-w-[140px] w-auto">
+
+          <div className="w-full ">
+          <p className="font-bold text-md py-1 px-1 w-full">Actions</p>
+          </div>
+          <Divider/>
             
             <Button
-              className="flex items-center justify-center px-1 py-1 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-xs shadow-lg w-full"
+            size="sm"
+            className="w-full  rounded-none bg-zinc-200/80 hover:bg-zinc-200/10 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
               onClick={()=>router.push(`/dashboard/profiles/${profile.id}/settings`)}
             >
                <Contact className="h-3 w-3"/>Profile Settings
             </Button>
             <Button
-              className="flex items-center justify-center px-2 py-1 gap-1 hover:scale-105 rounded-md bg-red-700 text-white hover:bg-red-500 transition-all text-xs shadow-lg w-full"
+            size="sm"
+            className="w-full  rounded-none bg-zinc-200/80 hover:bg-zinc-200/10 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
               onClick={()=>router.push(`/dashboard`)}
             >
               <Home className="h-3 w-3"/> Dashboard
             </Button>
             <Divider/>
+            <div className=" pt-2 pb-2">
+            <div className="w-full ">
+          <p className="font-bold text-md py-1 px-1 pt-2 w-full">Profile Information</p>
+          </div>
+          <Divider/>
             <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
 
-                <p className="text-sm">Avatar:</p>
+                <p className="text-xs">Avatar:</p>
                 <Avatar src={profile.imageUrl} size="sm" />
                </div>
             <Divider/>
 
-            <div className="flex items-center flex-col gap-1">
+            <div className="flex items-center flex-col">
               <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
-            <p className="text-sm">Name:</p><p className="text-xs text-end">{profile.name}</p>
+            <p className="text-xs">Name:</p><p className="text-xs text-end">{profile.name}</p>
             </div>
             <Divider/>
             <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
-            <p className="text-sm">Interests:</p><p className="text-xs ">{profile.content}</p>
+            <p className="text-xs">Interests:</p><p className="text-xs ">{profile.content}</p>
             </div>
             <Divider/>
             </div>
               </div>
+          </div>
         </Tab>
+                {/* ///////////////////////////////////////////////////////////////////////// */}
         <Tab key="groups" title="Groups">
-        <div className="flex flex-col items-center justify-center gap-1">
+        <div className="flex flex-col items-center justify-center pl-1">
+          
+          <div className="w-full">
+          <p className="font-bold text-md shadow-xl py-1 px-1 w-full">Actions</p>
+          </div>
+          <Divider/>
+
         <Button
+        size="sm"
             onClick={()=>router.push(`/group/join`)}
-              className="flex items-center justify-center px-1 py-1 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-xs shadow-lg w-full"
+            className="w-full  rounded-none bg-zinc-200/80 hover:bg-zinc-200/10 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
             >
-              <UserPlus2 className="h-3 w-3"/> Add Groups
+              <div className="">
+              <UserPlus2 className="h-3 w-3"/>
+              </div>
+               Add Groups
             </Button>
             <Button
+            size="sm"
             onClick={()=>router.push(`/group`)}
-            className="flex items-center justify-center px-1 py-1 gap-1 hover:scale-105 rounded-md bg-red-700 text-white hover:bg-red-500 transition-all text-xs shadow-lg w-full"
+            className="w-full  rounded-none bg-zinc-200/80 hover:bg-zinc-200/10 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
             >
-             <UserCircle className="h-3 w-3"/>  Create Groups
+              <div className="">
+             <UserCircle className="h-3 w-3"/> 
+             </div> Create Groups
             </Button>
             <Divider/>
             
-            <div>
-              <p>Joined Groups</p>
+
+
+
+
+            <div className="pt-2 pb-2">
+              <p className="font-bold text-md shadow-xl py-1 px-1">Joined Groups</p>
               <Divider/>
-            <ScrollArea className='w-[148px] h-[140px]'>
+            <ScrollArea className='w-auto min-h-[50px] max-h-[300px] h-auto'>
             <SidebarGroupList
               groups={joinedGroups}
               members={members}
@@ -97,9 +135,9 @@ return null;
             </ScrollArea>
             </div>
             <div>
-              <p>Created Groups</p>
+              <p className="font-bold text-md shadow-xl py-1 px-1">Created Groups</p>
               <Divider/>
-            <ScrollArea className='w-[148px] h-[140px]'>
+            <ScrollArea className='w-auto min-h-[50px] max-h-[300px] h-auto'>
             <SidebarGroupList
               groups={createdGroups}
               members={members}
