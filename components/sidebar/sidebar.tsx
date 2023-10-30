@@ -9,22 +9,28 @@ import SidebarController from "./sidebar-controller";
 import { allMembers } from "@/lib/all-members";
 import { allNoncreatedJoinedGroups } from "@/lib/all-noncreated-joined-groups";
 import Image from "next/image";
+import { Group, Profile } from "@prisma/client";
 
-interface SideBarProps {}
+interface SideBarProps {
+  userCreatedGroups?: Group[] | null;
+  nonUserCreatedGroups: Group[] | null;
+  members?:Profile[] | null;
+  profile?: Profile | null;
+  name: string;
+}
 
 
-const SideBar = async () => {
-  const user = await currentUser();
-  const profileGroups= await currentGroups();
-  const userCreatedGroups= await currentCreatedGroups();
-  const nonUserCreatedGroups= await allNoncreatedJoinedGroups();
-  const members= await allMembers();
-  const groups = await allGroups();
- 
+const SideBar =  ({
+  userCreatedGroups,
+  nonUserCreatedGroups,
+  members,
+  profile,
+  name
+}:
+SideBarProps) => {
 
-  if (!user) { redirectToSignIn(); return null; }
 
-  const profile = await currentProfile();
+
   return (
 <div className="w-[148px] bg-zinc-200/80 h-full  shadow-md">
   <div className="flex items-center justify-cetner px-1 py-1 ">
@@ -35,7 +41,7 @@ const SideBar = async () => {
 
 {!profile ? (
   <div className="flex items-center justify-center flex-col">
-        <h1 className=" text-md font-bold">Welcome</h1> <h1 className="text-md font-bold  bg-gradient-to-tr from-green-400 to-green-500 bg-clip-text text-transparent"> {`${user?.firstName} ${user?.lastName}`}!</h1>
+        <h1 className=" text-md font-bold">Welcome</h1> <h1 className="text-md font-bold  bg-gradient-to-tr from-green-400 to-green-500 bg-clip-text text-transparent"> {name}!</h1>
         <Divider/>
         </div>) 
         : (
@@ -43,7 +49,7 @@ const SideBar = async () => {
             <div className="flex justify-between items-center w-full gap-5 p-2">
               <div>
             <h1 className=" text-md font-bold">Welcome</h1> 
-            <h1 className="text-md font-bold  bg-gradient-to-tr from-green-500 to-green-700 bg-clip-text text-transparent"> {`${user?.firstName} ${user?.lastName}`}!</h1>
+            <h1 className="text-md font-bold  bg-gradient-to-tr from-green-500 to-green-700 bg-clip-text text-transparent"> {name}!</h1>
             </div>
 
           <UserButton afterSignOutUrl="/" />

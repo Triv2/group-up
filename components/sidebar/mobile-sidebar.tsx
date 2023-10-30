@@ -3,12 +3,29 @@
 import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import  Sidebar  from "@/components/sidebar/sidebar";
 
-export const MobileSidebar = (
-  ) => {
+import { Group, Profile } from "@prisma/client";
+import { Button } from "../ui/button";
+
+
+interface MobileSidebarProps {
+  userCreatedGroups?: Group[] | null;
+  nonUserCreatedGroups: Group[] | null;
+  members?:Profile[] | null;
+  profile?: Profile | null;
+  name: string;
+}
+
+export const MobileSidebar = ({
+  userCreatedGroups,
+  nonUserCreatedGroups,
+  members,
+  profile,
+  name
+}:MobileSidebarProps) => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -20,14 +37,20 @@ export const MobileSidebar = (
   }
 
   return (
-    <Sheet>
-      <SheetTrigger>
-        <Button  size="icon" className="md:hidden fixed">
+    <Sheet >
+      <SheetTrigger >
+        <Button  size="sm" className="fixed z-50 bg-zinc-200 shadow-xl text-emerald-700 hover:text-emerald-500 hover:bg-zinc-100/80">
           <Menu />
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="p-0">
-        <Sidebar />
+      <SheetContent side="left" className="p-0 w-[148px]">
+      <Sidebar
+      userCreatedGroups={userCreatedGroups}
+      nonUserCreatedGroups={nonUserCreatedGroups}
+      members={members}
+      profile={profile}
+      name={name}
+     />
       </SheetContent>
     </Sheet>
   );
