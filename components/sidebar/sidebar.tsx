@@ -52,7 +52,14 @@ SideBarProps) => {
             <h1 className="text-md font-bold  bg-gradient-to-tr from-green-500 to-green-700 bg-clip-text text-transparent"> {name}!</h1>
             </div>
 
-          <UserButton afterSignOutUrl="/" />
+          <UserButton afterSignOutUrl="/" 
+            appearance={{
+              elements: {
+                userButtonPopoverCard:"pointer-events-auto",
+              }
+            }}
+          
+          />
           </div>
           <Divider />
           {members &&(

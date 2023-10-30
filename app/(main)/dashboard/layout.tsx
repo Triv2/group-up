@@ -23,7 +23,7 @@ const DashboardLayout = async  ({
 
   return (
     <div className="h-full">
-       <div className="md:hidden absolute">
+       <div className="md:hidden h-full  z-30 flex-col fixed inset-y-0">
        <MobileSidebar
        userCreatedGroups={userCreatedGroups}
        nonUserCreatedGroups={nonUserCreatedGroups}
