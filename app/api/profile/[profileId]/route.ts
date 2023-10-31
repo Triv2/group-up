@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function PATCH(
   req: Request,
-   
+  { params }: { params: { profileId: string } }
 ) {
   try {
     const user = await currentUser();
@@ -83,7 +83,7 @@ export async function PATCH(
 
 export async function GET(
   req: Request,
-   
+  { params }: { params: { profileId: string } }
 ) {
   try {
     const user = await currentUser();
@@ -115,7 +115,7 @@ export async function GET(
 
 export async function DELETE(
   req: Request,
-   
+  { params }: { params: { profileId: string } }
 ) {
   try {
     const user = await currentUser();

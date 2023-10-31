@@ -37,7 +37,7 @@ return null;
         classNames={{
           tabList: "gap-6 w-full relative rounded-none p-0 border-b border-divider ",
           cursor: "w-full bg-emerald-500",
-          tab: "max-w-fit px-0 h-12",
+          tab: "max-w-fit px-0 h-12 ",
           tabContent: "group-data-[selected=true]:text-emerald-500 w-[60px] hover:text-emerald-500 "
         }}>
 
