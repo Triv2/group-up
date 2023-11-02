@@ -1,9 +1,16 @@
+import Image from "next/image";
 
 interface LandingPageProps {}
 
 const LandingPage = () => {
   return (
-<div>
+    <div>
+
+
+<div className="min-h-screen grid grid-cols-2 justify-between">
+  <div>
+    <Image src="/images/logo.png" alt="logo" />
+  </div>
 
 <div className="flex flex-col items-center justify-center">
 <h1>HELLO GROUPIES!</h1>
@@ -12,6 +19,23 @@ const LandingPage = () => {
 <h4>Plan events with your friends in a public or private setting.</h4>
 <h5>and much... much... more.</h5>
 </div>
+
+</div>
+
+<article>
+  <div className="flex flex-col items-center justify-center">
+    <h1>GROUPIES</h1>
+    <h2>Create your own group.</h2>
+  </div>
+</article>
+
+
+
+
+
+
+
+
 
 </div>
   );
