@@ -22,6 +22,7 @@ import GroupSummary from "@/components/group-summary";
 import { allMembers } from "@/lib/all-members";
 import { Calendar } from "@/components/ui/calendar";
 import { currentCreatedGroups } from "@/lib/current-created-groups";
+import Thread from "@/components/thread/thread";
 
 
 

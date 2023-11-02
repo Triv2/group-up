@@ -14,7 +14,7 @@ export async function POST(
   }
     const body = await req.json();
    
-    const { title, starter, openThread,} = body;
+    const { title, starter, openThread, content} = body;
   
     
     
@@ -37,7 +37,7 @@ export async function POST(
         title,
         starter: starter.id,
         openThread,
-        
+        content,
       },
     })
    

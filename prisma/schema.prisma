@@ -121,6 +121,7 @@ model Thread {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   title String
   starter String @db.ObjectId
+  content String
   profileIds String[] @db.ObjectId
   openThread Boolean?
 

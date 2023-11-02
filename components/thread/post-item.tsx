@@ -1,9 +1,14 @@
 'use client'
+import { Post } from '@prisma/client';
 import {useState, useEffect} from'react'
 
-interface PostProps {}
+interface PostItemProps {
+  post: Post;
+}
 
-const Post:React.FC<PostProps> = () => {
+const PostItem:React.FC<PostItemProps> = ({
+  post
+}) => {
 
 const [isMounted, setIsMounted] = useState(false);
 
@@ -16,8 +21,8 @@ return null;
 }
   return (
     <div>
-      Post
+      PostItem
     </div>
   );
 }
-export default Post;
+export default PostItem;
