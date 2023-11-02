@@ -1,7 +1,7 @@
 'use client'
 import {useState, useEffect} from'react'
 import React from "react";
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button,  useDisclosure, Select, SelectItem, Switch, Divider, } from "@nextui-org/react";
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button,  useDisclosure, Select, SelectItem, Switch, Divider, Textarea, } from "@nextui-org/react";
 import { Lock, Users } from 'lucide-react';
 
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from "@/components/ui/form";
@@ -25,8 +25,8 @@ interface CreateThreadProps {
 
 const formSchema= z.object({
   
-  name: z.string().min(1),
-  openGroup: z.boolean().default(false),
+  title: z.string().min(1),
+  openThread: z.boolean().default(false),
   content: z.string().min(1),
   imageUrl: z.string().default(""),
  
@@ -47,16 +47,17 @@ export type CreateThreadValues = z.infer<typeof formSchema>
 const [loading, setLoading] = useState(false);
 const [isMounted, setIsMounted] = useState(false);
 const [upload,setUpload] = useState(false);
-const [openGroup, setOpenGroup] = useState(false);
+const [openThread, setOpenThread] = useState(false);
 
 
 
 const form = useForm<CreateThreadValues>({
   resolver: zodResolver(formSchema),
   defaultValues: {
-    name: "",
-    openGroup: false,
-    imageUrl: ""
+    title: "",
+    openThread: false,
+    imageUrl: "",
+    content: "",
   },
 });
 
@@ -73,7 +74,7 @@ useEffect(() => {
       setLoading(true);
       
     
-      data.openGroup=openGroup;
+      data.openThread=openThread;
       await axios.post(`/api/group/`, data)
       
       
@@ -92,11 +93,11 @@ useEffect(() => {
       setUpload(true);
     }
   }
-  const handleOpenGroup= () => {
-    if(openGroup) {
-      setOpenGroup(false);
+  const handleOpenThread= () => {
+    if(openThread) {
+      setOpenThread(false);
     } else {
-      setOpenGroup(true);
+      setOpenThread(true);
     }
   }
  
@@ -109,15 +110,15 @@ useEffect(() => {
             <div>
               <div>
           <div className="flex items-center justify-center flex-col gap-6">
-              <h3 className="font-bold text-xl">Create a Group</h3>
+              <h3 className="font-bold text-xl">Create a Thread</h3>
               <Divider/>
             <FormField
           control={form.control}
-          name="name"
+          name="title"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="font-semibold">
-                Group Name
+                Thread Title
               </FormLabel>
               <FormControl>
                <Input 
@@ -132,14 +133,35 @@ useEffect(() => {
             </FormItem>
             )}
         />
+           <FormField
+          control={form.control}
+          name="content"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>
+                Content
+              </FormLabel>
+              <FormControl>
+             
+                 <Textarea
+                 
+                  placeholder="Enter your description"
+                  className="max-w-xs text-black"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage/>
+            </FormItem>
+            )}
+        />
         <Divider/>
-        <Switch defaultSelected className="text-xs"  onClick={()=>handleOpenGroup()}>Is This An Open Group?</Switch>
+        <Switch defaultSelected className="text-xs"  onClick={()=>handleOpenThread()}>Is This An Open Thread?</Switch>
         <div className="px-2 text-xs">
         <p>Current Choice:</p>
-        {openGroup ? (
-          <p className="text-muted-foreground">Group is set to be Public</p>
+        {openThread ? (
+          <p className="text-muted-foreground">Thread is set to be Public</p>
         ):(
-          <p className="text-muted-foreground">Group is set to be Private</p>
+          <p className="text-muted-foreground">Thread is set to be Private</p>
         )}
         </div>
         <Divider/>

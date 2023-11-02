@@ -122,6 +122,7 @@ model Thread {
   title String
   starter String @db.ObjectId
   content String
+  imageUrl String?
   profileIds String[] @db.ObjectId
   openThread Boolean?
 
