@@ -29,9 +29,26 @@ const LandingPage = () => {
   </div>
 </article>
 
+<article>
+  <div className="flex flex-col items-center justify-center">
+    <h1>Join</h1>
+    <h2>Join Another group.</h2>
+  </div>
+</article>
 
+<article>
+  <div className="flex flex-col items-center justify-center">
+    <h1>Task Management</h1>
+    <h2>Manage tasks in a team environment.</h2>
+  </div>
+</article>
 
-
+<article>
+  <div className="flex flex-col items-center justify-center">
+    <h1>Event Management</h1>
+    <h2>Plan and participate in events with or without a group.</h2>
+  </div>
+</article>
 
 
 
