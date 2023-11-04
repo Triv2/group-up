@@ -43,6 +43,7 @@ model Group {
   openGroup Boolean?
   inviteCode String @unique
   profileIds String[]
+  threadIds String[]
 
   autoEvents Boolean?
   openThreads Boolean?
@@ -125,6 +126,7 @@ model Thread {
   imageUrl String?
   profileIds String[] @db.ObjectId
   openThread Boolean?
+  groupId String?
 
   posts Post[] 
 

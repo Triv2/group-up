@@ -20,7 +20,7 @@ import { FileUpload } from '@/components/file-upload';
 
 
 interface CreateThreadProps {
-  
+  group?: Group;
 }
 
 const formSchema= z.object({
@@ -29,8 +29,7 @@ const formSchema= z.object({
   openThread: z.boolean().default(false),
   content: z.string().min(1),
   imageUrl: z.string().default(""),
- 
-  
+  groupId: z.string()
 });
 
 
@@ -38,7 +37,7 @@ export type CreateThreadValues = z.infer<typeof formSchema>
 
 
  const CreateThread:React.FC<CreateThreadProps>= ({
-  
+  group
 }) => {
 
   const router = useRouter();
@@ -58,6 +57,7 @@ const form = useForm<CreateThreadValues>({
     openThread: false,
     imageUrl: "",
     content: "",
+    groupId:group?.id
   },
 });
 

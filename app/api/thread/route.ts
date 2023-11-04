@@ -14,7 +14,7 @@ export async function POST(
   }
     const body = await req.json();
    
-    const { title, starter, openThread, content} = body;
+    const { title, starter, openThread, content, groupId} = body;
   
     
     
@@ -32,6 +32,13 @@ export async function POST(
       return new NextResponse("Profile doesn't exist.",{ status: 400 });
     }
 
+    const checkGroup= await db.group.findUnique({
+      where: {
+        id:groupId,
+      }
+     })
+
+    if(!checkGroup){
     const newThread = await db.thread.create({
       data: {
         title,
@@ -40,9 +47,32 @@ export async function POST(
         content,
       },
     })
+    return NextResponse.json(newThread); 
+  } else {
+    const newThread = await db.thread.create({
+      data: {
+        title,
+        starter: starter.id,
+        openThread,
+        content,
+        groupId:groupId,
+      },
+    })
+    await db.group.update({
+      where: {
+        id:groupId,
+      },
+      data: {
+        threadIds: {
+          push: newThread.id,
+        }
+      },
+    })
+    return NextResponse.json(newThread); 
+  }
    
     
-    return NextResponse.json(newThread); 
+ 
 
   } catch (error) {
     console.log('[THREAD_POST]', error);
