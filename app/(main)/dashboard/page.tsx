@@ -23,6 +23,8 @@ import { allMembers } from "@/lib/all-members";
 import { Calendar } from "@/components/ui/calendar";
 import { currentCreatedGroups } from "@/lib/current-created-groups";
 import Thread from "@/components/thread/thread";
+import ThreadViewer from "@/components/thread/thread-viewer";
+import { allUserGroupThreads } from "@/lib/all-user-group-threads";
 
 
 
@@ -33,6 +35,12 @@ const DashboardPage = async () => {
   }
    const profile = await currentProfile();
    const userGroups = await currentGroups();
+  const allThreads = await allUserGroupThreads();
+
+
+
+
+
    const userCreatedGroups = await currentCreatedGroups();
    const creator = await currentCreator();
    
@@ -67,7 +75,15 @@ const DashboardPage = async () => {
     <div className="flex items-center justify-center flex-col gap-2">
     Joined Groups:
     <Divider/>
-  {userGroups && allProfiles && profile  &&(
+    <ThreadViewer
+    threads={allThreads}
+    />
+
+
+
+
+
+  {/* {userGroups && allProfiles && profile  &&(
       
       userGroups.map((group) => (
         
@@ -79,7 +95,7 @@ const DashboardPage = async () => {
       />
         )
       )
-    )}
+    )} */}
     </div>
   
 
