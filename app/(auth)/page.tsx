@@ -1,18 +1,18 @@
+import Navbar from "@/components/navbar/navbar";
 import Image from "next/image";
 
 interface LandingPageProps {}
 
 const LandingPage = () => {
   return (
-    <div>
+    <div className="h-full w-full">
 
+<Navbar/>
 
-<div className="min-h-screen grid grid-cols-2 justify-between">
-  <div>
-    <Image src="/images/logo.png" width={250} height={250} alt="logo" />
-  </div>
+<div className="min-h-screen grid grid-cols-2 justify-between w-full">
+ 
 
-<div className="flex flex-col items-center justify-center">
+<div className="flex flex-col items-center justify-center bg-zinc-100/50">
 <h1>HELLO GROUPIES!</h1>
 <h2>Welcome to the internets hottest new grouping application.</h2>
 <h3>Align with groups that have your interests quickly.</h3>
