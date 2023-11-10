@@ -35,7 +35,7 @@ const MainLayout = async  ({
        name={userName}
        />
        </div>
-      <div className="hidden bg-zinc-200/80 mt-[35px] md:flex h-full w-[148px] z-30 flex-col fixed inset-y-0">
+       <div className="hidden bg-zinc-200/80 mt-[30px]  md:flex h-full w-[160px] z-30 flex-col fixed inset-y-0">
       <Sidebar
       userCreatedGroups={userCreatedGroups}
       nonUserCreatedGroups={nonUserCreatedGroups}

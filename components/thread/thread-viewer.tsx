@@ -17,7 +17,7 @@ return null;
 }
   return (
     <div>
-      <Tabs>
+      <Tabs className="w-[200px] overflow-x-scroll md:w-auto">
         Categories:
         <Tab key="announcements" title="Announcements">
           Announcements

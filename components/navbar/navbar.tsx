@@ -17,12 +17,12 @@ const Navbar = async () => {
     {!user ? (
       <Link className="flex items-center justify-center gap-1" href="/">  
       <Image src="/logo.png" width={30} height={30} alt="logo" />
-      <p className="font-bold text-lg font-sans bg-gradient-to-r from-orange-400 to-green-500 bg-clip-text text-transparent">Group-Up</p>
+      <p className="font-bold text-md md:text-lg font-sans bg-gradient-to-r from-orange-400 to-green-500 bg-clip-text text-transparent">Group-Up</p>
     </Link>
     ):(
   <Link className="flex items-center justify-center gap-1" href="/dashboard">  
       <Image src="/logo.png" width={30} height={30} alt="logo" />
-      <p className="font-bold text-lg font-sans bg-gradient-to-r from-orange-400 to-green-500 bg-clip-text text-transparent">Group-Up</p>
+      <p className="font-bold text-md md:text-lg font-sans bg-gradient-to-r from-orange-400 to-green-500 bg-clip-text text-transparent">Group-Up</p>
     </Link>
     )}
    
@@ -41,8 +41,8 @@ const Navbar = async () => {
           <div>
             <div className="flex justify-between items-center w-full gap-1 p-2">
               
-            <h1 className=" text-md font-bold">Welcome</h1> 
-            <h1 className="text-md font-bold  bg-gradient-to-tr from-green-500 to-green-700 bg-clip-text text-transparent"> {name}!</h1>
+            <h1 className="text-xs md:text-md font-bold">Welcome</h1> 
+            <h1 className="text-xs md:text-md font-bold  bg-gradient-to-tr from-green-500 to-green-700 bg-clip-text text-transparent"> {name}!</h1>
             
 
           <UserButton afterSignOutUrl="/" 
