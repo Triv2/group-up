@@ -100,7 +100,7 @@ return null;
 
         <Button
         size="sm"
-            onClick={()=>router.push(`/group/join`)}
+            onClick={()=>router.push(`/setup/group/join`)}
             className="w-full  rounded-none bg-zinc-200/80 hover:bg-zinc-200/10 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
             >
               <div className="">
@@ -110,7 +110,7 @@ return null;
             </Button>
             <Button
             size="sm"
-            onClick={()=>router.push(`/group`)}
+            onClick={()=>router.push(`/setup/group`)}
             className="w-full  rounded-none bg-zinc-200/80 hover:bg-zinc-200/10 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
             >
               <div className="">

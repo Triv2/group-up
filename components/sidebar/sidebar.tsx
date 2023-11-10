@@ -32,46 +32,18 @@ SideBarProps) => {
 
 
   return (
-<div className="w-[148px] bg-zinc-200/80 h-full  shadow-md">
+<div className="w-[148px] bg-zinc-200 h-full px-20 shadow-md">
   
-
-{!profile ? (
-  <div className="flex items-center justify-center flex-col">
-        <h1 className=" text-md font-bold">Welcome</h1> <h1 className="text-md font-bold  bg-gradient-to-tr from-green-400 to-green-500 bg-clip-text text-transparent"> {name}!</h1>
-        <Divider/>
-        </div>) 
-        : (
-          <div>
-            <div className="flex justify-between items-center w-full gap-5 p-2">
-              <div>
-            <h1 className=" text-md font-bold">Welcome</h1> 
-            <h1 className="text-md font-bold  bg-gradient-to-tr from-green-500 to-green-700 bg-clip-text text-transparent"> {name}!</h1>
-            </div>
-
-          <UserButton afterSignOutUrl="/" 
-            appearance={{
-              elements: {
-                userButtonPopoverCard:"pointer-events-auto",
-              }
-            }}
-          
-          />
-          </div>
-          <Divider />
-          {members &&(
+       
+          {members && profile &&(
           <SidebarController 
             profile={profile} 
             joinedGroups={nonUserCreatedGroups} 
             createdGroups={userCreatedGroups} 
             members={members}/>
             )}
-
-
-          
-          
+      
         
-          </div>
-        )} 
 </div>
   );
 }

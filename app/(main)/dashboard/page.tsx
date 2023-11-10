@@ -59,8 +59,8 @@ const DashboardPage = async () => {
  
   return (
 <div className="md:pl-[148px] flex items-center min-h-screen h-auto w-full flex-col gap-4 pt-10  pb-10 bg-[url(/cbg2.png)] bg-no-repeat bg-cover bg-center">
-  <div className="rounded-md bg-zinc-100/80 flex flex-col items-center justify-center gap-2 py-3 md:p-5 shadow-md">
-  <h1 className="text-3xl font-bold">Welcome, {profile?.name}!</h1><UserButton afterSignOutUrl="/"/>
+  <div className="rounded-md bg-zinc-100/80 flex flex-col items-center justify-center gap-2 py-3 px-10 md:p-5 shadow-md">
+  <h1 className="text-3xl font-bold">Welcome, {profile?.name}!</h1>
     {!userGroups && (<div className="flex items-center flex-col">
       <h1 className="text-red-500">ALERT: YOUR ARE NOT IN ANY GROUPS.</h1>
       <h2>PLEASE CREATE OR JOIN A GROUP</h2>
@@ -73,7 +73,7 @@ const DashboardPage = async () => {
   <Divider/>
   <div className="grid md:grid-cols-2 gap-10 px-7 ">
     <div className="flex items-center justify-center flex-col gap-2">
-    Joined Groups:
+    Threads:
     <Divider/>
     <ThreadViewer
     threads={allThreads}

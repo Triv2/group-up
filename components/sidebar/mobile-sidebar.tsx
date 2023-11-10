@@ -43,7 +43,7 @@ export const MobileSidebar = ({
           <Menu />
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="p-0 w-[148px]">
+      <SheetContent side="left" className="p-0 bg-zinc-200 pt-[20px] w-[160px]">
       <Sidebar
       userCreatedGroups={userCreatedGroups}
       nonUserCreatedGroups={nonUserCreatedGroups}
