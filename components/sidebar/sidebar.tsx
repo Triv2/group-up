@@ -33,11 +33,7 @@ SideBarProps) => {
 
   return (
 <div className="w-[148px] bg-zinc-200/80 h-full  shadow-md">
-  <div className="flex items-center justify-cetner px-1 py-1 ">
-    <Image src="/logo.png" height={45} width={45} alt="logo"/>
-    <p className="font-bold text-lg font-sans bg-gradient-to-r from-orange-400 to-green-500 bg-clip-text text-transparent">Group-Up</p>
-  </div>
-  <Divider/>
+  
 
 {!profile ? (
   <div className="flex items-center justify-center flex-col">
