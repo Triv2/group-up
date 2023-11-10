@@ -30,11 +30,11 @@ const Navbar = async () => {
 
 {!user ? (
    <div className="flex items-center justify-center gap-1">
-   <Link className="rounded-md px-2 py-1 flex items-center justify-center shadow-md text-xs  font-semibold hover:scale-110 hover:bg-white text-emerald-500 bg-zinc-100/80" href="/sign-in">
-     Sign In
+   <Link className="rounded-md px-2 py-1 flex items-center justify-center shadow-md text-xs  font-semibold hover:scale-110 hover:bg-white dark:bg-zinc-500 dark:hover:text-emerald-300/80 dark:hover:bg-zinc-400 text-emerald-500 dark:text-emerald-400 bg-zinc-100/80" href="/sign-in">
+     Login
    </Link>
-   <Link  className="rounded-md px-2 py-1 flex items-center justify-center shadow-md text-xs  font-semibold hover:scale-110 hover:bg-white text-emerald-500 bg-zinc-100/80" href="/sign-up">
-     Sign up
+   <Link  className="rounded-md px-2 py-1 flex items-center justify-center shadow-md text-xs  font-semibold hover:scale-110 hover:bg-white dark:bg-zinc-500 dark:hover:text-emerald-300/80 dark:hover:bg-zinc-400 text-emerald-500 dark:text-emerald-400 bg-zinc-100/80" href="/sign-up">
+     Join
    </Link>
    <UserButton afterSignOutUrl="/"/>
    <ModeToggle/>

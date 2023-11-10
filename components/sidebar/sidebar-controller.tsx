@@ -38,7 +38,7 @@ return null;
           tabList: "gap-6 w-full relative rounded-none p-0 border-b border-divider ",
           cursor: "w-full bg-emerald-500",
           tab: "max-w-fit px-0 h-12 ",
-          tabContent: "group-data-[selected=true]:text-emerald-500 w-[60px] hover:text-emerald-500 "
+          tabContent: "group-data-[selected=true]:text-emerald-500 dark:group-data-[selected=true]:text-emerald-400 w-[60px] hover:text-emerald-500 dark:hover:text-emerald-400 dark:text-white",
         }}>
 
         <Tab key="profile" title="Profile">
@@ -51,14 +51,14 @@ return null;
             
             <Button
             size="sm"
-            className="w-full  rounded-none bg-zinc-200/80 hover:bg-zinc-200/10 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
+            className="w-full  rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
               onClick={()=>router.push(`/dashboard/profiles/${profile.id}/settings`)}
             >
                <Contact className="h-3 w-3"/>Profile Settings
             </Button>
             <Button
             size="sm"
-            className="w-full  rounded-none bg-zinc-200/80 hover:bg-zinc-200/10 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
+            className="w-full  rounded-none bg-zinc-200/80 hover:bg-zinc-200/10 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
               onClick={()=>router.push(`/dashboard`)}
             >
               <Home className="h-3 w-3"/> Dashboard
@@ -101,7 +101,7 @@ return null;
         <Button
         size="sm"
             onClick={()=>router.push(`/setup/group/join`)}
-            className="w-full  rounded-none bg-zinc-200/80 hover:bg-zinc-200/10 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
+            className="w-full  rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:bg-zinc-200/10 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
             >
               <div className="">
               <UserPlus2 className="h-3 w-3"/>
@@ -111,7 +111,7 @@ return null;
             <Button
             size="sm"
             onClick={()=>router.push(`/setup/group`)}
-            className="w-full  rounded-none bg-zinc-200/80 hover:bg-zinc-200/10 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
+            className="w-full  rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:bg-zinc-200/10 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
             >
               <div className="">
              <UserCircle className="h-3 w-3"/> 

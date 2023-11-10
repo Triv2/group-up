@@ -46,12 +46,13 @@ const onDelete = async () => {
     await axios.delete(`/api/profile/${params.profileId}`)
     toast.success("Profile Deleted!");
     signOut();
-    router.push("/")
+    
    
   } catch (error) {
     toast.error("Something went wrong.");
   } finally {
     setLoading(false);
+    router.push("/")
   }
 }
 
