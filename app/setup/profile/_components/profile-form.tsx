@@ -66,7 +66,7 @@ const onSubmit = async (data:ProfileFormValues) => {
     
     await axios.post(`/api/profile/`, data)
     router.refresh();
-    router.push("/setup");
+    router.push("/setup/group");
     toast.success("Profile created!");
   } catch (error) {
     toast.error("Something went wrong.");

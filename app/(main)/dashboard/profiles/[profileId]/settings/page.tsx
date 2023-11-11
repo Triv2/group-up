@@ -33,7 +33,7 @@ const ProfileSettingsPage = async () => {
   text="Cancel"
   className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-red-800 text-white hover:bg-red-500 transition-all text-sm shadow-md"
   />
-  <UserButton afterSignOutUrl="/"/>
+  
   <DeleteButton 
       href={`/`}
       icon={<Trash className="h-3 w-3" />}

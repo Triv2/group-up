@@ -48,16 +48,7 @@ const ProfileSettingsPage = async  () => {
 <div className=" rounded-md shadow-md">
 <ProfileForm  />
 </div>
-<div className="p-2 flex items-center justify-between px-5 w-full">
-<NavButton
-   href={`/`}
-   icon={<MoveLeft className="h-3 w-3" />}
-   text="Back to Setup"
-   className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-red-500 text-white bg-red-800 transition-all text-sm shadow-lg"
-   
-/>
-<UserButton afterSignOutUrl="/"/>
-</div>
+
     </div>
 </div>
   );

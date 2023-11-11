@@ -48,7 +48,13 @@ return null;
           <p className="font-bold text-md py-1 px-1 w-full">Actions</p>
           </div>
           <Divider/>
-            
+          <Button
+            size="sm"
+            className="w-full  rounded-none bg-zinc-200/80 hover:bg-zinc-200/10 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
+              onClick={()=>router.push(`/dashboard`)}
+            >
+              <Home className="h-3 w-3"/> Dashboard
+            </Button>
             <Button
             size="sm"
             className="w-full  rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
@@ -56,13 +62,7 @@ return null;
             >
                <Contact className="h-3 w-3"/>Profile Settings
             </Button>
-            <Button
-            size="sm"
-            className="w-full  rounded-none bg-zinc-200/80 hover:bg-zinc-200/10 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
-              onClick={()=>router.push(`/dashboard`)}
-            >
-              <Home className="h-3 w-3"/> Dashboard
-            </Button>
+            
             <Divider/>
             <div className=" pt-2 pb-2">
             <div className="w-full ">
@@ -91,10 +91,10 @@ return null;
         </Tab>
                 {/* ///////////////////////////////////////////////////////////////////////// */}
         <Tab key="groups" title="Groups">
-        <div className="flex flex-col items-center justify-center pl-1">
+        <div className="flex flex-col items-center justify-center min-w-[140px] max-w-[140px] w-auto">
           
-          <div className="w-full">
-          <p className="font-bold text-md shadow-xl py-1 px-1 w-full">Actions</p>
+          <div className="w-full shadow-md">
+          <p className="font-bold text-md  py-1 px-1 w-full">Actions</p>
           </div>
           <Divider/>
 
