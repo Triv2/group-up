@@ -107,9 +107,20 @@ useEffect(() => {
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-5 px-10  w-full ">
             <div>
               <div>
-          <div className="flex items-center justify-center flex-col gap-6">
+          <div className="flex items-center justify-center flex-col gap-4">
               <h3 className="font-bold text-xl">Create a Group</h3>
               <Divider/>
+              <div className="px-2 text-xs">
+        
+        {openGroup ? (
+          <p className="text-muted-foreground">Group is set to be <span className="font-bold text-sm dark:text-white">Public</span></p>
+        ):(
+          <p className="text-muted-foreground">Group is set to be <span className="font-bold text-sm dark:text-white">Private</span></p>
+        )}
+        
+        <Switch defaultSelected  size="sm"  onClick={()=>handleOpenGroup()}><p className="text-xs">Is This An Open Group?</p></Switch>
+          </div>
+          <Divider/>
             <FormField
           control={form.control}
           name="name"
@@ -131,19 +142,10 @@ useEffect(() => {
             </FormItem>
             )}
         />
-        <Divider/>
-        <Switch defaultSelected className="text-xs"  onClick={()=>handleOpenGroup()}>Is This An Open Group?</Switch>
-        <div className="px-2 text-xs">
-        <p>Current Choice:</p>
-        {openGroup ? (
-          <p className="text-muted-foreground">Group is set to be Public</p>
-        ):(
-          <p className="text-muted-foreground">Group is set to be Private</p>
-        )}
-        </div>
+        
         <Divider/>
          <div className="flex items-center flex-col justify-center">
-          <Switch defaultSelected  onClick={()=>handleClick()}>Upload Image?</Switch>
+          <Switch defaultSelected size="sm" onClick={()=>handleClick()}> <p className="text-xs">Upload Image?</p></Switch>
           {upload && (
         <FormField
           control={form.control}

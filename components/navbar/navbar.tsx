@@ -41,7 +41,7 @@ const Navbar = async () => {
  </div>) 
         : (
           <div>
-            <div className="flex justify-between items-center w-full gap-1 p-2">
+            <div className="flex justify-between items-center w-full gap-2 p-2">
               
             <h1 className="text-xs md:text-md font-bold hidden sm:block">Welcome</h1> 
             <h1 className="text-xs md:text-md font-bold  bg-gradient-to-tr from-green-500 to-green-700 bg-clip-text text-transparent"> {name}!</h1>

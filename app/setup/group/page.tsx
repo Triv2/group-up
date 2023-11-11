@@ -32,10 +32,9 @@ export default async function GroupSetupPage() {
   
 
   return (
-    <main className="flex items-center  flex-col min-h-screen h-auto w-full gap-3 bg-[url(/cbg3.png)]  bg-no-repeat bg-cover bg-center px-2 py-2">
-      <div className="flex items-center flex-col gap-5 pt-3 sm:p-8 bg-zinc-100/80 rounded-md shadow-md mt-[35px] h-auto">
-        
-        <Divider />
+    <main className="flex items-center justify-center flex-col min-h-screen h-auto w-full gap-3 bg-[url(/cbg3.png)]  bg-no-repeat bg-cover bg-center px-2 py-2">
+      <div className="flex items-center  justify-center flex-col gap-5  sm:p-8 bg-zinc-100 dark:bg-zinc-700 rounded-md shadow-md mt-[35px] h-auto">
+   
         <CreateGroupForm/>
         </div>
     </main>
