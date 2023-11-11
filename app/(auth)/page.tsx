@@ -1,12 +1,15 @@
 import Navbar from "@/components/navbar/navbar";
 import NavButton from "@/components/ui/nav-button";
+
+import { currentUser } from "@clerk/nextjs";
 import { Divider } from "@nextui-org/react";
 import { MousePointerClick } from "lucide-react";
 import Image from "next/image";
 
 interface LandingPageProps {}
 
-const LandingPage = () => {
+const LandingPage = async () => {
+  const user= await currentUser() || null;
   return (
     <div className="h-screen w-full">
 
@@ -32,12 +35,18 @@ const LandingPage = () => {
     height={250}
     alt="heroImage"
   />
-  <NavButton
+  {user ? (<NavButton
+  href="/dashboard"
+  text="Get Started"
+  className="rounded-md flex items-center justify-center shadow-md px-3 py-2 gap-2 bg-zinc-200  hover:scale-110 dark:hover-bg-zinc-500 dark:hover:text-emerald-300 font-semibold group group-hover:text-emerald-300 dark:hover:bg-zinc-400 bg-gradient-to-r from-orange-400 to-green-500 bg-clip-text text-transparent"
+  icon={<MousePointerClick className="h-5 w-5 text-orange-500 group-hover:text-orange-300"/>}
+/>):(<NavButton
   href="/sign-up"
   text="Get Started"
   className="rounded-md flex items-center justify-center shadow-md px-3 py-2 gap-2 bg-zinc-200  hover:scale-110 dark:hover-bg-zinc-500 dark:hover:text-emerald-300 font-semibold group group-hover:text-emerald-300 dark:hover:bg-zinc-400 bg-gradient-to-r from-orange-400 to-green-500 bg-clip-text text-transparent"
   icon={<MousePointerClick className="h-5 w-5 text-orange-500 group-hover:text-orange-300"/>}
-/>
+/>)}
+
 </div>
 
 

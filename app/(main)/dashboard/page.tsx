@@ -47,7 +47,7 @@ const DashboardPage = async () => {
    const allProfiles= await allMembers();
    
   if(!profile && !userGroups) {
-    redirect("/");
+    redirect("/setup/profile");
   }
 
   if(!profile && userGroups) {

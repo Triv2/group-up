@@ -90,8 +90,8 @@ const handleClick= () => {
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 h-auto px-5 w-full ">
             <div className="flex items-center flex-col justify-center p-5 gap-5">
             
-            <div className="flex items-center flex-col md:flex-row gap-2">
-            <div className='flex items-center flex-col justify-center p-5 gap-5 w-full broder-black border-1 rounded-md shadow-md bg-neutral-100/50'>
+            <div className="flex items-center flex-col md:flex-row gap-2 ">
+            <div className='flex items-center flex-col justify-center p-5 gap-5 w-full broder-black border-1 rounded-md shadow-md bg-zinc-100 dark:bg-zinc-800'>
             <FormField
           control={form.control}
           name="name"
@@ -102,11 +102,11 @@ const handleClick= () => {
               </FormLabel>
               <FormControl>
                <Input 
-               
+               variant="bordered"
                type="name"
-               
+               color="success"
                placeholder="Please enter a name"
-                className="text-black rounded-md "
+                className="text-black rounded-md dark:text-white "
                disabled={loading}  {...field}/>
               </FormControl>
               <FormMessage/>
@@ -125,9 +125,10 @@ const handleClick= () => {
               <FormControl>
              
                  <Textarea
-                 
+                 variant="bordered"
+                  color="success"
                   placeholder="Enter your description"
-                  className="max-w-xs text-black"
+                  className="max-w-xs text-black  dark:text-white"
                   {...field}
                 />
               </FormControl>
@@ -137,7 +138,7 @@ const handleClick= () => {
         />
         </div>
         <div className="flex items-center flex-col justify-center ">
-          <Switch defaultSelected  onClick={()=>handleClick()}><p >Upload Image?</p></Switch>
+          <Switch defaultSelected  size="sm" onClick={()=>handleClick()}><p className="text-xs md:text-md" >Upload Image?</p></Switch>
           {upload && (
         <FormField
           control={form.control}
