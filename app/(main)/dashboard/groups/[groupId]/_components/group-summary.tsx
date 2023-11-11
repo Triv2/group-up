@@ -34,7 +34,7 @@ return null;
 }
   return (
     
-    <div className="flex items-center justify-start flex-col px-2 py-2 gap-1 h-auto rounded-md bg-zinc-100/80 shadow-md w-min-[200px] md:w-[500px]">
+    <div className="flex items-center justify-start flex-col px-2 py-2 gap-1 h-auto rounded-md bg-zinc-100 dark:bg-zinc-500 shadow-md w-min-[200px] md:w-[500px]">
       
         
        {group &&( <div className="flex items-center gap-2 w-full">
@@ -83,7 +83,7 @@ return null;
         </div>
         <Divider/>
        {members.map((member) => (
-        <li className="text-xs  flex items-center gap-1 justify-start w-full shadow-md py-1 rounded-md bg-zinc-50 px-2" key={member.id}>
+        <li className="text-xs  flex items-center gap-1 justify-start w-full shadow-md py-1 rounded-md bg-zinc-50 dark:bg-zinc-400 px-2" key={member.id}>
         <Avatar src={member.imageUrl} size="sm"  />
         <div className="flex flex-col">
         {member.name}

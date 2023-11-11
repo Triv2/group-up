@@ -48,7 +48,7 @@ export default async function GroupSetupPage() {
 
   return (
     <main className="flex items-center  flex-col min-h-screen h-auto w-full gap-3 bg-[url(/cbg3.png)]  bg-no-repeat bg-cover bg-center px-2 py-2">
-      <div className="flex items-center flex-col gap-5 pt-3 sm:p-8 bg-zinc-100/80 dark:bg-zinc-700 rounded-md mt-[35px] shadow-md h-auto">
+      <div className="flex items-center flex-col gap-5 pt-3 sm:p-8 bg-zinc-300 dark:bg-zinc-700 rounded-md mt-[35px] shadow-md h-auto">
     
         
         <Divider />

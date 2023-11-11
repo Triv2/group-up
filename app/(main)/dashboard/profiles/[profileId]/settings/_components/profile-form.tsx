@@ -110,7 +110,7 @@ const handleClick= () => {
                 Name
               </FormLabel>
               <FormLabel className="text-xs text-muted-foreground flex justify-between px-2">
-                Current Name: <p className="font-semibold text-emerald-800">{profile?.name}</p>
+                Current Name: <p className="font-semibold text-emerald-800 dark:text-emerald-500">{profile?.name}</p>
               </FormLabel>
               <FormControl>
                <Input 
@@ -118,7 +118,7 @@ const handleClick= () => {
                type="name"
                
                placeholder="Please enter a name"
-                className="text-black rounded-md"
+                className="text-black rounded-md dark:text-white"
                disabled={loading}  {...field}/>
               </FormControl>
               <FormMessage/>
@@ -138,7 +138,7 @@ const handleClick= () => {
                 Interests
               </FormLabel>
               <FormLabel className="text-xs text-muted-foreground flex flex-col justify-between px-2">
-                Current Interests: <p className="font-semibold text-emerald-800 pl-2"> {profile?.content}</p>
+                Current Interests: <p className="font-semibold text-emerald-800 dark:text-emerald-500 pl-2"> {profile?.content}</p>
               </FormLabel>
               <FormControl>
              
@@ -156,7 +156,7 @@ const handleClick= () => {
         </div>
         </div>
         <div className="flex items-center flex-col justify-center">
-          <Switch defaultSelected  onClick={()=>handleClick()}>Upload Image?</Switch>
+          <Switch defaultSelected size="sm" onClick={()=>handleClick()}><p className="text-xs">Change Avatar?</p></Switch>
           {upload && (
         <FormField
           control={form.control}

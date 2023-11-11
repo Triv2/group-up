@@ -104,10 +104,10 @@ useEffect(() => {
     <>
       <div className="h-auto w-auto">
            <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-5 px-10  w-full ">
+          <form onSubmit={form.handleSubmit(onSubmit)} className=" px-10  w-full ">
             <div>
               <div>
-          <div className="flex items-center justify-center flex-col gap-4">
+          <div className="flex items-center justify-center flex-col px-4 bg-zinc-100 dark:bg-zinc-500 rounded-md shadow-md py-3 gap-4">
               <h3 className="font-bold text-xl">Create a Group</h3>
               <Divider/>
               <div className="px-2 text-xs">
@@ -135,7 +135,7 @@ useEffect(() => {
                type="name"
                
                placeholder="Please enter a group name"
-                className="text-black rounded-md h-[25px]"
+                className="text-black dark:text-white rounded-md h-[25px]"
                disabled={loading}  {...field}/>
               </FormControl>
               <FormMessage/>

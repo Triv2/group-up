@@ -19,10 +19,10 @@ const ProfileSettingsPage = async () => {
   return (
 <div className="flex items-center justify-center flex-col min-h-screen h-auto bg-[url(/cbg4.png)] bg-no-repeat bg-cover bg-center p-5 py-10">
 
-<div className="flex items-center justify-center flex-col bg-zinc-100/80 rounded-md shadow-md p-3">
+<div className="flex items-center justify-center flex-col bg-zinc-300 dark:bg-zinc-700 rounded-md shadow-md p-3">
   <h2 className="font-bold text-xl mt-5">Edit Your Profile</h2>
 
-<div className="bg-white rounded-md shadow-lg">
+<div className="bg-zinc-200 dark:bg-zinc-500 rounded-md shadow-lg">
 <ProfileForm profile={profile}   />
 </div>
 <div className="p-2 flex items-center justify-between  md:flex-row flex-col gap-2 px-5 w-full">

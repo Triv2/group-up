@@ -81,7 +81,7 @@ return null;
     >
      <p> InviteUrl</p>
      </Tooltip>
-     <Input className=" border-0 focus-visible:ring-0 text-xs/10 text-black focus-visible:ring-offset-0"
+     <Input className=" border-0 focus-visible:ring-0 text-xs/10 text-black dark:text-white focus-visible:ring-offset-0"
               value={inviteUrl} disabled={isLoading} size="sm" onClick={onCopyUrl}
             />
             

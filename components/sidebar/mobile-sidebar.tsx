@@ -39,11 +39,11 @@ export const MobileSidebar = ({
   return (
     <Sheet >
       <SheetTrigger >
-        <Button  size="sm" className="fixed z-50 bg-zinc-200 shadow-xl text-emerald-700 hover:text-emerald-500 hover:bg-zinc-100/80">
+        <Button  size="sm" className="fixed z-50 bg-zinc-200 dark:bg-zinc-700 shadow-xl dark:text-emerald-500 text-emerald-700 hover:text-emerald-500 hover:bg-zinc-100/80">
           <Menu className="h-4 w-4"/>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="p-0 bg-zinc-200 pt-[20px] w-[160px]">
+      <SheetContent side="left" className="p-0 bg-zinc-200 pt-[20px] dark:bg-zinc-500 w-[161px]">
       <Sidebar
       userCreatedGroups={userCreatedGroups}
       nonUserCreatedGroups={nonUserCreatedGroups}
