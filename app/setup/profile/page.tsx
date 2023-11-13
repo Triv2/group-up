@@ -44,6 +44,7 @@ const ProfileSettingsPage = async  () => {
 <Divider />
 
 </div>
+<p className="text-muted-foreground text-xs">You can change your profile at anytime after creation.</p>
 <Divider className="bg-white"/>
 <div className=" rounded-md shadow-md">
 <ProfileForm  />

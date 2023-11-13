@@ -91,12 +91,12 @@ const handleClick= () => {
             <div className="flex items-center flex-col justify-center p-5 gap-5">
             
             <div className="flex items-center flex-col md:flex-row gap-2 ">
-            <div className='flex items-center flex-col  p-5 gap-5 w-full broder-black border-1 rounded-md shadow-md bg-zinc-100 dark:bg-zinc-800'>
+            <div className='flex items-center  flex-col  gap-2 p-3 w-full  rounded-md shadow-md bg-zinc-100 dark:bg-zinc-800 '>
             <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="w-full">
               <FormLabel>
                 Name
               </FormLabel>
@@ -119,7 +119,7 @@ const handleClick= () => {
           control={form.control}
           name="content"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="w-full">
               <FormLabel>
                 Interests
               </FormLabel>
@@ -140,7 +140,7 @@ const handleClick= () => {
         />
         </div>
         <div className="flex items-center flex-col justify-center ">
-          <Switch defaultSelected  size="sm" onClick={()=>handleClick()}><p className="text-xs md:text-md" >Upload Image?</p></Switch>
+          <Switch defaultSelected  size="sm" onClick={()=>handleClick()}><p className="text-xs md:text-md" >Change Avatar?</p></Switch>
           {upload && (
         <FormField
           control={form.control}
