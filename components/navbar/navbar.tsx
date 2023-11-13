@@ -13,7 +13,7 @@ const Navbar = async () => {
   const user = await currentUser() || null;
   const name= `${user?.firstName} ${user?.lastName}`;
   return (
-<nav className="fixed w-full h-[35px] flex items-center justify-between px-2 z-50 bg-zinc-200 dark:bg-zinc-700 shadow-xl">
+<nav className="fixed w-full h-[35px] flex items-center justify-between px-2 z-50 bg-zinc-200 dark:bg-zinc-800 shadow-xl">
    
     {!user ? (
       <Link className="flex items-center justify-center gap-1" href="/">  
