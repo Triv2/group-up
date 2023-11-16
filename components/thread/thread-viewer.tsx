@@ -1,10 +1,15 @@
 'use client'
 import { Tab, Tabs } from '@nextui-org/react';
+import { Thread } from '@prisma/client';
 import {useState, useEffect} from'react'
 
-interface ThreadViewerProps {}
+interface ThreadViewerProps {
+  AllThreads: Thread[] | null;
+}
 
-const ThreadViewer:React.FC<ThreadViewerProps> = () => {
+const ThreadViewer:React.FC<ThreadViewerProps> = ({
+  AllThreads
+}) => {
 
 const [isMounted, setIsMounted] = useState(false);
 
@@ -19,6 +24,11 @@ return null;
     <div>
       <Tabs className="w-[200px] overflow-x-scroll md:overflow-hidden md:w-auto">
         Categories:
+        <Tab key="all" title="All">
+        {AllThreads && AllThreads.map((thread) => (
+          <Button></Button>
+        ))}
+        </Tab>
         <Tab key="announcements" title="Announcements">
           Announcements
         </Tab>

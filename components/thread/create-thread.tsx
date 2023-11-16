@@ -75,10 +75,10 @@ useEffect(() => {
       
     
       data.openThread=openThread;
-      await axios.post(`/api/group/`, data)
+      await axios.post(`/api/thread`, data)
       
       
-      toast.success("Group created!");
+      toast.success("Thread created!");
     } catch (error) {
       toast.error("Something went wrong.");
     } finally {
