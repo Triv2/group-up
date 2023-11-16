@@ -1,0 +1,1 @@
+// this component will be a container that catches all the invites from group leaders, group-wide messages, and private messages.
