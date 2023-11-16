@@ -2,13 +2,16 @@
 import { Tab, Tabs } from '@nextui-org/react';
 import { Thread } from '@prisma/client';
 import {useState, useEffect} from'react'
+import ThreadViewerItem from './thread-viewer-item';
 
 interface ThreadViewerProps {
   AllThreads: Thread[] | null;
+  groupId: string;
 }
 
 const ThreadViewer:React.FC<ThreadViewerProps> = ({
-  AllThreads
+  AllThreads,
+  groupId,
 }) => {
 
 const [isMounted, setIsMounted] = useState(false);
@@ -26,7 +29,7 @@ return null;
         Categories:
         <Tab key="all" title="All">
         {AllThreads && AllThreads.map((thread) => (
-          <Button></Button>
+          <ThreadViewerItem key={thread.id} thread={thread}/>
         ))}
         </Tab>
         <Tab key="announcements" title="Announcements">

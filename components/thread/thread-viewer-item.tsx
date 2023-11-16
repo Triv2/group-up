@@ -1,20 +1,24 @@
+import { Button } from "@nextui-org/react";
 import { Thread } from "@prisma/client";
-import Link from "next/link";
+
+import { useRouter } from "next/navigation";
 
 interface ThreadViewerItemProps {
-  params:  { threadId: string  };
+  
   thread:Thread;
 }
 
 const ThreadViewerItem = ({
   thread,
-  params : { threadId }
+  
 }: ThreadViewerItemProps) => {
+  const router = useRouter();
+
   return (
-<Link href="/dashboard/groups">
+  <Button onClick={()=>router.push(`/dashboard/groups/`)}>
     {thread.title}
     
-</Link>
+  </Button>
   );
 }
 export default ThreadViewerItem;
