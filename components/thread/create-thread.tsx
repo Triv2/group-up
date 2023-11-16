@@ -75,6 +75,7 @@ useEffect(() => {
       
     
       data.openThread=openThread;
+      console.log("onSubmit",data)
       await axios.post(`/api/thread`, data)
       
       
@@ -82,7 +83,7 @@ useEffect(() => {
     } catch (error) {
       toast.error("Something went wrong.");
     } finally {
-      router.push(`/dashboard`);
+      router.refresh();
       setLoading(false);
     }
   };

@@ -15,9 +15,9 @@ const ThreadsPage = async (
   const threads = await allThreads();
   return (
 <div className="flex items-center justify-center h-auto w-auto pt-[35px] pl-[170px]">
-<div>
-<ThreadViewer AllThreads={threads} currentGroup={params.groupId}/>
-</div>
+{/* <div>
+<ThreadViewer AllThreads={threads} groupId={params.groupId}/>
+</div> */}
 <div>
   <CreateThread/>
 </div>

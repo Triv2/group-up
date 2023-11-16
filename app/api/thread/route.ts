@@ -13,8 +13,8 @@ export async function POST(
     return redirectToSignIn();
   }
     const body = await req.json();
-   
-    const { title, starter, openThread, content, groupId} = body;
+    
+    const { title,  openThread, content, groupId} = body;
   
     
     
@@ -24,7 +24,7 @@ export async function POST(
     
     const checkProfile = await db.profile.findFirst({ 
       where: {
-        id:starter.id,
+        id:user.id,
       }
     })
     
@@ -42,7 +42,7 @@ export async function POST(
     const newThread = await db.thread.create({
       data: {
         title,
-        starter: starter.id,
+        starter: checkProfile.id,
         openThread,
         content,
       },
@@ -52,7 +52,7 @@ export async function POST(
     const newThread = await db.thread.create({
       data: {
         title,
-        starter: starter.id,
+        starter: checkProfile.id,
         openThread,
         content,
         groupId:groupId,
@@ -68,6 +68,8 @@ export async function POST(
         }
       },
     })
+    console.log("onSubmit", newThread);
+    
     return NextResponse.json(newThread); 
   }
    
