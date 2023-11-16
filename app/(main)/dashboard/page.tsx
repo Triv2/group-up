@@ -26,7 +26,7 @@ import Thread from "@/components/thread/thread";
 import ThreadViewer from "@/components/thread/thread-viewer";
 import { allUserGroupThreads } from "@/lib/all-user-group-threads";
 
-
+export const revalidate = 1;
 
 const DashboardPage = async () => {
   const { userId} = auth();

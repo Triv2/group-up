@@ -14,7 +14,7 @@ export async function PATCH(
     const body = await req.json();
     
     // add route to bring in the group to be updated
-    const { name, imageUrl, group, openGroup } = body;
+    const { name, imageUrl,  openGroup } = body;
   
     let image= imageUrl;
     

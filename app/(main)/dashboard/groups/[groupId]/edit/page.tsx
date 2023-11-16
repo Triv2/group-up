@@ -47,11 +47,11 @@ const GroupEditPage = async ({
  
   return (
 <div className="flex items-center justify-center flex-col h-auto min-h-screen bg-[url(/cbg5.png)] bg-no-repeat bg-cover bg-center p-5 py-10">
-  <div className="bg-zinc-100/80 flex items-center justify-center flex-col rounded-md p-3">
+  <div className="bg-zinc-100 dark:bg-zinc-700 flex items-center justify-center flex-col rounded-md p-3">
  
-   <Divider/>
    
-      <Divider/>
+   
+      
     {(visible && currentGroup) ?( <EditGroupSettingsForm group={currentGroup}/>
     ):(
       <div className="flex items-center flex-col justify-center gap-2 p-2">
