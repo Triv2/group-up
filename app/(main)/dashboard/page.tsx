@@ -25,6 +25,7 @@ import { currentCreatedGroups } from "@/lib/current-created-groups";
 import Thread from "@/components/thread/thread";
 import ThreadViewer from "@/components/thread/thread-viewer";
 import { allUserGroupThreads } from "@/lib/all-user-group-threads";
+import CreateGroupModal from "@/components/modals/create-group-modal";
 
 export const revalidate = 1;
 
@@ -79,7 +80,7 @@ const DashboardPage = async () => {
     threads={allThreads}
     />
 
-
+    
 
 
 

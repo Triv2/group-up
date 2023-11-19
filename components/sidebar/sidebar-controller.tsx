@@ -7,6 +7,10 @@ import {useState, useEffect} from'react'
 import GroupList from '../group/group-list';
 import SidebarGroupList from './sidebar-group-list';
 import { ScrollArea } from '../ui/scroll-area';
+import { CreateGroupModal } from '../modals/create-group-modal';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+
 
 interface SidebarControllerProps {
   profile: Profile;
@@ -23,6 +27,34 @@ const SidebarController:React.FC<SidebarControllerProps> = ({
 }) => {
 const router = useRouter();
 const [isMounted, setIsMounted] = useState(false);
+const [create,setCreate] = useState(false);
+const [loading, setLoading] = useState(false);
+
+const handleCreate =  () => {
+  if(create){
+    setCreate(false);
+  }else{
+    setCreate(true);
+  }
+}
+
+const createGroup = async (group:Group) => {
+  try {
+    setLoading(true);
+    
+    await axios.post(`/api/group/`, group)
+    if(create){
+      setCreate(false);
+    }
+    
+    toast.success("Group Created!");
+  } catch (error) {
+    toast.error("Something went wrong.");
+  } finally {
+    router.refresh();
+    setLoading(false);
+  }
+}
 
 useEffect(() => {
 setIsMounted(true);
@@ -62,6 +94,15 @@ return null;
             >
                <Contact className="h-3 w-3"/>Profile Settings
             </Button>
+            <Button onClick={()=>setCreate(true)}>
+              Create Group
+            </Button>
+            <CreateGroupModal
+             isOpen={create}
+             onClose={()=> setCreate(false)}
+             onConfirm={()=>createGroup}
+             loading={loading}
+            />
             
             <Divider/>
             <div className=" pt-2 pb-2">
