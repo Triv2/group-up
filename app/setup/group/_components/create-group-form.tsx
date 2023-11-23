@@ -104,14 +104,15 @@ useEffect(() => {
     <>
       <div className="h-auto w-auto mt-[35px]">
            <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className=" px-5 w-full ">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 px-5 w-full ">
             <div>
               <div>
           <div className="flex items-center justify-center flex-col px-4 bg-zinc-200 dark:bg-zinc-700 rounded-md shadow-md  py-3 gap-4">
-              <h3 className="font-bold text-xl">Create a Group</h3>
+              
+              
+              <p className="text-muted-foreground text-xs">You can edit your group at anytime after creation.</p>
               <Divider/>
-              <p className="text-muted-foreground text-xs">You can change your profile at anytime after creation.</p>
-              <div className="flex items-center justify-center flex-col px-4 py-3 bg-zinc-100 dark:bg-zinc-800 shadow-md rounded-md p-2 gap-3">
+              <div className="flex items-center justify-center flex-col px-4 py-3 bg-zinc-100 dark:bg-zinc-800 shadow-md rounded-md p-2 gap-6">
 
               
       

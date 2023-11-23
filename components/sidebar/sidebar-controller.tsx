@@ -10,6 +10,7 @@ import { ScrollArea } from '../ui/scroll-area';
 import { CreateGroupModal } from '../modals/create-group-modal';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import EditProfileModal from '../modals/edit-profile-modal';
 
 
 interface SidebarControllerProps {
@@ -28,6 +29,7 @@ const SidebarController:React.FC<SidebarControllerProps> = ({
 const router = useRouter();
 const [isMounted, setIsMounted] = useState(false);
 const [create,setCreate] = useState(false);
+const [edit,setEdit] = useState(false);
 const [loading, setLoading] = useState(false);
 
 const handleCreate =  () => {
@@ -55,6 +57,25 @@ const createGroup = async (group:Group) => {
     setLoading(false);
   }
 }
+
+const editProfile = async (profile:Profile) => {
+  try {
+    setLoading(true);
+    
+    await axios.patch(`/api/profile/${profile.id}`, profile)
+    if(edit){
+      setEdit(false);
+    }
+    
+    toast.success("Profile updated!");
+  } catch (error) {
+    toast.error("Something went wrong.");
+  } finally {
+    router.refresh();
+    setLoading(false);
+  }
+}
+
 
 useEffect(() => {
 setIsMounted(true);
@@ -90,21 +111,20 @@ return null;
             <Button
             size="sm"
             className="w-full  rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
-              onClick={()=>router.push(`/dashboard/profiles/${profile.id}/settings`)}
+              onClick={()=>setEdit(true)}
             >
                <Contact className="h-3 w-3"/>Profile Settings
             </Button>
-            <Button onClick={()=>setCreate(true)}>
-              Create Group
-            </Button>
-            <CreateGroupModal
-             isOpen={create}
-             onClose={()=> setCreate(false)}
-             onConfirm={()=>createGroup}
-             loading={loading}
-            />
+            
             
             <Divider/>
+            <EditProfileModal
+             profile={profile}
+             isOpen={edit}
+             onClose={()=>setEdit(false)}
+             onConfirm={()=>editProfile}
+             loading={loading}
+            />
             <div className=" pt-2 pb-2">
             <div className="w-full ">
           <p className="font-bold text-md py-1 px-1 pt-2 w-full">Profile Information</p>
@@ -151,7 +171,7 @@ return null;
             </Button>
             <Button
             size="sm"
-            onClick={()=>router.push(`/setup/group`)}
+            onClick={()=>setCreate(true)}
             className="w-full  rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:bg-zinc-200/10 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
             >
               <div className="">
@@ -160,7 +180,13 @@ return null;
             </Button>
             <Divider/>
             
-
+           
+            <CreateGroupModal
+             isOpen={create}
+             onClose={()=> setCreate(false)}
+             onConfirm={()=>createGroup}
+             loading={loading}
+            />
 
 
 

@@ -34,9 +34,7 @@ export const CreateGroupModal: React.FC<CreateGroupModalProps> = ({
         <Button disabled={loading}  onClick ={onClose}>
           Cancel
         </Button>
-        <Button disabled={loading}  onClick ={onConfirm}>
-          Continue
-        </Button>
+        
       </div>
 
     </Modal>
