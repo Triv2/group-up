@@ -3,6 +3,7 @@
 import CreateGroupForm from '@/app/setup/group/_components/create-group-form';
 import { Modal } from '@/components/ui/modal';
 import { Button } from '@nextui-org/react';
+import { useEffect } from 'react';
 
 interface CreateGroupModalProps {
   isOpen: boolean;
@@ -17,7 +18,7 @@ export const CreateGroupModal: React.FC<CreateGroupModalProps> = ({
   onConfirm,
   loading,
 }) => {
-
+  
 
   return(
     <Modal
@@ -25,8 +26,9 @@ export const CreateGroupModal: React.FC<CreateGroupModalProps> = ({
     description="Fill out the form to create a new group."
     isOpen={isOpen}
     onClose={onClose}
+    
     >
-      <CreateGroupForm/>
+      <CreateGroupForm onClose={onClose}/>
 
 
 

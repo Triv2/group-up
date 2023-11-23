@@ -40,34 +40,18 @@ const handleCreate =  () => {
   }
 }
 
-const createGroup = async (group:Group) => {
-  try {
-    setLoading(true);
-    
-    await axios.post(`/api/group/`, group)
-    if(create){
-      setCreate(false);
-    }
-    
-    toast.success("Group Created!");
-  } catch (error) {
-    toast.error("Something went wrong.");
-  } finally {
-    router.refresh();
-    setLoading(false);
-  }
-}
+
 
 const editProfile = async (profile:Profile) => {
   try {
-    setLoading(true);
+    // setLoading(true);
     
-    await axios.patch(`/api/profile/${profile.id}`, profile)
+    // await axios.patch(`/api/profile/${profile.id}`, profile)
     if(edit){
       setEdit(false);
     }
     
-    toast.success("Profile updated!");
+    // toast.success("Profile updated!");
   } catch (error) {
     toast.error("Something went wrong.");
   } finally {
@@ -184,7 +168,7 @@ return null;
             <CreateGroupModal
              isOpen={create}
              onClose={()=> setCreate(false)}
-             onConfirm={()=>createGroup}
+             onConfirm={()=>{}}
              loading={loading}
             />
 

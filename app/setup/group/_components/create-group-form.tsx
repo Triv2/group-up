@@ -20,7 +20,7 @@ import { FileUpload } from '@/components/file-upload';
 
 
 interface CreateGroupFormProps {
-  
+  onClose: () => void;
 }
 
 const formSchema= z.object({
@@ -37,7 +37,7 @@ export type CreateGroupFormValues = z.infer<typeof formSchema>
 
 
  const CreateGroupForm:React.FC<CreateGroupFormProps>= ({
-  
+  onClose,
 }) => {
 
   const router = useRouter();
@@ -80,7 +80,8 @@ useEffect(() => {
     } catch (error) {
       toast.error("Something went wrong.");
     } finally {
-      router.push(`/dashboard`);
+      onClose();
+      router.refresh();
       setLoading(false);
     }
   };
