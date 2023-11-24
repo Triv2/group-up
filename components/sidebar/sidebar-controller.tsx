@@ -11,6 +11,7 @@ import { CreateGroupModal } from '../modals/create-group-modal';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import EditProfileModal from '../modals/edit-profile-modal';
+import AllGroupsModal from '../modals/all-groups-modal';
 
 
 interface SidebarControllerProps {
@@ -18,6 +19,7 @@ interface SidebarControllerProps {
   createdGroups: Group[] | null | undefined;
   joinedGroups: Group[] | null | undefined;
   members: Profile[];
+  allGroups: Group[] | null | undefined;
 }
 
 const SidebarController:React.FC<SidebarControllerProps> = ({
@@ -25,40 +27,17 @@ const SidebarController:React.FC<SidebarControllerProps> = ({
   createdGroups,
   joinedGroups,
   members,
+  allGroups,
 }) => {
 const router = useRouter();
 const [isMounted, setIsMounted] = useState(false);
+const [groups, setGroups] = useState(false);
 const [create,setCreate] = useState(false);
 const [edit,setEdit] = useState(false);
 const [loading, setLoading] = useState(false);
 
-const handleCreate =  () => {
-  if(create){
-    setCreate(false);
-  }else{
-    setCreate(true);
-  }
-}
 
 
-
-const editProfile = async (profile:Profile) => {
-  try {
-    // setLoading(true);
-    
-    // await axios.patch(`/api/profile/${profile.id}`, profile)
-    if(edit){
-      setEdit(false);
-    }
-    
-    // toast.success("Profile updated!");
-  } catch (error) {
-    toast.error("Something went wrong.");
-  } finally {
-    router.refresh();
-    setLoading(false);
-  }
-}
 
 
 useEffect(() => {
@@ -145,7 +124,7 @@ return null;
 
         <Button
         size="sm"
-            onClick={()=>router.push(`/setup/group/join`)}
+            onClick={()=>setGroups(true)}
             className="w-full  rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:bg-zinc-200/10 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
             >
               <div className="">
@@ -153,6 +132,20 @@ return null;
               </div>
                Add Groups
             </Button>
+
+        {allGroups &&(
+            <AllGroupsModal
+             isOpen={groups}
+             onClose={()=> setGroups(false)}
+             onConfirm={()=>{}}
+             loading={loading}
+             groups={allGroups}
+             members={members}
+             profile={profile}
+             joinedGroups={joinedGroups}
+             createdGroups={createdGroups} 
+            />
+        )}
             <Button
             size="sm"
             onClick={()=>setCreate(true)}

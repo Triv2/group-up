@@ -12,6 +12,7 @@ import { redirect } from 'next/navigation';
 import { Divider } from '@nextui-org/react';
 
 import CreateGroupForm from '../../../components/group/create-group-form';
+import InitialGroupForm from './_components/initial-group-form';
 
 export default async function GroupSetupPage() {
   const { userId} = auth();
@@ -35,7 +36,7 @@ export default async function GroupSetupPage() {
     <main className="flex items-center justify-center flex-col min-h-screen h-auto w-full gap-3 bg-[url(/cbg3.png)]  bg-no-repeat bg-cover bg-center px-2 py-2">
      
    
-        <CreateGroupForm/>
+        <InitialGroupForm/>
         
     </main>
   )

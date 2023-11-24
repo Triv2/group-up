@@ -6,6 +6,7 @@ import { Button } from '@nextui-org/react';
 import { useEffect } from 'react';
 import JoinGroupForm from '../group/join-group-form';
 import { Group, Profile } from '@prisma/client';
+import { ScrollArea } from '../ui/scroll-area';
 
 interface AllGroupsModalProps {
   isOpen: boolean;
@@ -15,6 +16,8 @@ interface AllGroupsModalProps {
   groups: Group[] | null;
   members: Profile[] | null;
   profile: Profile | null;
+  joinedGroups: Group[] | null | undefined;
+  createdGroups: Group[] | null | undefined;
 }
 
 export const AllGroupsModal: React.FC<AllGroupsModalProps> = ({
@@ -22,6 +25,11 @@ export const AllGroupsModal: React.FC<AllGroupsModalProps> = ({
   onClose,
   onConfirm,
   loading,
+  groups,
+  members,
+  profile,
+  joinedGroups,
+  createdGroups,
 }) => {
   
 
@@ -33,9 +41,16 @@ export const AllGroupsModal: React.FC<AllGroupsModalProps> = ({
     onClose={onClose}
     
     >
-      <JoinGroupForm onClose={onClose}/>
+      
+      <JoinGroupForm
+      joinedGroups={joinedGroups}
+      createdGroups={createdGroups} 
+      onClose={onClose}
+      groups={groups}
+      members={members}
+      profile={profile}/>
 
-
+    
 
       <div className="pt-6 space-x-2 flex items-center justify-end w-full">
         <Button disabled={loading}  onClick ={onClose}>

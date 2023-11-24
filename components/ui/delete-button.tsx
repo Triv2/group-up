@@ -11,14 +11,14 @@ import {useState, useEffect} from'react'
 import toast from 'react-hot-toast';
 
 interface NavButtonProps {
-  href: string;
+  
   text?: string;
   className?: string;
   icon?:JSX.Element;
 }
 
 const DeleteButton:React.FC<NavButtonProps> = ({
-  href,
+  
   text,
   className,
   icon

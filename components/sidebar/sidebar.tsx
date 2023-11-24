@@ -1,14 +1,6 @@
-import { currentProfile } from "@/lib/current-profile";
-import { UserButton, currentUser, redirectToSignIn } from "@clerk/nextjs";
-import { Divider } from "@nextui-org/react";
-import ProfileSummary from "../profile/profile-summary";
-import { currentGroups } from "@/lib/current-groups";
-import { currentCreatedGroups } from "@/lib/current-created-groups";
-import { allGroups } from "@/lib/all-groups";
+
 import SidebarController from "./sidebar-controller";
-import { allMembers } from "@/lib/all-members";
-import { allNoncreatedJoinedGroups } from "@/lib/all-noncreated-joined-groups";
-import Image from "next/image";
+
 import { Group, Profile } from "@prisma/client";
 
 interface SideBarProps {
@@ -17,6 +9,7 @@ interface SideBarProps {
   members?:Profile[] | null;
   profile?: Profile | null;
   name: string;
+  allGroups: Group[] | null;
 }
 
 
@@ -25,7 +18,8 @@ const SideBar =  ({
   nonUserCreatedGroups,
   members,
   profile,
-  name
+  name,
+  allGroups,
 }:
 SideBarProps) => {
 
@@ -40,7 +34,8 @@ SideBarProps) => {
             profile={profile} 
             joinedGroups={nonUserCreatedGroups} 
             createdGroups={userCreatedGroups} 
-            members={members}/>
+            members={members}
+            allGroups={allGroups}/>
             )}
       
         
