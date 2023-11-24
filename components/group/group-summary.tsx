@@ -1,10 +1,10 @@
 'use client'
 import {useState, useEffect} from'react'
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 import { Avatar, AvatarGroup, Divider } from '@nextui-org/react';
 import { Creator, Group, Profile } from '@prisma/client';
-import InviteCode from './ui/invite-code';
-import GroupActionList from './group/group-action-list';
+import InviteCode from '../ui/invite-code';
+import GroupActionList from './group-action-list';
 
 interface GroupSummaryProps {
   group: Group;

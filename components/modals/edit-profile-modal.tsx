@@ -1,7 +1,7 @@
 'use client'
 
 
-import ProfileEditForm from '@/app/(main)/dashboard/profiles/[profileId]/settings/_components/profile-form';
+import ProfileEditForm from '@/components/profile/profile-edit-form';
 import { Modal } from '@/components/ui/modal';
 import { Button } from '@nextui-org/react';
 import { Profile } from '@prisma/client';

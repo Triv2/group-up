@@ -3,7 +3,7 @@ import { Group, Profile } from '@prisma/client';
 
 
 import { Divider } from '@nextui-org/react';
-import GroupSummary from '../group-summary';
+import GroupSummary from './group-summary';
 
 
 interface GroupListProps {

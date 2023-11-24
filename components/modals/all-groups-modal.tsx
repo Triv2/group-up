@@ -4,15 +4,20 @@ import CreateGroupForm from '@/components/group/create-group-form';
 import { Modal } from '@/components/ui/modal';
 import { Button } from '@nextui-org/react';
 import { useEffect } from 'react';
+import JoinGroupForm from '../group/join-group-form';
+import { Group, Profile } from '@prisma/client';
 
-interface CreateGroupModalProps {
+interface AllGroupsModalProps {
   isOpen: boolean;
   onClose: () => void;
   onConfirm: () => void;
   loading: boolean;
+  groups: Group[] | null;
+  members: Profile[] | null;
+  profile: Profile | null;
 }
 
-export const CreateGroupModal: React.FC<CreateGroupModalProps> = ({
+export const AllGroupsModal: React.FC<AllGroupsModalProps> = ({
   isOpen,
   onClose,
   onConfirm,
@@ -22,13 +27,13 @@ export const CreateGroupModal: React.FC<CreateGroupModalProps> = ({
 
   return(
     <Modal
-    title="Create a group?"
-    description="Fill out the form to create a new group."
+    title="Looking to join a group?"
+    description="Search through the list of groups to find groups you want to join."
     isOpen={isOpen}
     onClose={onClose}
     
     >
-      <CreateGroupForm onClose={onClose}/>
+      <JoinGroupForm onClose={onClose}/>
 
 
 
@@ -43,4 +48,4 @@ export const CreateGroupModal: React.FC<CreateGroupModalProps> = ({
   )
 }
 
-export default CreateGroupModal;
+export default AllGroupsModal;

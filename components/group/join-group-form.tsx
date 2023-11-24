@@ -13,6 +13,7 @@ interface GroupFormProps {
   groups: Group[] | null;
   members: Profile[] | null;
   profile: Profile | null;
+  onClose: () => void;
 }
 
 
@@ -21,6 +22,7 @@ const JoinGroupForm:React.FC<GroupFormProps>= ({
   groups,
   members,
   profile,
+  onClose,
 }) => {
 
  

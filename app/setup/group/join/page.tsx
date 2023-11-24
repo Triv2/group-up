@@ -12,7 +12,7 @@ import { allGroups } from '@/lib/all-groups';
 
 import { Divider } from '@nextui-org/react';
 
-import ProfileSummary from '@/components/profile-summary';
+import ProfileSummary from '@/components/profile/profile-summary';
 import { allOpenGroups } from '@/lib/all-open-groups';
 import { Home } from 'lucide-react';
 import NavButton from '@/components/ui/nav-button';

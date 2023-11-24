@@ -1,7 +1,7 @@
 import { currentProfile } from "@/lib/current-profile";
 import { UserButton, currentUser, redirectToSignIn } from "@clerk/nextjs";
 import { Divider } from "@nextui-org/react";
-import ProfileSummary from "../profile-summary";
+import ProfileSummary from "../profile/profile-summary";
 import { currentGroups } from "@/lib/current-groups";
 import { currentCreatedGroups } from "@/lib/current-created-groups";
 import { allGroups } from "@/lib/all-groups";

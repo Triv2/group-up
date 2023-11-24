@@ -17,8 +17,8 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 
-import ProfileSummary from "@/components/profile-summary";
-import GroupSummary from "@/components/group-summary";
+import ProfileSummary from "@/components/profile/profile-summary";
+import GroupSummary from "@/components/group/group-summary";
 import { allMembers } from "@/lib/all-members";
 
 interface ProfilePageProps {}

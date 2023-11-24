@@ -11,7 +11,7 @@ import { redirect } from 'next/navigation';
 
 import { Divider } from '@nextui-org/react';
 
-import CreateGroupForm from './_components/create-group-form';
+import CreateGroupForm from '../../../components/group/create-group-form';
 
 export default async function GroupSetupPage() {
   const { userId} = auth();

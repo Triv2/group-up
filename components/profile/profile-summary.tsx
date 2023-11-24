@@ -1,12 +1,12 @@
 import { Avatar, Divider } from "@nextui-org/react";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
-import SantaUser from "./ui/santa-user";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
+import SantaUser from "../ui/santa-user";
 import { Group, Profile } from "@prisma/client";
-import NavButton from "./ui/nav-button";
+import NavButton from "../ui/nav-button";
 import { Edit, Layers, User2, UserSquare2, Users2 } from "lucide-react";
 
-import ProfileGroupList from "./profile/profile-group-list";
-import ProfileActionList from "./profile/profile-action-list";
+import ProfileGroupList from "./profile-group-list";
+import ProfileActionList from "./profile-action-list";
 
 interface ProfileSummaryProps {
   profile: Profile;
