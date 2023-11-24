@@ -106,7 +106,7 @@ return null;
              profile={profile}
              isOpen={edit}
              onClose={()=>setEdit(false)}
-             onConfirm={()=>editProfile}
+             onConfirm={()=>{}}
              loading={loading}
             />
             <div className=" pt-2 pb-2">

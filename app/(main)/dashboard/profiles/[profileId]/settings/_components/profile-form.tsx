@@ -18,7 +18,7 @@ import { FileUpload } from '@/components/file-upload';
 
 interface ProfileEditFormProps {
   profile: Profile | null;
- 
+  onClose: () => void;
   
 }
 
@@ -35,7 +35,7 @@ export type ProfileFormValues = z.infer<typeof formSchema>
 
 const ProfileEditForm = ({
   profile,
-  
+  onClose,
   
 }:ProfileEditFormProps) => {
   const router=useRouter();
@@ -72,12 +72,14 @@ const onSubmit = async (data:ProfileFormValues) => {
     
   
     await axios.patch(`/api/profile/${params.profileId}`, data)
-    router.refresh();
-    router.push("/dashboard");
+    
+    
     toast.success("Profile updated!");
   } catch (error) {
     toast.error("Something went wrong.");
   } finally {
+    onClose();
+    router.refresh();
     setLoading(false);
   }
 };

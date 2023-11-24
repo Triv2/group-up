@@ -32,7 +32,7 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
     >
       
 
-      <ProfileEditForm profile={profile}/>
+      <ProfileEditForm profile={profile} onClose={onClose}/>
 
       <div className="pt-6 space-x-2 flex items-center justify-end w-full">
         <Button disabled={loading}  onClick ={onClose}>
