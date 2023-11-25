@@ -9,6 +9,7 @@ import { useParams, useRouter } from 'next/navigation';
 
 import {useState, useEffect} from'react'
 import toast from 'react-hot-toast';
+import { AlertModal } from "../modals/alert-modal";
 
 interface NavButtonProps {
   
@@ -28,6 +29,7 @@ const DeleteButton:React.FC<NavButtonProps> = ({
 const params= useParams();
 const [loading, setLoading] = useState(false);
 const [isMounted, setIsMounted] = useState(false);
+const [isDeleting, setIsDeleting] = useState(false);
 
 
 useEffect(() => {
@@ -37,6 +39,7 @@ setIsMounted(true);
 if (!isMounted) {
 return null;
 }
+
 const onDelete = async () => {
   try {
     setLoading(true);
@@ -57,9 +60,17 @@ const onDelete = async () => {
 }
 
   return (
-    <Button className={className} onClick={onDelete} >
+    <div>
+      <AlertModal
+      isOpen={isDeleting}
+      loading={loading}
+      onConfirm={onDelete}
+      onClose={() => {setIsDeleting(false)}}
+      />
+    <Button className={className} onClick={()=>setIsDeleting(true)} >
       {icon}{text}
     </Button>
+    </div>
   );
 }
 export default DeleteButton;

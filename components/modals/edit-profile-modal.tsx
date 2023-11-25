@@ -36,10 +36,10 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
       <ProfileEditForm profile={profile} onClose={onClose}/>
 
-      <div className="pt-6 space-x-2 flex items-center justify-end w-full">
+      <div className="pt-6 space-x-2 flex items-center justify-between w-full">
         <DeleteButton
           icon={<Trash className="h-4 w-4"/>}
-          text="Delete"
+          text="Delete Profile"
           className="text-red-500"
           
         />

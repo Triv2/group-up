@@ -20,7 +20,8 @@ import { FileUpload } from '@/components/file-upload';
 
 
 interface CreateThreadProps {
-  group?: Group;
+  groups: Group[];
+  onClose: () => void;
 }
 
 const formSchema= z.object({
@@ -37,7 +38,8 @@ export type CreateThreadValues = z.infer<typeof formSchema>
 
 
  const CreateThread:React.FC<CreateThreadProps>= ({
-  group
+  groups,
+  onClose,
 }) => {
 
   const router = useRouter();
@@ -46,6 +48,7 @@ export type CreateThreadValues = z.infer<typeof formSchema>
 const [loading, setLoading] = useState(false);
 const [isMounted, setIsMounted] = useState(false);
 const [upload,setUpload] = useState(false);
+const [postGroup,setPostGroup] = useState("");
 const [openThread, setOpenThread] = useState(false);
 
 
@@ -57,7 +60,7 @@ const form = useForm<CreateThreadValues>({
     openThread: false,
     imageUrl: "",
     content: "",
-    groupId:group?.id
+    groupId:groups[0].id,
   },
 });
 
@@ -75,10 +78,11 @@ useEffect(() => {
       
     
       data.openThread=openThread;
+      data.groupId=postGroup;
       console.log("onSubmit",data)
       await axios.post(`/api/thread`, data)
       
-      
+      onClose();
       toast.success("Thread created!");
     } catch (error) {
       toast.error("Something went wrong.");
@@ -110,7 +114,7 @@ useEffect(() => {
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-5 px-10  w-full ">
             <div>
               <div>
-          <div className="flex items-center justify-center flex-col gap-6">
+          <div className="flex items-center justify-center flex-col gap-8">
               <h3 className="font-bold text-xl">Create a Thread</h3>
               <Divider/>
             <FormField
@@ -127,8 +131,36 @@ useEffect(() => {
                type="name"
                
                placeholder="Please enter a group name"
-                className="text-black rounded-md h-[25px]"
+                className="text-black dark:text-white rounded-md h-[25px]"
                disabled={loading}  {...field}/>
+              </FormControl>
+              <FormMessage/>
+            </FormItem>
+            )}
+        />
+         <FormField
+          control={form.control}
+          name="groupId"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>
+                Select a Group
+              </FormLabel>
+              <FormControl>
+             
+              <Select
+               items={groups}
+               label="Group"
+               placeholder="Please select a group"
+               className="text-black dark:text-white rounded-md h-[25px]"
+               onSelect={setPostGroup(field.value)}
+              >
+                {groups.map((group) => (
+                  <SelectItem className="hover:bg-zinc-500 z-30 pointer-events-auto" key={group.id} value={group.id}>
+                    {group.name}
+                  </SelectItem>
+                ))}
+              </Select>
               </FormControl>
               <FormMessage/>
             </FormItem>
@@ -147,7 +179,7 @@ useEffect(() => {
                  <Textarea
                  
                   placeholder="Enter your description"
-                  className="max-w-xs text-black"
+                  className="max-w-xs text-black dark:text-white"
                   {...field}
                 />
               </FormControl>

@@ -101,7 +101,7 @@ const ProfilePage = async () => {
           />
       <UserButton afterSignOutUrl="/"/>
   <DeleteButton 
-      href={`/`}
+      
       icon={<Trash className="h-3 w-3" />}
       text="Delete Profile"
       className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-red-500 text-white bg-red-800 transition-all text-sm shadow-md"

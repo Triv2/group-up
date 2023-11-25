@@ -1,7 +1,7 @@
 'use client'
 import { Avatar, Button, Divider, Tab, Tabs } from '@nextui-org/react';
 import { Group, Profile } from '@prisma/client';
-import { Contact, Home, UserCircle, UserPlus2 } from 'lucide-react';
+import { Contact, File, Home, UserCircle, UserPlus2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import {useState, useEffect} from'react'
 import GroupList from '../group/group-list';
@@ -12,6 +12,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import EditProfileModal from '../modals/edit-profile-modal';
 import AllGroupsModal from '../modals/all-groups-modal';
+import CreateThreadModal from '../modals/create-thread-modal';
 
 
 interface SidebarControllerProps {
@@ -33,8 +34,18 @@ const router = useRouter();
 const [isMounted, setIsMounted] = useState(false);
 const [groups, setGroups] = useState(false);
 const [create,setCreate] = useState(false);
+const [thread,setThread] = useState(false);
 const [edit,setEdit] = useState(false);
 const [loading, setLoading] = useState(false);
+
+let currentGroups:Group[] = [];
+
+if(createdGroups){
+  currentGroups.push(...createdGroups);
+}
+if(joinedGroups){
+  currentGroups.push(...joinedGroups);
+}
 
 
 
@@ -78,6 +89,14 @@ return null;
             >
                <Contact className="h-3 w-3"/>Profile Settings
             </Button>
+            <Button
+            size="sm"
+            className="w-full  rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
+              onClick={()=>setThread(true)}
+            >
+               <File className="h-3 w-3"/>Create Thread
+            </Button>
+            
             
             
             <Divider/>
@@ -87,6 +106,13 @@ return null;
              onClose={()=>setEdit(false)}
              onConfirm={()=>{}}
              loading={loading}
+            />
+           <CreateThreadModal  
+             isOpen={thread}
+             onClose={()=>setThread(false)}
+             onConfirm={()=>{}}
+             loading={loading}
+             groups={currentGroups}
             />
             <div className=" pt-2 pb-2">
             <div className="w-full ">

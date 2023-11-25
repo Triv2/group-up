@@ -67,20 +67,23 @@ const DashboardPage = async () => {
       <h2>PLEASE CREATE OR JOIN A GROUP</h2>
       
     </div>)}
-  <Divider />
-    Event Calendar
-    <Divider />
-    <Calendar/>
+    
   <Divider/>
   <div className="grid md:grid-cols-2 gap-10 px-7 ">
     <div className="flex items-center justify-center flex-col gap-2">
     Threads:
     <Divider/>
     <ThreadViewer
-    threads={allThreads}
+    userGroups={userGroups}
+    allThreads={allThreads}
     />
-
-    
+</div>
+<div  className="flex items-center justify-center flex-col gap-2">
+  <Divider />
+    Event Calendar
+    <Divider />
+    <Calendar/>
+    </div>
 
 
 
@@ -97,7 +100,7 @@ const DashboardPage = async () => {
         )
       )
     )} */}
-    </div>
+   
   
 
   </div>

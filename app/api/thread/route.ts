@@ -24,7 +24,7 @@ export async function POST(
     
     const checkProfile = await db.profile.findFirst({ 
       where: {
-        id:user.id,
+        clerkId:user.id,
       }
     })
     
@@ -56,11 +56,12 @@ export async function POST(
         openThread,
         content,
         groupId:groupId,
+        profileIds: [checkProfile.id],
       },
     })
     await db.group.update({
       where: {
-        id:groupId,
+        id:groupId
       },
       data: {
         threadIds: {
