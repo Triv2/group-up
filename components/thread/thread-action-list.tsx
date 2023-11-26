@@ -81,7 +81,7 @@ return null;
     <>
     <AlertModal
         isOpen={deleted}
-        onClose={()=> setDelete(false)}
+        onClose={()=> {setDelete(false)}}
         onConfirm={()=>deleteThread(thread)}
         loading={loading}
       />
@@ -105,22 +105,24 @@ return null;
      
       
        {thread.starter===profile.id && ( 
-       <DropdownMenuItem textValue="edit" key="edit">
+        <div>
+       <DropdownMenuItem textValue="edit" key="Edit">
        <Button 
         onClick={()=>router.push(`/dashboard/groups/${thread.groupId}/threads/${thread.id}`)}
         className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-orange-700 text-white hover:bg-orange-500 transition-all text-sm shadow-lg w-full" >
          <Cog className="h-4 w-4"/> Edit
         </Button>
-       </DropdownMenuItem> )}
+       </DropdownMenuItem> 
        
-        {thread.starter===profile.id && (
-          <DropdownMenuItem textValue="delete" key="delete">
+        
+          <DropdownMenuItem textValue="delete" key="Delete">
             <Button 
             onClick={handleDelete}
             className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-red-700 text-white hover:bg-red-500 transition-all text-sm shadow-lg w-full" >
             <Undo className="h-4 w-4"/> Delete
             </Button>
-          </DropdownMenuItem>)}
+          </DropdownMenuItem>
+          </div>)}
           
          
       

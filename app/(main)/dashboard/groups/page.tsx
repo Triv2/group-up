@@ -10,8 +10,9 @@ const GroupsPage = async () => {
   const members = await allMembers();
   const profile = await currentProfile();
   return (
-<div>
-{allGroup && members && profile && (<GroupList title="List of All Groups" groups={allGroup} members={members} profile={profile} />)}
+<div className="flex items-center flex-col justify-center gap-2 min-h-screen">
+  <h1 className="font-bold text-3xl">List of all Groups</h1>
+{allGroup && members && profile && (<GroupList  groups={allGroup} members={members} profile={profile} />)}
 </div>
   );
 }

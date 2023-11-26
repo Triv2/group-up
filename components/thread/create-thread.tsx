@@ -150,7 +150,7 @@ useEffect(() => {
              
               <Select
                items={groups}
-               
+               aria-label="group selector"
                placeholder="Please select a group"
                className="text-black dark:text-white rounded-md h-[25px]"
                onSelect={setPostGroup(field.value)}

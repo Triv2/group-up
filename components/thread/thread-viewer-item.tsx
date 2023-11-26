@@ -21,7 +21,7 @@ const ThreadViewerItem = ({
   const router = useRouter();
 
   return (
-  <div className="flex items-center justify-around px-4 py-2 bg-zinc-100 dark:bg-zinc-600 w-full rounded-md gap-2" onClick={()=>router.push(`/dashboard/groups/`)}>
+  <div className="flex items-center justify-around px-4 py-2 bg-zinc-100 dark:bg-zinc-600 w-full rounded-md gap-2" >
     <div className="w-full">
       {thread.openThread ? (
         <Unlock className="h-3 w-3 "/>
@@ -41,12 +41,7 @@ const ThreadViewerItem = ({
     <p className="text-sm truncate w-[300px]">{thread.content}</p>
     </div>
     <ThreadActionList thread={thread} profile={profile} />
-    {/* <Button onClick={()=>router.push(`/dashboard/groups/${thread.groupId}/threads/${thread.id}`)} className="shadow-md hover:scale-105 transition-all" >
-      View
-    </Button>
-    <Button className="shadow-md hover:scale-105 transition-all" type="button">
-      Delete
-    </Button> */}
+   
   </div>
   );
 }
