@@ -9,7 +9,7 @@ import InviteCode from "@/components/ui/invite-code";
 import { Divider } from "@nextui-org/react";
 import { UserButton, auth, redirectToSignIn } from "@clerk/nextjs";
 
-import EditGroupSettingsForm from "./edit/_components/edit-group-settings";
+import EditGroupSettingsForm from "../../../../../components/group/edit-group-settings";
 import { currentCreatedGroups } from "@/lib/current-created-groups";
 import { currentCreator } from "@/lib/current-creator";
 import axios from "axios";

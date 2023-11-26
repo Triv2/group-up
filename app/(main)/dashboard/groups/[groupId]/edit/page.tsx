@@ -5,7 +5,7 @@ import { MoveLeft } from "lucide-react";
 import { Divider } from "@nextui-org/react";
 import { UserButton, auth, redirectToSignIn } from "@clerk/nextjs";
 
-import EditGroupSettingsForm from "./_components/edit-group-settings";
+import EditGroupSettingsForm from "../../../../../../components/group/edit-group-settings";
 
 import { currentCreator } from "@/lib/current-creator";
 

@@ -21,6 +21,7 @@ import { FileUpload } from '@/components/file-upload';
 
 interface EditGroupSettingsFormProps {
   group: Group;
+  onClose: () => void;
 }
 
 const formSchema= z.object({
@@ -38,6 +39,7 @@ export type EditGroupSettingsFormValues = z.infer<typeof formSchema>
 
  const EditGroupSettingsForm:React.FC<EditGroupSettingsFormProps>= ({
   group,
+  onClose,
 }) => {
 
   const router = useRouter();
@@ -74,12 +76,13 @@ useEffect(() => {
       
       await axios.patch(`/api/group/${group.id}`, data)
       
-      
+      onClose();
       toast.success("Group updated!");
     } catch (error) {
       toast.error("Something went wrong.");
     } finally {
-      router.push(`/dashboard/groups/${group.id}`);
+      router.refresh();
+      router.push(`/dashboard/`);
       setLoading(false);
     }
   };

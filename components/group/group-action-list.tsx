@@ -17,6 +17,7 @@ import { Cog, DoorClosed, DoorOpen, Glasses, Scroll, Undo, Workflow } from 'luci
 import { AlertModal } from '../modals/alert-modal';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import EditGroupModal from '../modals/edit-group-modal';
 
 
 interface GroupActionListProps {
@@ -41,6 +42,7 @@ const GroupActionList:React.FC<GroupActionListProps> = ({
 const [isMounted, setIsMounted] = useState(false);
 const [loading, setLoading] = useState(false);
 const [leave, setLeave] = useState(false);
+const [edit, setEdit] = useState(false);
 
 
 const handleLeave =  () => {
@@ -48,6 +50,14 @@ const handleLeave =  () => {
     setLeave(false);
   }else{
     setLeave(true);
+  }
+}
+
+const handleEdit =  () => {
+  if(edit){
+    setEdit(false);
+  }else{
+    setEdit(true);
   }
 }
 
@@ -101,14 +111,8 @@ return null;
         onConfirm={()=>leaveGroup(group)}
         loading={loading}
       />
-    <DropdownMenu >
-      <DropdownMenuTrigger
-            className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg">
-           <Workflow className="h-4 w-4"/> 
-           
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="shadow-xl" aria-label="Static Actions">
-      <DropdownMenuItem textValue="view" key="View">
+      <div className="flex items-center gap-1">
+    
          
          <Button 
          onClick={()=>router.push(`/dashboard/groups/${group.id}`)} 
@@ -116,53 +120,63 @@ return null;
          <Glasses className="h-4 w-4"/> View
          </Button>
        
-       </DropdownMenuItem> 
+       
       
      
       {!selectedJoinedGroup && group.openGroup &&(
-         <DropdownMenuItem textValue="join" key="join">
+         
          
             <Button 
             onClick={()=>router.push(`/invite/${group.inviteCode}`)}
-            className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg w-full">
+            className="flex items-center justify-center px-2 py-1 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg w-full">
             <DoorOpen className="h-4 w-4"/> Join
             </Button>
           
-          </DropdownMenuItem> )}
+           )}
           {!selectedJoinedGroup && !group.openGroup &&(
-            <DropdownMenuItem textValue="apply" key="apply">
+           
           
             <Button 
             onClick={()=>router.push(`/dashboard/groups/${group.id}/apply`)}
-            className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg w-full" >
+            className="flex items-center justify-center px-2 py-1 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg w-full" >
              <Scroll className="h-4 w-4"/>Apply
             </Button>
-          </DropdownMenuItem>
+         
           )}
        
        {currentCreator && ( 
-       <DropdownMenuItem textValue="edit" key="edit">
+        <div>
+       
        <Button 
-        onClick={()=>router.push(`/dashboard/groups/${group.id}/edit`)}
-        className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-orange-700 text-white hover:bg-orange-500 transition-all text-sm shadow-lg w-full" >
+        onClick={handleEdit}
+        className="flex items-center justify-center px-2 py-1 gap-1 hover:scale-105 rounded-md bg-orange-700 text-white hover:bg-orange-500 transition-all text-sm shadow-lg w-full" >
          <Cog className="h-4 w-4"/> Edit
         </Button>
-       </DropdownMenuItem> )}
+       
+       <EditGroupModal
+             group={group}
+             isOpen={edit}
+             onClose={()=>setEdit(false)}
+             onConfirm={()=>{}}
+             loading={loading}
+            />
+       </div>
+       )}
        
         {selectedJoinedGroup && (
-          <DropdownMenuItem textValue="leave" key="leave">
+          
             <Button 
             onClick={handleLeave}
-            className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-red-700 text-white hover:bg-red-500 transition-all text-sm shadow-lg w-full" >
+            className="flex items-center justify-center px-2 py-1 gap-1 hover:scale-105 rounded-md bg-red-700 text-white hover:bg-red-500 transition-all text-sm shadow-lg w-full" >
             <Undo className="h-4 w-4"/> Leave 
             </Button>
-          </DropdownMenuItem>)}
+          )}
           
          
       
           
-      </DropdownMenuContent>
-    </DropdownMenu>
+      
+    </div>
     </>
   );
 }
