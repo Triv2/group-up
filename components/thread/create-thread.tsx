@@ -111,11 +111,11 @@ useEffect(() => {
     <>
       <div className="h-auto w-auto">
            <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-5 px-10  w-full ">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 p-5 px-10  w-full ">
             <div>
               <div>
-          <div className="flex items-center justify-center flex-col gap-8">
-              <h3 className="font-bold text-xl">Create a Thread</h3>
+          <div className="flex items-center justify-center flex-col gap-5">
+              
               <Divider/>
             <FormField
           control={form.control}
@@ -150,7 +150,7 @@ useEffect(() => {
              
               <Select
                items={groups}
-               label="Group"
+               
                placeholder="Please select a group"
                className="text-black dark:text-white rounded-md h-[25px]"
                onSelect={setPostGroup(field.value)}
@@ -188,18 +188,18 @@ useEffect(() => {
             )}
         />
         <Divider/>
-        <Switch defaultSelected className="text-xs"  onClick={()=>handleOpenThread()}>Is This An Open Thread?</Switch>
-        <div className="px-2 text-xs">
-        <p>Current Choice:</p>
-        {openThread ? (
-          <p className="text-muted-foreground">Thread is set to be Public</p>
+        
+        <div className="w-full flex items-center justify-center">
+          <Switch defaultSelected  size="sm"  onClick={()=>handleOpenThread()}>    
+          {openThread ? (
+          <p className="text-muted-foreground text-xs">Thread is set to be <span className="font-bold text-sm dark:text-white">Public</span></p>
         ):(
-          <p className="text-muted-foreground">Thread is set to be Private</p>
-        )}
-        </div>
+          <p className="text-muted-foreground text-xs">Thread is set to be <span className="font-bold text-sm dark:text-white">Private</span></p>
+        )}</Switch>
+         </div>
         <Divider/>
          <div className="flex items-center flex-col justify-center">
-          <Switch defaultSelected  onClick={()=>handleClick()}>Upload Image?</Switch>
+          <Switch defaultSelected size="sm" onClick={()=>handleClick()}><p className="text-xs">Upload Image?</p></Switch>
           {upload && (
         <FormField
           control={form.control}

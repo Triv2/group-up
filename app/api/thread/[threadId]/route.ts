@@ -91,7 +91,7 @@ export async function DELETE(
     return NextResponse.json(deletedThread);
     
   } catch (error) {
-    console.log('[PROFILE_ID_DELETE]', error);
+    console.log('[THREAD_ID_DELETE]', error);
     return new NextResponse("Internal Error", {status:500});
   }
 }

@@ -73,10 +73,12 @@ const DashboardPage = async () => {
     <div className="flex items-center justify-center flex-col gap-2">
     Threads:
     <Divider/>
-    <ThreadViewer
+   {profile && userGroups && ( 
+   <ThreadViewer
     userGroups={userGroups}
     allThreads={allThreads}
-    />
+    profile={profile}
+    />)}
 </div>
 <div  className="flex items-center justify-center flex-col gap-2">
   <Divider />

@@ -127,6 +127,7 @@ model Thread {
   profileIds String[] @db.ObjectId
   openThread Boolean?
   groupId String?
+  groupName String?
 
   posts Post[] 
 

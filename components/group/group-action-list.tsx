@@ -61,7 +61,7 @@ const leaveGroup = async (group:Group) => {
     if(leave){
       setLeave(false);
     }
-    
+    router.push('/dashboard')
     toast.success("Group Left!");
   } catch (error) {
     toast.error("Something went wrong.");

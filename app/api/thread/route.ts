@@ -14,9 +14,13 @@ export async function POST(
   }
     const body = await req.json();
     
-    const { title,  openThread, content, groupId} = body;
+    const { title,  openThread, content, groupId, imageUrl} = body;
   
-    
+    let image= imageUrl;
+    if(imageUrl === null || imageUrl === ""){
+      image = user.imageUrl
+ 
+    }
     
     if (!title) {
       return new NextResponse("Title is required.",{ status: 400 });
@@ -45,6 +49,7 @@ export async function POST(
         starter: checkProfile.id,
         openThread,
         content,
+        imageUrl: image,
       },
     })
     return NextResponse.json(newThread); 
@@ -56,7 +61,9 @@ export async function POST(
         openThread,
         content,
         groupId:groupId,
+        groupName: checkGroup.name,
         profileIds: [checkProfile.id],
+        imageUrl: image,
       },
     })
     await db.group.update({
