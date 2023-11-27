@@ -76,6 +76,24 @@ export async function POST(
         }
       },
     })
+    const newPost= await db.post.create({
+      data: {
+        title,
+        content,
+        threadId: newThread.id,
+        profileId: checkProfile.id,
+      },
+    })
+    await db.thread.update({
+      where: {
+        id:newThread.id,
+      },
+      data: {
+        postIds:[newPost.id]
+      },
+    })
+
+   
     console.log("onSubmit", newThread);
     
     return NextResponse.json(newThread); 

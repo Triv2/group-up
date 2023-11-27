@@ -20,8 +20,9 @@ if (!isMounted) {
 return null;
 }
   return (
-    <div>
-      PostItem
+    <div className="w-full shadow-md bg-zinc-200 dark:bg-zinc-500">
+      <div>{post.content}</div>
+      
     </div>
   );
 }

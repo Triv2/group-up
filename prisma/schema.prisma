@@ -105,14 +105,9 @@ model Task {
 model Post {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   profileId String @db.ObjectId
-
-  title String
-  content String
+  threadId String @db.ObjectId
   
-
-  threadId String? @db.ObjectId
-  thread Thread? @relation(fields:[threadId], references: [id])
-
+  content String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -129,7 +124,7 @@ model Thread {
   groupId String?
   groupName String?
 
-  posts Post[] 
+  postIds String[] @db.ObjectId
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

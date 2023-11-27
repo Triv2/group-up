@@ -41,15 +41,13 @@ export async function PATCH(
         id:params.threadId,
       },
       data: {
-        posts: {
-          create: [post],
-        }
-      },
-
-      
+        postIds:{
+          push:post.id,
+         }
+       } 
     });
 
-
+ 
 
    
     return NextResponse.json(thread);
@@ -86,6 +84,13 @@ export async function DELETE(
       },
     })
 
+     await db.post.deleteMany({
+      where: {
+        threadId:params.threadId,
+      },
+    })
+
+   
     
     
     return NextResponse.json(deletedThread);
