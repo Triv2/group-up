@@ -3,6 +3,7 @@ import { Tab, Tabs } from '@nextui-org/react';
 import { Group, Post, Profile, Thread } from '@prisma/client';
 import {useState, useEffect} from'react'
 import ThreadViewerItem from './thread-viewer-item';
+import { ScrollArea } from '../ui/scroll-area';
 
 interface ThreadViewerProps {
   allThreads: Thread[] | null;
@@ -32,11 +33,13 @@ return null;
       <Tabs className="w-[200px] overflow-x-scroll md:overflow-hidden md:w-auto">
         Categories:
         <Tab key="all" title="All">
+          <ScrollArea>
           <div className="flex items-center flex-col justify-center px-4 py-2 bg-zinc-200 dark:bg-zinc-500 rounded-md gap-2">
         {allThreads && allPosts && allThreads.map((thread) => (
           <ThreadViewerItem key={thread.id} thread={thread} profile={profile} allPosts={allPosts}/>
         ))}
         </div>
+        </ScrollArea>
         </Tab>
         <Tab key="announcements" title="Announcements">
           Announcements

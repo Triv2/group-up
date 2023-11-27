@@ -80,7 +80,10 @@ export async function POST(
       data: {
         content,
         threadId: newThread.id,
+        threadTitle:title,
         profileId: checkProfile.id,
+        profileName: checkProfile.name,
+        profileImageUrl: checkProfile.imageUrl,
       },
     })
     await db.thread.update({

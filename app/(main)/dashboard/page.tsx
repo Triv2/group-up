@@ -28,7 +28,7 @@ import { allUserGroupThreads } from "@/lib/all-user-group-threads";
 import CreateGroupModal from "@/components/modals/create-group-modal";
 import { allPosts } from "@/lib/all-posts";
 
-export const revalidate = 1;
+export const revalidate = 0;
 
 const DashboardPage = async () => {
   const { userId} = auth();
@@ -43,10 +43,6 @@ const DashboardPage = async () => {
 
 
 
-   const userCreatedGroups = await currentCreatedGroups();
-   const creator = await currentCreator();
-   
-   const allProfiles= await allMembers();
    
   if(!profile && !userGroups) {
     redirect("/setup/profile");

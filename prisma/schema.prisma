@@ -101,10 +101,15 @@ model Task {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+////////////
 
 model Post {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   profileId String @db.ObjectId
+  profileName String?
+  profileImageUrl String?
+
+  threadTitle String
   threadId String @db.ObjectId
   
   content String
