@@ -105,7 +105,9 @@ useEffect(() => {
       setOpenThread(true);
     }
   }
- 
+  const handleSelectionChange = (e:any) => {
+    setPostGroup(e.target.value);
+  };
   
   return (
     <>
@@ -153,7 +155,8 @@ useEffect(() => {
                aria-label="group selector"
                placeholder="Please select a group"
                className="text-black dark:text-white rounded-md h-[25px]"
-               onSelect={setPostGroup(field.value)}
+               selectedKeys={[postGroup]}
+               onChange={handleSelectionChange}
               >
                 {groups.map((group) => (
                   <SelectItem className="hover:bg-zinc-500 z-30 pointer-events-auto" key={group.id} value={group.id}>

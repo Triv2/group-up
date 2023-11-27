@@ -26,6 +26,7 @@ import Thread from "@/components/thread/thread";
 import ThreadViewer from "@/components/thread/thread-viewer";
 import { allUserGroupThreads } from "@/lib/all-user-group-threads";
 import CreateGroupModal from "@/components/modals/create-group-modal";
+import { allPosts } from "@/lib/all-posts";
 
 export const revalidate = 1;
 
@@ -37,7 +38,7 @@ const DashboardPage = async () => {
    const profile = await currentProfile();
    const userGroups = await currentGroups();
   const allThreads = await allUserGroupThreads();
-
+  const posts = await allPosts();
 
 
 
@@ -75,6 +76,7 @@ const DashboardPage = async () => {
     <Divider/>
    {profile && userGroups && ( 
    <ThreadViewer
+    allPosts={posts}
     userGroups={userGroups}
     allThreads={allThreads}
     profile={profile}

@@ -16,6 +16,7 @@ import axios from "axios";
 import { db } from "@/lib/db";
 import { Calendar } from "@/components/ui/calendar";
 import GroupSummary from "./_components/group-summary";
+import ThreadViewer from "@/components/thread/thread-viewer";
 
 
 interface GroupViewPageProps {
@@ -96,7 +97,12 @@ const GroupViewPage = async ({
    PUBLIC GROUP DETAILS
 
    {creator && profile &&(<GroupSummary creator={creatorProfile} group={group} members={members} profile={profile}/>)}
-   
+   <ThreadViewer
+    allPosts={posts}
+    userGroups={userGroups}
+    allThreads={allThreads}
+    profile={profile}
+    />
 
   </div>
 </div>

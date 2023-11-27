@@ -14,7 +14,7 @@ import PostItem from "./post-item";
 interface ThreadViewerItemProps {
   profile:Profile;
   thread:Thread;
-  allPosts:Post[] | null;
+  allPosts:Post[];
 }
 
 const ThreadViewerItem = ({
@@ -23,10 +23,14 @@ const ThreadViewerItem = ({
   allPosts,
 }: ThreadViewerItemProps) => {
 
-  let posts:Post[] = [];
-  if (allPosts) {
-    posts = allPosts.filter((post) => post.threadId === thread.id);
+  const  posts = thread.postIds;
+  let currentPosts:Post[];
+  if (posts) {
+    currentPosts = allPosts.filter((post) => posts.includes(post.id));
+  } else {
+    currentPosts = [];
   }
+  
   const router = useRouter();
 
   return (
@@ -55,9 +59,9 @@ const ThreadViewerItem = ({
     <ThreadActionList thread={thread} profile={profile} />
     </AccordionTrigger>
     <AccordionContent>
-      <div className="flex items-center justify-center flex-col gap-2">
-        {posts && posts.map((post) => (
-          <PostItem key={post.id} post={post}/>
+      <div className="flex items-center justify-center flex-col gap-2 w-full">
+        {currentPosts && currentPosts.map((post) => (
+          <PostItem key={post.id} post={post} profile={profile}/>
         ))}
       </div>
       </AccordionContent>

@@ -33,7 +33,7 @@ return null;
         Categories:
         <Tab key="all" title="All">
           <div className="flex items-center flex-col justify-center px-4 py-2 bg-zinc-200 dark:bg-zinc-500 rounded-md gap-2">
-        {allThreads && allThreads.map((thread) => (
+        {allThreads && allPosts && allThreads.map((thread) => (
           <ThreadViewerItem key={thread.id} thread={thread} profile={profile} allPosts={allPosts}/>
         ))}
         </div>
