@@ -89,13 +89,7 @@ return null;
             >
                <Contact className="h-3 w-3"/>Profile Settings
             </Button>
-            <Button
-            size="sm"
-            className="w-full  rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
-              onClick={()=>setThread(true)}
-            >
-               <File className="h-3 w-3"/>Create Thread
-            </Button>
+           
             
             
             
@@ -107,13 +101,7 @@ return null;
              onConfirm={()=>{}}
              loading={loading}
             />
-           <CreateThreadModal  
-             isOpen={thread}
-             onClose={()=>setThread(false)}
-             onConfirm={()=>{}}
-             loading={loading}
-             groups={currentGroups}
-            />
+          
             <div className=" pt-2 pb-2">
             <div className="w-full ">
           <p className="font-bold text-md py-1 px-1 pt-2 w-full">Profile Information</p>
@@ -181,6 +169,21 @@ return null;
              <UserCircle className="h-3 w-3"/> 
              </div> Create Groups
             </Button>
+            <Button
+            size="sm"
+            className="w-full  rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
+              onClick={()=>setThread(true)}
+            >
+               <File className="h-3 w-3"/>Create Thread
+            </Button>
+            <CreateThreadModal  
+             isOpen={thread}
+             onClose={()=>setThread(false)}
+             onConfirm={()=>{}}
+             loading={loading}
+             groups={currentGroups}
+            />
+            
             <Divider/>
             
            

@@ -101,7 +101,7 @@ const ThreadIdPage = async ({
     
     </div>
     </div>
-    <div className="flex items-center flex-col justify-center gap-2 px-4">
+    <div className="flex items-center flex-col justify-center gap-2 sm:px-4">
       {currentPosts && currentPosts.map((post) => (
         <PostItem key={post.id} post={post} />
       ))}

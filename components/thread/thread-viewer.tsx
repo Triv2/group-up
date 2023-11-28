@@ -30,29 +30,26 @@ return null;
 }
   return (
     <div>
-      <Tabs className="w-[200px] overflow-x-scroll md:overflow-hidden md:w-auto">
-        Categories:
+      <Tabs className=" overflow-x-scroll md:overflow-hidden md:w-auto w-full ">
         <Tab key="all" title="All">
           <ScrollArea>
-          <div className="flex items-center flex-col justify-center px-4 py-2 bg-zinc-200 dark:bg-zinc-500 rounded-md gap-2">
+          <div className="flex items-center flex-col justify-center py-2 bg-zinc-200 dark:bg-zinc-500 rounded-md w-auto px-2 sm:px-5 gap-2">
         {allThreads && allPosts && allThreads.map((thread) => (
           <ThreadViewerItem key={thread.id} thread={thread} profile={profile} allPosts={allPosts}/>
         ))}
         </div>
         </ScrollArea>
         </Tab>
-        <Tab key="announcements" title="Announcements">
+        <Tab className="p-0" key="announcements" title="Announcements">
           Announcements
         </Tab>
-        <Tab key="events" title="Events">
+        <Tab className="p-0" key="events" title="Events">
           Events
         </Tab>
-        <Tab key="tasks" title="Tasks">
+        <Tab className="p-0" key="tasks" title="Tasks">
           Tasks
         </Tab>
-        <Tab key="groupChat" title="Group Chat">
-          Group Chat
-        </Tab>
+        
       </Tabs>
     </div>
   );
