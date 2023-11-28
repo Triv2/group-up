@@ -10,6 +10,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import ThreadActionList from "./thread-action-list";
 import PostItem from "./post-item";
+import { ScrollArea } from "../ui/scroll-area";
 
 interface ThreadViewerItemProps {
   profile:Profile;
@@ -34,10 +35,10 @@ const ThreadViewerItem = ({
   const router = useRouter();
 
   return (
-  <div className="flex items-center  justify-around px-4 py-2 bg-zinc-100 dark:bg-zinc-600 w-full rounded-md gap-5" >
+  <div className="flex items-center px-4 py-2 bg-zinc-100 dark:bg-zinc-600 w-full rounded-md " >
     <Accordion className="w-full h-full" type="single" collapsible>
     <AccordionItem  value="item-1">
-      <AccordionTrigger>
+      <AccordionTrigger className="flex items-center justify-between gap-5 no-underline">
     <div >
       {thread.openThread ? (
         <Unlock className="h-3 w-3 "/>
@@ -49,22 +50,24 @@ const ThreadViewerItem = ({
     <div className="flex items-center justify-center w-full">
     {thread.imageUrl &&(<Image className="rounded-full" src={thread.imageUrl} width={50} height={50} alt={thread.imageUrl} />)}
     </div>
+    <div className="flex items-center flex-col w-full">
+    <p className="font-bold text-lg">{thread.title}</p>
+    
+    </div>
     <div>
       {thread.groupName}
     </div>
-    <div className="flex items-center flex-col w-full">
-    <p className="font-bold text-lg">{thread.title}</p>
-    <Divider/>
-    <p className="text-sm truncate w-[300px]">{thread.content}</p>
-    </div>
+    
     <ThreadActionList thread={thread} profile={profile} />
     </AccordionTrigger>
     <AccordionContent>
+      <ScrollArea className="h-[300px]">
       <div className="flex items-center justify-center flex-col gap-2 w-full">
         {currentPosts && currentPosts.map((post) => (
           <PostItem key={post.id} post={post} />
         ))}
       </div>
+      </ScrollArea>
       </AccordionContent>
     </AccordionItem>
    </Accordion>

@@ -27,7 +27,7 @@ const DashboardLayout = async  ({
   return (
     <div className="h-full">
        <Navbar/>
-       <div className="md:hidden h-full mt-[1rem]  z-30 flex-col fixed inset-y-0">
+       <div className="md:hidden h-full mt-[2rem]  z-30 flex-col fixed inset-y-0">
        <MobileSidebar
        userCreatedGroups={userCreatedGroups}
        nonUserCreatedGroups={nonUserCreatedGroups}
@@ -36,7 +36,7 @@ const DashboardLayout = async  ({
        name={userName}
        />
        </div>
-      <div className="hidden bg-zinc-200/80 mt-[50px]  md:flex h-full w-[160px] z-30 flex-col fixed inset-y-0">
+      <div className="hidden bg-zinc-200/80 mt-[3rem]  md:flex h-full w-[160px] z-30 flex-col fixed inset-y-0">
       <Sidebar
       allGroups={groups}
       userCreatedGroups={userCreatedGroups}

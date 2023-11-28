@@ -17,7 +17,7 @@ import { FileUpload } from '@/components/file-upload';
 // import { Textarea } from '@/components/ui/textarea';
 
 interface CreatePostProps {
-  
+  threadId: string;
   onClose: () => void;
 }
 const formSchema= z.object({
@@ -25,16 +25,17 @@ const formSchema= z.object({
   
   
   content:  z.string().min(1),
+  threadId:  z.string(),
 });
 
 export type CreatePostValues = z.infer<typeof formSchema>
 
 const CreatePost = ({
   onClose,
-  
+  threadId,
 }:CreatePostProps) => {
   const router=useRouter();
-  const params = useParams();
+  
 
   
 const [isMounted, setIsMounted] = useState(false);
@@ -47,7 +48,7 @@ const [upload,setUpload] = useState(false);
 const form = useForm<CreatePostValues>({
   resolver: zodResolver(formSchema),
   defaultValues: {
-    
+    threadId: threadId,
     content: "",
     
   },
@@ -65,7 +66,7 @@ const onSubmit = async (data:CreatePostValues) => {
   try {
     setLoading(true);
     
-    await axios.patch(`/api/thread/${params.threadId}`, data)
+    await axios.patch(`/api/thread/${threadId}`, data)
     
     toast.success("Post created!");
   } catch (error) {

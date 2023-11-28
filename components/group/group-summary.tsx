@@ -36,7 +36,7 @@ return null;
 }
   return (
     
-    <div className="flex items-center justify-start flex-col px-2 py-2 gap-1 h-auto rounded-md bg-zinc-100 dark:bg-zinc-500 shadow-md w-[250px] sm:[400px] md:w-[300px]">
+    <div className="flex items-center justify-start flex-col px-2 py-2 gap-1 h-auto rounded-md bg-zinc-100 dark:bg-zinc-500 shadow-md w-[18rem] sm:w-[25rem] ">
       <Accordion className="w-full h-full" type="single" collapsible>
         <AccordionItem  value="item-1">
           <AccordionTrigger className="flex items-center justify-between  w-full no-underline px-2 py-2 gap-1 bg-zinc-100 dark:bg-zinc-500 hover:bg-white hover:scale-105">
@@ -83,6 +83,7 @@ return null;
         </div>
         {creator && (<InviteCode group={group} creator={creator} members={members} profile={profile}/>)}
         <Divider/>
+        
         <div className="py-2 font-bold text-lg">
         Group Members
         </div>

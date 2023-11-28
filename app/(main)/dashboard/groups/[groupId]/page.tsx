@@ -76,34 +76,32 @@ const GroupViewPage = async ({
     visible = true;
   }
   
+  const allPosts=await db.post.findMany({});
+
       
    
  
   return (
 <div className="flex items-center justify-center flex-col h-auto min-h-screen bg-[url(/cbg5.png)] bg-no-repeat bg-cover bg-center p-5 py-10">
-  <div className="bg-zinc-200 dark:bg-zinc-600 flex items-center justify-center flex-col rounded-md p-3">
- 
-   
-   
-      <Divider/>
+  <div className="bg-zinc-200 dark:bg-zinc-600 grid grid-cols-2 items-center justify-center flex-col rounded-md p-3">
+      <div>
     {visible && currentGroup &&( 
     <div>Creator Actions</div>)}
-    
    <Divider/>
       <Calendar/>
    
-
-   <Divider/>
+      </div>
+   <div>
    PUBLIC GROUP DETAILS
-
+   <Divider/>
    {creator && profile &&(<GroupSummary creator={creatorProfile} group={group} members={members} profile={profile}/>)}
-   <ThreadViewer
+   {/* <ThreadViewer
     allPosts={posts}
     userGroups={userGroups}
     allThreads={allThreads}
     profile={profile}
-    />
-
+    /> */}
+  </div>
   </div>
 </div>
   );

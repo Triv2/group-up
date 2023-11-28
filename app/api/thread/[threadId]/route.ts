@@ -1,3 +1,4 @@
+import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { currentUser, redirectToSignIn } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
@@ -9,14 +10,17 @@ export async function PATCH(
 ) {
   try {
     const user = await currentUser();
+    const profile = await currentProfile();
   if (!user) {
     return redirectToSignIn();
   }
     const body = await req.json();
    
-    const { post} = body;
+    const { content } = body;
   
-    
+    if(!profile){
+      return new NextResponse("Profile doesn't exist.",{ status: 400 });
+    }
     
     if (!params.threadId) {
       return new NextResponse("Thread ID is required",{ status: 400 });
@@ -33,7 +37,47 @@ export async function PATCH(
     if (!checkThread) {
       return new NextResponse("Thread doesnt exist.",{ status: 400 });
     }
+    if(checkThread.profileIds.includes(profile.id)){
+      const newPost = await db.post.create({
+        data: {
+          content,
+          threadId: params.threadId,
+          threadTitle:checkThread.title,
+          profileId: profile.id,
+          profileName: profile.name,
+          profileImageUrl: profile.imageUrl,
+        },
+      })
+      
+      
+      const thread= await db.thread.update({
+        where: {
+          id:params.threadId,
+        },
+        data: {
+          postIds:{
+            push:newPost.id,
+           }
+         } 
+      });
+  
+   
+  
+     
+      return NextResponse.json(thread);
+    } else {
 
+
+    const newPost = await db.post.create({
+      data: {
+        content,
+        threadId: params.threadId,
+        threadTitle:checkThread.title,
+        profileId: profile.id,
+        profileName: profile.name,
+        profileImageUrl: profile.imageUrl,
+      },
+    })
     
     
     const thread= await db.thread.update({
@@ -42,7 +86,10 @@ export async function PATCH(
       },
       data: {
         postIds:{
-          push:post.id,
+          push:newPost.id,
+         },
+         profileIds:{
+          push:profile.id,
          }
        } 
     });
@@ -51,6 +98,9 @@ export async function PATCH(
 
    
     return NextResponse.json(thread);
+  }
+
+
   } catch (error) {
     console.log('[THREAD_ID_PATCH]', error);
     return new NextResponse("Internal Error", {status:500});

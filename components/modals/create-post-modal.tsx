@@ -11,6 +11,7 @@ interface CreatePostModalProps {
   onClose: () => void;
   onConfirm: () => void;
   loading: boolean;
+  threadId: string;
 }
 
 export const CreatePostModal: React.FC<CreatePostModalProps> = ({
@@ -18,6 +19,7 @@ export const CreatePostModal: React.FC<CreatePostModalProps> = ({
   onClose,
   onConfirm,
   loading,
+  threadId,
 }) => {
   
 
@@ -29,7 +31,7 @@ export const CreatePostModal: React.FC<CreatePostModalProps> = ({
     onClose={onClose}
     
     >
-      <CreatePost onClose={onClose}/>
+      <CreatePost threadId={threadId} onClose={onClose}/>
 
 
 
