@@ -47,6 +47,8 @@ model Group {
 
   autoEvents Boolean?
   openThreads Boolean?
+
+  bgImageUrl String?
  
 
   secretIds String[] @db.ObjectId

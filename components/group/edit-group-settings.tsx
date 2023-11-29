@@ -29,7 +29,7 @@ const formSchema= z.object({
   name: z.string().min(1),
   openGroup: z.boolean().default(false),
   imageUrl: z.string().default(""),
- 
+  bgImageUrl: z.string().default(""),
   
 });
 
@@ -49,14 +49,16 @@ const [loading, setLoading] = useState(false);
 const [isMounted, setIsMounted] = useState(false);
 const [upload,setUpload] = useState(false);
 const [openGroup, setOpenGroup] = useState(false);
+const [bg,setBg] = useState(false);
 
 
 const form = useForm<EditGroupSettingsFormValues>({
   resolver: zodResolver(formSchema),
   defaultValues: {
-    name: "",
+    name: group.name,
     openGroup: false,
-    imageUrl: ""
+    imageUrl: group.imageUrl,
+    bgImageUrl: group.bgImageUrl || "",
   },
 });
 
@@ -91,6 +93,13 @@ useEffect(() => {
       setUpload(false);
     } else {
       setUpload(true);
+    }
+  }
+  const handleClick2= () => {
+    if(bg) {
+      setBg(false);
+    } else {
+      setBg(true);
     }
   }
 
@@ -147,6 +156,31 @@ useEffect(() => {
         <FormField
           control={form.control}
           name="imageUrl"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>
+                Image
+              </FormLabel>
+              <FormControl>
+              <FileUpload
+                          endpoint="serverImage"
+                          value={field.value}
+                          onChange={field.onChange}
+                        />
+              </FormControl>
+              <FormMessage/>
+            </FormItem>
+            )}
+        />
+        )}
+        </div>
+        <Divider/>
+         <div className="flex items-center flex-col justify-center">
+          <Switch defaultSelected size="sm" onClick={()=>handleClick2()}><p className="text-xs">Change Background?</p></Switch>
+          {bg && (
+        <FormField
+          control={form.control}
+          name="bgImageUrl"
           render={({ field }) => (
             <FormItem>
               <FormLabel>

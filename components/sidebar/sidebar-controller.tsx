@@ -196,7 +196,7 @@ return null;
 
 
 
-            <div className="pt-2 pb-2">
+         {joinedGroups &&( <div className="pt-2 pb-2">
               <p className="font-bold text-md shadow-xl py-1 px-1">Joined Groups</p>
               <Divider/>
               <ScrollArea className='w-auto  h-[110px]'>
@@ -206,7 +206,8 @@ return null;
               profile={profile}
             />
             </ScrollArea>
-            </div>
+            </div>)}
+
             <div>
               <p className="font-bold text-md shadow-xl py-1 px-1">Created Groups</p>
               <Divider/>

@@ -96,7 +96,7 @@ const handleClick= () => {
     <>
     <div >
            <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 p-5 w-full ">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 bg-zinc-200 dark:bg-zinc-700 rounded-md p-5 w-full ">
             <div className="flex items-center flex-col justify-center  gap-5">
             
             <div className="flex items-center flex-col md:flex-row gap-2">

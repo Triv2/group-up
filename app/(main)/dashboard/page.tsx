@@ -78,12 +78,12 @@ const DashboardPage = async () => {
     profile={profile}
     />)}
 </div>
-<div  className="flex items-center justify-center flex-col gap-2">
+{/* <div  className="flex items-center justify-center flex-col gap-2">
   <Divider />
     Event Calendar
     <Divider />
     <Calendar/>
-    </div>
+    </div> */}
 
 
 

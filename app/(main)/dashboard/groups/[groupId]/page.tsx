@@ -17,6 +17,7 @@ import { db } from "@/lib/db";
 import { Calendar } from "@/components/ui/calendar";
 import GroupSummary from "./_components/group-summary";
 import ThreadViewer from "@/components/thread/thread-viewer";
+import Image from "next/image";
 
 
 interface GroupViewPageProps {
@@ -33,17 +34,8 @@ const GroupViewPage = async ({
   }
 
   const profile = await currentProfile();
-  const creator = await currentCreator();
-
-  if(!creator) { return null; }
-
-  const creatorProfile = await db.profile.findUnique({
-      where:{
-        id: creator.id
-      }
-  });
+  
  
-  let visible= false;
 
   const group = await db.group.findUnique({
     where: {
@@ -65,36 +57,36 @@ const GroupViewPage = async ({
     },
   })
  
-    
-  const currentGroup=await db.group.findUnique({
-    where: {
-      id: params.groupId,
-    },
-  })
-  
-  if(currentGroup?.creator === creator?.id) {
-    visible = true;
-  }
-  
-  const allPosts=await db.post.findMany({});
 
+  const creatorProfile = await db.profile.findUnique({
+      where:{
+        id: group.creator,
+      }
+  });
+ 
+  
+ 
+  
       
    
  
   return (
 <div className="flex items-center justify-center flex-col h-auto min-h-screen bg-[url(/cbg5.png)] bg-no-repeat bg-cover bg-center p-5 py-10">
+  <div>
+    {group.bgImageUrl && (<Image height={250} width={250} src={group.bgImageUrl} alt={group.bgImageUrl}/> )}
+  </div>
   <div className="bg-zinc-200 dark:bg-zinc-600 grid grid-cols-2 items-center justify-center flex-col rounded-md p-3">
-      <div>
-    {visible && currentGroup &&( 
-    <div>Creator Actions</div>)}
+      {/* <div>
+    
+    <div>Creator Actions</div>
    <Divider/>
       <Calendar/>
    
-      </div>
+      </div> */}
    <div>
    PUBLIC GROUP DETAILS
    <Divider/>
-   {creator && profile &&(<GroupSummary creator={creatorProfile} group={group} members={members} profile={profile}/>)}
+   {creatorProfile && profile &&(<GroupSummary creator={creatorProfile} group={group} members={members} profile={profile}/>)}
    {/* <ThreadViewer
     allPosts={posts}
     userGroups={userGroups}

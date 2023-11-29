@@ -2,19 +2,17 @@
 import { Tab, Tabs } from '@nextui-org/react';
 import { Group, Post, Profile, Thread } from '@prisma/client';
 import {useState, useEffect} from'react'
-import ThreadViewerItem from './thread-viewer-item';
-import { ScrollArea } from '../ui/scroll-area';
+import ThreadViewerItem from '@/components/thread/thread-viewer-item';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
-interface ThreadViewerProps {
+interface GroupThreadViewerProps {
   allThreads: Thread[] | null;
-  userGroups:Group[] | null;
   profile:Profile;
   allPosts:Post[] | null;
 }
 
-const ThreadViewer:React.FC<ThreadViewerProps> = ({
+const GroupThreadViewer:React.FC<GroupThreadViewerProps> = ({
   allThreads,
-  userGroups,
   profile,
   allPosts,
 }) => {
@@ -54,4 +52,4 @@ return null;
     </div>
   );
 }
-export default ThreadViewer;
+export default GroupThreadViewer;
