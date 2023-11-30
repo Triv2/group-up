@@ -113,26 +113,26 @@ useEffect(() => {
     <>
       <div className="h-auto w-auto">
            <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 p-5 px-10  w-full ">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 bg-zinc-200 dark:bg-zinc-700 p-5 px-10  h-auto w-full ">
             <div>
               <div>
-          <div className="flex items-center justify-center flex-col gap-5">
+          <div className="flex items-center justify-center flex-col gap-1 sm:gap-5">
               
-              <Divider/>
+          <div className="flex  justify-center flex-col md:flex-row gap-5">
             <FormField
           control={form.control}
           name="title"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="font-semibold">
-                Thread Title
+                Title
               </FormLabel>
               <FormControl>
                <Input 
                
                type="name"
                
-               placeholder="Please enter a group name"
+               placeholder="Please enter a thread name"
                 className="text-black dark:text-white rounded-md h-[25px]"
                disabled={loading}  {...field}/>
               </FormControl>
@@ -151,10 +151,12 @@ useEffect(() => {
               <FormControl>
              
               <Select
+              size="sm"
                items={groups}
                aria-label="group selector"
                placeholder="Please select a group"
-               className="text-black dark:text-white rounded-md h-[25px]"
+               className="text-black dark:text-white rounded-md "
+               
                selectedKeys={[postGroup]}
                onChange={handleSelectionChange}
               >
@@ -169,19 +171,21 @@ useEffect(() => {
             </FormItem>
             )}
         />
+        </div>
+                  <Divider/>
            <FormField
           control={form.control}
           name="content"
           render={({ field }) => (
             <FormItem>
               <FormLabel>
-                Content
+                Post
               </FormLabel>
               <FormControl>
              
                  <Textarea
                  
-                  placeholder="Enter your description"
+                  placeholder="Enter your post to create the thread"
                   className="max-w-xs text-black dark:text-white"
                   {...field}
                 />

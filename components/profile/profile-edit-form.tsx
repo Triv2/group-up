@@ -25,7 +25,7 @@ interface ProfileEditFormProps {
 
 const formSchema= z.object({
   
-  name: z.string().min(1),
+  name: z.string().min(1).max(25),
   imageUrl: z.string().default(""),
   content:  z.string(),
   
@@ -47,13 +47,12 @@ const [upload,setUpload] = useState(false);
 
 
 
-
 const form = useForm<ProfileFormValues>({
   resolver: zodResolver(formSchema),
   defaultValues: {
-    name: "",
-    content: "",
-    imageUrl: "",
+    name: profile?.name || "",
+    content: profile?.content || "",
+    imageUrl: profile?.imageUrl,
     
   },
 });
@@ -139,7 +138,7 @@ const handleClick= () => {
               <FormLabel className="font-bold">
                 Interests
               </FormLabel>
-              <FormLabel className="text-xs text-muted-foreground flex flex-col justify-between px-2">
+              <FormLabel className="text-xs text-muted-foreground flex justify-between px-2">
                 Current Interests: <p className="font-semibold text-emerald-800 dark:text-emerald-500 pl-2"> {profile?.content}</p>
               </FormLabel>
               <FormControl>

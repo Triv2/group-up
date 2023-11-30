@@ -111,13 +111,14 @@ return null;
         onConfirm={()=>leaveGroup(group)}
         loading={loading}
       />
-      <div className="flex items-center gap-1">
+      <div className="flex items-center flex-col sm:flex-row gap-1">
     
          
          <Button 
+         size="sm"
          onClick={()=>router.push(`/dashboard/groups/${group.id}`)} 
-         className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg w-full">
-         <Glasses className="h-4 w-4"/> View
+         className="flex items-center justify-center px-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg w-full">
+         <Glasses className="h-4 w-4"/> <p className="hidden sm:block">View</p>
          </Button>
        
        
@@ -127,6 +128,7 @@ return null;
          
          
             <Button 
+            size="sm"
             onClick={()=>router.push(`/invite/${group.inviteCode}`)}
             className="flex items-center justify-center px-2 py-1 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg w-full">
             <DoorOpen className="h-4 w-4"/> Join
@@ -139,7 +141,7 @@ return null;
             <Button 
             onClick={()=>router.push(`/dashboard/groups/${group.id}/apply`)}
             className="flex items-center justify-center px-2 py-1 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg w-full" >
-             <Scroll className="h-4 w-4"/>Apply
+             <Scroll className="h-4 w-4"/><p className="hidden sm:block">Apply</p>
             </Button>
          
           )}
@@ -148,9 +150,10 @@ return null;
         <div>
        
        <Button 
+       size="sm"
         onClick={handleEdit}
-        className="flex items-center justify-center px-2 py-1 gap-1 hover:scale-105 rounded-md bg-orange-700 text-white hover:bg-orange-500 transition-all text-sm shadow-lg w-full" >
-         <Cog className="h-4 w-4"/> Edit
+        className="flex items-center justify-center px-2 gap-1 hover:scale-105 rounded-md bg-orange-700 text-white hover:bg-orange-500 transition-all text-sm shadow-lg w-full" >
+         <Cog className="h-4 w-4"/> <p className="hidden sm:block">Edit</p>
         </Button>
        
        <EditGroupModal
@@ -166,9 +169,10 @@ return null;
         {selectedJoinedGroup && (
           
             <Button 
+            size="sm"
             onClick={handleLeave}
-            className="flex items-center justify-center px-2 py-1 gap-1 hover:scale-105 rounded-md bg-red-700 text-white hover:bg-red-500 transition-all text-sm shadow-lg w-full" >
-            <Undo className="h-4 w-4"/> Leave 
+            className="flex items-center justify-center px-2  gap-1 hover:scale-105 rounded-md bg-red-700 text-white hover:bg-red-500 transition-all text-sm shadow-lg w-full" >
+            <Undo className="h-4 w-4"/> <p className="hidden sm:block">Leave</p> 
             </Button>
           )}
           

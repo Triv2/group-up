@@ -31,8 +31,9 @@ const GroupListSorter:React.FC<GroupListSorterProps> = ({
   return (
     <div>
        
-        <Tabs aria-label="Sort by Type">
-          <Tab key="all" title="All">
+        <Tabs className="p-0"aria-label="Sort by Type">
+          
+          <Tab className="p-1" key="all" title="All">
             <GroupList
               groups={allGroups}
               members={members}
@@ -40,7 +41,7 @@ const GroupListSorter:React.FC<GroupListSorterProps> = ({
             />
           </Tab>
             
-          <Tab key="public" title="Public">
+          <Tab className="p-0"key="public" title="Public">
             <GroupList
               groups={openGroups}
               members={members}
@@ -48,21 +49,21 @@ const GroupListSorter:React.FC<GroupListSorterProps> = ({
             />
           </Tab>
 
-          <Tab key="private" title="Private">
+          <Tab className="p-0"key="private" title="Private">
             <GroupList
               groups={closedGroups}
               members={members}
               profile={profile}
             />
           </Tab>
-          <Tab key="joined" title="Joined">
+          <Tab className="p-0" key="joined" title="Joined">
             <GroupList
               groups={joinedGroups}
               members={members}
               profile={profile}
             />
           </Tab>
-          <Tab key="created" title="Created">
+          <Tab className="p-0" key="created" title="Created">
             <GroupList
               groups={createdGroups}
               members={members}

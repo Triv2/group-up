@@ -105,7 +105,7 @@ useEffect(() => {
     <>
       <div className="h-auto w-auto mt-[35px]">
            <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 px-5 w-full ">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 sm:px-5 w-full ">
             <div>
               <div>
           <div className="flex items-center justify-center flex-col px-4 bg-zinc-200 dark:bg-zinc-700 rounded-md shadow-md  py-3 gap-4">

@@ -42,6 +42,7 @@ if(value && fileType !== "pdf"){
 
   return (
     <UploadDropzone
+    className='w-[100px] h-[100px] sm:w-[200px] sm:h-[200px]'
       endpoint={endpoint}
       onClientUploadComplete={(res)=>{
         onChange(res?.[0].url);

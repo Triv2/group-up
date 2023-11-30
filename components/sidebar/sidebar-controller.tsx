@@ -40,6 +40,8 @@ const [loading, setLoading] = useState(false);
 
 let currentGroups:Group[] = [];
 
+
+
 if(createdGroups){
   currentGroups.push(...createdGroups);
 }
@@ -124,6 +126,18 @@ return null;
             </div>
             <Divider/>
             </div>
+             <div className="pt-2 pb-2">
+              <p className="font-bold text-md shadow-xl py-1 px-1">Messaging</p>
+              <Divider/>
+              <ScrollArea className='w-auto  h-[110px]'>
+            <SidebarGroupList
+              groups={allGroups}
+              members={members}
+              profile={profile}
+            />
+            </ScrollArea>
+            </div>
+
               </div>
           </div>
         </Tab>
@@ -169,6 +183,13 @@ return null;
              <UserCircle className="h-3 w-3"/> 
              </div> Create Groups
             </Button>
+            <CreateGroupModal
+             isOpen={create}
+             onClose={()=> setCreate(false)}
+             onConfirm={()=>{}}
+             loading={loading}
+            />
+
             <Button
             size="sm"
             className="w-full  rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
@@ -187,19 +208,14 @@ return null;
             <Divider/>
             
            
-            <CreateGroupModal
-             isOpen={create}
-             onClose={()=> setCreate(false)}
-             onConfirm={()=>{}}
-             loading={loading}
-            />
+           
 
 
 
          {joinedGroups &&( <div className="pt-2 pb-2">
               <p className="font-bold text-md shadow-xl py-1 px-1">Joined Groups</p>
               <Divider/>
-              <ScrollArea className='w-auto  h-[110px]'>
+              <ScrollArea className='w-auto h-[110px]'>
             <SidebarGroupList
               groups={joinedGroups}
               members={members}

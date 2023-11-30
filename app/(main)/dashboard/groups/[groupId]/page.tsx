@@ -75,7 +75,7 @@ const GroupViewPage = async ({
   <div>
     {group.bgImageUrl && (<Image height={250} width={250} src={group.bgImageUrl} alt={group.bgImageUrl}/> )}
   </div>
-  <div className="bg-zinc-200 dark:bg-zinc-600 grid grid-cols-2 items-center justify-center flex-col rounded-md p-3">
+  <div className="bg-zinc-200 dark:bg-zinc-600 flex items-center justify-center flex-col md:flex-row rounded-md p-3">
       {/* <div>
     
     <div>Creator Actions</div>

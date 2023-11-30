@@ -36,16 +36,17 @@ return null;
 }
   return (
     
-    <div className="flex items-center justify-start flex-col px-2 py-2 gap-1 h-auto rounded-md bg-zinc-100 dark:bg-zinc-600 shadow-md w-[18rem] sm:w-[25rem] ">
+    <div className="flex items-center justify-start flex-col sm:px-2 py-2 gap-1 h-auto rounded-md bg-zinc-100 dark:bg-zinc-600 shadow-md w-[15rem] sm:w-[25rem] ">
       <Accordion className="w-full h-full" type="single" collapsible>
         <AccordionItem  value="item-1">
-          <AccordionTrigger className="flex items-center justify-between w-full no-underline px-2 py-2 gap-1 bg-zinc-100 dark:bg-zinc-500 rounded-md hover:bg-white hover:scale-105">
+          <AccordionTrigger className="flex items-center flex-col sm:flex-row justify-between w-full no-underline px-2 py-2 gap-2 bg-zinc-100 dark:bg-zinc-500 rounded-md hover:bg-white hover:scale-105">
       
         
        {group &&( <div className="flex items-center gap-2 w-full">
         <Avatar  src={group.imageUrl} size="md" className="border-5 hover:scale-105 shadow-md"/>
         <p className=" font-bold">{group.name}</p>
         </div>)}
+        <Divider className="w-full sm:hidden block" />
         <AvatarGroup size="sm" isBordered max={3} total={matchedMembers?.length} >
       {matchedMembers && matchedMembers.map((member) => (
         <Avatar src={member.imageUrl} size="sm" key={member.id} />
