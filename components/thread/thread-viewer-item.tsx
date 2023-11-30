@@ -43,7 +43,7 @@ const ThreadViewerItem = ({
     for (let i = 0; i < participants.length; i++)
      {
       if(post.profileId===participants[i].id) {
-        console.log(participants[i].id);
+        
         postStuffs.push({
           posterProfile: participants[i],
           post,

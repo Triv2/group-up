@@ -37,8 +37,7 @@ export const ProfileSummaryModal: React.FC<ProfileSummaryModalProps> = ({
 
       <ProfileSummary profile={profile} onClose={onClose}/>
 
-      <div className="pt-6 space-x-2 flex items-center justify-between w-full">
-      
+      <div className="pt-6 space-x-2 flex items-center justify-end w-full">
         <Button disabled={loading}  onClick ={onClose}>
           Cancel
         </Button>

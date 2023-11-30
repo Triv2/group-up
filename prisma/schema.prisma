@@ -20,8 +20,12 @@ model Profile {
   imageUrl String 
   content String?
 
+
+  messageThreadIds String[] @db.ObjectId
   groupIds String[] @db.ObjectId
-  
+
+  friendIds String[] @db.ObjectId
+  blockedIds String[] @db.ObjectId
 
   secretId String? @db.ObjectId
 
@@ -132,6 +136,37 @@ model Thread {
   groupName String?
 
   postIds String[] @db.ObjectId
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model MessageThread {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  starter String @db.ObjectId
+  content String
+  imageUrl String?
+  profileIds String[] @db.ObjectId
+  
+  
+
+  messageIds String[] @db.ObjectId
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model Message {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  profileId String @db.ObjectId
+  profileName String?
+  profileImageUrl String?
+  title String?
+
+
+  messageThreadId String @db.ObjectId
+  
+  content String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

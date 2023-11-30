@@ -24,12 +24,9 @@ const ProfileSummary = ({
   createdGroups,
 }:ProfileSummaryProps) => {
   return (
-<div className="flex items-center justify-start flex-col px-2 py-2 gap-1  rounded-md bg-zinc-100/80 shadow-md w-full">
+<div className="flex items-center justify-start flex-col px-2 py-2 gap-1  rounded-md bg-zinc-100 dark:bg-zinc-700 shadow-md w-full">
 
-            <div className="w-full ">
-          <p className="font-bold text-md py-1 px-1 pt-2 w-full">Profile Information</p>
-          </div>
-          <Divider/>
+            
             <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
 
                 <p className="text-xs">Avatar:</p>
@@ -37,7 +34,7 @@ const ProfileSummary = ({
                </div>
             <Divider/>
 
-            <div className="flex items-center flex-col">
+            
               <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
             <p className="text-xs">Name:</p><p className="text-xs text-end">{profile.name}</p>
             </div>
@@ -45,8 +42,8 @@ const ProfileSummary = ({
             <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
             <p className="text-xs">Interests:</p><p className="text-xs ">{profile.content}</p>
             </div>
-            <Divider/>
-            </div>
+           <Divider/>
+           <ProfileActionList/>
       </div>
   );
 }
