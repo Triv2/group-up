@@ -16,8 +16,8 @@ import { Lock, Users, X } from 'lucide-react';
 import { FileUpload } from '@/components/file-upload';
 // import { Textarea } from '@/components/ui/textarea';
 
-interface CreatePostProps {
-  threadId: string;
+interface CreateMessageProps {
+  messageThreadId: string;
   onClose: () => void;
 }
 const formSchema= z.object({
@@ -25,15 +25,15 @@ const formSchema= z.object({
   
   
   content:  z.string().min(1),
-  threadId:  z.string(),
+  messageThreadId:  z.string(),
 });
 
-export type CreatePostValues = z.infer<typeof formSchema>
+export type CreateMessageValues = z.infer<typeof formSchema>
 
-const CreatePost = ({
+const CreateMessage = ({
   onClose,
-  threadId,
-}:CreatePostProps) => {
+  messageThreadId,
+}:CreateMessageProps) => {
   const router=useRouter();
   
 
@@ -45,10 +45,10 @@ const [upload,setUpload] = useState(false);
 
 
 
-const form = useForm<CreatePostValues>({
+const form = useForm<CreateMessageValues>({
   resolver: zodResolver(formSchema),
   defaultValues: {
-    threadId: threadId,
+    messageThreadId: messageThreadId,
     content: "",
     
   },
@@ -62,13 +62,13 @@ if (!isMounted) {
 return null;
 }
 
-const onSubmit = async (data:CreatePostValues) => {
+const onSubmit = async (data:CreateMessageValues) => {
   try {
     setLoading(true);
     
-    await axios.patch(`/api/thread/${threadId}`, data)
+    await axios.post(`/api/message/`, data)
     
-    toast.success("Post created!");
+    toast.success("Message sent!");
   } catch (error) {
     toast.error("Something went wrong.");
   } finally {
@@ -96,7 +96,7 @@ const handleClick= () => {
             <div className="flex items-center flex-col md:flex-row gap-2">
             <div className='flex items-center flex-col justify-center p-5 gap-5 w-full broder-black border-1 rounded-md shadow-md bg-neutral-100/50'>
            
-       
+        
            <FormField
           control={form.control}
           name="content"
@@ -155,4 +155,4 @@ const handleClick= () => {
     </>
   );
 }
-export default CreatePost;
+export default CreateMessage;

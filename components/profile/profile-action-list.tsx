@@ -20,19 +20,24 @@ import toast from 'react-hot-toast';
 
 
 interface ProfileActionListProps {
-  
+  profile: Profile;
+  onClose: () => void;
+  targetId: string;
 }
 
 
 
 const ProfileActionList:React.FC<ProfileActionListProps> = ({
   
+  profile,
+  onClose,
+  targetId,
 
 }) => {
 
  
 const [isMounted, setIsMounted] = useState(false);
-
+const [loading, setLoading] = useState(false);
 
 
 
@@ -49,7 +54,21 @@ return null;
 }
 
 
-
+const addFriend = async () => {
+  try {
+    setLoading(true);
+    await axios.patch(`/api/profile/${profile.id}/friend/`, {
+      profileId: profile.id,
+      targetId: targetId,
+    });
+    onClose();
+    toast.success("Friend added!");
+  } catch (error) {
+    toast.error("Something went wrong.");
+  } finally {
+    setLoading(false);
+  }
+}
 
 
 

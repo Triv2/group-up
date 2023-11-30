@@ -43,7 +43,7 @@ const ProfileSummary = ({
             <p className="text-xs">Interests:</p><p className="text-xs ">{profile.content}</p>
             </div>
            <Divider/>
-           <ProfileActionList/>
+        {profile && ( <ProfileActionList profile={profile} onClose={onClose} targetId={profile.id} />)}
       </div>
   );
 }

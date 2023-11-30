@@ -10,6 +10,7 @@ interface SideBarProps {
   profile?: Profile | null;
   name: string;
   allGroups: Group[] | null;
+  allFriends: Profile[] | null;
 }
 
 
@@ -20,6 +21,7 @@ const SideBar =  ({
   profile,
   name,
   allGroups,
+  allFriends,
 }:
 SideBarProps) => {
 
@@ -31,6 +33,7 @@ SideBarProps) => {
        
           {members && profile &&(
           <SidebarController 
+            allFriends={allFriends}
             profile={profile} 
             joinedGroups={nonUserCreatedGroups} 
             createdGroups={userCreatedGroups} 

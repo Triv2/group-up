@@ -18,6 +18,7 @@ interface MobileSidebarProps {
   profile?: Profile | null;
   name: string;
   allGroups: Group[] | null;
+  allFriends: Profile[] | null;
 }
 
 export const MobileSidebar = ({
@@ -27,6 +28,7 @@ export const MobileSidebar = ({
   profile,
   name,
   allGroups,
+  allFriends,
 }:MobileSidebarProps) => {
   const [isMounted, setIsMounted] = useState(false);
 
@@ -47,6 +49,7 @@ export const MobileSidebar = ({
       </SheetTrigger>
       <SheetContent side="left" className="p-0 bg-zinc-200 pt-[2.5rem] dark:bg-zinc-700 w-[161px]">
       <Sidebar
+      allFriends={allFriends}
       allGroups={allGroups}
       userCreatedGroups={userCreatedGroups}
       nonUserCreatedGroups={nonUserCreatedGroups}
