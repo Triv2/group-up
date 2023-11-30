@@ -22,13 +22,21 @@ import GroupSummary from "@/components/group/group-summary";
 import { allMembers } from "@/lib/all-members";
 import { Calendar } from "@/components/ui/calendar";
 import { currentCreatedGroups } from "@/lib/current-created-groups";
-import Thread from "@/components/thread/thread";
+
 import ThreadViewer from "@/components/thread/thread-viewer";
 import { allUserGroupThreads } from "@/lib/all-user-group-threads";
 import CreateGroupModal from "@/components/modals/create-group-modal";
 import { allPosts } from "@/lib/all-posts";
+import { db } from "@/lib/db";
+import { Post, Profile, Thread } from "@prisma/client";
 
 export const revalidate = 0;
+
+export type ThreadObject={
+  thread:Thread;
+  participants:Profile[];
+  threadPosts:Post[];
+}
 
 const DashboardPage = async () => {
   const { userId} = auth();
@@ -39,9 +47,25 @@ const DashboardPage = async () => {
    const userGroups = await currentGroups();
   const allThreads = await allUserGroupThreads();
   const posts = await allPosts();
+  const allProfiles = await allMembers();
+ if(!allProfiles) {
+    return null;
+ }
+ 
+  const threadStuff:ThreadObject[]=[];
 
-
-
+  allThreads?.forEach((thread) => {
+    let profiles = allProfiles.filter((profile) => thread.profileIds.includes(profile.id));
+    if(!posts){
+      return null;
+    }
+    let allPosts = posts.filter((post) => thread.postIds.includes(post.id));
+    threadStuff.push({
+      thread,
+      participants:profiles,
+      threadPosts: allPosts,
+    });
+  });
 
    
   if(!profile && !userGroups) {
@@ -72,9 +96,8 @@ const DashboardPage = async () => {
     <Divider/>
    {profile && userGroups && ( 
    <ThreadViewer
-    allPosts={posts}
+    threadObjects={threadStuff}
     userGroups={userGroups}
-    allThreads={allThreads}
     profile={profile}
     />)}
 </div>

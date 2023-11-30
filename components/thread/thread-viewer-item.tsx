@@ -11,28 +11,48 @@ import { useRouter } from "next/navigation";
 import ThreadActionList from "./thread-action-list";
 import PostItem from "./post-item";
 import { ScrollArea } from "../ui/scroll-area";
+import { db } from "@/lib/db";
 
 interface ThreadViewerItemProps {
   profile:Profile;
   thread:Thread;
-  allPosts:Post[];
+  threadPosts:Post[];
+  participants:Profile[];
 }
+
+export type PostObject = {
+  posterProfile:Profile;
+  post:Post;
+}
+
 
 const ThreadViewerItem = ({
   thread,
   profile,
-  allPosts,
+  threadPosts,
+  participants,
 }: ThreadViewerItemProps) => {
 
-  const  posts = thread.postIds;
-  let currentPosts:Post[];
-  if (posts) {
-    currentPosts = allPosts.filter((post) => posts.includes(post.id));
-  } else {
-    currentPosts = [];
-  }
+  const postStuffs:PostObject[]=[];
+
+  if(!participants ||!threadPosts) { return null; }
+
+
+
+  threadPosts.forEach((post) => {
+    for (let i = 0; i < participants.length; i++)
+     {
+      if(post.profileId===participants[i].id) {
+        console.log(participants[i].id);
+        postStuffs.push({
+          posterProfile: participants[i],
+          post,
+        });
+      };
+    }
+  });
   
-  const router = useRouter();
+
 
   return (
   <div className="flex items-center px-4  bg-zinc-100 dark:bg-zinc-700 w-full rounded-md " >
@@ -66,8 +86,8 @@ const ThreadViewerItem = ({
     <AccordionContent>
       <ScrollArea className="h-[300px]">
       <div className="flex items-center justify-center flex-col gap-2 w-full">
-        {currentPosts && currentPosts.map((post) => (
-          <PostItem key={post.id} post={post} />
+        {postStuffs && postStuffs.map((postStuff) => (
+          <PostItem key={postStuff.post.id} post={postStuff.post} profile={postStuff.posterProfile} />
         ))}
       </div>
       </ScrollArea>

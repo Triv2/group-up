@@ -93,9 +93,9 @@ export async function GET(
     
     
     
-    const profile = await db.profile.findFirst({
+    const profile = await db.profile.findUnique({
       where: {
-        clerkId:user.id,
+        id:params.profileId,
       },
     })
     if (!profile) {

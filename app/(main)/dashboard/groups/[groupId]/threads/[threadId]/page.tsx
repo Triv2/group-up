@@ -1,6 +1,6 @@
 import CreatePostButton from "@/components/thread/create-post-button";
 import PostItem from "@/components/thread/post-item";
-import ThreadViewerItem from "@/components/thread/thread-viewer-item";
+import ThreadViewerItem, { PostObject } from "@/components/thread/thread-viewer-item";
 import { allPosts } from "@/lib/all-posts";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
@@ -26,14 +26,37 @@ const ThreadIdPage = async ({
   })
   if (!thread) { return null; }
    
-  const posts = thread.postIds;
+  const threadPosts:PostObject[]=[];
+
+  const participants = await db.profile.findMany({
+    where: {
+      id: {
+        in: thread.profileIds,
+      },
+    },
+})
+
+
 
   const currentPosts = await db.post.findMany({
     where: {
       id: {
-        in: posts,
+        in: thread.postIds,
       },
     },
+  })
+  
+  currentPosts.forEach((post) => {
+    for (let i = 0; i < participants.length; i++) {
+      if(post.profileId===participants[i].id) {
+       
+        threadPosts.push({
+          posterProfile: participants[i],
+          post,
+        });
+      };
+    };
+
   })
 
   const currentPostCount= thread.postIds.length;
@@ -43,6 +66,7 @@ const ThreadIdPage = async ({
       id: thread.starter,
     },
   })
+  
   
   return (
 <div className="flex px-2 md:px-1 w-full bg-zinc-300 dark:bg-zinc-800 min-h-screen h-auto">
@@ -86,7 +110,7 @@ const ThreadIdPage = async ({
     <div className="flex items-center justify-around gap-2">
         <p className="text-muted-foreground">Participants:</p>
         <div className="rounded-full bg-blue-400 p-1 px-3 font-bold">
-        <p >{thread.profileIds.length}</p>
+        <p >{participants.length}</p>
         </div>
       <div className="flex items-center justify-around gap-2">
       <p>Posts:</p>
@@ -102,8 +126,8 @@ const ThreadIdPage = async ({
     </div>
     </div>
     <div className="flex items-center flex-col justify-center gap-2 sm:px-4">
-      {currentPosts && currentPosts.map((post) => (
-        <PostItem key={post.id} post={post} />
+      {threadPosts && threadPosts.map((threadPost) => (
+        <PostItem key={threadPost.post.id} post={threadPost.post} profile={threadPost.posterProfile}/>
       ))}
     </div>
 </div>

@@ -8,12 +8,12 @@ import ProfileAvatar from '../profile/profile-avatar';
 
 interface PostItemProps {
   post: Post;
-  
+  profile: Profile;
 }
 
 const PostItem:React.FC<PostItemProps> = ({
   post,
-  
+  profile,
 }) => {
 
 const [isMounted, setIsMounted] = useState(false);
@@ -36,11 +36,9 @@ const createdAt = new Date(post.createdAt);
       <div className="flex flex-col sm:flex-row justify-between px-5 py-5 gap-3">
 
       <div className="flex flex-col-reverse sm:flex-row items-center justify-center gap-1 w-full">
-        {post.profileImageUrl && post.profileName && (   
+        {profile && (   
           <ProfileAvatar 
-            profileName={post.profileName}
-            profileImageUrl={post.profileImageUrl}
-            profileId={post.profileId}
+            profile={profile}
           />
          )}
         <div className=" min-h-[6rem]  font-semibold flex items-center justify-center px-2 sm:px-10 py-4  bg-zinc-100 dark:bg-zinc-500 shadow-md rounded-md w-full">

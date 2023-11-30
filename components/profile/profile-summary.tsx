@@ -12,122 +12,41 @@ interface ProfileSummaryProps {
   profile: Profile;
   joinedGroups?:Group[];
   createdGroups?:Group[];
+  onClose: () => void;
 }
 
 
 
-const ProfileSummary = async ({
+const ProfileSummary = ({
+  onClose,
   profile,
   joinedGroups,
   createdGroups,
 }:ProfileSummaryProps) => {
   return (
 <div className="flex items-center justify-start flex-col px-2 py-2 gap-1  rounded-md bg-zinc-100/80 shadow-md w-full">
-      <Accordion className="w-full"  type="single" collapsible>
-        <AccordionItem className="w-full"  value="item-1">
-          <AccordionTrigger className="flex items-center justify-between hover:scale-105 hover:bg-white w-full no-underline hover:no-underline px-2 py-2 gap-1 ">
-          {profile.name &&(  
-            <div className="flex items-center justify-center sm:flex-row flex-col gap-2">
 
-          <div className="flex items-center justify-center gap-5 rounded-md p-2">
-            
-            <div className="  border-black flex items-center justify-center gap-5 rounded-md p-2">
-            <Avatar size="md" color="success" isBordered src={profile.imageUrl}/>
-            <div>
-              <p className="text-lg font-semibold">{profile.name}</p>
-              <Divider />
-              </div>
-              </div>
+            <div className="w-full ">
+          <p className="font-bold text-md py-1 px-1 pt-2 w-full">Profile Information</p>
           </div>
-
-
-          </div>
-          )}
-        </AccordionTrigger>
-        <Divider/>
-        <AccordionContent className="md:px-10 w-full" >
-          <div className="">
+          <Divider/>
             <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
-              <p>Actions:</p>
-              {joinedGroups && (
-                
-              <ProfileGroupList 
-                groups={joinedGroups} 
-                icon={<UserSquare2 
-                className="h-4 w-4"/> }
-                toolTipClassName=""
-                
-                toolTipContent="View Your Joined Groups."
-                />
-              
-              )}
-       {createdGroups && (
-       <ProfileGroupList 
-        groups={createdGroups} 
-        icon={<Users2 
-        className="h-4 w-4"/> }
-        toolTipClassName=""
-        
-        toolTipContent="View Your Created Groups."
-        />
-        )}
-      
-       {joinedGroups &&(
-          <ProfileActionList 
-              groups={joinedGroups} 
-              profile={profile}/>
-          )}
+
+                <p className="text-xs">Avatar:</p>
+                <Avatar src={profile.imageUrl} size="sm" />
+               </div>
+            <Divider/>
+
+            <div className="flex items-center flex-col">
+              <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
+            <p className="text-xs">Name:</p><p className="text-xs text-end">{profile.name}</p>
             </div>
-            <Divider />
-        <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
-          
-          <p className="text-sm">Avatar:</p>
-          <Avatar src={profile.imageUrl} size="sm" />
-        </div>
-        <Divider/>
-        <div className="flex items-center flex-col gap-1">
-          <div className="flex gap-1 justify-between items-center w-full px-2">
-        <p className="text-sm">Name:</p><p className="text-xs text-end">{profile.name}</p>
-        </div>
-        <Divider/>
-        {/* <div className="flex gap-1 justify-between items-center w-full px-2">
-        <p className="text-sm">Joined Groups:</p>
-        <div>
-        {joinedGroups && (joinedGroups.length>0) ? 
-          (
-          <ProfileGroupList groups={joinedGroups} icon={<Users2 className="h-4 w-4"/> }/>
-          )
-        : (
-          <p className="text-xs">No Groups</p>
-        )}
-        </div>
-        </div>
-        <Divider/>
-        <div className="flex gap-1 justify-between items-center w-full px-2">
-          <p className="text-sm">Created Groups:</p>
-          <div>
-      {createdGroups && (createdGroups.length>0) ? 
-          (
-          <ProfileGroupList groups={createdGroups} icon={<UserSquare2 className="h-4 w-4"/> }/>  
-          )
-        : (
-          <p className="text-xs">No Groups</p>
-        )}
-        </div>
-        </div>
-        <Divider /> */}
-        <div className="flex gap-1 justify-between items-center w-full px-2">
-        <p className="text-sm">Interests:</p><p className="text-xs ">{profile.content}</p>
-        </div>
-        <Divider />
-        <div className="flex gap-1 p-1 flex-col md:flex-row">
-          
-        </div>
-        </div>
-        </div>
-        </AccordionContent>
-        </AccordionItem>
-        </Accordion>
+            <Divider/>
+            <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
+            <p className="text-xs">Interests:</p><p className="text-xs ">{profile.content}</p>
+            </div>
+            <Divider/>
+            </div>
       </div>
   );
 }
