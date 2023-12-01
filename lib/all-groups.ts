@@ -10,7 +10,7 @@ export const allGroups = async () => {
   if(!userId) { 
     
     return null;
-  }
+  } 
 
   const groups =await db.group.findMany({});
 
