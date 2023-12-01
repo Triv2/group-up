@@ -21,6 +21,7 @@ import toast from 'react-hot-toast';
 
 interface ProfileActionListProps {
   profile: Profile;
+  
   onClose: () => void;
   targetId: string;
 }
@@ -29,7 +30,7 @@ interface ProfileActionListProps {
 
 const ProfileActionList:React.FC<ProfileActionListProps> = ({
   
-  profile,
+ profile,
   onClose,
   targetId,
 
@@ -39,7 +40,7 @@ const ProfileActionList:React.FC<ProfileActionListProps> = ({
 const [isMounted, setIsMounted] = useState(false);
 const [loading, setLoading] = useState(false);
 
-
+const router = useRouter();
 
 
 
@@ -66,6 +67,7 @@ const addFriend = async () => {
   } catch (error) {
     toast.error("Something went wrong.");
   } finally {
+    router.refresh();
     setLoading(false);
   }
 }
@@ -77,7 +79,7 @@ const addFriend = async () => {
     <>
     <div className="flex items-center gap-3">
       <Tooltip content="Ask to be friends" placement="top">
-      <Button size="sm" className="shadow-md hover:scale-105 transition-all bg-emerald-700 text-white hover:bg-emerald-500">
+      <Button onClick={()=>addFriend()} size="sm" className="shadow-md hover:scale-105 transition-all bg-emerald-700 text-white hover:bg-emerald-500">
         <User className="h-3 w-3"/><p className="hidden sm:block">Friend</p>
       </Button>
       </Tooltip>

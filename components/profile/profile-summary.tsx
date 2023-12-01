@@ -7,8 +7,10 @@ import { Edit, Layers, User2, UserSquare2, Users2 } from "lucide-react";
 
 import ProfileGroupList from "./profile-group-list";
 import ProfileActionList from "./profile-action-list";
+import { currentCreatedGroups } from "@/lib/current-created-groups";
 
 interface ProfileSummaryProps {
+  currentProfile: Profile;
   profile: Profile;
   joinedGroups?:Group[];
   createdGroups?:Group[];
@@ -22,6 +24,7 @@ const ProfileSummary = ({
   profile,
   joinedGroups,
   createdGroups,
+  currentProfile,
 }:ProfileSummaryProps) => {
   return (
 <div className="flex items-center justify-start flex-col px-2 py-2 gap-1  rounded-md bg-zinc-100 dark:bg-zinc-700 shadow-md w-full">
@@ -43,7 +46,7 @@ const ProfileSummary = ({
             <p className="text-xs">Interests:</p><p className="text-xs ">{profile.content}</p>
             </div>
            <Divider/>
-        {profile && ( <ProfileActionList profile={profile} onClose={onClose} targetId={profile.id} />)}
+        {profile && ( <ProfileActionList profile={currentProfile} onClose={onClose} targetId={profile.id} />)}
       </div>
   );
 }

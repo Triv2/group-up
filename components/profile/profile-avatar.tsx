@@ -9,10 +9,12 @@ import axios from "axios";
 
 interface ProfileAvatarProps {
   profile:Profile;
+  currentProfile:Profile;
 }
 
 const ProfileAvatar = ({
   profile,
+  currentProfile,
 }: ProfileAvatarProps) => {
 
   const [open, setOpen] = useState(false);
@@ -36,6 +38,7 @@ const ProfileAvatar = ({
        <Image className="rounded-full" src={profile.imageUrl} width={50} height={50} alt={profile.imageUrl}/>
         <p className="font-semibold">{profile.name}</p>
         <ProfileSummaryModal
+          currentProfile={currentProfile}
           profile={profile}
           isOpen={open}
           onClose={()=>setOpen(false)}

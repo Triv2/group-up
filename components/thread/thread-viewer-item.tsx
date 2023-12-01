@@ -31,6 +31,7 @@ const ThreadViewerItem = ({
   profile,
   threadPosts,
   participants,
+  
 }: ThreadViewerItemProps) => {
 
   const postStuffs:PostObject[]=[];
@@ -87,7 +88,7 @@ const ThreadViewerItem = ({
       <ScrollArea className="h-[300px]">
       <div className="flex items-center justify-center flex-col gap-2 w-full">
         {postStuffs && postStuffs.map((postStuff) => (
-          <PostItem key={postStuff.post.id} post={postStuff.post} profile={postStuff.posterProfile} />
+          <PostItem key={postStuff.post.id} post={postStuff.post} profile={postStuff.posterProfile} currentProfile={profile} />
         ))}
       </div>
       </ScrollArea>

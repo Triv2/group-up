@@ -15,6 +15,8 @@ export async function PATCH(
     
     const { profileId,targetId} = body;
 
+    console.log(body)
+
     if (!profileId ||!targetId) {
       return new NextResponse("profileId and targetId are required",{ status: 400 });
     }

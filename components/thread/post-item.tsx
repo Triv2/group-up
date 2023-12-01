@@ -9,11 +9,13 @@ import ProfileAvatar from '../profile/profile-avatar';
 interface PostItemProps {
   post: Post;
   profile: Profile;
+  currentProfile: Profile;
 }
 
 const PostItem:React.FC<PostItemProps> = ({
   post,
   profile,
+  currentProfile,
 }) => {
 
 const [isMounted, setIsMounted] = useState(false);
@@ -39,6 +41,7 @@ const createdAt = new Date(post.createdAt);
         {profile && (   
           <ProfileAvatar 
             profile={profile}
+            currentProfile={currentProfile}
           />
          )}
         <div className=" min-h-[6rem]  font-semibold flex items-center justify-center px-2 sm:px-10 py-4  bg-zinc-100 dark:bg-zinc-500 shadow-md rounded-md w-full">

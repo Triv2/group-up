@@ -14,6 +14,7 @@ import EditProfileModal from '../modals/edit-profile-modal';
 import AllGroupsModal from '../modals/all-groups-modal';
 import CreateThreadModal from '../modals/create-thread-modal';
 import CreateMessageThreadModal from '../modals/create-message-thread-modal';
+import FriendList from '../friend/friend-list';
 
 
 interface SidebarControllerProps {
@@ -147,6 +148,13 @@ return null;
             <Divider/>
             </div>
              <div className="pt-2 pb-2">
+              <p className="font-bold text-md shadow-xl py-1 px-1">Friends</p>
+              <Divider/>
+              <ScrollArea className='w-auto  h-[110px]'>
+           {allFriends &&( <FriendList friends={allFriends} />)}
+            </ScrollArea>
+            </div>
+            <div className="pt-2 pb-2">
               <p className="font-bold text-md shadow-xl py-1 px-1">Messaging</p>
               <Divider/>
               <ScrollArea className='w-auto  h-[110px]'>

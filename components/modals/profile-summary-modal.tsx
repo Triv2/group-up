@@ -15,6 +15,7 @@ interface ProfileSummaryModalProps {
   onConfirm: () => void;
   loading: boolean;
   profile: Profile;
+  currentProfile: Profile;
 }
 
 export const ProfileSummaryModal: React.FC<ProfileSummaryModalProps> = ({
@@ -23,6 +24,7 @@ export const ProfileSummaryModal: React.FC<ProfileSummaryModalProps> = ({
   onConfirm,
   loading,
   profile,
+  currentProfile,
 }) => {
 
 
@@ -35,7 +37,7 @@ export const ProfileSummaryModal: React.FC<ProfileSummaryModalProps> = ({
     >
       
 
-      <ProfileSummary profile={profile} onClose={onClose}/>
+      <ProfileSummary currentProfile={currentProfile} profile={profile} onClose={onClose}/>
 
       <div className="pt-6 space-x-2 flex items-center justify-end w-full">
         <Button disabled={loading}  onClick ={onClose}>
