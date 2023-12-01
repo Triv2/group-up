@@ -1,5 +1,5 @@
-import CreatePostButton from "@/components/thread/create-post-button";
-import PostItem from "@/components/thread/post-item";
+import CreatePostButton from "@/components/post/create-post-button";
+import PostItem from "@/components/post/post-item";
 import ThreadViewerItem, { PostObject } from "@/components/thread/thread-viewer-item";
 import { allPosts } from "@/lib/all-posts";
 import { currentProfile } from "@/lib/current-profile";

@@ -41,7 +41,23 @@ return null;
      {group &&(  
      <Tooltip
        placement="right"
-       content={group.name}
+       content={
+        <div className="flex items-center  flex-col p-2 gap-2">
+          Click to view group page.
+          <Divider/>
+          <div className="text-xs flex gap-1 justify-between w-full">
+          <p>Name:</p><p>{group.name}</p>
+          </div>
+          <div className="text-xs flex justify-between gap-1  w-full">
+         <p>Creator:</p><p>{creator?.name}</p>
+          </div>
+          <div className="text-xs flex justify-between gap-1 w-full">
+           <p>Members:</p><p>{group.profileIds.length}</p>
+          </div>
+          
+          
+        </div>
+       }
        className="">
         <Button 
         onClick={()=>router.push(`/dashboard/groups/${group.id}`)}

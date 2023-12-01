@@ -151,7 +151,7 @@ return null;
               <p className="font-bold text-md shadow-xl py-1 px-1">Friends</p>
               <Divider/>
               <ScrollArea className='w-auto  h-[110px]'>
-           {allFriends &&( <FriendList friends={allFriends} />)}
+           {allFriends &&( <FriendList friends={allFriends} currentProfile={profile} />)}
             </ScrollArea>
             </div>
             <div className="pt-2 pb-2">

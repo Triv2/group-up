@@ -4,7 +4,7 @@ import CreateGroupForm from '@/components/group/create-group-form';
 import { Modal } from '@/components/ui/modal';
 import { Button } from '@nextui-org/react';
 import { useEffect } from 'react';
-import CreatePost from '../thread/create-post';
+import CreatePost from '../post/create-post';
 import CreateMessage from '../message/create-message';
 
 interface CreateMessageModalProps {

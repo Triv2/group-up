@@ -2,13 +2,16 @@
 import { Profile } from '@prisma/client';
 import Image from 'next/image';
 import {useState, useEffect} from'react'
+import FriendListItem from './friend-list-item';
 
 interface FriendListProps {
   friends: Profile[];
+  currentProfile: Profile;
 }
 
 const FriendList:React.FC<FriendListProps> = ({
   friends,
+  currentProfile,
 }) => {
 
 const [isMounted, setIsMounted] = useState(false);
@@ -21,17 +24,15 @@ if (!isMounted) {
 return null;
 }
   return (
-    <div>
+    <div className="h-auto w-full flex   pl-1 flex-col items-center justify-center ">
       {friends.map((friend) => (
-        <div key={friend.id} className="flex items-center gap-3">
+        <div key={friend.id} className="h-auto w-full flex   flex-col items-center justify-center  " >
          
-          <div className="flex flex-col gap-1">
-            <Image src={friend.imageUrl} alt={friend.id} width={32} height={32} className="rounded-full" />
-            <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
-              {friend.name}
-            </p>
-
-          </div>
+         <FriendListItem
+         currentProfile={currentProfile}
+         profile={friend}
+         />
+          
         </div>
       ))}
     </div>

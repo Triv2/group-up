@@ -9,7 +9,7 @@ import Image from "next/image";
 
 import { useRouter } from "next/navigation";
 import ThreadActionList from "./thread-action-list";
-import PostItem from "./post-item";
+import PostItem from "../post/post-item";
 import { ScrollArea } from "../ui/scroll-area";
 import { db } from "@/lib/db";
 
