@@ -41,7 +41,7 @@ export async function POST(
       return new NextResponse("Target Profile doesn't exist.",{ status: 400 });
     }
     if(title===""){
-      newTitle= "Conversation: " + checkProfile.name + " to " + targetProfile.name;
+      newTitle=  checkProfile.name + " to " + targetProfile.name;
     }
    
     

@@ -15,6 +15,7 @@ import AllGroupsModal from '../modals/all-groups-modal';
 import CreateThreadModal from '../modals/create-thread-modal';
 import CreateMessageThreadModal from '../modals/create-message-thread-modal';
 import FriendList from '../friend/friend-list';
+import ConversationList from '../message/conversation-list';
 
 
 interface SidebarControllerProps {
@@ -165,13 +166,13 @@ return null;
               members={members}
               profile={profile}
             /> */}
-            {messageThreads && messageThreads.map((messageThread) => (
-              <div key={messageThread.id}>
-                  {messageThread.title}
-                  
-              </div>
-              ))}
-            
+            {messageThreads && allFriends &&(
+            <ConversationList 
+            conversations={messageThreads}
+            profile={profile}
+            friends={allFriends}
+            />)}
+           
             
             </ScrollArea>
             </div>

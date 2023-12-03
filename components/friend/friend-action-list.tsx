@@ -80,7 +80,7 @@ const removeFriend = async () => {
     <div className="flex items-center gap-3">
       <Tooltip content="Remove from friends" placement="top">
       <Button onClick={()=>removeFriend()} size="sm" className="shadow-md hover:scale-105 transition-all bg-orange-700 text-white hover:bg-orange-500">
-        <Minus className="h-3 w-3"/><p className="hidden sm:block">Friend</p>
+        <Minus className="h-3 w-3"/><p className="hidden sm:block">Unfriend</p>
       </Button>
       </Tooltip>
       <Tooltip content="Send a message" placement="top">

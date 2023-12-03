@@ -36,7 +36,7 @@ export const GroupSummaryModal: React.FC<GroupSummaryModalProps> = ({
     onClose={onClose}
     >
       
-
+ {/* FINISH THIS  */}
       <ProfileSummary currentProfile={currentProfile} profile={profile} onClose={onClose}/>
 
       <div className="pt-6 space-x-2 flex items-center justify-end w-full">

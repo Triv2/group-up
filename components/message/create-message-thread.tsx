@@ -28,7 +28,7 @@ interface CreateMessageThreadProps {
 
 const formSchema= z.object({
   
-  title: z.string().min(1),
+  title: z.string(),
   content: z.string().min(1),
   imageUrl: z.string().default(""),
   targetId: z.string()
