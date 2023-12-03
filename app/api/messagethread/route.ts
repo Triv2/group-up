@@ -14,9 +14,12 @@ export async function POST(
   }
     const body = await req.json();
     
-    const {   content,   targetId } = body;
+    const { title,  content,   targetId } = body;
   
+    console.log(title, content, targetId);
    
+    let newTitle= title;
+
     
    
     
@@ -37,12 +40,16 @@ export async function POST(
     if(!targetProfile) {
       return new NextResponse("Target Profile doesn't exist.",{ status: 400 });
     }
+    if(title===""){
+      newTitle= "Conversation: " + checkProfile.name + " to " + targetProfile.name;
+    }
+   
     
     const newMessageThread = await db.messageThread.create({
       data: {
-        title: "Conversation: " + checkProfile.name + " to " + targetProfile.name,
-        starter: checkProfile.id,
-       
+        title: newTitle,
+        starterId: checkProfile.id,
+        
         content,
         profileIds: [checkProfile.id],
         
@@ -53,9 +60,10 @@ export async function POST(
       data: {
         content,
         messageThreadId: newMessageThread.id,
-        profileId: checkProfile.id,
-        profileName: checkProfile.name,
-        profileImageUrl: checkProfile.imageUrl,
+        starterId: checkProfile.id,
+        targetId: targetProfile.id,
+        starterName: checkProfile.name,
+        targetName: targetProfile.name,
       },
     })
     await db.messageThread.update({
@@ -65,6 +73,24 @@ export async function POST(
       data: {
         messageIds:[newMessage.id],
         profileIds:{ push: [targetId]}
+      },
+    })
+    await db.profile.update({
+      where: {
+        id:checkProfile.id,
+      },
+      data: {
+        messageThreadIds:{
+          push:[newMessageThread.id]}
+      },
+    })
+    await db.profile.update({
+      where: {
+        id:targetProfile.id,
+      },
+      data: {
+        messageThreadIds:{
+          push:[newMessageThread.id]}
       },
     })
 

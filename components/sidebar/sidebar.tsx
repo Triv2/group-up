@@ -1,7 +1,7 @@
 
 import SidebarController from "./sidebar-controller";
 
-import { Group, Profile } from "@prisma/client";
+import { Group, MessageThread, Profile } from "@prisma/client";
 
 interface SideBarProps {
   userCreatedGroups?: Group[] | null;
@@ -11,6 +11,7 @@ interface SideBarProps {
   name: string;
   allGroups: Group[] | null;
   allFriends: Profile[] | null;
+  allMessageThreads: MessageThread[] | null;
 }
 
 
@@ -22,6 +23,7 @@ const SideBar =  ({
   name,
   allGroups,
   allFriends,
+  allMessageThreads
 }:
 SideBarProps) => {
 
@@ -38,7 +40,9 @@ SideBarProps) => {
             joinedGroups={nonUserCreatedGroups} 
             createdGroups={userCreatedGroups} 
             members={members}
-            allGroups={allGroups}/>
+            allGroups={allGroups}
+            messageThreads={allMessageThreads}
+            />
             )}
       
         

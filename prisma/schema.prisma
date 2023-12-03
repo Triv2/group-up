@@ -144,7 +144,7 @@ model Thread {
 model MessageThread {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   title String
-  starter String @db.ObjectId
+  starterId String @db.ObjectId
   content String
 
 
@@ -161,7 +161,11 @@ model MessageThread {
 }
 model Message {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  profileId String @db.ObjectId
+  starterId String @db.ObjectId
+  starterName String?
+
+  targetId String @db.ObjectId
+  targetName String?
   
   title String?
 

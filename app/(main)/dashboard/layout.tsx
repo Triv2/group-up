@@ -8,6 +8,7 @@ import { currentCreatedGroups } from "@/lib/current-created-groups";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { currentUser, redirectToSignIn } from "@clerk/nextjs";
+import {  MessageThread } from "@prisma/client";
 
 
 const DashboardLayout = async  ({
@@ -30,6 +31,13 @@ const DashboardLayout = async  ({
         in: profile?.friendIds}
        }
     });
+  const allMessageThreads:MessageThread[]= await db.messageThread.findMany({
+      where:{
+        id:{
+          in: profile?.messageThreadIds
+        }
+      }
+  })
 
   return (
     <div className="h-full">
@@ -49,6 +57,7 @@ const DashboardLayout = async  ({
       <Sidebar
       allFriends={friends}
       allGroups={groups}
+      allMessageThreads={allMessageThreads}
       userCreatedGroups={userCreatedGroups}
       nonUserCreatedGroups={nonUserCreatedGroups}
       members={members}

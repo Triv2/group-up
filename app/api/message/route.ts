@@ -43,9 +43,9 @@ export async function POST(
         content,
         messageThreadId: checkThread.id,
 
-        profileId: checkProfile.id,
-        profileName: checkProfile.name,
-        profileImageUrl: checkProfile.imageUrl,
+        starterId: checkProfile.id,
+        starterName: checkProfile.name,
+        targetId: checkThread.id
     
       },
     })

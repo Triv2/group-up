@@ -1,6 +1,6 @@
 'use client'
 import { Avatar, Button, Divider, Tab, Tabs } from '@nextui-org/react';
-import { Group, Profile } from '@prisma/client';
+import { Group, MessageThread, Profile } from '@prisma/client';
 import { Contact, File, Home, MailPlus, UserCircle, UserPlus2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import {useState, useEffect} from'react'
@@ -24,6 +24,7 @@ interface SidebarControllerProps {
   members: Profile[];
   allGroups: Group[] | null | undefined;
   allFriends:Profile[] | null | undefined;
+  messageThreads: MessageThread[] | null | undefined;
 }
 
 const SidebarController:React.FC<SidebarControllerProps> = ({
@@ -32,7 +33,8 @@ const SidebarController:React.FC<SidebarControllerProps> = ({
   joinedGroups,
   members,
   allGroups,
-  allFriends
+  allFriends,
+  messageThreads
 }) => {
 const router = useRouter();
 const [isMounted, setIsMounted] = useState(false);
@@ -155,14 +157,22 @@ return null;
             </ScrollArea>
             </div>
             <div className="pt-2 pb-2">
-              <p className="font-bold text-md shadow-xl py-1 px-1">Messaging</p>
+              <p className="font-bold text-md shadow-xl py-1 px-1">Conversations</p>
               <Divider/>
               <ScrollArea className='w-auto  h-[110px]'>
-            <SidebarGroupList
+            {/* <SidebarGroupList
               groups={allGroups}
               members={members}
               profile={profile}
-            />
+            /> */}
+            {messageThreads && messageThreads.map((messageThread) => (
+              <div key={messageThread.id}>
+                  {messageThread.title}
+                  
+              </div>
+              ))}
+            
+            
             </ScrollArea>
             </div>
 

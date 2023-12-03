@@ -51,6 +51,7 @@ const [loading, setLoading] = useState(false);
 const [isMounted, setIsMounted] = useState(false);
 const [upload,setUpload] = useState(false);
 const [friend,setFriend] = useState("");
+const [targetId,setTargetId] = useState("");
 const [openThread, setOpenThread] = useState(false);
 
 
@@ -61,7 +62,7 @@ const form = useForm<CreateMessageThreadValues>({
     title: "",
     imageUrl: "",
     content: "",
-    targetId:"",
+    targetId:targetId,
   },
 });
 
@@ -77,8 +78,9 @@ useEffect(() => {
     try {
       setLoading(true);
       
-    
       
+      data.targetId=friend;
+
       console.log("onSubmit",data)
       await axios.post(`/api/messagethread/`, data)
       
@@ -91,15 +93,15 @@ useEffect(() => {
       setLoading(false);
     }
   };
- 
-  const handleSelectionChange = (e:any) => {
-    setFriend(e.target.value);
-  };
-
   let friends = allFriends.map((friend) => {
     friend.name;
   })
 
+  const handleSelectionChange = (e:any) => {
+    setFriend(e.target.value);
+  };
+
+  
  
   
 
@@ -148,6 +150,27 @@ useEffect(() => {
         />
         </div>
                   <Divider/>
+                  <FormField
+          control={form.control}
+          name="title"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="font-semibold">
+                Title
+              </FormLabel>
+              <FormControl>
+               <Input 
+               
+               type="title"
+               
+               placeholder="Conversation title"
+                className="text-black dark:text-white rounded-md h-[25px]"
+               disabled={loading}  {...field}/>
+              </FormControl>
+              <FormMessage/>
+            </FormItem>
+            )}
+        />
            <FormField
           control={form.control}
           name="content"
