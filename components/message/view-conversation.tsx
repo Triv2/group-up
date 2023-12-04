@@ -33,7 +33,20 @@ const ViewConversation = ({
       setOpen(true)
     }
   };
-
+  const checkUser = (message:Message) => {
+    if(currentProfile.id === message.starterId){
+      return currentProfile;
+    } else {
+      return targetProfile;
+    }
+  }
+    const checkUser2 = (message:Message) => {
+      if(targetProfile.id === message.starterId){
+        return targetProfile;
+      } else {
+        return currentProfile;
+      }
+    }
 
   return (
 <div className="flex items-center justify-center flex-col gap-2 h-auto p-5">
@@ -44,8 +57,8 @@ const ViewConversation = ({
     <div key={message.id}>
       <MessageItem
         message={message}
-        profile={targetProfile}
-        currentProfile={currentProfile}
+        profile={checkUser(message)}
+        currentProfile={checkUser(message)}
       />
 
     </div>))}
