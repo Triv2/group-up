@@ -1,7 +1,7 @@
 'use client'
 import { Avatar, Button, Divider, Tab, Tabs } from '@nextui-org/react';
 import { Group, MessageThread, Profile } from '@prisma/client';
-import { Contact, File, Home, MailPlus, UserCircle, UserPlus2 } from 'lucide-react';
+import { Contact, File, Home, Mail, MailPlus, UserCircle, UserPlus2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import {useState, useEffect} from'react'
 import GroupList from '../group/group-list';
@@ -16,6 +16,7 @@ import CreateThreadModal from '../modals/create-thread-modal';
 import CreateMessageThreadModal from '../modals/create-message-thread-modal';
 import FriendList from '../friend/friend-list';
 import ConversationList from '../message/conversation-list';
+import ConversationModal from '../modals/conversation-modal';
 
 
 interface SidebarControllerProps {
@@ -43,6 +44,7 @@ const [groups, setGroups] = useState(false);
 const [create,setCreate] = useState(false);
 const [thread,setThread] = useState(false);
 const [message,setMessage] = useState(false);
+const [inbox, setInbox] = useState(false);
 const [edit,setEdit] = useState(false);
 const [loading, setLoading] = useState(false);
 
@@ -107,6 +109,13 @@ return null;
             >
                <MailPlus className="h-3 w-3"/>Create Message
             </Button>
+            <Button
+            size="sm"
+            className="w-full  rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
+              onClick={()=>setInbox(true)}
+            >
+               <Mail className="h-3 w-3"/>Inbox
+            </Button>
            
             
             
@@ -119,7 +128,18 @@ return null;
               onClose={()=>setMessage(false)}
               onConfirm={()=>{}}
               loading={loading}
-            />)}
+            />
+            )}
+       {/* {messageThreads && allFriends &&   ( 
+       <ConversationModal
+            profile={profile}
+            isOpen={inbox}
+            onClose={()=>setInbox(false)}
+            onConfirm={()=>{}}
+            loading={loading}
+            conversations={messageThreads}
+            friends={allFriends}
+            />)} */}
             <EditProfileModal
              profile={profile}
              isOpen={edit}
@@ -171,6 +191,7 @@ return null;
             conversations={messageThreads}
             profile={profile}
             friends={allFriends}
+            onClose={()=>setInbox(false)}
             />)}
            
             

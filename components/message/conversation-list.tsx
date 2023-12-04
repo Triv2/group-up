@@ -1,17 +1,23 @@
-import { MessageThread, Profile } from "@prisma/client";
+import { Message, MessageThread, Profile } from "@prisma/client";
 import ConversationListItem from "./conversation-list-item";
 
 interface ConversationListProps {
   conversations: MessageThread[];
   profile: Profile;
   friends: Profile[];
+  onClose: () => void;
+  messages: Message[];
 }
 
 const ConversationList = ({
   conversations,
   profile,
   friends,
+  messages,
 }: ConversationListProps) => {
+
+ 
+
   return (
 <div className="h-auto w-full flex   pl-1 flex-col items-center justify-center ">
 {conversations && conversations.map((conversation) => (
@@ -20,6 +26,7 @@ const ConversationList = ({
                     conversation={conversation}
                     currentProfile={profile}
                     friends={friends}
+                    messages={messages}
                   />
                   
               </div>

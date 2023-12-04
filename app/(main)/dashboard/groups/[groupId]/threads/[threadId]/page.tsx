@@ -73,15 +73,14 @@ const ThreadIdPage = async ({
 
 <div className="mt-[35px] pt-10 w-full px-2 md:px-10 md:ml-[140px]">
   <div className="flex items-center justify-center flex-col gap-2 bg-zinc-100 dark:bg-zinc-700 rounded-md shadow-md dark:shadow-white w-full py-5">
+   
     <div className="flex items-center gap-3 justify-center w-full px-5">
     {thread?.imageUrl&&(
       <Image className="rounded-full" src={thread.imageUrl} width={50} height={50} alt={thread.imageUrl} />
     )}
     <p className="text-2xl md:text-3xl font-bold">{thread?.title}</p>
-    
-    
-    
     </div>
+
     <Divider/>
     <div className="w-full flex items-center justify-around px-2 sm:px-10">
       <div>
@@ -94,21 +93,15 @@ const ThreadIdPage = async ({
     <p className="text-lg md:text-xl  font-bold dark:font-semibold pl-10">{threadCreator.name}</p>
     </div>
 )}
+
     </div>
-    <Divider/>
-    <div className="min-h-[4rem]  flex  gap-1 items-center justify-around w-full px-2 sm:px-10  ">
-      <p className="text-muted-foreground">Thread Created:</p>
-         <div className="flex items-center justify-center  flex-col gap-1">
-         <p>{thread?.createdAt.toLocaleTimeString()}</p>
-          <p className="text-muted-foreground">{thread?.createdAt.getMonth()}/{thread?.createdAt.getDay()}/{thread?.createdAt.getFullYear()}</p>
-          
-          </div>
-          </div>
+    
+    
     
     <Divider/>
-    <div className="flex md:flex-row flex-col items-center gap-2 justify-between w-full px-2 md:px-10 py-1">
+    <div className="flex md:flex-row flex-col items-center gap-2 justify-between w-full px-2 md:px-10 ">
     <div className="flex items-center justify-around gap-2">
-        <p className="text-muted-foreground">Participants:</p>
+        <p >Participants:</p>
         <div className="rounded-full bg-blue-400 p-1 px-3 font-bold">
         <p >{participants.length}</p>
         </div>
@@ -118,7 +111,14 @@ const ThreadIdPage = async ({
       <p>{currentPostCount}</p>
       </div>
       </div>
-      
+      <div className="min-h-[4rem]  flex  gap-2 items-center  px-2 sm:px-10  ">
+      <p >Created:</p>
+         <div className="flex items-center justify-center  flex-col text-md">
+         <p className="font-bold">{thread?.createdAt.toLocaleTimeString()}</p>
+          <p className="text-muted-foreground font-semibold">{thread?.createdAt.getMonth()}/{thread?.createdAt.getDay()}/{thread?.createdAt.getFullYear()}</p>
+          
+          </div>
+          </div>
       </div>
 
       <CreatePostButton threadId={params.threadId}/>
