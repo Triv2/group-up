@@ -1,6 +1,6 @@
 'use client'
 import { Avatar, Button, Divider, Tab, Tabs } from '@nextui-org/react';
-import { Group, MessageThread, Profile } from '@prisma/client';
+import { Group, Message, MessageThread, Profile } from '@prisma/client';
 import { Contact, File, Home, Mail, MailPlus, UserCircle, UserPlus2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import {useState, useEffect} from'react'
@@ -27,6 +27,7 @@ interface SidebarControllerProps {
   allGroups: Group[] | null | undefined;
   allFriends:Profile[] | null | undefined;
   messageThreads: MessageThread[] | null | undefined;
+  messages: Message[] | null | undefined;
 }
 
 const SidebarController:React.FC<SidebarControllerProps> = ({
@@ -36,7 +37,8 @@ const SidebarController:React.FC<SidebarControllerProps> = ({
   members,
   allGroups,
   allFriends,
-  messageThreads
+  messageThreads,
+  messages
 }) => {
 const router = useRouter();
 const [isMounted, setIsMounted] = useState(false);
@@ -186,8 +188,9 @@ return null;
               members={members}
               profile={profile}
             /> */}
-            {messageThreads && allFriends &&(
+            {messageThreads && allFriends && messages &&(
             <ConversationList 
+            messages={messages}
             conversations={messageThreads}
             profile={profile}
             friends={allFriends}

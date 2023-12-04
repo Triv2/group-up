@@ -1,6 +1,11 @@
-import { Divider } from "@nextui-org/react";
+'use client'
+
+import { Button, Divider } from "@nextui-org/react";
 import { Message, MessageThread, Profile } from "@prisma/client";
 import MessageItem from "./message-item";
+import { ScrollArea } from "../ui/scroll-area";
+import { useState } from "react";
+import CreateMessageModal from "../modals/create-message-modal";
 
 interface ViewConversationProps {
   currentProfile: Profile;
@@ -17,10 +22,24 @@ const ViewConversation = ({
   messages,
   onClose,
 }:ViewConversationProps) => {
+
+  const [open, setOpen] = useState(false);
+
+
+  const handleReply = () => {
+    if(open){
+      setOpen(false)
+    } else {
+      setOpen(true)
+    }
+  };
+
+
   return (
-<div className="flex items-center justify-center flex-col gap-2 p-5">
+<div className="flex items-center justify-center flex-col gap-2 h-auto p-5">
     <div>{currentConversation.title}</div>
     <Divider/>
+    <ScrollArea className="h-[400px]">
     {messages && messages.map((message) => (
     <div key={message.id}>
       <MessageItem
@@ -30,6 +49,20 @@ const ViewConversation = ({
       />
 
     </div>))}
+    </ScrollArea>
+    <div className="pt-6 space-x-2 flex items-center justify-start w-full">
+        <Button   onClick ={handleReply}>
+          Reply
+        </Button>
+        
+      </div>
+      <CreateMessageModal
+      isOpen={open}
+      onClose={()=>void setOpen(false)}
+      onConfirm={()=>void setOpen(false)}
+      loading={false}
+      threadId={currentConversation.id}
+      />
 </div>
   );
 }

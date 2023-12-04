@@ -26,7 +26,7 @@ export const CreateMessageModal: React.FC<CreateMessageModalProps> = ({
 
   return(
     <Modal
-    title="Create a message?"
+    title="Reply?"
     description="Fill out the form to create a new message."
     isOpen={isOpen}
     onClose={onClose}

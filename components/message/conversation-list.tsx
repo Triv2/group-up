@@ -14,6 +14,7 @@ const ConversationList = ({
   profile,
   friends,
   messages,
+  onClose,
 }: ConversationListProps) => {
 
  
@@ -27,6 +28,7 @@ const ConversationList = ({
                     currentProfile={profile}
                     friends={friends}
                     messages={messages}
+                    onClose={onClose}
                   />
                   
               </div>

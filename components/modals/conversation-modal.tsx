@@ -17,6 +17,7 @@ interface ConversationModalProps {
   loading: boolean;
   conversation: MessageThread;
   profile: Profile;
+  target: Profile;
   friends: Profile[];
   messages: Message[];
 }
@@ -30,36 +31,29 @@ export const ConversationModal: React.FC<ConversationModalProps> = ({
   profile,
   friends,
   messages,
+  target,
 }) => {
 
-  let targetFriendId="";
-  if (conversation.starterId=== profile.id){
-    targetFriendId = conversation.profileIds[1]
-  }
-  else{
-    targetFriendId = conversation.profileIds[0]
-  }
-  const targetFriend = friends.find((friend) => friend.id === targetFriendId)
-  if(!targetFriend){return null}
+ 
 
-  let someMessages = messages.filter((message) => message.starterId === profile.id)
-  let otherMessages = messages.filter((message) => message.targetId=== targetFriend.id )
-  let allMessages=someMessages.concat(otherMessages);
+  let currentConversationMessages = messages.filter((message) => message.messageThreadId === conversation.id)
+
+
 
   return(
     <Modal
     title={conversation.title}
     description="View Conversation"
     isOpen={isOpen}
-    onClose={onClose}
+    onClose={onConfirm}
     
     >
-     {conversation && targetFriend && ( 
+     {conversation && target && ( 
     <ViewConversation
      currentProfile={profile}
-     targetProfile={targetFriend}
+     targetProfile={target}
      currentConversation={conversation}
-     messages={allMessages}
+     messages={currentConversationMessages}
      onClose={onClose}
     />)}
   

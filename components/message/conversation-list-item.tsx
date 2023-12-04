@@ -1,14 +1,17 @@
+'use client'
+
 import { Avatar, AvatarGroup, Button, Divider, Tooltip } from "@nextui-org/react";
 import { Message, MessageThread, Profile } from "@prisma/client";
 import ViewConversation from "./view-conversation";
 import ConversationModal from "../modals/conversation-modal";
+import { useState } from "react";
 
 interface ConversationListItemProps {
   conversation:MessageThread;
   currentProfile: Profile;
   friends: Profile[];
   messages: Message[];
-
+  onClose: () => void;
 }
 
 const ConversationListItem = ({
@@ -16,7 +19,10 @@ const ConversationListItem = ({
   currentProfile,
   friends,
   messages,
+  onClose,
 }: ConversationListItemProps) => {
+
+  const [open, setOpen] = useState(false);
 
   let targetFriendId="";
 
@@ -28,10 +34,17 @@ const ConversationListItem = ({
   }
   const targetFriend = friends.find((friend) => friend.id === targetFriendId)
 
-  let conversationMessages = messages.filter((message) => message.starterId === conversation.starterId)
-  let otherMessages = messages.filter((message) => message.targetId!== conversation.starterId )
+  let conversationMessages = messages.filter((message) => message.messageThreadId=== conversation.id)
+  
+  console.log(conversationMessages)
 
-  let allMessages=conversationMessages.concat(otherMessages);
+  const handleClick = () => {
+    if(open){
+      setOpen(false)
+    } else {
+      setOpen(true)
+    }
+  }
 
   return (
 <div className="flex items-center justify-start flex-col max-w-[140px] min-w-[140px] w-full">
@@ -51,7 +64,7 @@ const ConversationListItem = ({
         Click to View Conversation
       </div>}
     >
-    <Button onClick={()=>{}} className="w-full pl-0 rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105">
+    <Button onClick={handleClick} className="w-full pl-0 rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105">
         <div className="flex items-center justify-start  w-full">
             <div>
             {/* <Avatar  src={profile.imageUrl} size="sm" className="border-5 hover:scale-105 shadow-md"/> */}
@@ -66,14 +79,15 @@ const ConversationListItem = ({
             </div>
         {targetFriend && (
        <ConversationModal
-          isOpen={true}
-          onClose={()=>{}}
-          onConfirm={()=>{}}
+          isOpen={open}
+          onClose={onClose}
+          onConfirm={onClose}
           loading={false}
           conversation={conversation}
           profile={currentProfile}
+          target={targetFriend}
           friends={friends}
-          messages={allMessages}
+          messages={conversationMessages}
        />
         )}
             </Button>

@@ -8,7 +8,7 @@ import { currentCreatedGroups } from "@/lib/current-created-groups";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { currentUser, redirectToSignIn } from "@clerk/nextjs";
-import {  MessageThread } from "@prisma/client";
+import {  Message, MessageThread } from "@prisma/client";
 
 
 const DashboardLayout = async  ({
@@ -38,12 +38,26 @@ const DashboardLayout = async  ({
         }
       }
   })
+  let allMessageIds:string[]= [];
+  allMessageThreads.forEach((messageThread)=>{
+    messageThread.messageIds.forEach((messageId)=>{
+      allMessageIds.push(messageId);
+  })});
+
+  const allMessages:Message[]= await db.message.findMany({
+    where: {
+      id: {
+        in: allMessageIds
+        },
+      },
+    });
 
   return (
     <div className="h-full">
        <Navbar/>
        <div className="md:hidden h-full mt-[2rem]  z-30 flex-col fixed inset-y-0">
        <MobileSidebar
+       allMessages={allMessages}
        allMessageThreads={allMessageThreads}
        allFriends={friends}
        allGroups={groups}
@@ -56,6 +70,7 @@ const DashboardLayout = async  ({
        </div>
       <div className="hidden bg-zinc-200/80 mt-[3rem]  md:flex h-full w-[160px] z-30 flex-col fixed inset-y-0">
       <Sidebar
+      allMessages={allMessages}
       allFriends={friends}
       allGroups={groups}
       allMessageThreads={allMessageThreads}

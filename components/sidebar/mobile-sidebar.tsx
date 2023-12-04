@@ -7,7 +7,7 @@ import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import  Sidebar  from "@/components/sidebar/sidebar";
 
-import { Group, MessageThread, Profile } from "@prisma/client";
+import { Group, Message, MessageThread, Profile } from "@prisma/client";
 import { Button } from "../ui/button";
 
 
@@ -20,6 +20,7 @@ interface MobileSidebarProps {
   allGroups: Group[] | null;
   allFriends: Profile[] | null;
   allMessageThreads: MessageThread[] | null;
+  allMessages: Message[] | null;
 }
 
 export const MobileSidebar = ({
@@ -31,6 +32,7 @@ export const MobileSidebar = ({
   allGroups,
   allFriends,
   allMessageThreads,
+  allMessages,
 }:MobileSidebarProps) => {
   const [isMounted, setIsMounted] = useState(false);
 
@@ -51,6 +53,7 @@ export const MobileSidebar = ({
       </SheetTrigger>
       <SheetContent side="left" className="p-0 bg-zinc-200 pt-[2.5rem] dark:bg-zinc-700 w-[161px]">
       <Sidebar
+      allMessages={allMessages}
       allMessageThreads={allMessageThreads}
       allFriends={allFriends}
       allGroups={allGroups}
