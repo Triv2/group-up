@@ -86,7 +86,7 @@ const ConversationListItem = ({
           conversation={conversation}
           profile={currentProfile}
           target={targetFriend}
-          friends={friends}
+         
           messages={conversationMessages}
        />
         )}

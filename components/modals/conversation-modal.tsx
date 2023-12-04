@@ -18,7 +18,7 @@ interface ConversationModalProps {
   conversation: MessageThread;
   profile: Profile;
   target: Profile;
-  friends: Profile[];
+
   messages: Message[];
 }
 
@@ -29,7 +29,7 @@ export const ConversationModal: React.FC<ConversationModalProps> = ({
   loading,
   conversation,
   profile,
-  friends,
+ 
   messages,
   target,
 }) => {

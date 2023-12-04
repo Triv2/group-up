@@ -40,13 +40,7 @@ const ViewConversation = ({
       return targetProfile;
     }
   }
-    const checkUser2 = (message:Message) => {
-      if(targetProfile.id === message.starterId){
-        return targetProfile;
-      } else {
-        return currentProfile;
-      }
-    }
+   
 
   return (
 <div className="flex items-center justify-center flex-col gap-2 h-auto p-5">
@@ -56,6 +50,7 @@ const ViewConversation = ({
     {messages && messages.map((message) => (
     <div key={message.id}>
       <MessageItem
+        user={currentProfile}
         message={message}
         profile={checkUser(message)}
         currentProfile={checkUser(message)}

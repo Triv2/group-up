@@ -37,6 +37,23 @@ export async function POST(
     if (!checkThread) {
       return new NextResponse("Thread doesn't exist.",{ status: 400 });
     }
+
+   let targetId="" 
+
+   if(checkThread.profileIds[0]===checkProfile.id){
+    targetId= checkThread.profileIds[1];
+   }else{
+    targetId= checkThread.profileIds[0];
+   }
+
+   const targetProfile = await db.profile.findUnique({ 
+    where: {
+      id:targetId,
+    },
+  })
+    if(!targetProfile) {
+      return new NextResponse("Target Profile doesn't exist.",{ status: 400 });
+    }
     
     const newMessage= await db.message.create({
       data: {
@@ -45,7 +62,8 @@ export async function POST(
 
         starterId: checkProfile.id,
         starterName: checkProfile.name,
-        targetId: checkThread.id
+        targetId: targetProfile.id,
+        targetName: targetProfile.name,
     
       },
     })

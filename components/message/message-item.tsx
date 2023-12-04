@@ -13,12 +13,14 @@ interface MessageItemProps {
   message: Message;
   profile: Profile;
   currentProfile: Profile;
+  user: Profile;
 }
 
 const MessageItem:React.FC<MessageItemProps> = ({
   message,
   profile,
   currentProfile,
+  user,
 }) => {
 
 const [isMounted, setIsMounted] = useState(false);
@@ -44,6 +46,8 @@ const handleOpen = () => {
 const createdAt = new Date(message.createdAt);
 
 
+
+
   return (
     <div className="w-full shadow-md dark:shadow-zinc-500 bg-zinc-200 rounded-md  dark:bg-zinc-600">
       <div className="flex flex-col sm:flex-row justify-between px-5 py-5 gap-3">
@@ -62,11 +66,11 @@ const createdAt = new Date(message.createdAt);
 
 
         <div className="flex items-center justify-center sm:flex-col border-t-1 border-l-1 border-r-1 sm:border-r-0 sm:border-b-1 rounded-md  border-black/30" >
-        {currentProfile.id===profile.id && (
+        {(user.id===message.starterId) && (
         <div className="flex items-center justify-center py-3 px-2">
          <Tooltip
             placement="bottom"
-            content="Edit Post"
+            content="Edit Message"
           >
       
         <Button onClick={handleOpen} size="sm"  className="shadow-md  p-0 dark:bg-zinc-400 flex items-center justify-center rounded-md">
