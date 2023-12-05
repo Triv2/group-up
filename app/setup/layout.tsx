@@ -25,19 +25,7 @@ const MainLayout = async  ({
   return (
     <div className="h-full">
       <Navbar/>
-{profile &&(
-  <div>
-       <div className="md:hidden h-full mt-[35px]  z-30 flex-col fixed inset-y-0">
-       <MobileSidebar
-       userCreatedGroups={userCreatedGroups}
-       nonUserCreatedGroups={nonUserCreatedGroups}
-       members={members}
-       profile={profile}
-       name={userName}
-       />
-       </div>
 
-      </div> )}
       <main className=" h-full ">
       {children}
       </main>
