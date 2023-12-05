@@ -11,7 +11,8 @@ interface ConversationListItemProps {
   currentProfile: Profile;
   friends: Profile[];
   messages: Message[];
-  onClose: () => void;
+
+  
 }
 
 const ConversationListItem = ({
@@ -19,7 +20,8 @@ const ConversationListItem = ({
   currentProfile,
   friends,
   messages,
-  onClose,
+  
+  
 }: ConversationListItemProps) => {
 
   const [open, setOpen] = useState(false);
@@ -64,7 +66,7 @@ const ConversationListItem = ({
         Click to View Conversation
       </div>}
     >
-    <Button onClick={handleClick} className="w-full pl-0 rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105">
+    <Button onPress={handleClick} className="w-full pl-0 rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105">
         <div className="flex items-center justify-start  w-full">
             <div>
             {/* <Avatar  src={profile.imageUrl} size="sm" className="border-5 hover:scale-105 shadow-md"/> */}
@@ -80,8 +82,8 @@ const ConversationListItem = ({
         {targetFriend && (
        <ConversationModal
           isOpen={open}
-          onClose={onClose}
-          onConfirm={onClose}
+          onClose={()=>setOpen(false)}
+          onConfirm={()=>setOpen(false)}
           loading={false}
           conversation={conversation}
           profile={currentProfile}

@@ -1,3 +1,4 @@
+
 import { Avatar, Divider } from "@nextui-org/react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
 import SantaUser from "../ui/santa-user";
@@ -9,6 +10,7 @@ import ProfileGroupList from "@/components/profile/profile-group-list";
 import ProfileActionList from "@/components/profile/profile-action-list";
 import { currentCreatedGroups } from "@/lib/current-created-groups";
 import FriendActionList from "./friend-action-list";
+
 
 interface FriendSummaryProps {
   currentProfile: Profile;
@@ -27,7 +29,10 @@ const FriendSummary = ({
   createdGroups,
   currentProfile,
 }:FriendSummaryProps) => {
+
+  
   return (
+
 <div className="flex items-center justify-start flex-col px-2 py-2 gap-1  rounded-md bg-zinc-100 dark:bg-zinc-700 shadow-md w-full">
 
             

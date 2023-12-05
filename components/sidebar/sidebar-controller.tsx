@@ -1,5 +1,5 @@
 'use client'
-import { Avatar, Button, Divider, Tab, Tabs } from '@nextui-org/react';
+import { Avatar, Button, Divider, Tab, Tabs, Tooltip } from '@nextui-org/react';
 import { Group, Message, MessageThread, Profile } from '@prisma/client';
 import { Contact, File, Home, Mail, MailPlus, UserCircle, UserPlus2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -46,7 +46,9 @@ const [groups, setGroups] = useState(false);
 const [create,setCreate] = useState(false);
 const [thread,setThread] = useState(false);
 const [message,setMessage] = useState(false);
-const [inbox, setInbox] = useState(false);
+const [conversation, setConversation] = useState(false);
+const [inbox,setInbox] = useState(false);
+const [friend,setFriend] = useState(false);
 const [edit,setEdit] = useState(false);
 const [loading, setLoading] = useState(false);
 
@@ -89,6 +91,15 @@ return null;
           <p className="font-bold text-md py-1 px-1 w-full">Actions</p>
           </div>
           <Divider/>
+          
+          <Tooltip
+           placement="right"
+            content={
+            <div className="flex items-center flex-col justify-center gap-1 p-1">
+              
+              Click to Go to Dashboard
+            </div>}
+          >
           <Button
             size="sm"
             className="w-full  rounded-none bg-zinc-200/80 hover:bg-zinc-200/10 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
@@ -96,6 +107,19 @@ return null;
             >
               <Home className="h-3 w-3"/> Dashboard
             </Button>
+           </Tooltip>
+            <Tooltip
+           placement="right"
+            content={
+            <div className="flex items-center flex-col justify-center gap-1 p-1">
+              <div className="flex items-center gap-2 p-1">
+              <Avatar size="sm" src={profile.imageUrl} />
+              <p className="font-semibold text-xs truncate">{profile.name}</p>
+              </div>
+              <Divider/>
+              Click to Edit Profile
+            </div>}
+          >
             <Button
             size="sm"
             className="w-full  rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
@@ -103,7 +127,16 @@ return null;
             >
                <Contact className="h-3 w-3"/>Profile Settings
             </Button>
-           
+           </Tooltip>
+
+           <Tooltip
+           placement="right"
+            content={
+            <div className="flex items-center flex-col justify-center gap-1 p-1">
+              
+              Click to start a coversation with a friend.
+            </div>}
+          >
             <Button
             size="sm"
             className="w-full  rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
@@ -111,6 +144,7 @@ return null;
             >
                <MailPlus className="h-3 w-3"/>Create Message
             </Button>
+            </Tooltip>
             <Button
             size="sm"
             className="w-full  rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
@@ -176,25 +210,26 @@ return null;
               <p className="font-bold text-md shadow-xl py-1 px-1">Friends</p>
               <Divider/>
               <ScrollArea className='w-auto  h-[110px]'>
-           {allFriends &&( <FriendList friends={allFriends} currentProfile={profile} />)}
+           {allFriends &&( 
+           <FriendList 
+           friends={allFriends} 
+           currentProfile={profile} 
+          
+           />)}
             </ScrollArea>
             </div>
             <div className="pt-2 pb-2">
               <p className="font-bold text-md shadow-xl py-1 px-1">Conversations</p>
               <Divider/>
               <ScrollArea className='w-auto  h-[110px]'>
-            {/* <SidebarGroupList
-              groups={allGroups}
-              members={members}
-              profile={profile}
-            /> */}
+          
             {messageThreads && allFriends && messages &&(
             <ConversationList 
             messages={messages}
             conversations={messageThreads}
             profile={profile}
             friends={allFriends}
-            onClose={()=>setInbox(false)}
+            
             />)}
            
             

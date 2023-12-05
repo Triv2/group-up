@@ -10,6 +10,7 @@ import { Trash } from 'lucide-react';
 import ProfileSummary from '../profile/profile-summary';
 import FriendSummary from '../friend/friend-summary';
 
+
 interface FriendSummaryModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -27,7 +28,7 @@ export const FriendSummaryModal: React.FC<FriendSummaryModalProps> = ({
   profile,
   currentProfile,
 }) => {
-
+  
 
   return(
     <Modal
@@ -36,7 +37,7 @@ export const FriendSummaryModal: React.FC<FriendSummaryModalProps> = ({
     isOpen={isOpen}
     onClose={onClose}
     >
-      
+      {/* mess with isopen and onClose until it works righhht */}
 
       <FriendSummary currentProfile={currentProfile} profile={profile} onClose={onClose}/>
 
