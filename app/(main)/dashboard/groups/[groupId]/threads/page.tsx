@@ -19,7 +19,7 @@ const ThreadsPage = async (
 <ThreadViewer AllThreads={threads} groupId={params.groupId}/>
 </div> */}
 <div>
-  <CreateThread/>
+  {/* <CreateThread/> */}
 </div>
 </div>
   );

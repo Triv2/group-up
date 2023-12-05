@@ -32,9 +32,9 @@ return null;
         <Tab key="all" title="All">
           <ScrollArea>
           <div className="flex items-center flex-col justify-center py-2 bg-zinc-200 dark:bg-zinc-500 rounded-md w-auto px-2 sm:px-5 gap-2">
-        {allThreads && allPosts && allThreads.map((thread) => (
+        {/* {allThreads && allPosts && allThreads.map((thread) => (
           <ThreadViewerItem key={thread.id} thread={thread} profile={profile} allPosts={allPosts}/>
-        ))}
+        ))} */}
         </div>
         </ScrollArea>
         </Tab>
