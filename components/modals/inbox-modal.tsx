@@ -38,14 +38,14 @@ export const InboxModal: React.FC<InboxModalProps> = ({
     onClose={onClose}
     
     >
-    {conversations && (
+    {/* {conversations && (
       <ConversationList
       conversations={conversations}
       profile={profile}
       friends={friends} 
        onClose={onClose} 
       />
-    )}
+    )} */}
   {/* finish this */}
       <div className="pt-6 space-x-2 flex items-center justify-end w-full">
         <Button disabled={loading}  onClick ={onClose}>
