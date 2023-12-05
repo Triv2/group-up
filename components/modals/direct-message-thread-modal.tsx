@@ -4,49 +4,41 @@ import CreateGroupForm from '@/components/group/create-group-form';
 import { Modal } from '@/components/ui/modal';
 import { Button } from '@nextui-org/react';
 import { useEffect } from 'react';
-import JoinGroupForm from '../group/join-group-form';
+import CreateThread from '../thread/create-thread';
 import { Group, MessageThread, Profile } from '@prisma/client';
-import { ScrollArea } from '../ui/scroll-area';
-import ConversationList from '../message/conversation-list';
+import CreateMessageThread from '../message/create-message-thread';
 
-interface InboxModalProps {
+interface DirectMessageThreadModalProps {
   isOpen: boolean;
   onClose: () => void;
   onConfirm: () => void;
   loading: boolean;
-  conversations: MessageThread[];
   profile: Profile;
-  friends: Profile[];
+  allFriends: Profile[];
 }
 
-export const InboxModal: React.FC<InboxModalProps> = ({
+export const DirectMessageThreadModal: React.FC<DirectMessageThreadModalProps> = ({
   isOpen,
   onClose,
   onConfirm,
   loading,
-  conversations,
   profile,
-  friends,
+  allFriends,
 }) => {
   
 
   return(
     <Modal
-    title="Current Conversations"
-    description="Browse through the conversations you are a part of."
+    title="Start a conversation with a friend?"
+    description="Fill out the form to create a new friend messaging thread."
     isOpen={isOpen}
     onClose={onClose}
     
     >
-    {conversations && (
-      <ConversationList
-      conversations={conversations}
-      profile={profile}
-      friends={friends} 
-       onClose={onClose} 
-      />
-    )}
-  {/* finish this */}
+    <CreateMessageThread profile={profile} allFriends={allFriends} onClose={onClose}/>
+
+
+
       <div className="pt-6 space-x-2 flex items-center justify-end w-full">
         <Button disabled={loading}  onClick ={onClose}>
           Cancel
@@ -58,4 +50,4 @@ export const InboxModal: React.FC<InboxModalProps> = ({
   )
 }
 
-export default InboxModal;
+export default DirectMessageThreadModal;

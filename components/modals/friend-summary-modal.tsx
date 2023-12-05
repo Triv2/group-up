@@ -37,7 +37,7 @@ export const FriendSummaryModal: React.FC<FriendSummaryModalProps> = ({
     isOpen={isOpen}
     onClose={onClose}
     >
-      {/* mess with isopen and onClose until it works righhht */}
+      
 
       <FriendSummary currentProfile={currentProfile} profile={profile} onClose={onClose}/>
 

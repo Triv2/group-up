@@ -49,7 +49,7 @@ const createdAt = new Date(message.createdAt);
 
 
   return (
-    <div className="w-full shadow-md dark:shadow-zinc-500 bg-zinc-200 rounded-md  dark:bg-zinc-600">
+    <div className="w-full shadow-md dark:shadow-zinc-500 bg-zinc-200 rounded-md  dark:bg-zinc-700">
       <div className="flex flex-col sm:flex-row justify-between px-5 py-5 gap-3">
 
       <div className="flex flex-col-reverse sm:flex-row items-center justify-center gap-1 w-full">
