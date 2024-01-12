@@ -83,22 +83,22 @@ const removeFriend = async () => {
         <Minus className="h-3 w-3"/><p className="hidden sm:block">Unfriend</p>
       </Button>
       </Tooltip>
-      <Tooltip content="Send a message" placement="top">
+      {/* <Tooltip content="Send a message" placement="top">
       <Button size="sm" className="shadow-md hover:scale-105 transition-all bg-blue-700 text-white hover:bg-blue-500">
         <Mail className="h-3 w-3"/><p className="hidden sm:block">Message</p>
       </Button>
-      </Tooltip>
-      <Tooltip content="Block user from messaging you" placement="top">
+      </Tooltip> */}
+      {/* <Tooltip content="Block user from messaging you" placement="top">
       <Button size="sm" className="shadow-md hover:scale-105 transition-all bg-emerald-700 text-white hover:bg-emerald-500">
         <User className="h-3 w-3"/><p className="hidden sm:block">Invite to Groups</p>
       </Button>
-      </Tooltip>
+      </Tooltip> */}
      
-     <Tooltip content="Block user from messaging you" placement="top">
+     {/* <Tooltip content="Block user from messaging you" placement="top">
       <Button size="sm" className="shadow-md hover:scale-105 transition-all bg-red-700 text-white hover:bg-red-500">
         <Ban className="h-3 w-3"/><p className="hidden sm:block">Block</p>
       </Button>
-      </Tooltip>
+      </Tooltip> */}
     </div>
    
     

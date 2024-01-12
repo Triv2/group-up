@@ -8,8 +8,8 @@ import {dark} from "@clerk/themes";
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Secret Santa',
-  description: 'Play secret santa',
+  title: 'Group Up',
+  description: 'Group with friends!',
 }
 
 export default function RootLayout({

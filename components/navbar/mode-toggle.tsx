@@ -18,20 +18,20 @@ export function ModeToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button   className=" px-2 bg-zinc-100 hover:bg-zinc-300 dark:bg-zinc-500 hover:scale-110 hover:dark:bg-zinc-400 shadow-md">
-          <Sun className="h-[1rem] w-[1rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-black" />
-          <Moon className="absolute h-[1rem] w-[1rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 dark:text-white" />
+        <Button variant="blend"  className=" px-2  shadow-md">
+          <Sun className="h-[1rem] w-[1rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 " />
+          <Moon className="absolute h-[1rem] w-[1rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 " />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent  align="end">
-        <DropdownMenuItem className="text-xs" onClick={() => setTheme("light")}>
+      <DropdownMenuContent className="bg-emerald-700"  align="end">
+        <DropdownMenuItem className="text-xs text-emerald-300 hover:text-orange-500" onClick={() => setTheme("light")}>
           Light
         </DropdownMenuItem>
-        <DropdownMenuItem className="text-xs" onClick={() => setTheme("dark")}>
+        <DropdownMenuItem className="text-xs text-emerald-300 hover:text-orange-500" onClick={() => setTheme("dark")}>
           Dark
         </DropdownMenuItem>
-        <DropdownMenuItem  className="text-xs" onClick={() => setTheme("system")}>
+        <DropdownMenuItem  className="text-xs text-emerald-300 hover:text-orange-500" onClick={() => setTheme("system")}>
           System
         </DropdownMenuItem>
       </DropdownMenuContent>

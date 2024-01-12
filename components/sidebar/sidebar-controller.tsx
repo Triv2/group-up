@@ -145,13 +145,13 @@ return null;
                <MailPlus className="h-3 w-3"/>Create Message
             </Button>
             </Tooltip>
-            <Button
+            {/* <Button
             size="sm"
             className="w-full  rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
               onClick={()=>setInbox(true)}
             >
                <Mail className="h-3 w-3"/>Inbox
-            </Button>
+            </Button> */}
            
             
             

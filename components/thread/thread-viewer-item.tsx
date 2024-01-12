@@ -56,7 +56,7 @@ const ThreadViewerItem = ({
 
 
   return (
-  <div className="flex items-center px-4  bg-zinc-100 dark:bg-zinc-700 w-full rounded-md " >
+  <div className="flex items-center px-4 shadow-lg bg-zinc-100 dark:bg-zinc-500 w-full rounded-md " >
     <Accordion className="w-full" type="single" collapsible>
     <AccordionItem  value="item-1">
       <AccordionTrigger className="flex items-center justify-between gap-2 no-underline">

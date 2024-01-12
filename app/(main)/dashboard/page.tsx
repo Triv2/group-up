@@ -3,7 +3,7 @@ import InviteCode from "@/components/ui/invite-code";
 import NavButton from "@/components/ui/nav-button";
 import SantaUser from "@/components/ui/santa-user";
 import { currentCreator } from "@/lib/current-creator";
-import {  currentGroups } from "@/lib/current-groups";
+import { currentGroups } from "@/lib/current-groups";
 import { currentMembers } from "@/lib/current-members";
 import { currentProfile } from "@/lib/current-profile";
 
@@ -15,7 +15,6 @@ import { Edit, Trash, User2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-
 
 import ProfileSummary from "@/components/profile/profile-summary";
 import GroupSummary from "@/components/group/group-summary";
@@ -32,114 +31,100 @@ import { Post, Profile, Thread } from "@prisma/client";
 
 export const revalidate = 0;
 
-export type ThreadObject={
-  thread:Thread;
-  participants:Profile[];
-  threadPosts:Post[];
-}
+export type ThreadObject = {
+  thread: Thread;
+  participants: Profile[];
+  threadPosts: Post[];
+};
 
 const DashboardPage = async () => {
-  const { userId} = auth();
-  if(!userId) {
+  const { userId } = auth();
+  if (!userId) {
     redirectToSignIn();
   }
-   const profile = await currentProfile();
-   const userGroups = await currentGroups();
+  const profile = await currentProfile();
+  const userGroups = await currentGroups();
   const allThreads = await allUserGroupThreads();
   const posts = await allPosts();
   const allProfiles = await allMembers();
- if(!allProfiles) {
+  if (!allProfiles) {
     return null;
- }
- 
-  const threadStuff:ThreadObject[]=[];
+  }
+
+  const threadStuff: ThreadObject[] = [];
 
   allThreads?.forEach((thread) => {
-    let profiles = allProfiles.filter((profile) => thread.profileIds.includes(profile.id));
-    if(!posts){
+    let profiles = allProfiles.filter((profile) =>
+      thread.profileIds.includes(profile.id)
+    );
+    if (!posts) {
       return null;
     }
     let allPosts = posts.filter((post) => thread.postIds.includes(post.id));
     threadStuff.push({
       thread,
-      participants:profiles,
+      participants: profiles,
       threadPosts: allPosts,
     });
   });
 
-   
-  if(!profile && !userGroups) {
+  if (!profile && !userGroups) {
     redirect("/setup/profile");
   }
 
-  if(!profile && userGroups) {
+  if (!profile && userGroups) {
     redirect(`/invite/${userGroups[0].inviteCode}`);
   }
-   
 
-  
- 
   return (
-<div className="md:pl-[180px] flex items-center justify-center min-h-screen h-auto w-auto min-w-screen flex-col gap-4 py-10 px-5 bg-[url(/cbg2.png)] bg-no-repeat bg-cover bg-center">
-  <div className="rounded-md bg-zinc-100 dark:bg-zinc-600 flex flex-col items-center justify-center gap-2 py-3 mt-10 md:px-10 md:p-5 shadow-md ">
-  <h1 className="text-lg md:text-3xl font-bold">Welcome, {profile?.name}!</h1>
-    {!userGroups && (<div className="flex items-center flex-col">
-      <h1 className="text-red-500">ALERT: YOUR ARE NOT IN ANY GROUPS.</h1>
-      <h2>PLEASE CREATE OR JOIN A GROUP</h2>
+    <div className="md:pl-[180px] flex items-center justify-center min-h-screen h-auto w-auto min-w-screen flex-col    bg-[url(/cbg2.png)] bg-no-repeat bg-cover bg-center">
       
-    </div>)}
-    
-  <Divider/>
-  <div className="grid l gap-10 sm:px-7 ">
-    <div className="flex items-center justify-center flex-col gap-2 w-auto">
-    Threads
-    <Divider/>
-   {profile && userGroups && ( 
-   <ThreadViewer
-    threadObjects={threadStuff}
-    userGroups={userGroups}
-    profile={profile}
-    />)}
-</div>
-{/* <div  className="flex items-center justify-center flex-col gap-2">
-  <Divider />
-    Event Calendar
-    <Divider />
-    <Calendar/>
-    </div> */}
+      <div className="rounded-md bg-zinc-200 dark:bg-zinc-600 flex flex-col items-center justify-center gap-2 py-3 mt-10 md:px-10 md:p-5 shadow-md ">
+        <h1 className="text-lg md:text-3xl font-bold">
+          Welcome, {profile?.name}!
+        </h1>
+        {!userGroups && (
+          <div className="flex items-center flex-col">
+            <h1 className="text-red-500">ALERT: YOUR ARE NOT IN ANY GROUPS.</h1>
+            <h2>PLEASE CREATE OR JOIN A GROUP</h2>
+          </div>
+        )}
 
+        <Divider />
+        <div className="grid xl:grid-cols-2 h-auto gap-10 sm:px-7 ">
+          <div className="flex items-center  flex-col gap-2 w-auto">
+            Threads
+            <Divider />
+            {profile  && (
+              <ThreadViewer
+                threadObjects={threadStuff}
+                profile={profile}
+              />
+            )}
+          </div>
 
+          <div className=" flex items-center flex-col gap-2 w-auto">
+            Groups
+            <Divider />
+            {userGroups &&
+              allProfiles &&
+              profile &&
+              userGroups.map((group) => (
+                <GroupSummary
+                  key={group.id}
+                  group={group}
+                  members={allProfiles}
+                  profile={profile}
+                />
+              ))}
+          </div>
+        </div>
 
-  {/* {userGroups && allProfiles && profile  &&(
+        <Divider />
+        <div className="flex items-center justify-center md:flex-row flex-col gap-3 "></div>
+      </div>
       
-      userGroups.map((group) => (
-        
-      <GroupSummary
-        key={group.id}
-        group={group}
-        members={allProfiles}
-        profile={profile}
-      />
-        )
-      )
-    )} */}
-   
-  
-
-  </div>
-   
-
-  
-  <Divider />
-  <div className="flex items-center justify-center md:flex-row flex-col gap-3 ">
- 
-      
- 
-  </div>
-  </div>
-
-  
-</div>
+    </div>
   );
-}
+};
 export default DashboardPage;

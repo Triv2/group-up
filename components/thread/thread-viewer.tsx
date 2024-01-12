@@ -8,7 +8,7 @@ import { ThreadObject } from '@/app/(main)/dashboard/page';
 
 interface ThreadViewerProps {
   
-  userGroups:Group[] | null;
+  
   profile:Profile;
 
   threadObjects:ThreadObject[];
@@ -16,7 +16,7 @@ interface ThreadViewerProps {
 
 const ThreadViewer:React.FC<ThreadViewerProps> = ({
  
-  userGroups,
+ 
   profile,
   
   threadObjects,
@@ -41,10 +41,10 @@ return null;
 
   return (
     <div>
-      <Tabs className=" overflow-x-scroll md:overflow-hidden md:w-auto w-full flex items-center ">
-        <Tab key="all" title="All">
+      {/* <Tabs className=" overflow-x-scroll md:overflow-hidden md:w-auto w-full flex items-center ">
+        <Tab key="all" title="All"> */}
           <ScrollArea>
-          <div className="flex items-center flex-col justify-center py-2 bg-zinc-200 dark:bg-zinc-500 rounded-md w-auto px-2 sm:px-5 gap-2">
+          <div className="flex items-center flex-col justify-center py-2   rounded-md w-auto px-2 sm:px-5 gap-2">
         {threadObjects &&  threadObjects.map((threadObject) => (
           <ThreadViewerItem 
             key={threadObject.thread.id} 
@@ -55,8 +55,8 @@ return null;
         ))}
         </div>
         </ScrollArea>
-        </Tab>
-        <Tab className="p-0 sm:p-4" key="announcements" title="Announcements">
+        {/* </Tab> */}
+        {/* <Tab className="p-0 sm:p-4" key="announcements" title="Announcements">
           Announcements
         </Tab>
         <Tab className="p-0 sm:p-4" key="events" title="Events">
@@ -64,9 +64,9 @@ return null;
         </Tab>
         <Tab className="p-0 sm:p-4" key="tasks" title="Tasks">
           Tasks
-        </Tab>
+        </Tab> */}
         
-      </Tabs>
+      {/* </Tabs> */}
     </div>
   );
 }
