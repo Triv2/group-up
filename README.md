@@ -48,7 +48,8 @@ NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/setup/profile
 ```
 
 ## After Project Cloning
-```npm install
+```
+npm install
 npx prisma generate
 npx prisma db push
 ```
