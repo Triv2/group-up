@@ -18,7 +18,7 @@ const GroupList: React.FC<GroupListProps> = ({
 }) => {
   return (
     <ScrollArea className="h-[400px] w-auto">
-      <div className="h-auto w-auto sm:px-5 py-6 flex flex-col items-center justify-center gap-5 bg-zinc-200 dark:bg-zinc-700 rounded-md shadow-md">
+      <div className="h-auto w-auto sm:px-5 py-6 flex flex-col items-center justify-center gap-5 bg-zinc-200 dark:bg-slate-950 rounded-md shadow-md">
         {groups &&
           groups.map((group) => (
             <GroupSummary

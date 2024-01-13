@@ -249,7 +249,7 @@ const SidebarController: React.FC<SidebarControllerProps> = ({
             <Button
               size="sm"
               className="w-full  rounded-none bg-zinc-200/80 
-              dark:bg-slate-700/50 hover:dark:bg-slate-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-sky-200 hover:text-sky-200 hover:scale-105 text-xs justify-start px-1 pl-2"
+              dark:bg-slate-700/50 hover:dark:bg-slate-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-sky-200 hover:text-sky-500 hover:scale-105 text-xs justify-start px-1 pl-2"
               onClick={() => setThread(true)}
             >
               <File className="h-3 w-3" />

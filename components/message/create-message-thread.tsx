@@ -108,7 +108,7 @@ const CreateMessageThread: React.FC<CreateMessageThreadProps> = ({
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-4 bg-zinc-200 dark:bg-zinc-700 p-5 px-10  h-auto w-full "
+            className="space-y-4 bg-zinc-200 dark:bg-slate-900 p-5 px-10  h-auto w-full "
           >
             <div>
               <div>
@@ -187,7 +187,7 @@ const CreateMessageThread: React.FC<CreateMessageThreadProps> = ({
                   <Divider />
 
                   <Button
-                    className="shadow-md hover:scale-105 transition-all bg-emerald-700 text-white hover:bg-emerald-500"
+                    className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-sky-700 text-white hover:bg-sky-500 transition-all text-sm shadow-lg"
                     type="submit"
                   >
                     Create

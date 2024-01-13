@@ -32,7 +32,9 @@ const ThreadViewer: React.FC<ThreadViewerProps> = ({
       {/* <Tabs className=" overflow-x-scroll md:overflow-hidden md:w-auto w-full flex items-center ">
         <Tab key="all" title="All"> */}
       <ScrollArea>
-        <div className="flex items-center flex-col justify-center py-2  dark:bg-slate-900/80 rounded-md w-auto px-2 sm:px-5 gap-2">
+
+       {threadObjects.length > 0 ?  (
+       <div className="flex items-center flex-col justify-center py-2  dark:bg-slate-900/80 rounded-md w-auto px-2 sm:px-5 gap-2">
           {threadObjects &&
             threadObjects.map((threadObject) => (
               <ThreadViewerItem
@@ -43,7 +45,12 @@ const ThreadViewer: React.FC<ThreadViewerProps> = ({
                 participants={threadObject.participants}
               />
             ))}
-        </div>
+            
+        </div>):(
+          <div>
+            <p className="text-muted-foreground dark:text-sky-100/50">You are not participating in any threads</p>
+          </div>
+        )}
       </ScrollArea>
       {/* </Tab> */}
       {/* <Tab className="p-0 sm:p-4" key="announcements" title="Announcements">

@@ -62,7 +62,7 @@ const SidebarGroupSummary: React.FC<SidebarGroupSummaryProps> = ({
           <Button
             onClick={() => router.push(`/dashboard/groups/${group.id}`)}
             size="sm"
-            className="w-full pl-0 rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105"
+            className="w-full pl-0 rounded-none bg-zinc-200/80 dark:bg-slate-700/50 hover:dark:bg-slate-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-sky-200 hover:text-sky-500 hover:scale-105"
           >
             <div className="flex items-center justify-start  w-full">
               <div>

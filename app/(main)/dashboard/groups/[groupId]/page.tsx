@@ -75,8 +75,9 @@ const GroupViewPage = async ({ params }: GroupViewPageProps) => {
     });
   });
   return (
-    <div className="flex items-center justify-center flex-col h-auto min-h-screen bg-[url(/cbg5.png)] bg-no-repeat bg-cover bg-center  py-10">
-      <div className="bg-zinc-200 dark:bg-zinc-600 flex items-center justify-center flex-col  rounded-md px-2 py-6">
+    <div className="flex items-center justify-center flex-col h-auto min-h-screen bg-gradient-to-b from-zinc-400 to-zinc-100 
+    dark:bg-gradient-to-br dark:from-zinc-900  dark:to-slate-950 bg-no-repeat bg-cover bg-center  py-10">
+      <div className="bg-zinc-200 dark:bg-slate-950 gap-5 flex items-center justify-center flex-col  rounded-md px-2 py-6">
         <div>
           {group.bgImageUrl && (
             <Image

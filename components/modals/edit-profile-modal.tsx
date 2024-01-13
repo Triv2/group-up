@@ -4,7 +4,7 @@ import ProfileEditForm from "@/components/profile/profile-edit-form";
 import { Modal } from "@/components/ui/modal";
 import { Button } from "@nextui-org/react";
 import { Profile } from "@prisma/client";
-import DeleteButton from "../ui/delete-button";
+import DeleteButton from "../profile/delete-button";
 import { Trash } from "lucide-react";
 
 interface EditProfileModalProps {
@@ -35,9 +35,10 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
         <DeleteButton
           icon={<Trash className="h-4 w-4" />}
           text="Delete Profile"
-          className="text-red-500"
+          
+          className="text-red-500 dark:bg-slate-700/50"
         />
-        <Button disabled={loading} onClick={onClose}>
+        <Button disabled={loading} onClick={onClose} className="dark:text-white dark:bg-slate-600/50 dark:hover:bg-slate-500">
           Cancel
         </Button>
       </div>

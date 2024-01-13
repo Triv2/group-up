@@ -27,7 +27,7 @@ const GroupListSorter: React.FC<GroupListSorterProps> = ({
 }) => {
   return (
     <div>
-      <Tabs className="p-0" aria-label="Sort by Type">
+      <Tabs className="p-0 " aria-label="Sort by Type">
         <Tab className="p-1" key="all" title="All">
           <GroupList groups={allGroups} members={members} profile={profile} />
         </Tab>

@@ -30,14 +30,16 @@ const ProfileSettingsPage = async () => {
   }
 
   return (
-    <div className="flex items-center justify-center flex-col min-h-screen h-auto bg-[url(/cbg1.png)] bg-no-repeat bg-cover pt-[50px] bg-center p-3 ">
-      <div className=" rounded-md flex items-center justify-center flex-col pt-3  h-auto bg-zinc-200 dark:bg-zinc-700 shadow-xl">
+    <div
+      className="flex items-center justify-center flex-col min-h-screen h-auto bg-gradient-to-b from-zinc-400 to-zinc-100 
+    dark:bg-gradient-to-b dark:from-zinc-900/80  dark:to-slate-950/80    "
+    >
+      <div className=" rounded-md flex items-center justify-center flex-col pt-3 border dark:border-sky-500 h-auto bg-zinc-200 dark:bg-slate-900 shadow-xl">
         <div>
           <h2 className="font-bold text-lg">Create your Profile</h2>
-
-          <Divider />
         </div>
-        <p className="text-muted-foreground text-xs">
+        <Divider className="dark:bg-sky-500" />
+        <p className="text-muted-foreground text-xs pt-1">
           You can change your profile at anytime after creation.
         </p>
 

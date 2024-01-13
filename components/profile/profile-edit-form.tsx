@@ -89,7 +89,7 @@ const ProfileEditForm = ({ profile, onClose }: ProfileEditFormProps) => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-2 bg-zinc-200 dark:bg-zinc-700 rounded-md p-5 w-full "
+            className="space-y-2 bg-zinc-200 dark:bg-slate-900 rounded-md p-5 w-full "
           >
             <div className="flex items-center flex-col justify-center  gap-5">
               <div className="flex items-center flex-col md:flex-row gap-2">
@@ -103,7 +103,7 @@ const ProfileEditForm = ({ profile, onClose }: ProfileEditFormProps) => {
                           <FormLabel className="font-bold">Name</FormLabel>
                           <FormLabel className="text-xs text-muted-foreground flex justify-between px-2">
                             Current Name:{" "}
-                            <p className="font-semibold text-emerald-800 dark:text-emerald-500">
+                            <p className="font-semibold text-sky-800 dark:text-sky-500">
                               {profile?.name}
                             </p>
                           </FormLabel>
@@ -131,7 +131,7 @@ const ProfileEditForm = ({ profile, onClose }: ProfileEditFormProps) => {
                           <FormLabel className="font-bold">Interests</FormLabel>
                           <FormLabel className="text-xs text-muted-foreground flex justify-between px-2">
                             Current Interests:{" "}
-                            <p className="font-semibold text-emerald-800 dark:text-emerald-500 pl-2">
+                            <p className="font-semibold text-sky-800 dark:text-sky-500 pl-2">
                               {" "}
                               {profile?.content}
                             </p>
@@ -139,7 +139,7 @@ const ProfileEditForm = ({ profile, onClose }: ProfileEditFormProps) => {
                           <FormControl>
                             <Textarea
                               placeholder="Enter your description"
-                              className="max-w-xs"
+                              className="max-w-xs "
                               {...field}
                             />
                           </FormControl>
@@ -179,7 +179,7 @@ const ProfileEditForm = ({ profile, onClose }: ProfileEditFormProps) => {
                 </div>
               </div>
               <Button
-                className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-800 text-white hover:bg-emerald-500 transition-all text-sm shadow-md"
+                className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-sky-800 text-white hover:bg-sky-500 transition-all text-sm shadow-md"
                 type="submit"
               >
                 Submit

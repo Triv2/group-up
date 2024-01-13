@@ -31,7 +31,7 @@ const SidebarGroupList: React.FC<SidebarGroupListProps> = ({
               members={members}
               profile={profile}
             />
-            <Divider />
+            
           </div>
         ))}
     </div>

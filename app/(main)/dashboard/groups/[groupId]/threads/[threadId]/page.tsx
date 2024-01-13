@@ -64,9 +64,10 @@ const ThreadIdPage = async ({ params }: ThreadIdPageProps) => {
   });
 
   return (
-    <div className="flex px-2 md:px-1 w-full bg-zinc-300 dark:bg-zinc-800 min-h-screen h-auto">
+    <div className="flex px-2 md:px-1 w-full bg-gradient-to-b from-zinc-400 to-zinc-100 
+    dark:bg-gradient-to-br dark:from-zinc-900  dark:to-slate-950 min-h-screen h-auto">
       <div className="mt-[35px] pt-10 w-full px-2 md:px-10 md:ml-[140px]">
-        <div className="flex items-center justify-center flex-col gap-2 bg-zinc-100 dark:bg-zinc-700 rounded-md shadow-md dark:shadow-white w-full py-5">
+        <div className="flex items-center justify-center flex-col gap-2 bg-zinc-100 dark:bg-slate-800 rounded-md shadow-md  w-full py-5">
           <div className="flex items-center gap-3 justify-center w-full px-5">
             {thread?.imageUrl && (
               <Image
@@ -98,7 +99,7 @@ const ThreadIdPage = async ({ params }: ThreadIdPageProps) => {
             )}
           </div>
 
-          <Divider />
+          <Divider  />
           <div className="flex md:flex-row flex-col items-center gap-2 justify-between w-full px-2 md:px-10 ">
             <div className="flex items-center justify-around gap-2">
               <p>Participants:</p>
@@ -128,7 +129,7 @@ const ThreadIdPage = async ({ params }: ThreadIdPageProps) => {
             <CreatePostButton threadId={params.threadId} />
           </div>
         </div>
-        <div className="flex items-center flex-col justify-center gap-2 sm:px-4">
+        <div className="flex items-center flex-col justify-center  sm:px-4">
           {threadPosts &&
             profile &&
             threadPosts.map((threadPost) => (

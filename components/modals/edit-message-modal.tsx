@@ -32,7 +32,7 @@ export const EditMessageModal: React.FC<EditMessageModalProps> = ({
       <EditMessageForm message={message} onClose={onClose} />
 
       <div className="pt-6 space-x-2 flex items-center justify-between w-full">
-        <Button disabled={loading} onClick={onClose}>
+      <Button disabled={loading} onClick={onClose} className="dark:text-white dark:bg-slate-600/50 dark:hover:bg-slate-500">
           Cancel
         </Button>
       </div>

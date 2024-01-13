@@ -42,7 +42,7 @@ const PostItem: React.FC<PostItemProps> = ({
   const createdAt = new Date(post.createdAt);
 
   return (
-    <div className="w-full shadow-md dark:shadow-zinc-500 bg-zinc-200 rounded-md  dark:bg-gradient-to-b dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+    <div className="w-full shadow-md  bg-zinc-200 rounded-md  dark:bg-gradient-to-b dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       <div className="flex flex-col sm:flex-row justify-between px-5 py-5 gap-3">
         <div className="flex flex-col-reverse sm:flex-row items-center justify-center gap-1 w-full">
           {profile && (

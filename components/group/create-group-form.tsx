@@ -116,12 +116,10 @@ const CreateGroupForm: React.FC<CreateGroupFormProps> = ({ onClose }) => {
           >
             <div>
               <div>
-                <div className="flex items-center justify-center flex-col px-4 bg-zinc-200 dark:bg-zinc-700 rounded-md shadow-md  py-3 gap-4">
-                  <p className="text-muted-foreground text-xs">
-                    You can edit your group at anytime after creation.
-                  </p>
-                  <Divider />
-                  <div className="flex items-center justify-center flex-col px-4 py-3 bg-zinc-100 dark:bg-zinc-800 shadow-md rounded-md p-2 gap-6">
+                <div className="flex items-center justify-center flex-col px-4 bg-zinc-200 dark:bg-slate-900 rounded-md  py-3 gap-4">
+                 
+                  
+                  <div className="flex items-center justify-center flex-col px-4 py-3  p-2 gap-6">
                     <FormField
                       control={form.control}
                       name="name"
@@ -206,7 +204,7 @@ const CreateGroupForm: React.FC<CreateGroupFormProps> = ({ onClose }) => {
                   </div>
 
                   <Button
-                    className="shadow-md hover:scale-105 transition-all bg-emerald-700 text-white hover:bg-emerald-500"
+                    className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-sky-700 text-white hover:bg-sky-500 transition-all text-sm shadow-lg"
                     type="submit"
                   >
                     Create

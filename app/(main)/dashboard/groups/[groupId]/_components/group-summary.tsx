@@ -29,7 +29,7 @@ const GroupSummary: React.FC<GroupSummaryProps> = ({
     return null;
   }
   return (
-    <div className="flex items-center justify-start flex-col px-2 py-2 gap-1 h-auto rounded-md bg-zinc-100 dark:bg-zinc-500 shadow-md w-min-[200px] md:w-[500px]">
+    <div className="flex items-center justify-start flex-col px-2 py-2 gap-1 h-auto rounded-md bg-zinc-100 dark:bg-gradient-to-b dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 shadow-md w-min-[200px] md:w-[500px]">
       {group && (
         <div className="flex items-center gap-2 w-full">
           <Avatar
@@ -89,7 +89,7 @@ const GroupSummary: React.FC<GroupSummaryProps> = ({
           <Divider />
           {members.map((member) => (
             <li
-              className="text-xs  flex items-center gap-1 justify-start w-full shadow-md py-1 rounded-md bg-zinc-50 dark:bg-zinc-400 px-2"
+              className="text-xs  flex items-center gap-1 justify-start w-full shadow-md py-1 rounded-md bg-zinc-50 dark:bg-slate-800 px-2"
               key={member.id}
             >
               <Avatar src={member.imageUrl} size="sm" />

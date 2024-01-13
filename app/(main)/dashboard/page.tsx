@@ -77,19 +77,14 @@ const DashboardPage = async () => {
             </h1>
           </div>
         </div>
-        {!userGroups && (
-          <div className="flex items-center flex-col">
-            <h1 className="text-red-500">ALERT: YOUR ARE NOT IN ANY GROUPS.</h1>
-            <h2>PLEASE CREATE OR JOIN A GROUP</h2>
-          </div>
-        )}
+        
 
         <Divider />
         <div className="grid xl:grid-cols-2 h-auto gap-10 sm:px-7 ">
           <div className="flex items-center  flex-col gap-2 w-auto">
             Threads
             <Divider />
-            {profile && (
+            {profile && threadStuff && (
               <ThreadViewer threadObjects={threadStuff} profile={profile} />
             )}
           </div>
@@ -108,6 +103,13 @@ const DashboardPage = async () => {
                   profile={profile}
                 />
               ))}
+              {!userGroups && (
+          <div className="flex items-center flex-col">
+          
+            <p className=" text-muted-foreground dark:text-sky-100/50 px-1">You are not in any groups, please create or join a group</p>
+          </div>
+        )}
+
           </div>
         </div>
 

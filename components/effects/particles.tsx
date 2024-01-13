@@ -14,8 +14,8 @@ interface ParticlesProps {
 export default function Particles({
   className = 'bg-opacity-50 ',
   quantity = 15,
-  staticity = 5,
-  ease = 5,
+  staticity = 50,
+  ease = 80,
   refresh = false
 }: ParticlesProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)

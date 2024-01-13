@@ -87,7 +87,7 @@ const ProfileForm = ({}) => {
           >
             <div className="flex items-center flex-col justify-center p-5 gap-5">
               <div className="flex items-center flex-col md:flex-row gap-2 ">
-                <div className="flex items-center  flex-col  gap-2 p-3 w-full  rounded-md shadow-md bg-zinc-100 dark:bg-zinc-800 ">
+                <div className="flex items-center  flex-col  gap-2 p-3 w-full  rounded-md shadow-md bg-zinc-100 dark:bg-slate-800 ">
                   <FormField
                     control={form.control}
                     name="name"
@@ -99,7 +99,7 @@ const ProfileForm = ({}) => {
                             size="sm"
                             variant="bordered"
                             type="name"
-                            color="success"
+                            
                             placeholder="Please enter a name"
                             className="text-black rounded-md dark:text-white "
                             disabled={loading}
@@ -120,7 +120,7 @@ const ProfileForm = ({}) => {
                         <FormControl>
                           <Textarea
                             variant="bordered"
-                            color="success"
+                            
                             size="sm"
                             placeholder="Enter your description"
                             className="max-w-xs text-black  dark:text-white"
@@ -162,7 +162,7 @@ const ProfileForm = ({}) => {
                 </div>
               </div>
               <Button
-                className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg"
+                className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-sky-700 text-white hover:bg-sky-500 transition-all text-sm shadow-lg"
                 type="submit"
               >
                 Submit

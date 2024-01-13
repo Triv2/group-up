@@ -27,7 +27,7 @@ const ProfileAvatar = ({ profile, currentProfile }: ProfileAvatarProps) => {
     <Tooltip placement="bottom" content="View Profile">
       <Button
         onClick={handleClick}
-        className=" h-[5rem] w-[5rem]  flex items-center flex-col justify-center px-5 py-1 hover:scale-105 transition duration-300  dark:bg-zinc-500 shadow-md bg-zinc-100 rounded-md"
+        className=" h-[5rem] w-[5rem]  flex items-center flex-col justify-center px-5 py-1 hover:scale-105 transition duration-300  dark:bg-slate-800 shadow-md bg-zinc-100 rounded-md"
       >
         <Image
           className="rounded-full"

@@ -24,7 +24,7 @@ const CreatePostButton: React.FC<CreatePostButtonProps> = ({ threadId }) => {
     <div>
       <Button
         size="sm"
-        className="w-full shadow-md font-bold  bg-zinc-200/80 dark:bg-zinc-500/50 rounded-md hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105 text-md justify-start px-5 "
+        className="w-full shadow-md font-bold  bg-zinc-200/80 dark:bg-slate-700/50 rounded-md hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-sky-400 hover:text-sky-500 hover:scale-105 text-md justify-start px-5 "
         onClick={() => setPost(true)}
       >
         <PlusCircle className="h-4 w-4" />

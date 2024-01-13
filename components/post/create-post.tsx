@@ -135,11 +135,11 @@ const CreatePost = ({ onClose, threadId }: CreatePostProps) => {
         </div> */}
               </div>
               <Button
-                className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg"
-                type="submit"
-              >
-                Submit
-              </Button>
+                    className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-sky-700 text-white hover:bg-sky-500 transition-all text-sm shadow-lg"
+                    type="submit"
+                  >
+                    Submit
+                  </Button>
             </div>
           </form>
         </Form>

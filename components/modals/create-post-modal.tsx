@@ -30,7 +30,7 @@ export const CreatePostModal: React.FC<CreatePostModalProps> = ({
       <CreatePost threadId={threadId} onClose={onClose} />
 
       <div className="pt-6 space-x-2 flex items-center justify-end w-full">
-        <Button disabled={loading} onClick={onClose}>
+      <Button disabled={loading} onClick={onClose} className="dark:text-white dark:bg-slate-600/50 dark:hover:bg-slate-500">
           Cancel
         </Button>
       </div>

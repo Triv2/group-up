@@ -32,7 +32,7 @@ export const CreateThreadModal: React.FC<CreateThreadModalProps> = ({
       {groups && <CreateThread groups={groups} onClose={onClose} />}
 
       <div className="pt-6 space-x-2 flex items-center justify-end w-full">
-        <Button disabled={loading} onClick={onClose}>
+      <Button disabled={loading} onClick={onClose} className="dark:text-white dark:bg-slate-600/50 dark:hover:bg-slate-500">
           Cancel
         </Button>
       </div>
