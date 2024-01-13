@@ -44,7 +44,7 @@ return null;
       {/* <Tabs className=" overflow-x-scroll md:overflow-hidden md:w-auto w-full flex items-center ">
         <Tab key="all" title="All"> */}
           <ScrollArea>
-          <div className="flex items-center flex-col justify-center py-2   rounded-md w-auto px-2 sm:px-5 gap-2">
+          <div className="flex items-center flex-col justify-center py-2  dark:bg-zinc-900/80 rounded-md w-auto px-2 sm:px-5 gap-2">
         {threadObjects &&  threadObjects.map((threadObject) => (
           <ThreadViewerItem 
             key={threadObject.thread.id} 

@@ -10,6 +10,12 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Group Up',
   description: 'Group with friends!',
+  icons:[
+    {
+      url: '/mlogo.png',
+      href: '/mlogo.png',
+    }
+  ]
 }
 
 export default function RootLayout({

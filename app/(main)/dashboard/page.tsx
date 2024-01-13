@@ -77,12 +77,18 @@ const DashboardPage = async () => {
   }
 
   return (
-    <div className="md:pl-[180px] flex items-center justify-center min-h-screen h-auto w-auto min-w-screen flex-col    bg-[url(/cbg2.png)] bg-no-repeat bg-cover bg-center">
+    <div className="md:pl-[180px] flex items-center justify-center min-h-screen h-auto w-auto min-w-screen flex-col bg-gradient-to-b from-zinc-400 to-zinc-100 
+    dark:bg-gradient-to-br dark:from-zinc-900  dark:to-slate-950 bg-no-repeat bg-cover bg-center">
       
-      <div className="rounded-md bg-zinc-200 dark:bg-zinc-600 flex flex-col items-center justify-center gap-2 py-3 mt-10 md:px-10 md:p-5 shadow-md ">
-        <h1 className="text-lg md:text-3xl font-bold">
+      <div className="rounded-md  bg-zinc-200 dark:bg-gradient-to-b from-slate-800 via-slate-900 to-slate-800 flex flex-col items-center justify-center gap-2 py-3 mt-10 md:px-10 md:p-5 shadow-md ">
+        <div className=" bg-[url(/mbg1.png)]  h-[100px] rounded-md w-full flex items-center justify-center shadow-lg">
+          <div className="bg-slate-800/60 h-full w-full flex items-center justify-center rounded-md shadow-md">
+          <h1 className="text-white text-lg md:text-3xl font-bold">
+        
           Welcome, {profile?.name}!
         </h1>
+        </div>
+        </div>
         {!userGroups && (
           <div className="flex items-center flex-col">
             <h1 className="text-red-500">ALERT: YOUR ARE NOT IN ANY GROUPS.</h1>

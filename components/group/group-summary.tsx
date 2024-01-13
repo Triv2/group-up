@@ -36,10 +36,10 @@ return null;
 }
   return (
     
-    <div className="flex items-center justify-start flex-col sm:px-2 py-2 gap-1 h-auto rounded-md bg-zinc-100 dark:bg-zinc-600 shadow-md w-[15rem] sm:w-[25rem] ">
+    <div className="flex items-center justify-start flex-col sm:px-2 py-2 gap-1 h-auto rounded-md bg-zinc-100 dark:bg-zinc-900/80 shadow-md w-[15rem] sm:w-[25rem] ">
       <Accordion className="w-full h-full" type="single" collapsible>
         <AccordionItem  value="item-1">
-          <AccordionTrigger className="flex items-center flex-col sm:flex-row justify-between w-full no-underline px-2 py-2 gap-2 bg-zinc-100 dark:bg-zinc-500 rounded-md hover:bg-white hover:scale-105">
+          <AccordionTrigger className="flex items-center flex-col sm:flex-row justify-between w-full no-underline px-2 py-2 gap-2 bg-zinc-100 dark:bg-zinc-800 rounded-md hover:bg-white ">
       
         
        {group &&( <div className="flex items-center gap-2 w-full">
@@ -90,7 +90,7 @@ return null;
         </div>
         <Divider/>
        {matchedMembers  && matchedMembers.map((member) => (
-        <li className="text-xs  flex items-center gap-1 justify-start w-full shadow-md py-1 rounded-md bg-zinc-50 dark:bg-zinc-500 px-2" key={member.id}>
+        <li className="text-xs  flex items-center gap-1 justify-start w-full shadow-md py-1 rounded-md bg-zinc-50 dark:bg-zinc-800 px-2" key={member.id}>
         <Avatar src={member.imageUrl} size="sm"  />
         <div className="flex flex-col">
         {member.name}

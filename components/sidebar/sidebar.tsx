@@ -32,7 +32,7 @@ SideBarProps) => {
 
 
   return (
-<div className="w-[148px] bg-zinc-100 dark:bg-zinc-600 h-full px-20 shadow-md">
+<div className="w-[148px] bg-zinc-100 dark:bg-gradient-to-r   from-zinc-900 to-slate-800   h-full px-20 shadow-md">
   
        
           {members && profile &&(
