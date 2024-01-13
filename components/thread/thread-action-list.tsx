@@ -74,7 +74,7 @@ const ThreadActionList: React.FC<ThreadActionListProps> = ({
         loading={loading}
       />
       <DropdownMenu>
-        <DropdownMenuTrigger className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg">
+        <DropdownMenuTrigger className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-sky-700 text-white hover:bg-sky-500 transition-all text-sm shadow-lg">
           <Workflow className="h-4 w-4" />
         </DropdownMenuTrigger>
         <DropdownMenuContent className="shadow-xl" aria-label="Static Actions">
@@ -85,7 +85,7 @@ const ThreadActionList: React.FC<ThreadActionListProps> = ({
                   `/dashboard/groups/${thread.groupId}/threads/${thread.id}`
                 )
               }
-              className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg w-full"
+              className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md bg-sky-700 text-white hover:bg-sky-500 transition-all text-sm shadow-lg w-full"
             >
               <Glasses className="h-4 w-4" /> View
             </Button>

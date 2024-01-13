@@ -98,7 +98,7 @@ const GroupActionList: React.FC<GroupActionListProps> = ({
         <Button
           size="sm"
           onClick={() => router.push(`/dashboard/groups/${group.id}`)}
-          className="flex items-center justify-center px-2 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg w-full"
+          className="flex items-center justify-center px-2 gap-1 hover:scale-105 rounded-md bg-sky-700 text-white hover:bg-sky-500 transition-all text-sm shadow-lg w-full"
         >
           <Glasses className="h-4 w-4" />{" "}
           <p className="hidden sm:block">View</p>
@@ -108,7 +108,7 @@ const GroupActionList: React.FC<GroupActionListProps> = ({
           <Button
             size="sm"
             onClick={() => router.push(`/invite/${group.inviteCode}`)}
-            className="flex items-center justify-center px-2 py-1 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg w-full"
+            className="flex items-center justify-center px-2 py-1 gap-1 hover:scale-105 rounded-md bg-sky-700 text-white hover:bg-sky-500 transition-all text-sm shadow-lg w-full"
           >
             <DoorOpen className="h-4 w-4" /> Join
           </Button>
@@ -116,7 +116,7 @@ const GroupActionList: React.FC<GroupActionListProps> = ({
         {!selectedJoinedGroup && !group.openGroup && (
           <Button
             onClick={() => router.push(`/dashboard/groups/${group.id}/apply`)}
-            className="flex items-center justify-center px-2 py-1 gap-1 hover:scale-105 rounded-md bg-emerald-700 text-white hover:bg-emerald-500 transition-all text-sm shadow-lg w-full"
+            className="flex items-center justify-center px-2 py-1 gap-1 hover:scale-105 rounded-md bg-sky-700 text-white hover:bg-sky500 transition-all text-sm shadow-lg w-full"
           >
             <Scroll className="h-4 w-4" />
             <p className="hidden sm:block">Apply</p>

@@ -24,7 +24,7 @@ const ProfileAvatar = ({ profile, currentProfile }: ProfileAvatarProps) => {
   };
 
   return (
-    <Tooltip placement="bottom" content="View Profile">
+    
       <Button
         onClick={handleClick}
         className=" h-[5rem] w-[5rem]  flex items-center flex-col justify-center px-5 py-1 hover:scale-105 transition duration-300  dark:bg-slate-800 shadow-md bg-zinc-100 rounded-md"
@@ -46,7 +46,7 @@ const ProfileAvatar = ({ profile, currentProfile }: ProfileAvatarProps) => {
           loading={loading}
         />
       </Button>
-    </Tooltip>
+    
   );
 };
 export default ProfileAvatar;

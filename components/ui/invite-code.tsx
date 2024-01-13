@@ -93,7 +93,7 @@ const InviteCode: React.FC<InviteCodeProps> = ({
                 disabled={isLoading}
                 onClick={onCopyUrl}
                 size="sm"
-                className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-emerald-500 text-white bg-red-800 transition-all text-sm shadow-md"
+                className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-sky-500 text-white bg-sky-800 transition-all text-sm shadow-md"
               >
                 <Check className="w-4 h-4" />
               </Button>
@@ -103,7 +103,7 @@ const InviteCode: React.FC<InviteCodeProps> = ({
               disabled={isLoading}
               onClick={onCopyUrl}
               size="sm"
-              className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-emerald-500 text-white bg-red-800 transition-all text-sm shadow-md"
+              className="flex items-center justify-center px-2 py-2 gap-1 hover:scale-105 rounded-md hover:bg-sky-500 text-white bg-sky-800 transition-all text-sm shadow-md"
             >
               <Copy className="w-4 h-4" />
             </Button>

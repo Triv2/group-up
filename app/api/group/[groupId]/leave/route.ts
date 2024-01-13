@@ -56,6 +56,13 @@ export async function PATCH(req: Request) {
           groupIds: profile.groupIds,
         },
       });
+      if (group.profileIds.length === 0) {
+        await db.group.delete({
+          where: {
+            id: group.id,
+          },
+        });
+      }
 
       if (group?.creator === profile.id) {
         const creator = await db.creator.findFirst({
@@ -115,7 +122,14 @@ export async function PATCH(req: Request) {
           }
         }
       }
-
+      
+      if (group.profileIds.length === 0) {
+        await db.group.delete({
+          where: {
+            id: group.id,
+          },
+        });
+      }
       return NextResponse.json(updatedProfile);
     } else {
       return NextResponse.json(profile);

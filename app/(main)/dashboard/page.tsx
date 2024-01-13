@@ -103,7 +103,7 @@ const DashboardPage = async () => {
                   profile={profile}
                 />
               ))}
-              {!userGroups && (
+              {profile && profile.groupIds.length<0 && (
           <div className="flex items-center flex-col">
           
             <p className=" text-muted-foreground dark:text-sky-100/50 px-1">You are not in any groups, please create or join a group</p>

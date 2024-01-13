@@ -61,7 +61,7 @@ const ThreadViewerItem = ({
                 <Lock className="h-3 w-3" />
               )}
             </div>
-            <div className="rounded-full p-1 px-2 text-xs bg-emerald-400">
+            <div className="rounded-full p-1 px-2 text-xs bg-sky-400/80">
               {thread.postIds.length}
             </div>
             <div className="flex items-center justify-center ">
