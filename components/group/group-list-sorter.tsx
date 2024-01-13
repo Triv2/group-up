@@ -1,11 +1,10 @@
-'use client'
+"use client";
 
-// horizontal checkbox with booleans to filter the groups
+// horizontal checkbox with booleans to filter the groups, maybe
 
-import { Checkbox, CheckboxGroup, Tab, Tabs } from '@nextui-org/react';
-import {useState, useEffect} from'react'
-import GroupList from './group-list';
-import { Group, Profile } from '@prisma/client';
+import { Tab, Tabs } from "@nextui-org/react";
+import GroupList from "./group-list";
+import { Group, Profile } from "@prisma/client";
 
 interface GroupListSorterProps {
   allGroups: Group[] | null | undefined;
@@ -17,7 +16,7 @@ interface GroupListSorterProps {
   profile: Profile;
 }
 
-const GroupListSorter:React.FC<GroupListSorterProps> = ({
+const GroupListSorter: React.FC<GroupListSorterProps> = ({
   allGroups,
   openGroups,
   closedGroups,
@@ -26,54 +25,40 @@ const GroupListSorter:React.FC<GroupListSorterProps> = ({
   members,
   profile,
 }) => {
-
-
   return (
     <div>
-       
-        <Tabs className="p-0"aria-label="Sort by Type">
-          
-          <Tab className="p-1" key="all" title="All">
-            <GroupList
-              groups={allGroups}
-              members={members}
-              profile={profile}
-            />
-          </Tab>
-            
-          <Tab className="p-0"key="public" title="Public">
-            <GroupList
-              groups={openGroups}
-              members={members}
-              profile={profile}
-            />
-          </Tab>
+      <Tabs className="p-0" aria-label="Sort by Type">
+        <Tab className="p-1" key="all" title="All">
+          <GroupList groups={allGroups} members={members} profile={profile} />
+        </Tab>
 
-          <Tab className="p-0"key="private" title="Private">
-            <GroupList
-              groups={closedGroups}
-              members={members}
-              profile={profile}
-            />
-          </Tab>
-          <Tab className="p-0" key="joined" title="Joined">
-            <GroupList
-              groups={joinedGroups}
-              members={members}
-              profile={profile}
-            />
-          </Tab>
-          <Tab className="p-0" key="created" title="Created">
-            <GroupList
-              groups={createdGroups}
-              members={members}
-              profile={profile}
-            />
-          </Tab>
-        </Tabs>
-      
+        <Tab className="p-0" key="public" title="Public">
+          <GroupList groups={openGroups} members={members} profile={profile} />
+        </Tab>
 
+        <Tab className="p-0" key="private" title="Private">
+          <GroupList
+            groups={closedGroups}
+            members={members}
+            profile={profile}
+          />
+        </Tab>
+        <Tab className="p-0" key="joined" title="Joined">
+          <GroupList
+            groups={joinedGroups}
+            members={members}
+            profile={profile}
+          />
+        </Tab>
+        <Tab className="p-0" key="created" title="Created">
+          <GroupList
+            groups={createdGroups}
+            members={members}
+            profile={profile}
+          />
+        </Tab>
+      </Tabs>
     </div>
   );
-}
+};
 export default GroupListSorter;

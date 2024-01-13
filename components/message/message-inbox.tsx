@@ -1,23 +1,18 @@
-'use client'
-import {useState, useEffect} from'react'
+"use client";
+import { useState, useEffect } from "react";
 
 interface MessageInboxProps {}
 
-const MessageInbox:React.FC<MessageInboxProps> = () => {
+const MessageInbox: React.FC<MessageInboxProps> = () => {
+  const [isMounted, setIsMounted] = useState(false);
 
-const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
-useEffect(() => {
-setIsMounted(true);
-}, []);
-
-if (!isMounted) {
-return null;
-}
-  return (
-    <div>
-      MessageInbox
-    </div>
-  );
-}
+  if (!isMounted) {
+    return null;
+  }
+  return <div>MessageInbox</div>;
+};
 export default MessageInbox;

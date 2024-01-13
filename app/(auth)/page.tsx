@@ -5,7 +5,7 @@ import NavButton from "@/components/ui/nav-button";
 import localFont from "next/font/local";
 import { currentUser } from "@clerk/nextjs";
 import { Divider } from "@nextui-org/react";
-import { MousePointerClick, Users } from "lucide-react";
+import { Combine, Contact2, MessagesSquare, MousePointerClick, Users } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
@@ -28,7 +28,7 @@ const LandingPage = async () => {
               <div className="flex flex-col  px-5">
                 <h1
                   className={cn(
-                    " text-3xl tracking-wider animate-bounce  md:text-6xl lg:7xl xl:text-8xl font-sans bg-gradient-to-r from-sky-500  to-slate-300 bg-clip-text text-transparent drop-shadow-2xl",
+                    " text-3xl tracking-wider   md:text-6xl lg:7xl xl:text-8xl font-sans bg-gradient-to-r from-sky-500  to-slate-300 bg-clip-text text-transparent drop-shadow-2xl",
                     headingFont.className
                   )}
                 >
@@ -66,22 +66,22 @@ const LandingPage = async () => {
               <Feature
                 title="Create Groups"
                 icon={<Users className="h-5 w-5" />}
-                description="Create as many groups as you would like!"
+                description="Create unlimited groups!"
               />
               <Feature
                 title="Join Groups"
-                icon={<Users className="h-5 w-5" />}
+                icon={<Combine className="h-5 w-5" />}
                 description="Join as many groups as you would like!"
               />
               <Feature
                 title="Make Friends"
-                icon={<Users className="h-5 w-5" />}
-                description="Make as many friends as you would like!"
+                icon={<Contact2 className="h-5 w-5" />}
+                description="Easily add friends!"
               />
               <Feature
                 title="Communicate"
-                icon={<Users className="h-5 w-5" />}
-                description="Start as many conversations and threads as you want!"
+                icon={<MessagesSquare className="h-5 w-5" />}
+                description="No limits on converstaions and threads!"
               />
             </div>
             </div>

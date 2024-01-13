@@ -1,11 +1,11 @@
-'use client'
+"use client";
 
-import CreateGroupForm from '@/components/group/create-group-form';
-import { Modal } from '@/components/ui/modal';
-import { Button } from '@nextui-org/react';
-import { useEffect } from 'react';
-import CreateThread from '../thread/create-thread';
-import { Group } from '@prisma/client';
+
+import { Modal } from "@/components/ui/modal";
+import { Button } from "@nextui-org/react";
+
+import CreateThread from "../thread/create-thread";
+import { Group } from "@prisma/client";
 
 interface CreateThreadModalProps {
   isOpen: boolean;
@@ -22,29 +22,22 @@ export const CreateThreadModal: React.FC<CreateThreadModalProps> = ({
   loading,
   groups,
 }) => {
-  
-
-  return(
+  return (
     <Modal
-    title="Create a thread?"
-    description="Fill out the form to create a new thread."
-    isOpen={isOpen}
-    onClose={onClose}
-    
+      title="Create a thread?"
+      description="Fill out the form to create a new thread."
+      isOpen={isOpen}
+      onClose={onClose}
     >
-    {groups && ( <CreateThread groups={groups} onClose={onClose}/>)}
-
-
+      {groups && <CreateThread groups={groups} onClose={onClose} />}
 
       <div className="pt-6 space-x-2 flex items-center justify-end w-full">
-        <Button disabled={loading}  onClick ={onClose}>
+        <Button disabled={loading} onClick={onClose}>
           Cancel
         </Button>
-        
       </div>
-
     </Modal>
-  )
-}
+  );
+};
 
 export default CreateThreadModal;

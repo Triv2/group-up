@@ -1,9 +1,9 @@
-'use client'
+"use client";
 
-import CreateGroupForm from '@/components/group/create-group-form';
-import { Modal } from '@/components/ui/modal';
-import { Button } from '@nextui-org/react';
-import { useEffect } from 'react';
+import CreateGroupForm from "@/components/group/create-group-form";
+import { Modal } from "@/components/ui/modal";
+import { Button } from "@nextui-org/react";
+
 
 interface CreateGroupModalProps {
   isOpen: boolean;
@@ -18,29 +18,22 @@ export const CreateGroupModal: React.FC<CreateGroupModalProps> = ({
   onConfirm,
   loading,
 }) => {
-  
-
-  return(
+  return (
     <Modal
-    title="Create a group?"
-    description="Fill out the form to create a new group."
-    isOpen={isOpen}
-    onClose={onClose}
-    
+      title="Create a group?"
+      description="Fill out the form to create a new group."
+      isOpen={isOpen}
+      onClose={onClose}
     >
-      <CreateGroupForm onClose={onClose}/>
-
-
+      <CreateGroupForm onClose={onClose} />
 
       <div className="pt-6 space-x-2 flex items-center justify-end w-full">
-        <Button disabled={loading}  onClick ={onClose}>
+        <Button disabled={loading} onClick={onClose}>
           Cancel
         </Button>
-        
       </div>
-
     </Modal>
-  )
-}
+  );
+};
 
 export default CreateGroupModal;

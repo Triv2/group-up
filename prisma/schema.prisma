@@ -10,50 +10,44 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-
 model Profile {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  clerkId String? 
-  name String?
-  email String?
-  imageUrl String 
-  content String?
-
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  clerkId  String?
+  name     String?
+  email    String?
+  imageUrl String
+  content  String?
 
   messageThreadIds String[] @db.ObjectId
-  groupIds String[] @db.ObjectId
+  groupIds         String[] @db.ObjectId
 
-  friendIds String[] @db.ObjectId
+  friendIds  String[] @db.ObjectId
   blockedIds String[] @db.ObjectId
 
   secretId String? @db.ObjectId
 
-  setupGroup Boolean?
-  setupProfile Boolean?
+  setupGroup    Boolean?
+  setupProfile  Boolean?
   setupComplete Boolean?
- 
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  
 }
 
 model Group {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  creator String @db.ObjectId
-  imageUrl String
-  name String
-  openGroup Boolean?
-  inviteCode String @unique
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  creator    String   @db.ObjectId
+  imageUrl   String
+  name       String
+  openGroup  Boolean?
+  inviteCode String   @unique
   profileIds String[]
-  threadIds String[]
+  threadIds  String[]
 
-  autoEvents Boolean?
+  autoEvents  Boolean?
   openThreads Boolean?
 
   bgImageUrl String?
- 
 
   secretIds String[] @db.ObjectId
 
@@ -62,62 +56,24 @@ model Group {
 }
 
 model Creator {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
   groupIds String[] @db.ObjectId
-  name String?
+  name     String?
   imageUrl String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-
-// IN PROGRESS
-
-model Event {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String?
-  type String
-  profileIds String[] @db.ObjectId
-
- 
-  tasks Task[]
-
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  startTime DateTime
-  endTime DateTime
-
-}
-
-model Task {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String?
-
-
-  eventId String? @db.ObjectId
-  event Event? @relation(fields:[eventId], references: [id])
-
-  startTime DateTime 
-  endTime DateTime 
-
-  
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-////////////
-
 model Post {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  profileId String @db.ObjectId
-  profileName String?
+  id              String  @id @default(auto()) @map("_id") @db.ObjectId
+  profileId       String  @db.ObjectId
+  profileName     String?
   profileImageUrl String?
 
   threadTitle String
-  threadId String @db.ObjectId
-  
+  threadId    String @db.ObjectId
+
   content String
 
   createdAt DateTime @default(now())
@@ -125,15 +81,15 @@ model Post {
 }
 
 model Thread {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  title String
-  starter String @db.ObjectId
-  content String
-  imageUrl String?
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  title      String
+  starter    String   @db.ObjectId
+  content    String
+  imageUrl   String?
   profileIds String[] @db.ObjectId
   openThread Boolean?
-  groupId String?
-  groupName String?
+  groupId    String?
+  groupName  String?
 
   postIds String[] @db.ObjectId
 
@@ -142,41 +98,38 @@ model Thread {
 }
 
 model MessageThread {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  title String
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
   starterId String @db.ObjectId
-  content String
+  content   String
 
-
-
-  
   profileIds String[] @db.ObjectId
-  
-  
 
   messageIds String[] @db.ObjectId
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
 model Message {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  starterId String @db.ObjectId
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  starterId   String  @db.ObjectId
   starterName String?
 
-  targetId String @db.ObjectId
+  targetId   String  @db.ObjectId
   targetName String?
-  
+
   title String?
 
-
   messageThreadId String @db.ObjectId
-  
+
   content String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+// IN PROGRESS
 
 enum GroupRole {
   CREATOR
@@ -184,3 +137,34 @@ enum GroupRole {
   COORDINATOR
   MEMBER
 }
+
+model Event {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String?
+  type       String
+  profileIds String[] @db.ObjectId
+
+  tasks Task[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  startTime DateTime
+  endTime   DateTime
+}
+
+model Task {
+  id   String  @id @default(auto()) @map("_id") @db.ObjectId
+  name String?
+
+  eventId String? @db.ObjectId
+  event   Event?  @relation(fields: [eventId], references: [id])
+
+  startTime DateTime
+  endTime   DateTime
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+///////////

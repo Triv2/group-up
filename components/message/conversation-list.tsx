@@ -5,8 +5,7 @@ interface ConversationListProps {
   conversations: MessageThread[];
   profile: Profile;
   friends: Profile[];
- 
- 
+
   messages: Message[];
 }
 
@@ -15,28 +14,24 @@ const ConversationList = ({
   profile,
   friends,
   messages,
-  
-
 }: ConversationListProps) => {
-
- 
-
   return (
-<div className="h-auto w-full flex   pl-1 flex-col items-center justify-center ">
-{conversations && conversations.map((conversation) => (
-              <div className="h-auto w-full flex   flex-col items-center justify-center  " key={conversation.id}>
-                  <ConversationListItem
-                    conversation={conversation}
-                    currentProfile={profile}
-                    friends={friends}
-                    messages={messages}
-                    
-                  />
-                  
-              </div>
-              ))}
-            
-</div>
+    <div className="h-auto w-full flex   pl-1 flex-col items-center justify-center ">
+      {conversations &&
+        conversations.map((conversation) => (
+          <div
+            className="h-auto w-full flex   flex-col items-center justify-center  "
+            key={conversation.id}
+          >
+            <ConversationListItem
+              conversation={conversation}
+              currentProfile={profile}
+              friends={friends}
+              messages={messages}
+            />
+          </div>
+        ))}
+    </div>
   );
-}
+};
 export default ConversationList;

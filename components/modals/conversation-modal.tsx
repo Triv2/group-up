@@ -1,14 +1,11 @@
-'use client'
+"use client";
 
-import CreateGroupForm from '@/components/group/create-group-form';
-import { Modal } from '@/components/ui/modal';
-import { Button } from '@nextui-org/react';
-import { useEffect } from 'react';
-import JoinGroupForm from '../group/join-group-form';
-import { Group, Message, MessageThread, Profile } from '@prisma/client';
-import { ScrollArea } from '../ui/scroll-area';
-import ConversationList from '../message/conversation-list';
-import ViewConversation from '../message/view-conversation';
+import { Modal } from "@/components/ui/modal";
+import { Button } from "@nextui-org/react";
+
+import { Message, MessageThread, Profile } from "@prisma/client";
+
+import ViewConversation from "../message/view-conversation";
 
 interface ConversationModalProps {
   isOpen: boolean;
@@ -29,43 +26,38 @@ export const ConversationModal: React.FC<ConversationModalProps> = ({
   loading,
   conversation,
   profile,
- 
+
   messages,
   target,
 }) => {
+  let currentConversationMessages = messages.filter(
+    (message) => message.messageThreadId === conversation.id
+  );
 
- 
-
-  let currentConversationMessages = messages.filter((message) => message.messageThreadId === conversation.id)
-
-
-
-  return(
+  return (
     <Modal
-    title={conversation.title}
-    description="View Conversation"
-    isOpen={isOpen}
-    onClose={onConfirm}
-    
+      title={conversation.title}
+      description="View Conversation"
+      isOpen={isOpen}
+      onClose={onConfirm}
     >
-     {conversation && target && ( 
-    <ViewConversation
-     currentProfile={profile}
-     targetProfile={target}
-     currentConversation={conversation}
-     messages={currentConversationMessages}
-     onClose={onClose}
-    />)}
-  
+      {conversation && target && (
+        <ViewConversation
+          currentProfile={profile}
+          targetProfile={target}
+          currentConversation={conversation}
+          messages={currentConversationMessages}
+          onClose={onClose}
+        />
+      )}
+
       <div className="pt-6 space-x-2 flex items-center justify-end w-full">
-        <Button disabled={loading}  onClick ={onClose}>
+        <Button disabled={loading} onClick={onClose}>
           Cancel
         </Button>
-        
       </div>
-
     </Modal>
-  )
-}
+  );
+};
 
 export default ConversationModal;

@@ -84,77 +84,50 @@ const SidebarController: React.FC<SidebarControllerProps> = ({
         classNames={{
           tabList:
             "gap-6 w-full relative rounded-none p-0 border-b border-divider ",
-          cursor: "w-full bg-emerald-500",
-          tab: "max-w-fit px-0 h-12 ",
+          cursor: "w-full bg-sky-300",
+          tab: "max-w-fit hover:text-sky-300 px-0 h-12 ",
           tabContent:
-            "group-data-[selected=true]:text-emerald-500 dark:group-data-[selected=true]:text-emerald-400 w-[60px] hover:text-emerald-500 dark:hover:text-emerald-400 dark:text-white",
+            "group-data-[selected=true]:text-sky-300 dark:group-data-[selected=true]:text-sky-300 w-[60px] hover:text-sky-300 dark:hover:text-sky-300 dark:text-white",
         }}
       >
         <Tab key="profile" title="Profile">
           <div className="flex flex-col items-center justify-center min-w-[140px] max-w-[140px] w-auto">
             <div className="w-full shadow-md">
-              <p className="font-bold text-md py-1 px-1 w-full">Actions</p>
+              <p className="font-bold text-md dark:text-sky-200 py-1 px-1 w-full">
+                Actions
+              </p>
             </div>
-            <Divider />
+            <Divider className="dark:bg-sky-500/50" />
 
-            <Tooltip
-              placement="right"
-              content={
-                <div className="flex items-center flex-col justify-center gap-1 p-1">
-                  Click to Go to Dashboard
-                </div>
-              }
+            <Button
+              size="sm"
+              className="w-full  rounded-none bg-zinc-200/80 hover:bg-zinc-200/10 dark:bg-slate-700/50 hover:dark:bg-slate-400/50 
+                hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-sky-200 hover:text-sky-500 hover:scale-105 text-xs justify-start px-1 pl-2"
+              onClick={() => router.push(`/dashboard`)}
             >
-              <Button
-                size="sm"
-                className="w-full  rounded-none bg-zinc-200/80 hover:bg-zinc-200/10 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
-                onClick={() => router.push(`/dashboard`)}
-              >
-                <Home className="h-3 w-3" /> Dashboard
-              </Button>
-            </Tooltip>
-            <Tooltip
-              placement="right"
-              content={
-                <div className="flex items-center flex-col justify-center gap-1 p-1">
-                  <div className="flex items-center gap-2 p-1">
-                    <Avatar size="sm" src={profile.imageUrl} />
-                    <p className="font-semibold text-xs truncate">
-                      {profile.name}
-                    </p>
-                  </div>
-                  <Divider />
-                  Click to Edit Profile
-                </div>
-              }
-            >
-              <Button
-                size="sm"
-                className="w-full  rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
-                onClick={() => setEdit(true)}
-              >
-                <Contact className="h-3 w-3" />
-                Profile Settings
-              </Button>
-            </Tooltip>
+              <Home className="h-3 w-3" /> Dashboard
+            </Button>
 
-            <Tooltip
-              placement="right"
-              content={
-                <div className="flex items-center flex-col justify-center gap-1 p-1">
-                  Click to start a coversation with a friend.
-                </div>
-              }
+            <Button
+              size="sm"
+              className="w-full  rounded-none bg-zinc-200/80 
+                dark:bg-slate-700/50 hover:dark:bg-slate-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-sky-200 hover:text-sky-500 hover:scale-105 text-xs justify-start px-1 pl-2"
+              onClick={() => setEdit(true)}
             >
-              <Button
-                size="sm"
-                className="w-full  rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
-                onClick={() => setMessage(true)}
-              >
-                <MailPlus className="h-3 w-3" />
-                Create Message
-              </Button>
-            </Tooltip>
+              <Contact className="h-3 w-3" />
+              Profile Settings
+            </Button>
+
+            <Button
+              size="sm"
+              className="w-full  rounded-none bg-zinc-200/80  
+                dark:bg-slate-700/50 hover:dark:bg-slate-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-sky-200 hover:text-sky-500 hover:scale-105 text-xs justify-start px-1 pl-2"
+              onClick={() => setMessage(true)}
+            >
+              <MailPlus className="h-3 w-3" />
+              Create Message
+            </Button>
+
             {/* <Button
             size="sm"
             className="w-full  rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
@@ -163,7 +136,7 @@ const SidebarController: React.FC<SidebarControllerProps> = ({
                <Mail className="h-3 w-3"/>Inbox
             </Button> */}
 
-            <Divider />
+            <Divider className="dark:bg-sky-500/50" />
             {allFriends && (
               <CreateMessageThreadModal
                 allFriends={allFriends}
@@ -193,33 +166,11 @@ const SidebarController: React.FC<SidebarControllerProps> = ({
             />
 
             <div className=" pt-2 pb-2">
-              <div className="w-full ">
-                <p className="font-bold text-md py-1 px-1 pt-2 w-full">
-                  Profile Information
-                </p>
-              </div>
-              <Divider />
-              <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
-                <p className="text-xs">Avatar:</p>
-                <Avatar src={profile.imageUrl} size="sm" />
-              </div>
-              <Divider />
-
-              <div className="flex items-center flex-col">
-                <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
-                  <p className="text-xs">Name:</p>
-                  <p className="text-xs text-end">{profile.name}</p>
-                </div>
-                <Divider />
-                <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
-                  <p className="text-xs">Interests:</p>
-                  <p className="text-xs ">{profile.content}</p>
-                </div>
-                <Divider />
-              </div>
               <div className="pt-2 pb-2">
-                <p className="font-bold text-md shadow-xl py-1 px-1">Friends</p>
-                <Divider />
+                <p className="font-bold text-md text-slate-700 dark:text-sky-200 shadow-xl py-1 px-1">
+                  Friends
+                </p>
+                <Divider className="dark:bg-sky-500/50" />
                 <ScrollArea className="w-auto  h-[110px]">
                   {allFriends && (
                     <FriendList friends={allFriends} currentProfile={profile} />
@@ -227,10 +178,10 @@ const SidebarController: React.FC<SidebarControllerProps> = ({
                 </ScrollArea>
               </div>
               <div className="pt-2 pb-2">
-                <p className="font-bold text-md shadow-xl py-1 px-1">
+                <p className="font-bold text-md dark:text-sky-200 shadow-xl py-1 px-1">
                   Conversations
                 </p>
-                <Divider />
+                <Divider className="dark:bg-sky-500/50" />
                 <ScrollArea className="w-auto  h-[110px]">
                   {messageThreads && allFriends && messages && (
                     <ConversationList
@@ -249,14 +200,17 @@ const SidebarController: React.FC<SidebarControllerProps> = ({
         <Tab key="groups" title="Groups">
           <div className="flex flex-col items-center justify-center min-w-[140px] max-w-[140px] w-auto">
             <div className="w-full shadow-md">
-              <p className="font-bold text-md  py-1 px-1 w-full">Actions</p>
+              <p className="font-bold text-md dark:text-sky-200 py-1 px-1 w-full">
+                Actions
+              </p>
             </div>
-            <Divider />
+            <Divider className="dark:bg-sky-500/50" />
 
             <Button
               size="sm"
               onClick={() => setGroups(true)}
-              className="w-full  rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:bg-zinc-200/10 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
+              className="w-full  rounded-none bg-zinc-200/80 
+              dark:bg-slate-700/50 hover:dark:bg-slate-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-sky-200 hover:text-sky-500 hover:scale-105 text-xs justify-start px-1 pl-2"
             >
               <div className="">
                 <UserPlus2 className="h-3 w-3" />
@@ -280,7 +234,8 @@ const SidebarController: React.FC<SidebarControllerProps> = ({
             <Button
               size="sm"
               onClick={() => setCreate(true)}
-              className="w-full  rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:bg-zinc-200/10 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
+              className="w-full  rounded-none bg-zinc-200/80 
+              dark:bg-slate-700/50 hover:dark:bg-slate-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-sky-200 hover:text-sky-500 hover:scale-105 text-xs justify-start px-1 pl-2"
             >
               <div className="">
                 <UserCircle className="h-3 w-3" />
@@ -296,7 +251,8 @@ const SidebarController: React.FC<SidebarControllerProps> = ({
 
             <Button
               size="sm"
-              className="w-full  rounded-none bg-zinc-200/80 dark:bg-zinc-700/50 hover:dark:bg-zinc-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-emerald-400 hover:text-emerald-500 hover:scale-105 text-xs justify-start px-1 pl-2"
+              className="w-full  rounded-none bg-zinc-200/80 
+              dark:bg-slate-700/50 hover:dark:bg-slate-400/50 hover:bg-opacity-5 hover:bg-zinc-50 dark:hover:text-sky-200 hover:text-sky-200 hover:scale-105 text-xs justify-start px-1 pl-2"
               onClick={() => setThread(true)}
             >
               <File className="h-3 w-3" />
@@ -310,14 +266,14 @@ const SidebarController: React.FC<SidebarControllerProps> = ({
               groups={currentGroups}
             />
 
-            <Divider />
+            <Divider className="dark:bg-sky-500/50" />
 
             {joinedGroups && (
               <div className="pt-2 pb-2">
-                <p className="font-bold text-md shadow-xl py-1 px-1">
+                <p className="font-bold text-md dark:text-sky-200 shadow-xl py-1 px-1">
                   Joined Groups
                 </p>
-                <Divider />
+                <Divider className="dark:bg-sky-500/50" />
                 <ScrollArea className="w-auto h-[110px]">
                   <SidebarGroupList
                     groups={joinedGroups}
@@ -329,10 +285,10 @@ const SidebarController: React.FC<SidebarControllerProps> = ({
             )}
 
             <div>
-              <p className="font-bold text-md shadow-xl py-1 px-1">
+              <p className="font-bold dark:text-sky-200 text-md shadow-xl py-1 px-1">
                 Created Groups
               </p>
-              <Divider />
+              <Divider className="dark:bg-sky-500/50" />
               <ScrollArea className="w-auto h-[110px]">
                 <SidebarGroupList
                   groups={createdGroups}
