@@ -4,8 +4,14 @@ import Navbar from "@/components/navbar/navbar";
 import NavButton from "@/components/ui/nav-button";
 import localFont from "next/font/local";
 import { currentUser } from "@clerk/nextjs";
-import { Divider } from "@nextui-org/react";
-import { Combine, Contact2, MessagesSquare, MousePointerClick, Users } from "lucide-react";
+
+import {
+  Combine,
+  Contact2,
+  MessagesSquare,
+  MousePointerClick,
+  Users,
+} from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
@@ -37,53 +43,52 @@ const LandingPage = async () => {
                 <h2 className="font-semibold text-xl md:text-2xl lg:text-3xl font-sans bg-gradient-to-r from-sky-600/80  to-slate-200/80 bg-clip-text text-transparent drop-shadow-2xl pb-5">
                   An open-source social grouping application!
                 </h2>
-                
               </div>
             </div>
             <div className="flex items-center flex-col z-10 justify-center gap-5">
-            {user ? (
-                  <NavButton
-                    href="/dashboard"
-                    text="Get Started for FREE"
-                    className="rounded-md shadow-sm shadow-slate-500 flex items-center max-w-[200px] justify-center shadow-smpx-3 py-2 gap-2  
+              {user ? (
+                <NavButton
+                  href="/dashboard"
+                  text="Get Started for FREE"
+                  className="rounded-md shadow-sm shadow-slate-500 flex items-center max-w-[200px] justify-center shadow-smpx-3 py-2 gap-2  
   hover:scale-110 dark:hover-bg-zinc-500 dark:hover:text-sky-300 font-semibold group"
-                    icon={
-                      <MousePointerClick className="h-5 w-5 text-sky-400 group-hover:text-sky-200" />
-                    }
-                  />
-                ) : (
-                  <NavButton
-                    href="/sign-up"
-                    text="Get Started"
-                    className="rounded-md flex items-center max-w-[200px] justify-center shadow-sm px-3 py-2 gap-2 
+                  icon={
+                    <MousePointerClick className="h-5 w-5 text-sky-400 group-hover:text-sky-200" />
+                  }
+                />
+              ) : (
+                <NavButton
+                  href="/sign-up"
+                  text="Get Started"
+                  className="rounded-md flex items-center max-w-[200px] justify-center shadow-sm px-3 py-2 gap-2 
     hover:scale-110 dark:hover-bg-zinc-500  shadow-slate-400 dark:hover:text-sky-300 font-semibold group"
-                    icon={
-                      <MousePointerClick className="h-5 w-5 text-sky-400 group-hover:text-sky-200" />
-                    }
-                  />
-                )}
-            <div className="grid md:grid-cols-2 p-5 gap-5 rounded-md ">
-              <Feature
-                title="Create Groups"
-                icon={<Users className="h-5 w-5" />}
-                description="Create unlimited groups!"
-              />
-              <Feature
-                title="Join Groups"
-                icon={<Combine className="h-5 w-5" />}
-                description="Join as many groups as you would like!"
-              />
-              <Feature
-                title="Make Friends"
-                icon={<Contact2 className="h-5 w-5" />}
-                description="Easily add friends!"
-              />
-              <Feature
-                title="Communicate"
-                icon={<MessagesSquare className="h-5 w-5" />}
-                description="No limits on converstaions and threads!"
-              />
-            </div>
+                  icon={
+                    <MousePointerClick className="h-5 w-5 text-sky-400 group-hover:text-sky-200" />
+                  }
+                />
+              )}
+              <div className="grid md:grid-cols-2 p-5 gap-5 rounded-md ">
+                <Feature
+                  title="Create Groups"
+                  icon={<Users className="h-5 w-5" />}
+                  description="Create unlimited groups!"
+                />
+                <Feature
+                  title="Join Groups"
+                  icon={<Combine className="h-5 w-5" />}
+                  description="Join as many groups as you would like!"
+                />
+                <Feature
+                  title="Make Friends"
+                  icon={<Contact2 className="h-5 w-5" />}
+                  description="Easily add friends!"
+                />
+                <Feature
+                  title="Communicate"
+                  icon={<MessagesSquare className="h-5 w-5" />}
+                  description="No limits on converstaions and threads!"
+                />
+              </div>
             </div>
           </div>
         </div>

@@ -1,13 +1,9 @@
-'use client'
+"use client";
+//IN PROGRESS
+import { Modal } from "@/components/ui/modal";
+import { Button } from "@nextui-org/react";
 
-import CreateGroupForm from '@/components/group/create-group-form';
-import { Modal } from '@/components/ui/modal';
-import { Button } from '@nextui-org/react';
-import { useEffect } from 'react';
-import JoinGroupForm from '../group/join-group-form';
-import { Group, MessageThread, Profile } from '@prisma/client';
-import { ScrollArea } from '../ui/scroll-area';
-import ConversationList from '../message/conversation-list';
+import { MessageThread, Profile } from "@prisma/client";
 
 interface InboxModalProps {
   isOpen: boolean;
@@ -28,17 +24,14 @@ export const InboxModal: React.FC<InboxModalProps> = ({
   profile,
   friends,
 }) => {
-  
-
-  return(
+  return (
     <Modal
-    title="Current Conversations"
-    description="Browse through the conversations you are a part of."
-    isOpen={isOpen}
-    onClose={onClose}
-    
+      title="Current Conversations"
+      description="Browse through the conversations you are a part of."
+      isOpen={isOpen}
+      onClose={onClose}
     >
-    {/* {conversations && (
+      {/* {conversations && (
       <ConversationList
       conversations={conversations}
       profile={profile}
@@ -46,16 +39,14 @@ export const InboxModal: React.FC<InboxModalProps> = ({
        onClose={onClose} 
       />
     )} */}
-  {/* finish this */}
+      {/* finish this */}
       <div className="pt-6 space-x-2 flex items-center justify-end w-full">
-        <Button disabled={loading}  onClick ={onClose}>
+        <Button disabled={loading} onClick={onClose}>
           Cancel
         </Button>
-        
       </div>
-
     </Modal>
-  )
-}
+  );
+};
 
 export default InboxModal;

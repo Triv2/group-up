@@ -8,71 +8,65 @@ export async function PATCH(
 ) {
   try {
     const user = await currentUser();
-  if (!user) {
-    return redirectToSignIn();
-  }
-    
-  const body = await req.json();
-    
-  const { profileId,targetId} = body;
-    
+    if (!user) {
+      return redirectToSignIn();
+    }
+
+    const body = await req.json();
+
+    const { profileId, targetId } = body;
+
     const currentProfile = await db.profile.findUnique({
       where: {
-        id:profileId,
+        id: profileId,
       },
-    })
+    });
     if (!currentProfile) {
-      return new NextResponse("Profile not found",{ status: 400 });
+      return new NextResponse("Profile not found", { status: 400 });
     }
     const targetProfile = await db.profile.findUnique({
       where: {
-        id:targetId,
+        id: targetId,
       },
-    })
+    });
     if (!targetProfile) {
-      return new NextResponse("Profile not found",{ status: 400 });
+      return new NextResponse("Profile not found", { status: 400 });
     }
 
-    let newFriendIds:string[] = []
-    currentProfile.friendIds.map(friendId => {
+    let newFriendIds: string[] = [];
+    currentProfile.friendIds.map((friendId) => {
       if (friendId !== targetId) {
-        newFriendIds.push(friendId)
+        newFriendIds.push(friendId);
       }
     });
 
-    let newFriendIds2:string[] = []
-    targetProfile.friendIds.map(friendId => {
+    let newFriendIds2: string[] = [];
+    targetProfile.friendIds.map((friendId) => {
       if (friendId !== profileId) {
         newFriendIds2.push(friendId);
       }
-     
-    })
+    });
 
     const removedFriends = await db.profile.update({
       where: {
-        id:targetProfile?.id,
+        id: targetProfile?.id,
       },
       data: {
-        friendIds:
-          newFriendIds2
-        
+        friendIds: newFriendIds2,
       },
-    })
+    });
     await db.profile.update({
       where: {
-        id:currentProfile?.id,
+        id: currentProfile?.id,
       },
       data: {
-        friendIds: newFriendIds
+        friendIds: newFriendIds,
       },
-    })
+    });
 
-    
-    
     return NextResponse.json(removedFriends);
-    
   } catch (error) {
-    console.log('[PROFILE_ID_FRIEND_REMOVE]', error);
-    return new NextResponse("Internal Error", {status:500});
+    console.log("[PROFILE_ID_FRIEND_REMOVE]", error);
+    return new NextResponse("Internal Error", { status: 500 });
   }
 }

@@ -1,22 +1,18 @@
-import { auth } from "@clerk/nextjs"
+import { auth } from "@clerk/nextjs";
 
-import { db } from "@/lib/db"
+import { db } from "@/lib/db";
 
+export const allMembers = async () => {
+  const { userId } = auth();
 
-export const allMembers= async () => {
-  const { userId} = auth();
-  
-
-  if(!userId) { 
-    
+  if (!userId) {
     return null;
   }
 
-  const profiles =await db.profile.findMany({});
+  const profiles = await db.profile.findMany({});
 
-  if(!profiles){
+  if (!profiles) {
     return null;
   }
-  return profiles; 
-  
-}
+  return profiles;
+};

@@ -1,48 +1,44 @@
-import { auth } from "@clerk/nextjs"
+import { auth } from "@clerk/nextjs";
 
-import { db } from "@/lib/db"
+import { db } from "@/lib/db";
 
+export const currentMembers = async () => {
+  const { userId } = auth();
 
-export const currentMembers= async () => {
-  const { userId} = auth();
-  
-
-  if(!userId) { 
-    
+  if (!userId) {
     return null;
   }
 
-  const profile =await db.profile.findFirst({
+  const profile = await db.profile.findFirst({
     where: {
-      clerkId:userId,
+      clerkId: userId,
     },
-    
   });
 
-  if(!profile) {
+  if (!profile) {
     return null;
-  } 
-  
+  }
+
   const groups = await db.group.findMany({
     where: {
       id: {
         in: profile.groupIds,
       },
     },
-  })
+  });
 
   const memberObjects = groups.map((group) => {
     return {
-      groupId:group.id,
+      groupId: group.id,
       member: group.profileIds.map((id) => {
         return db.profile.findUnique({
           where: {
             id,
           },
-        })
+        });
       }),
-    }
-  })
+    };
+  });
 
-  return memberObjects
-}
+  return memberObjects;
+};

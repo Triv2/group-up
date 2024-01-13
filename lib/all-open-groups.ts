@@ -1,28 +1,23 @@
-import { auth } from "@clerk/nextjs"
+import { auth } from "@clerk/nextjs";
 
-import { db } from "@/lib/db"
-
+import { db } from "@/lib/db";
 
 export const allOpenGroups = async () => {
-  const { userId} = auth();
-  
+  const { userId } = auth();
 
-  if(!userId) { 
-    
+  if (!userId) {
     return null;
   }
 
-  const groups =await db.group.findMany({
-    where:{
-      openGroup:true,
-    }
+  const groups = await db.group.findMany({
+    where: {
+      openGroup: true,
+    },
   });
 
-  if(groups.length === 0){
+  if (groups.length === 0) {
     return null;
   }
- 
+
   return groups;
-  
-  
-}
+};

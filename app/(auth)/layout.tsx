@@ -1,6 +1,6 @@
 import Particles from "@/components/effects/particles";
 
-const AuthLayout = ( {
+const LandingLayout = ( {
   children
 }: {children: React.ReactNode}) => {
   return (
@@ -10,4 +10,4 @@ const AuthLayout = ( {
   </div>
   );
 }
-export default AuthLayout;
+export default LandingLayout;

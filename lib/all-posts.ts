@@ -1,24 +1,19 @@
-import { auth } from "@clerk/nextjs"
+import { auth } from "@clerk/nextjs";
 
-import { db } from "@/lib/db"
-
+import { db } from "@/lib/db";
 
 export const allPosts = async () => {
-  const { userId} = auth();
-  
+  const { userId } = auth();
 
-  if(!userId) { 
-    
+  if (!userId) {
     return null;
   }
 
-  const posts =await db.post.findMany({});
+  const posts = await db.post.findMany({});
 
-  if(posts.length === 0){
+  if (posts.length === 0) {
     return null;
   }
- 
+
   return posts;
-  
-  
-}
+};

@@ -1,30 +1,27 @@
 "use client";
-import { Avatar, Button, Divider, Tab, Tabs, Tooltip } from "@nextui-org/react";
+import { Button, Divider, Tab, Tabs } from "@nextui-org/react";
 import { Group, Message, MessageThread, Profile } from "@prisma/client";
 import {
   Contact,
   File,
   Home,
-  Mail,
   MailPlus,
   UserCircle,
   UserPlus2,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import GroupList from "../group/group-list";
+
 import SidebarGroupList from "./sidebar-group-list";
 import { ScrollArea } from "../ui/scroll-area";
 import { CreateGroupModal } from "../modals/create-group-modal";
-import axios from "axios";
-import toast from "react-hot-toast";
+
 import EditProfileModal from "../modals/edit-profile-modal";
 import AllGroupsModal from "../modals/all-groups-modal";
 import CreateThreadModal from "../modals/create-thread-modal";
 import CreateMessageThreadModal from "../modals/create-message-thread-modal";
 import FriendList from "../friend/friend-list";
 import ConversationList from "../message/conversation-list";
-import ConversationModal from "../modals/conversation-modal";
 
 interface SidebarControllerProps {
   profile: Profile;

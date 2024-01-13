@@ -1,32 +1,20 @@
-import DeleteButton from "@/components/ui/delete-button";
-import InviteCode from "@/components/ui/invite-code";
-import NavButton from "@/components/ui/nav-button";
-import SantaUser from "@/components/ui/santa-user";
-import { currentCreator } from "@/lib/current-creator";
 import { currentGroups } from "@/lib/current-groups";
-import { currentMembers } from "@/lib/current-members";
+
 import { currentProfile } from "@/lib/current-profile";
 
-import { UserButton, auth, redirectToSignIn } from "@clerk/nextjs";
-import { Avatar, AvatarGroup, Button, Divider, User } from "@nextui-org/react";
+import { auth, redirectToSignIn } from "@clerk/nextjs";
+import { Divider } from "@nextui-org/react";
 
-import { Edit, Trash, User2 } from "lucide-react";
-
-import Image from "next/image";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import ProfileSummary from "@/components/profile/profile-summary";
 import GroupSummary from "@/components/group/group-summary";
 import { allMembers } from "@/lib/all-members";
-import { Calendar } from "@/components/ui/calendar";
-import { currentCreatedGroups } from "@/lib/current-created-groups";
 
 import ThreadViewer from "@/components/thread/thread-viewer";
 import { allUserGroupThreads } from "@/lib/all-user-group-threads";
-import CreateGroupModal from "@/components/modals/create-group-modal";
+
 import { allPosts } from "@/lib/all-posts";
-import { db } from "@/lib/db";
+
 import { Post, Profile, Thread } from "@prisma/client";
 
 export const revalidate = 0;
@@ -77,17 +65,17 @@ const DashboardPage = async () => {
   }
 
   return (
-    <div className="md:pl-[180px] flex items-center justify-center min-h-screen h-auto w-auto min-w-screen flex-col bg-gradient-to-b from-zinc-400 to-zinc-100 
-    dark:bg-gradient-to-br dark:from-zinc-900  dark:to-slate-950 bg-no-repeat bg-cover bg-center">
-      
+    <div
+      className="md:pl-[180px] flex items-center justify-center min-h-screen h-auto w-auto min-w-screen flex-col bg-gradient-to-b from-zinc-400 to-zinc-100 
+    dark:bg-gradient-to-br dark:from-zinc-900  dark:to-slate-950 bg-no-repeat bg-cover bg-center"
+    >
       <div className="rounded-md  bg-zinc-200 dark:bg-gradient-to-b from-slate-800 via-slate-900 to-slate-800 flex flex-col items-center justify-center gap-2 py-3 mt-10 md:px-10 md:p-5 shadow-md ">
         <div className=" bg-[url(/mbg1.png)]  h-[100px] rounded-md w-full flex items-center justify-center shadow-lg">
           <div className="bg-slate-800/60 h-full w-full flex items-center justify-center rounded-md shadow-md">
-          <h1 className="text-white text-lg md:text-3xl font-bold">
-        
-          Welcome, {profile?.name}!
-        </h1>
-        </div>
+            <h1 className="text-white text-lg md:text-3xl font-bold">
+              Welcome, {profile?.name}!
+            </h1>
+          </div>
         </div>
         {!userGroups && (
           <div className="flex items-center flex-col">
@@ -101,11 +89,8 @@ const DashboardPage = async () => {
           <div className="flex items-center  flex-col gap-2 w-auto">
             Threads
             <Divider />
-            {profile  && (
-              <ThreadViewer
-                threadObjects={threadStuff}
-                profile={profile}
-              />
+            {profile && (
+              <ThreadViewer threadObjects={threadStuff} profile={profile} />
             )}
           </div>
 
@@ -129,7 +114,6 @@ const DashboardPage = async () => {
         <Divider />
         <div className="flex items-center justify-center md:flex-row flex-col gap-3 "></div>
       </div>
-      
     </div>
   );
 };

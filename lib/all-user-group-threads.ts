@@ -1,52 +1,47 @@
-import { auth } from "@clerk/nextjs"
+import { auth } from "@clerk/nextjs";
 
-import { db } from "@/lib/db"
-
+import { db } from "@/lib/db";
 
 export const allUserGroupThreads = async () => {
-  const { userId} = auth();
-  
+  const { userId } = auth();
 
-  if(!userId) { 
-    
+  if (!userId) {
     return null;
   }
 
   const profile = await db.profile.findFirst({
     where: {
-      clerkId:userId,
-    }
-  })
+      clerkId: userId,
+    },
+  });
 
-   if(!profile) {
+  if (!profile) {
     return null;
   }
 
-  const groups =await db.group.findMany({
+  const groups = await db.group.findMany({
     where: {
-      id:{
-        in:profile.groupIds
-      }
-    }
-  })
+      id: {
+        in: profile.groupIds,
+      },
+    },
+  });
 
-  if(groups.length === 0){
+  if (groups.length === 0) {
     return null;
   }
 
   const threads = await db.thread.findMany({
     where: {
       groupId: {
-        in: groups.map((group) => group.id)
-      }
-    }
-  })
-  
-  if(threads.length === 0){
+        in: groups.map((group) => group.id),
+      },
+    },
+  });
+
+  if (threads.length === 0) {
     return null;
   }
- 
+
   return threads;
-  
-  
-}
+};

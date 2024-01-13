@@ -1,24 +1,18 @@
-'use client'
-import {useState, useEffect} from'react'
-
+"use client";
+import { useState, useEffect } from "react";
 
 interface ModalProviderProps {}
 
-const ModalProvider:React.FC<ModalProviderProps> = () => {
+const ModalProvider: React.FC<ModalProviderProps> = () => {
+  const [isMounted, setIsMounted] = useState(false);
 
-const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
-useEffect(() => {
-setIsMounted(true);
-}, []);
-
-if (!isMounted) {
-return null;
-}
-  return (
-    <>
-
-    </>
-  );
-}
+  if (!isMounted) {
+    return null;
+  }
+  return <></>;
+};
 export default ModalProvider;

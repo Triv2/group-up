@@ -1,50 +1,44 @@
-import { auth } from "@clerk/nextjs"
+import { auth } from "@clerk/nextjs";
 
-import { db } from "@/lib/db"
-
+import { db } from "@/lib/db";
 
 export const allNoncreatedJoinedGroups = async () => {
-  const { userId} = auth();
-  
+  const { userId } = auth();
 
-  if(!userId) { 
-    
+  if (!userId) {
     return null;
   }
 
-  const profile =await db.profile.findFirst({
+  const profile = await db.profile.findFirst({
     where: {
-      clerkId:userId,
+      clerkId: userId,
     },
   });
 
-  if(!profile){
+  if (!profile) {
     return null;
   }
 
   const creator = await db.creator.findUnique({
     where: {
-      id:profile?.id,
+      id: profile?.id,
     },
-  })
+  });
 
-  if(!creator) {
-    const currentGroups=await db.group.findMany({
+  if (!creator) {
+    const currentGroups = await db.group.findMany({
       where: {
         id: {
           in: profile.groupIds,
         },
       },
-    })
+    });
     return currentGroups;
   }
 
-  
-
-  let difference = profile.groupIds.filter(id =>!creator.groupIds.includes(id));
-
-
-
+  let difference = profile.groupIds.filter(
+    (id) => !creator.groupIds.includes(id)
+  );
 
   // creator.groupIds.forEach( (groupId) => {
   //   if(profile.groupIds.includes(groupId)) {
@@ -55,20 +49,13 @@ export const allNoncreatedJoinedGroups = async () => {
   // })
 
   // if(groupIds.length > 0) {
-    const groupList= await db.group.findMany({
-      where: {
-        id: {
-          in: difference,
-        },
+  const groupList = await db.group.findMany({
+    where: {
+      id: {
+        in: difference,
       },
-    });
-  
+    },
+  });
 
-
-  
-    
   return groupList;
-  }
-
-
-
+};

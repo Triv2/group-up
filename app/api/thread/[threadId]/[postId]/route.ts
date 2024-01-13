@@ -8,42 +8,38 @@ export async function PATCH(
 ) {
   try {
     const user = await currentUser();
-  if (!user) {
-    return redirectToSignIn();
-  }
+    if (!user) {
+      return redirectToSignIn();
+    }
     const body = await req.json();
-    
+
     const { content } = body;
 
-
-    
-
-    if (!params.postId ||!content) {
-      return new NextResponse("Post and content are required",{ status: 400 });
+    if (!params.postId || !content) {
+      return new NextResponse("Post and content are required", { status: 400 });
     }
-    
+
     const profile = await db.profile.findFirst({
       where: {
-        clerkId:user.id
+        clerkId: user.id,
       },
-    })
+    });
     if (!profile) {
-      return new NextResponse("Profile not found",{ status: 400 });
+      return new NextResponse("Profile not found", { status: 400 });
     }
-   
-    const updatedPost= await db.post.update({
-      where:{
-        id:params.postId,
+
+    const updatedPost = await db.post.update({
+      where: {
+        id: params.postId,
       },
-      data:{
-        content:content
-      }
-    })
-    
+      data: {
+        content: content,
+      },
+    });
+
     return NextResponse.json(updatedPost);
   } catch (error) {
-    console.log('[POST_ID_PATCH]', error);
-    return new NextResponse("Internal Error", {status:500});
+    console.log("[POST_ID_PATCH]", error);
+    return new NextResponse("Internal Error", { status: 500 });
   }
 }
-

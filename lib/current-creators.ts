@@ -1,54 +1,43 @@
-import { auth } from "@clerk/nextjs"
+import { auth } from "@clerk/nextjs";
 
-import { db } from "@/lib/db"
+import { db } from "@/lib/db";
 
+export const currentCreators = async () => {
+  const { userId } = auth();
 
-export const currentCreators= async () => {
-  const { userId} = auth();
-  
-
-  if(!userId) { 
-    
+  if (!userId) {
     return null;
   }
 
-  const profile =await db.profile.findFirst({
+  const profile = await db.profile.findFirst({
     where: {
-      clerkId:userId,
+      clerkId: userId,
     },
   });
-  if(!profile) {
+  if (!profile) {
     return null;
   }
 
-  
+  const creators = [
+    profile.groupIds.forEach(async (groupId) => {
+      const group = await db.group.findUnique({
+        where: {
+          id: groupId,
+        },
+      });
+      const creator = await db.creator.findUnique({
+        where: {
+          id: group?.creator,
+        },
+      });
+      if (!creator) {
+        return null;
+      }
+      return creator;
 
-  const creators= [profile.groupIds.forEach(async (groupId) => { 
-    const group =await db.group.findUnique({
-      where: {
-        id:groupId,
-      },
-    });
-    const creator = await db.creator.findUnique({
-      where: {
-        id:group?.creator,
-      },
-    })
-    if(!creator) {
-      return null;
-    }
-    return creator;
-    
-    
-    //This might need fixing, it might return only one creator when it should return more. or Vice versa.
-  })]
+      //This might need fixing, it might return only one creator when it should return more. or Vice versa.
+    }),
+  ];
 
- 
-
-
-  
-    return creators;
-}
-
- 
-
+  return creators;
+};
