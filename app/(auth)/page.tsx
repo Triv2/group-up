@@ -71,22 +71,22 @@ const LandingPage = async () => {
                 <Feature
                   title="Create Groups"
                   icon={<Users className="h-5 w-5" />}
-                  description="Create unlimited groups!"
+                  description="Create unlimited groups"
                 />
                 <Feature
                   title="Join Groups"
                   icon={<Combine className="h-5 w-5" />}
-                  description="Join as many groups as you would like!"
+                  description="Join as many groups as you would like"
                 />
                 <Feature
                   title="Make Friends"
                   icon={<Contact2 className="h-5 w-5" />}
-                  description="Easily add friends!"
+                  description="Easily add friends"
                 />
                 <Feature
                   title="Communicate"
                   icon={<MessagesSquare className="h-5 w-5" />}
-                  description="No limits on converstaions and threads!"
+                  description="No limits on converstaions and threads"
                 />
               </div>
             </div>
