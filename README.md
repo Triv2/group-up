@@ -4,7 +4,7 @@
 >This repository is for an open-source social grouping application.
 
 **Technologies**: *Next.js 13, Prisma, MongoDB, Clerk, Uploadthing*\
-**Styling**: *Shadcn-ui, Next-ui,TailwindCSS, Tailwind-Animated, Particle Effects*
+**Styling**: *Shadcn-ui, Next-ui, TailwindCSS, Tailwind-Animated*
 
 ## Features 
 
