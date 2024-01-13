@@ -77,7 +77,6 @@ const DashboardPage = async () => {
             </h1>
           </div>
         </div>
-        
 
         <Divider />
         <div className="grid xl:grid-cols-2 h-auto gap-10 sm:px-7 ">
@@ -103,13 +102,13 @@ const DashboardPage = async () => {
                   profile={profile}
                 />
               ))}
-              {profile && profile.groupIds.length<0 && (
-          <div className="flex items-center flex-col">
-          
-            <p className=" text-muted-foreground dark:text-sky-100/50 px-1">You are not in any groups, please create or join a group</p>
-          </div>
-        )}
-
+            {profile && profile.groupIds.length === 0 && (
+              <div className="flex items-center flex-col">
+                <p className=" text-muted-foreground dark:text-sky-100/50 px-1">
+                  You are not in any groups, please create or join a group
+                </p>
+              </div>
+            )}
           </div>
         </div>
 
