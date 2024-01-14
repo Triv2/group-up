@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import LandingNavbar from "./_components/landing-navbar";
 
 interface LandingPageProps {}
 const headingFont = localFont({
@@ -24,7 +25,7 @@ const LandingPage = async () => {
   const user = (await currentUser()) || null;
   return (
     <div className="h-full w-full">
-      <Navbar />
+      <LandingNavbar/>
 
       <div className="min-h-screen h-auto flex items-center justify-center z-10 bg-zinc-900/80 w-full">
         <div className="flex flex-col items-center justify-center z-10 h-auto w-full pt-10">
@@ -49,8 +50,8 @@ const LandingPage = async () => {
               {user ? (
                 <NavButton
                   href="/dashboard"
-                  text="Get Started for FREE"
-                  className="rounded-md shadow-sm shadow-slate-500 flex items-center max-w-[200px] justify-center shadow-smpx-3 py-2 gap-2  
+                  text="Get Started"
+                  className="rounded-md shadow-sm shadow-slate-500 flex items-center max-w-[200px] justify-center  px-3 py-2 gap-2  
   hover:scale-110 dark:hover-bg-zinc-500 dark:hover:text-sky-300 font-semibold group"
                   icon={
                     <MousePointerClick className="h-5 w-5 text-sky-400 group-hover:text-sky-200" />

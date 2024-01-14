@@ -8,7 +8,7 @@ interface FeatureProps {
 
 const Feature = ({ title, description, icon }: FeatureProps) => {
   return (
-    <section className="shadow-md shadow-sky-900/50 flex items-center flex-col justify-center p-2 rounded-md bg-gradient-to-b from-sky-800/80 to-slate-800/80 py-5">
+    <section className="shadow-md shadow-sky-900/50 flex items-center flex-col justify-center p-2 rounded-md bg-gradient-to-b from-sky-500/50 to-slate-800/80 py-5">
       <p className="text-slate-200 flex items-center justify-center gap-2 font-semibold text-xl">
         {icon}
         {title}

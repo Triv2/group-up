@@ -30,7 +30,7 @@ if (!isMounted) {
 return null;
 }
   return (
-    <Button variant="blend" asChild>
+    <Button className="bg-slate-900" variant="blend" asChild>
     <Link className={className} href={href}>
       {icon}{text}
     </Link>
