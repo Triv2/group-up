@@ -14,6 +14,7 @@
 4. 1:1 Conversations with friends
 5. Create threads for forum style communication.
 6. Edit your profile or group at any time.
+7. Invite urls and links for quick grouping
 
 **Requirements**\
 	*Node version 18+*\
@@ -30,7 +31,7 @@ git clone https://github.com/Triv2/group-up.git
 	*Clerk*\
 	*Uploadthing*
 
-## .env File
+## .env 
 ```coffeescript
 
 DATABASE_URL=
