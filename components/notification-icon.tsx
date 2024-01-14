@@ -14,7 +14,7 @@ const NotificationIcon = ({
   return (
 <Badge className={className}>
   {icon}
-<span className="absolute -top-2 -right-2 rounded-full bg-teal-400 p-1 px-2 text-white">{count}</span>
+<span className="absolute -top-2 -right-2 rounded-full bg-teal-400/70 p-1 px-2 text-sky-100">{count}</span>
 </Badge>
   );
 }
