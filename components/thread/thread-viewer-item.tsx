@@ -7,12 +7,13 @@ import {
   AccordionTrigger,
 } from "../ui/accordion";
 import { Post, Profile, Thread } from "@prisma/client";
-import { Lock, Unlock } from "lucide-react";
+import { Lock, MessageSquarePlus, Unlock, Users } from "lucide-react";
 import Image from "next/image";
 
 import ThreadActionList from "./thread-action-list";
 import PostItem from "../post/post-item";
 import { ScrollArea } from "../ui/scroll-area";
+import NotificationIcon from "../notification-icon";
 
 interface ThreadViewerItemProps {
   profile: Profile;
@@ -61,9 +62,17 @@ const ThreadViewerItem = ({
                 <Lock className="h-3 w-3" />
               )}
             </div>
-            <div className="rounded-full p-1 px-2 text-xs bg-sky-400/80">
-              {thread.postIds.length}
-            </div>
+          <NotificationIcon
+                icon={<MessageSquarePlus className="text-sky-900/80 h-4 w-4 dark:text-sky-200 "/>}
+                count={threadPosts.length.toString()}
+                className="relative text-bg-sky-500 bg-sky-200  dark:bg-sky-700  hover:bg-sky-400 dark:hover:bg-sky-500  p-2 rounded-full"
+              />
+            <NotificationIcon
+                icon={<Users className="text-sky-900/80 text-xs h-4 w-4 dark:text-sky-400 "/>}
+                count={participants.length.toString()}
+                className="relative text-bg-sky-500 bg-sky-200  dark:bg-sky-700  hover:bg-sky-400 dark:hover:bg-sky-500  p-2 rounded-full"
+              />
+              
             <div className="flex items-center justify-center ">
               {thread.imageUrl && (
                 <Image

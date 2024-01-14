@@ -47,14 +47,15 @@ export const MobileSidebar = ({
       <SheetTrigger>
         <Button
           size="sm"
-          className="fixed z-50 bg-zinc-200 dark:bg-zinc-700 shadow-xl dark:text-emerald-500 text-emerald-700 hover:text-emerald-500 hover:bg-zinc-100/80"
+          className="fixed z-50 "
+          variant="blend"
         >
           <Menu className="h-4 w-4" />
         </Button>
       </SheetTrigger>
       <SheetContent
         side="left"
-        className="p-0 bg-zinc-200 pt-[2.5rem] dark:bg-zinc-700 w-[161px]"
+        className="p-0 bg-zinc-200 pt-[2.5rem] dark:bg-slate-900/80 w-[161px]"
       >
         <Sidebar
           allMessages={allMessages}

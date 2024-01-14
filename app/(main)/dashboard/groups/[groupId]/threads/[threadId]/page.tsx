@@ -1,3 +1,4 @@
+import NotificationIcon from "@/components/notification-icon";
 import CreatePostButton from "@/components/post/create-post-button";
 import PostItem from "@/components/post/post-item";
 import { PostObject } from "@/components/thread/thread-viewer-item";
@@ -5,6 +6,7 @@ import { PostObject } from "@/components/thread/thread-viewer-item";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { Divider } from "@nextui-org/react";
+import { MessageSquarePlus, Users } from "lucide-react";
 
 import Image from "next/image";
 
@@ -66,7 +68,7 @@ const ThreadIdPage = async ({ params }: ThreadIdPageProps) => {
   return (
     <div className="flex px-2 md:px-1 w-full bg-gradient-to-b from-zinc-400 to-zinc-100 
     dark:bg-gradient-to-br dark:from-zinc-900  dark:to-slate-950 min-h-screen h-auto">
-      <div className="mt-[35px] pt-10 w-full px-2 md:px-10 md:ml-[140px]">
+      <div className="mt-[35px] pt-5 w-full px-2 md:px-10 md:ml-[140px]">
         <div className="flex items-center justify-center flex-col gap-2 bg-zinc-100 dark:bg-slate-800 rounded-md shadow-md  w-full py-5">
           <div className="flex items-center gap-3 justify-center w-full px-5">
             {thread?.imageUrl && (
@@ -101,19 +103,22 @@ const ThreadIdPage = async ({ params }: ThreadIdPageProps) => {
 
           <Divider  />
           <div className="flex md:flex-row flex-col items-center gap-2 justify-between w-full px-2 md:px-10 ">
-            <div className="flex items-center md:flex-row flex-col justify-around gap-2">
-              <div className="flex items-center justify-center gap-2">
-              <p>Participants:</p>
-              <div className="rounded-full bg-blue-400 p-1 px-3 font-bold">
-                <p>{participants.length}</p>
-              </div>
-              </div>
-              <div className="flex items-center justify-around gap-2">
-                <p>Posts:</p>
-                <div className="rounded-full bg-emerald-400 p-1 px-3 font-bold">
-                  <p>{currentPostCount}</p>
-                </div>
-              </div>
+
+            <div className="flex items-center md:flex-row justify-around gap-2">
+
+             
+              <NotificationIcon
+                icon={<Users className="text-sky-900/80  dark:text-sky-400 "/>}
+                count={participants.length.toString()}
+                className="relative text-bg-sky-500 bg-sky-200  dark:bg-sky-700  hover:bg-sky-400 dark:hover:bg-sky-500  p-2 rounded-full"
+              />
+              <NotificationIcon
+                icon={<MessageSquarePlus className="text-sky-900/80  dark:text-sky-200 "/>}
+                count={currentPostCount.toString()}
+                className="relative text-bg-sky-500 bg-sky-200  dark:bg-sky-700  hover:bg-sky-400 dark:hover:bg-sky-500  p-2 rounded-full"
+              />
+
+              
               <div className="min-h-[4rem]  flex  gap-2 items-center  px-2 sm:px-10  ">
                 <p>Created:</p>
                 <div className="flex items-center justify-center  flex-col text-md">
