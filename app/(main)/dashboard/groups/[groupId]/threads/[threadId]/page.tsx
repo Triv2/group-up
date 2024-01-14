@@ -101,10 +101,12 @@ const ThreadIdPage = async ({ params }: ThreadIdPageProps) => {
 
           <Divider  />
           <div className="flex md:flex-row flex-col items-center gap-2 justify-between w-full px-2 md:px-10 ">
-            <div className="flex items-center justify-around gap-2">
+            <div className="flex items-center md:flex-row flex-col justify-around gap-2">
+              <div className="flex items-center justify-center gap-2">
               <p>Participants:</p>
               <div className="rounded-full bg-blue-400 p-1 px-3 font-bold">
                 <p>{participants.length}</p>
+              </div>
               </div>
               <div className="flex items-center justify-around gap-2">
                 <p>Posts:</p>
