@@ -2,7 +2,7 @@
 
 import { FileIcon, X } from "lucide-react";
 import Image from "next/image";
-import { UploadDropzone } from "@/lib/uploadthing";
+import { UploadDropzone, UploadButton } from "@/lib/uploadthing";
 
 interface FileUploadProps {
   onChange: (url?: string) => void;
@@ -29,8 +29,9 @@ export const FileUpload = ({ onChange, value, endpoint }: FileUploadProps) => {
   }
 
   return (
-    <UploadDropzone
-      className="w-[100px] h-[100px] sm:w-[200px] sm:h-[200px]"
+ 
+    <UploadButton
+      className=""
       endpoint={endpoint}
       onClientUploadComplete={(res) => {
         onChange(res?.[0].url);
@@ -39,5 +40,7 @@ export const FileUpload = ({ onChange, value, endpoint }: FileUploadProps) => {
         console.log(error);
       }}
     />
+    
+  
   );
 };
