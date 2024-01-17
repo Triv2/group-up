@@ -73,7 +73,7 @@ const SidebarController: React.FC<SidebarControllerProps> = ({
     return null;
   }
   return (
-    <div className="text-xs flex items-center justify-center flex-col">
+    <div className="text-xs flex items-center justify-center flex-col animate-fade animate-duration-[2000ms] animate-ease-in-out">
       <Tabs
         key="size"
         size="sm"
@@ -88,7 +88,7 @@ const SidebarController: React.FC<SidebarControllerProps> = ({
         }}
       >
         <Tab key="profile" title="Profile">
-          <div className="flex flex-col items-center justify-center min-w-[140px] max-w-[140px] w-auto">
+          <div className="flex flex-col items-center justify-center min-w-[140px] max-w-[140px] w-auto animate-fade animate-duration-[500ms] transition-all animate-ease-in">
             <div className="w-full shadow-md">
               <p className="font-bold text-md dark:text-sky-200 py-1 px-1 w-full">
                 Actions
@@ -195,7 +195,7 @@ const SidebarController: React.FC<SidebarControllerProps> = ({
         </Tab>
         {/* ///////////////////////////////////////////////////////////////////////// */}
         <Tab key="groups" title="Groups">
-          <div className="flex flex-col items-center justify-center min-w-[140px] max-w-[140px] w-auto">
+          <div className="flex flex-col items-center justify-center min-w-[140px] max-w-[140px] w-auto animate-fade animate-duration-[500ms] transition-all animate-ease-in">
             <div className="w-full shadow-md">
               <p className="font-bold text-md dark:text-sky-200 py-1 px-1 w-full">
                 Actions

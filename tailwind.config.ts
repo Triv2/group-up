@@ -71,10 +71,10 @@ module.exports =withUt({
         },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        "accordion-down": "accordion-down 0.3s ease-out",
+        "accordion-up": "accordion-up 0.3s ease-out",
       },
     },
   },
-  plugins: [require("tailwindcss-animate"),nextui()],
+  plugins: [require("tailwindcss-animate"),require("tailwindcss-animated"),nextui()],
  });

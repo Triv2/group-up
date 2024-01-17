@@ -6,6 +6,7 @@ import {
   DialogHeader, 
   DialogTitle, 
   DialogDescription, } from "@/components/ui/dialog";
+import { cn } from "@/lib/utils";
 import { Divider } from "@nextui-org/react";
 
 interface ModalProps {
@@ -30,7 +31,7 @@ export const Modal:React.FC<ModalProps> = ({
   };
   return(
     <Dialog open={isOpen} onOpenChange={onChange}>
-       <DialogContent className="dark:bg-slate-900 border  dark:border-sky-500 ">
+       <DialogContent className="dark:bg-slate-900 border dark:border-sky-500 ">
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           <Divider className="dark:bg-sky-500/50"/>

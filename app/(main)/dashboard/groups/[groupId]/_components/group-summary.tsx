@@ -48,7 +48,7 @@ const GroupSummary: React.FC<GroupSummaryProps> = ({
 
       <Divider />
 
-      <ul className="w-full">
+      <ul className="w-full animate-fade animate-duration-[1000ms] transition-all animate-ease-in">
         <div className="flex items-center flex-col gap-1 w-full p-1 ">
           <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
             <h3 className="text-xs">Access:</h3>

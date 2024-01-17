@@ -34,7 +34,7 @@ const ThreadViewer: React.FC<ThreadViewerProps> = ({
       <ScrollArea>
 
        {threadObjects.length > 0 ?  (
-       <div className="flex items-center flex-col justify-center py-2  dark:bg-slate-900/80 rounded-md w-auto px-2 sm:px-5 gap-2">
+       <div className="flex items-center flex-col justify-center py-2  dark:bg-slate-900/80 rounded-md w-auto px-2 sm:px-5  animate-fade animate-duration-[2000ms] transition-all animate-ease-in gap-2">
           {threadObjects &&
             threadObjects.map((threadObject) => (
               <ThreadViewerItem

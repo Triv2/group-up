@@ -39,7 +39,9 @@ const GroupSummary: React.FC<GroupSummaryProps> = ({
     return null;
   }
   return (
-    <div className="flex items-center justify-start flex-col sm:px-2 py-2 gap-1 h-auto rounded-md bg-zinc-100 dark:bg-gradient-to-b dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 shadow-md w-[15rem] sm:w-[25rem] ">
+    <div className="flex items-center justify-start flex-col sm:px-2 py-2 gap-1 h-auto rounded-md 
+    bg-zinc-100 dark:bg-gradient-to-b dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 shadow-md w-[15rem] sm:w-[25rem] 
+    animate-fade animate-duration-[2000ms] transition-all animate-ease-in">
       <Accordion className="w-full h-full" type="single" collapsible>
         <AccordionItem value="item-1">
           <AccordionTrigger className="flex items-center flex-col sm:flex-row justify-between w-full no-underline px-2 py-2 gap-2 bg-zinc-100 dark:bg-gradient-to-b dark:from-slate-800 dark:via-slate-900 dark:to-slate-800 rounded-md hover:bg-white ">
@@ -68,7 +70,7 @@ const GroupSummary: React.FC<GroupSummaryProps> = ({
           </AccordionTrigger>
 
           <AccordionContent>
-            <ul className="w-full">
+            <ul className="w-full animate-fade animate-duration-[500ms] transition-all animate-ease-in">
               <div className="flex items-center flex-col gap-1 w-full p-1 ">
                 <div className="flex gap-5 justify-between items-center w-full py-2 px-2">
                   <h3 className="text-xs">Access:</h3>
