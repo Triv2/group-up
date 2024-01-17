@@ -113,7 +113,7 @@ const GroupActionList: React.FC<GroupActionListProps> = ({
             <DoorOpen className="h-4 w-4" /> Join
           </Button>
         )}
-        {!selectedJoinedGroup && !group.openGroup && (
+        {/* {!selectedJoinedGroup && !group.openGroup && (
           <Button
             onClick={() => router.push(`/dashboard/groups/${group.id}/apply`)}
             className="flex items-center justify-center px-2 py-1 gap-1 hover:scale-105 rounded-md bg-sky-700 text-white hover:bg-sky500 transition-all text-sm shadow-lg w-full"
@@ -121,7 +121,7 @@ const GroupActionList: React.FC<GroupActionListProps> = ({
             <Scroll className="h-4 w-4" />
             <p className="hidden sm:block">Apply</p>
           </Button>
-        )}
+        )} */}
 
         {currentCreator && (
           <div>
