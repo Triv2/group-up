@@ -39,7 +39,7 @@ const ConversationListItem = ({
     (message) => message.messageThreadId === conversation.id
   );
 
-  console.log(conversationMessages);
+ 
 
   const handleClick = () => {
     if (open) {
